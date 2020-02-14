@@ -1,0 +1,9 @@
+# directories
+.idea
+
+# extensions
+*.ipynb_checkpoints
+*.DS_store
+*.DS_store?
+
+
