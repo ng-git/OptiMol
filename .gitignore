@@ -1,5 +1,6 @@
 # directories
 .idea
+/database/
 
 # extensions
 *.ipynb_checkpoints
