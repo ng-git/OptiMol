@@ -1,0 +1,108 @@
+#------------------------------------------------------------------------------
+#$Date: 2016-03-04 09:46:56 +0200 (Fri, 04 Mar 2016) $
+#$Revision: 177283 $
+#$URL: svn://www.crystallography.net/cod/cif/1/10/03/1100372.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/
+#
+# All data on this site have been placed in the public domain by the
+# contributors.
+#
+data_1100372
+loop_
+_publ_author_name
+'Boche, Gernot'
+'Boie, Christiane'
+'Bosold, Ferdinand'
+'Harms, Klaus'
+'Marsch, Michael'
+_publ_section_title
+;
+ [(N-Lithio-N-mesitylsulfonyloxy-tert-butylcarbamate)~2~&#x00B7;(thf)~3~]:
+ Crystal Structure of a Nitrenoid
+;
+_journal_coden_ASTM              ACIEAY
+_journal_issue                   1
+_journal_name_full
+;
+ Angewandte Chemie, International Edition in English
+;
+_journal_page_first              115
+_journal_page_last               117
+_journal_paper_doi               10.1002/anie.199401151
+_journal_volume                  33
+_journal_year                    1994
+_chemical_formula_sum            'C12 H17 N O5 S'
+_space_group_IT_number           14
+_symmetry_cell_setting           monoclinic
+_symmetry_space_group_name_Hall  '-P 2ybc'
+_symmetry_space_group_name_H-M   'P 1 21/c 1'
+_cell_angle_alpha                90
+_cell_angle_beta                 110.81(1)
+_cell_angle_gamma                90
+_cell_formula_units_Z            4
+_cell_length_a                   9.3700(1)
+_cell_length_b                   20.478(1)
+_cell_length_c                   8.103(1)
+_cod_original_sg_symbol_H-M      'P 21/c'
+_cod_original_formula_sum        'C12 H17 N1 O5 S1'
+_cod_database_code               1100372
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -x,1/2+y,1/2-z
+3 -x,-y,-z
+4 x,-1/2-y,-1/2+z
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+S1 S 0.12324(15) 0.62017(6) -0.01732(16)
+N1 N 0.34625(52) 0.56618(19) -0.06028(57)
+H1 H 0.3908(58) 0.5380(23) 0.0239(63)
+O1 O 0.10057(43) 0.56126(16) 0.06093(45)
+O2 O 0.10179(42) 0.68189(15) 0.05102(45)
+O3 O 0.30115(37) 0.62458(14) 0.00296(39)
+O4 O 0.50198(46) 0.53120(17) -0.19758(43)
+O5 O 0.39556(41) 0.63198(15) -0.25422(43)
+C1 C 0.02767(55) 0.61713(22) -0.24471(63)
+C2 C 0.02574(65) 0.67147(26) -0.34652(78)
+H2 H 0.0781(59) 0.7057(24) -0.2996(64)
+C3 C -0.05332(71) 0.66983(30) -0.52329(84)
+H3 H -0.0584(58) 0.7043(24) -0.5866(65)
+C4 C -0.13557(63) 0.61530(31) -0.60427(72)
+C5 C -0.13205(72) 0.56081(28) -0.50053(86)
+H4 H -0.1865(58) 0.5225(23) -0.5495(62)
+C6 C -0.05219(64) 0.56165(27) -0.32134(77)
+H5 H -0.0532(60) 0.5250(23) -0.2677(65)
+C7 C -0.22511(75) 0.61442(30) -0.79995(74)
+H6 H -0.27384(75) 0.57279(30) -0.83330(74)
+H7 H -0.30116(75) 0.64812(30) -0.82817(74)
+H8 H -0.15718(75) 0.62202(30) -0.86294(74)
+C8 C 0.42591(63) 0.57565(26) -0.17622(64)
+C9 C 0.46709(68) 0.65210(26) -0.38653(68)
+C10 C 0.63316(72) 0.65910(32) -0.29296(79)
+H9 H 0.64997(72) 0.69226(32) -0.20440(79)
+H10 H 0.67464(72) 0.61845(32) -0.23773(79)
+H11 H 0.68244(72) 0.67143(32) -0.37378(79)
+C11 C 0.39381(83) 0.71607(29) -0.44870(85)
+H12 H 0.42421(83) 0.74659(29) -0.35259(85)
+H13 H 0.42337(83) 0.73234(29) -0.54291(85)
+H14 H 0.28507(83) 0.71052(29) -0.49012(85)
+C12 C 0.42656(94) 0.60249(31) -0.53370(75)
+H15 H 0.47045(94) 0.61397(31) -0.62022(75)
+H16 H 0.46505(94) 0.56078(31) -0.48357(75)
+H17 H 0.31754(94) 0.60031(31) -0.58875(75)
+loop_
+_atom_type_symbol
+_atom_type_radius_bond
+C 0.68
+H 0.23
+N 0.68
+O 0.68
+S 1.02
