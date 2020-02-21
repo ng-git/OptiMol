@@ -12,7 +12,7 @@ Lines = file1.readlines()
 print('downloading..')
 os.chdir(directory) # change dir to database/
 count = 0
-for line in Lines:
+for line in Lines[0:3000]:
     # extract url and filename from each line
     url = line[:-1]
     filename = url[35:]
