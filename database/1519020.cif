@@ -1,0 +1,101 @@
+#------------------------------------------------------------------------------
+#$Date: 2016-12-06 16:28:16 +0200 (Tue, 06 Dec 2016) $
+#$Revision: 188978 $
+#$URL: file:///home/coder/svn-repositories/cod/cif/1/51/90/1519020.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/
+#
+# All data on this site have been placed in the public domain by the
+# contributors.
+#
+data_1519020
+loop_
+_publ_author_name
+'Hegab, Mohamed I.'
+'Abdel-Megeid, Farouk M. E.'
+'Gad, Farouk A.'
+'Shiba, Sayed A.'
+'Sotofte, Inger'
+'Moller, Jorgen'
+'Senning, Alexander'
+_publ_section_title
+;
+ New Reactions of Thione S-(tert-Alkylimides)
+;
+_journal_name_full               'Acta Chemica Scandinavica'
+_journal_page_first              284
+_journal_page_last               290
+_journal_volume                  53
+_journal_year                    1999
+_chemical_formula_sum            'C17 H23 N O S'
+_chemical_formula_weight         289.42
+_space_group_IT_number           88
+_symmetry_cell_setting           tetragonal
+_symmetry_Int_Tables_number      88
+_symmetry_space_group_name_Hall  '-I 4ad'
+_symmetry_space_group_name_H-M   'I 41/a :2'
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                90
+_cell_formula_units_Z            16
+_cell_length_a                   18.0201(3)
+_cell_length_b                   18.0201(3)
+_cell_length_c                   20.1616(3)
+_cell_volume                     6546.96(18)
+_diffrn_ambient_temperature      296
+_diffrn_radiation_probe          x-ray
+_diffrn_radiation_type           MoK\a
+_diffrn_radiation_wavelength     0.71073
+_exptl_absorpt_coefficient_mu    0.194
+_exptl_crystal_density_diffrn    1.175
+_refine_ls_number_parameters     274
+_refine_ls_number_reflns         2421
+_refine_ls_R_factor_gt           0.0783
+_refine_ls_wR_factor_gt          0.1929
+_cod_data_source_file            Acta-Chem-Scand-1999-53-284-290.cif
+_cod_data_source_block           C17H23NOS
+_cod_depositor_comments
+;
+No atomic coordinates in the paper,
+a dummy atom was added
+
+ The dummy atom was replaced by unknown values. This is the
+ standard way of marking entries in the COD that do not contain
+ coordinates.
+
+ Antanas Vaitkus,
+ 2016-12-06
+;
+_cod_original_cell_volume        6547.0(2)
+_cod_original_sg_symbol_H-M      'I 41/a'
+_cod_database_code               1519020
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 3/4-y,1/4+x,1/4+z
+3 1/2-x,-y,1/2+z
+4 3/4+y,3/4-x,3/4+z
+5 -x,-y,-z
+6 1/4+y,3/4-x,3/4-z
+7 1/2+x,y,1/2-z
+8 1/4-y,1/4+x,1/4-z
+9 1/2+x,1/2+y,1/2+z
+10 1/4-y,3/4+x,3/4+z
+11 -x,1/2-y,z
+12 1/4+y,1/4-x,1/4+z
+13 1/2-x,1/2-y,1/2-z
+14 3/4+y,1/4-x,1/4-z
+15 x,1/2+y,-z
+16 3/4-y,3/4+x,3/4-z
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_calc_flag
+? ? ? ? ? ? ?

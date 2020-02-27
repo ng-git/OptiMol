@@ -1,0 +1,88 @@
+#------------------------------------------------------------------------------
+#$Date: 2016-02-13 21:28:24 +0200 (Sat, 13 Feb 2016) $
+#$Revision: 176429 $
+#$URL: svn://www.crystallography.net/cod/cif/1/52/85/1528567.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/
+#
+# All data on this site have been placed in the public domain by the
+# contributors.
+#
+data_1528567
+loop_
+_publ_author_name
+'Heinl, U.'
+'Hinse, P.'
+'Mattes, R.'
+'Froehlich, R.'
+_publ_section_title
+;
+ Monomere und polymere Dimethylaminothioquadrato-Komplexe: Die
+ Kristallstrukturen von Nickel(II)-, Cobalt(II)-, Silber(I)-, Platin(II)-,
+ Gold(I)- Quecksilber(II)- und Blei(II)-Dimethylaminothioquadraten
+;
+_journal_name_full
+'Zeitschrift fuer Anorganische und Allgemeine Chemie'
+_journal_page_first              770
+_journal_page_last               778
+_journal_volume                  628
+_journal_year                    2002
+_chemical_formula_sum            'C14 H20 Co N2 O6 S2'
+_chemical_name_systematic        '(Co (S C4 O2 N (C H3)2)2) (C H3 O H)2'
+_space_group_IT_number           14
+_symmetry_space_group_name_Hall  '-P 2yn'
+_symmetry_space_group_name_H-M   'P 1 21/n 1'
+_cell_angle_alpha                90
+_cell_angle_beta                 98.3
+_cell_angle_gamma                90
+_cell_formula_units_Z            2
+_cell_length_a                   13.169
+_cell_length_b                   5.224
+_cell_length_c                   13.58
+_cell_volume                     924.449
+_citation_journal_id_ASTM        ZAACAB
+_cod_data_source_file            Heinl_ZAACAB_2002_1042.cif
+_cod_data_source_block           C14H20Co1N2O6S2
+_cod_original_cell_volume        924.4487
+_cod_original_sg_symbol_Hall     '-P 2ybc (x-z,y,z)'
+_cod_original_formula_sum        'C14 H20 Co1 N2 O6 S2'
+_cod_database_code               1528567
+loop_
+_symmetry_equiv_pos_as_xyz
+x,y,z
+-x+1/2,y+1/2,-z+1/2
+-x,-y,-z
+x-1/2,-y-1/2,z-1/2
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_U_iso_or_equiv
+C1 C+1 0.2018 0.0254 -0.0687 1 0.0
+H6 H-1 0.4842 0.2576 -0.0594 1 0.0
+O3 O-2 0.0642 -0.2595 0.1101 1 0.0
+H8 H-1 0.1962 -0.1648 0.1843 1 0.0
+O2 O-2 0.1182 0.2712 0.0476 1 0.0
+C7 C+4 0.1285 -0.202 0.1987 1 0.0
+H5 H-1 0.5288 0.0165 -0.1069 1 0.0
+H3 H-1 0.2899 -0.2423 -0.2003 1 0.0
+O1 O-2 0.3564 0.4694 0.0392 1 0.0
+C3 C+4 0.3607 -0.1921 -0.193 1 0.0
+C5 C+2 0.2991 0.3091 -0.0001 1 0.0
+H7 H+1 0.079 -0.34 0.086 1 0.0
+C2 C+1 0.3052 0.1028 -0.0751 1 0.0
+H4 H-1 0.4824 0.2425 -0.1749 1 0.0
+C4 C+4 0.4764 0.1455 -0.116 1 0.0
+N1 N-3 0.3771 0.0256 -0.1261 1 0.0
+Co1 Co+2 0 0 0 1 0.0
+C6 C+2 0.192 0.2198 0.0028 1 0.0
+H1 H-1 0.4031 -0.3323 -0.166 1 0.0
+H2 H-1 0.3784 -0.1458 -0.2568 1 0.0
+H10 H-1 0.1021 -0.0558 0.2295 1 0.0
+S1 S-2 0.11244 -0.1873 -0.11483 1 0.0
+H9 H-1 0.1313 -0.3459 0.2429 1 0.0

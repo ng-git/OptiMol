@@ -1,0 +1,85 @@
+#------------------------------------------------------------------------------
+#$Date: 2016-02-13 21:28:24 +0200 (Sat, 13 Feb 2016) $
+#$Revision: 176429 $
+#$URL: svn://www.crystallography.net/cod/cif/1/52/91/1529116.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/
+#
+# All data on this site have been placed in the public domain by the
+# contributors.
+#
+data_1529116
+loop_
+_publ_author_name
+'Fleck, M.'
+'Bohaty, L.'
+'Tillmanns, E.'
+_publ_section_title
+;
+ Structural characterisation of M(II) guanidinium sulphate hydrates (M(II)
+ = Mn, Fe, Co, Ni, Cd, V O)
+;
+_journal_name_full               'Solid State Sciences'
+_journal_page_first              469
+_journal_page_last               477
+_journal_volume                  6
+_journal_year                    2004
+_chemical_formula_sum            'C2 H24 N6 Ni O14 S2'
+_chemical_name_systematic        '(C (N H2)3)2 Ni (H2 O)6 (S O4)2'
+_space_group_IT_number           14
+_symmetry_space_group_name_Hall  '-P 2ybc'
+_symmetry_space_group_name_H-M   'P 1 21/c 1'
+_cell_angle_alpha                90
+_cell_angle_beta                 97.09
+_cell_angle_gamma                90
+_cell_formula_units_Z            2
+_cell_length_a                   10.026
+_cell_length_b                   7.633
+_cell_length_c                   12.025
+_cell_volume                     913.218
+_citation_journal_id_ASTM        SSSCFJ
+_cod_data_source_file            Fleck_SSSCFJ_2004_81.cif
+_cod_data_source_block           C2H24N6Ni1O14S2
+_cod_original_formula_sum        'C2 H24 N6 Ni1 O14 S2'
+_cod_database_code               1529116
+loop_
+_symmetry_equiv_pos_as_xyz
+x,y,z
+-x,y+1/2,-z+1/2
+-x,-y,-z
+x,-y-1/2,z-1/2
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_U_iso_or_equiv
+H9 H+1 0.143 0.844 0.13 1 0.0
+H11 H+1 0.161 0.806 0.4 1 0.0
+N1 N-3 0.125 0.1016 0.3201 1 0.0
+H4 H+1 0.272 0.113 -0.016 1 0.0
+O3 O-2 0.2958 0.0292 -0.0457 1 0.0
+C1 C+4 0.1306 -0.051 0.2693 1 0.0
+N3 N-3 0.145 0.8035 0.3287 1 0.0
+H3 H+1 0.51 -0.009 0.224 1 0.0
+H5 H+1 0.27 0.041 0.874 1 0.0
+O6 O-2 0.825 0.7014 -0.0594 1 0.0
+S1 S+6 0.75514 0.5617 0.87093 1 0.0
+Ni1 Ni+2 0.5 0 0 1 0.0
+O2 O-2 0.463 0.0408 0.163 1 0.0
+O1 O-2 0.52 0.2642 -0.0238 1 0.0
+O4 O-2 0.7681 0.3935 -0.0691 1 0.0
+O7 O-2 0.6104 0.6073 0.8465 1 0.0
+N2 N-3 0.1182 -0.0592 0.1582 1 0.0
+H7 H+1 0.123 0.19 0.285 1 0.0
+H1 H+1 0.595 0.3 -0.036 1 0.0
+H12 H+1 0.15 0.711 0.298 1 0.0
+H10 H+1 0.12 0.037 0.125 1 0.0
+H6 H+1 0.445 0.148 0.178 1 0.0
+H8 H+1 0.129 0.108 0.396 1 0.0
+O5 O-2 0.813 0.5465 0.7646 1 0.0
+H2 H+1 0.49 0.318 0.03 1 0.0

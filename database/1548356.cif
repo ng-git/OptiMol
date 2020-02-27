@@ -1,0 +1,193 @@
+#------------------------------------------------------------------------------
+#$Date: 2017-12-01 17:02:24 +0200 (Fri, 01 Dec 2017) $
+#$Revision: 203868 $
+#$URL: file:///home/coder/svn-repositories/cod/cif/1/54/83/1548356.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/
+#
+# All data on this site have been placed in the public domain by the
+# contributors.
+#
+data_1548356
+loop_
+_publ_author_name
+'Valentina Colombo'
+'Norberto Masciocchi'
+'Giovanni Palmisano'
+_publ_section_title
+;
+ Crystal Chemistry of the Antibiotic Doripenem
+;
+_journal_name_full               'Journal of Pharmaceutical Sciences'
+_journal_page_first              3641
+_journal_page_last               3647
+_journal_paper_doi               10.1002/jps.24166
+_journal_volume                  103
+_journal_year                    2014
+_chemical_formula_moiety         'C15 H28 N4 O8 S2'
+_chemical_formula_structural     'C15 H24 N4 O6 S2 (H2 O)2'
+_chemical_formula_sum            'C15 H28 N4 O8 S2'
+_chemical_formula_weight         456.50
+_chemical_name_common            'Doripenem dihydrate'
+_space_group_crystal_system      monoclinic
+_space_group_IT_number           4
+_space_group_name_H-M_alt        'P 1 21 1'
+_symmetry_space_group_name_Hall  'P 2yb'
+_symmetry_space_group_name_H-M   'P 1 21 1'
+_cell_angle_alpha                90
+_cell_angle_beta                 97.8549(31)
+_cell_angle_gamma                90
+_cell_formula_units_Z            2
+_cell_length_a                   13.90384(58)
+_cell_length_b                   8.58701(36)
+_cell_length_c                   8.82875(45)
+_cell_measurement_temperature    298
+_cell_volume                     1044.20(8)
+_computing_cell_refinement       'TOPAS, Bruker AXS 2005, Karlsruhe, Germany'
+_computing_publication_material  'TOPAS, Bruker AXS 2005, Karlsruhe, Germany'
+_computing_structure_refinement  'TOPAS, Bruker AXS 2005, Karlsruhe, Germany'
+_computing_structure_solution    'TOPAS, Bruker AXS 2005, Karlsruhe, Germany'
+_diffrn_ambient_temperature      298
+_diffrn_detector_type            'Bruker Lynxeye linear PSD'
+_diffrn_measurement_device_type  'Bruker AXS D8 Advance'
+_diffrn_radiation_monochromator  'Ni filter'
+_diffrn_source_target            Cu
+_diffrn_source_type              'sealed X-ray tube'
+_exptl_absorpt_coefficient_mu    2.77
+_exptl_crystal_density_diffrn    1.45
+_exptl_crystal_density_method    'not measured'
+_exptl_crystal_F_000             484
+_pd_char_colour                  colorless
+_pd_char_particle_morphology     plate-like
+_pd_instr_location               ' ?'
+_pd_meas_2theta_range_inc        0.02
+_pd_meas_2theta_range_max        105
+_pd_meas_2theta_range_min        5
+_pd_meas_number_of_points        5001
+_pd_meas_scan_method             step
+_pd_proc_2theta_range_inc        0.02
+_pd_proc_2theta_range_max        105
+_pd_proc_2theta_range_min        5
+_pd_proc_ls_background_function  'Chebychev polynomial'
+_pd_proc_ls_profile_function     'fundamental parameters approach'
+_pd_proc_ls_prof_R_factor        0.095
+_pd_proc_ls_prof_wR_expected     0.009
+_pd_proc_ls_prof_wR_factor       0.133
+_pd_spec_mounting
+;
+packed powder pellet
+;
+_pd_spec_mount_mode              reflection
+_pd_spec_shape                   flat_sheet
+_pd_spec_size_axial              15
+_pd_spec_size_equat              10
+_pd_spec_size_thick              0.2
+_refine_ls_extinction_method     none
+_refine_ls_goodness_of_fit_all   14.4
+_refine_ls_hydrogen_treatment    riding
+_refine_ls_matrix_type           fullcycle
+_refine_ls_number_parameters     48
+_refine_ls_number_restraints     1
+_refine_ls_shift/su_max          .01
+_refine_ls_structure_factor_coef Inet
+_refine_ls_weighting_details     'w = 1/[Y~i~]'
+_refine_ls_weighting_scheme      calc
+_cod_data_source_file            jps24166-sup-0001-S1.cif
+_cod_data_source_block           Compound_Dor.2H2O
+_cod_depositor_comments
+;
+The following automatic conversions were performed:
+
+'_refine_ls_weighting_scheme' value '1/[Y~i~]' was changed to 'calc'.
+A new data item '_refine_ls_weighting_details' was created with the
+value set to 'w = 1/[Y~i~]'.
+
+Automatic conversion script
+Id: cif_fix_values 5376 2017-05-30 11:51:03Z andrius 
+;
+_cod_original_cell_volume        1044.196(82)
+_cod_database_code               1548356
+loop_
+_symmetry_equiv_pos_as_xyz
+'-x, y+1/2, -z'
+'x, y, z'
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_B_iso_or_equiv
+Ow1 O 2 0.0990(15) 0.0745(26) 0.5243(18) 1 4.53(14)
+Ow2 O 2 -0.2460(13) 0.3582(29) 0.5078(27) 1 4.53(14)
+C6 C 2 0.3707949 -0.01650607 0.8761065 1 4.53(14)
+C7 C 2 0.4515773 -0.02811713 1.010711 1 4.53(14)
+C8 C 2 0.4166731 -0.03226931 1.147219 1 4.53(14)
+N1 N 2 0.3138269 -0.04326046 1.115353 1 4.53(14)
+C5 C 2 0.2829567 -0.07272679 0.9541611 1 4.53(14)
+C3 C 2 0.1913582 0.02581477 0.9654218 1 4.53(14)
+C4 C 2 0.2357431 0.04992207 1.129606 1 4.53(14)
+C2 C 2 0.09117652 -0.04490248 0.9291371 1 4.53(14)
+C1 C 2 0.01296572 0.07086078 0.9515089 1 4.53(14)
+C10 C 2 0.3595296 0.1498064 0.8129523 1 4.53(14)
+O2 O 2 0.214448 0.1293785 1.237153 1 4.53(14)
+O1 O 2 0.08212628 -0.09977877 0.7750195 1 4.53(14)
+O3 O 2 0.424236 -0.03164548 1.411607 1 4.53(14)
+O4 O 2 0.5618896 -0.0231267 1.309794 1 4.53(14)
+S1 S 2 0.5758686 -0.01824219 0.9980251 1 4.53(14)
+C9 C 2 0.4710322 -0.0279971 1.303637 1 4.53(14)
+C11 C 2 0.5869409 -0.005141382 0.7967237 1 4.53(14)
+C12 C 2 0.5682039 -0.1469445 0.689794 1 4.53(14)
+N2 N 2 0.6575834 -0.1588039 0.6116625 1 4.53(14)
+C14 C 2 0.7120308 -0.00385989 0.6340253 1 4.53(14)
+C13 C 2 0.6885307 0.05408529 0.7880869 1 4.53(14)
+C15 C 2 0.8178237 -0.02710508 0.6199567 1 4.53(14)
+N3 N 2 0.8274651 -0.1159161 0.4722075 1 4.53(14)
+S2 S 2 0.830095 0.0151085 0.3192847 1 4.53(14)
+H5a H 2 0.2665996 -0.1802968 0.8930632 1 4.53(14)
+H3a H 2 0.1688768 0.1202328 0.8881325 1 4.53(14)
+H10a H 2 0.4264597 0.1861139 0.7747933 1 4.53(14)
+H10b H 2 0.3017817 0.1528767 0.7181408 1 4.53(14)
+H10c H 2 0.3424264 0.2273675 0.9015166 1 4.53(14)
+H6a H 2 0.381727 -0.08297671 0.7762736 1 4.53(14)
+H1a H 2 0.01761273 0.1693407 0.8771065 1 4.53(14)
+H1b H 2 -0.05719569 0.01651935 0.9246716 1 4.53(14)
+H1c H 2 0.02249457 0.1095895 1.068765 1 4.53(14)
+H1o H 2 0.02138883 -0.1440604 0.7486361 1 4.53(14)
+H2a H 2 0.0823257 -0.1397971 1.005994 1 4.53(14)
+H13a H 2 0.7391121 0.007096897 0.8801957 1 4.53(14)
+H13b H 2 0.6905595 0.179518 0.7928954 1 4.53(14)
+H12a H 2 0.5637117 -0.2439405 0.7660498 1 4.53(14)
+H12b H 2 0.5035695 -0.1429518 0.607107 1 4.53(14)
+H1n2 H 2 0.6385841 -0.1793347 0.5001148 1 4.53(14)
+H14a H 2 0.6906469 0.08358611 0.5483923 1 4.53(14)
+H15a H 2 0.8518956 -0.09298067 0.7166313 1 4.53(14)
+H15b H 2 0.8528367 0.08470397 0.6173445 1 4.53(14)
+H11a H 2 0.5282089 0.05907151 0.7329288 1 4.53(14)
+H4o H 2 0.5998082 -0.101645 1.358933 1 4.53(14)
+H2n3 H 2 0.888934 -0.1778402 0.48653 1 4.53(14)
+O5 O 2 0.8308132 -0.08564936 0.1552391 1 4.53(14)
+O6 O 2 0.7309361 0.1305097 0.3041329 1 4.53(14)
+N4 N 2 0.9099966 0.1028949 0.3451219 1 4.53(14)
+H1n4 H 2 0.9687209 0.03455525 0.3540966 1 4.53(14)
+H2n4 H 2 0.9095706 0.1625666 0.4422692 1 4.53(14)
+loop_
+_atom_type_symbol
+_atom_type_description
+_atom_type_scat_source
+C C 'International Tables for Crystallography (Vol. IV)'
+H H 'International Tables for Crystallography (Vol. IV)'
+N N 'International Tables for Crystallography (Vol. IV)'
+O O 'International Tables for Crystallography (Vol. IV)'
+S S 'International Tables for Crystallography (Vol. IV)'
+loop_
+_diffrn_radiation_type
+'Cu K\a'
+loop_
+_pd_proc_wavelength
+1.540562
+1.544390

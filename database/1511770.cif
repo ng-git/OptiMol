@@ -1,0 +1,281 @@
+#------------------------------------------------------------------------------
+#$Date: 2016-02-14 16:26:36 +0200 (Sun, 14 Feb 2016) $
+#$Revision: 176435 $
+#$URL: svn://www.crystallography.net/cod/cif/1/51/17/1511770.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/
+#
+# All data on this site have been placed in the public domain by the
+# contributors.
+#
+data_1511770
+loop_
+_publ_author_name
+'M. Ruiz'
+'Rosa Ortiz'
+'Lourdes Perell\'o'
+'Alfonso Casti\~neiras'
+'Miguel Quir\'os'
+_publ_section_title
+;
+ Ni(II) and Zn(II) Complexes with Cinoxacin. Synthesis and
+ Characterization of M(Cx)2(DMSO)n(H2O)m (n = 0,2; m = 2,4). Crystal
+ Structures of [M(Cx)2(DMSO)2].4H2O (M = Ni(II), Zn(II))
+;
+_journal_name_full               'Inorganica Chimica Acta'
+_journal_page_first              133
+_journal_page_last               139
+_journal_paper_doi               10.1016/S0020-1693(00)85592-9
+_journal_volume                  211
+_journal_year                    1993
+_chemical_formula_moiety
+;
+C28 H30 N4 O12 S2 Zn1,4(H2 O1)
+;
+_chemical_formula_sum            'C28 H38 N4 O16 S2 Zn'
+_chemical_formula_weight         816.1
+_chemical_name_systematic
+;
+bis(1-Ethyl-1,4-dihydro-4-oxo(1,3)dioxolo(4,5-g)cinnoline-3-carboxylato)
+-bis(dimethylsulfoxide)-zinc tetrahydrate
+;
+_space_group_IT_number           2
+_symmetry_cell_setting           triclinic
+_symmetry_Int_Tables_number      2
+_symmetry_space_group_name_Hall  '-P 1'
+_symmetry_space_group_name_H-M   'P -1'
+_atom_sites_solution_hydrogens   mixed
+_atom_sites_solution_primary     heavy
+_atom_sites_solution_secondary   difmap
+_audit_creation_date             1994-07-14
+_cell_angle_alpha                69.06(1)
+_cell_angle_beta                 82.05(1)
+_cell_angle_gamma                75.63(1)
+_cell_formula_units_Z            1
+_cell_length_a                   8.950(4)
+_cell_length_b                   9.168(5)
+_cell_length_c                   11.650(6)
+_cell_volume                     863.6(8)
+_diffrn_ambient_temperature      298
+_diffrn_measurement_device_type  'Siemens R3m/v'
+_diffrn_radiation_type           MoK\a
+_diffrn_radiation_wavelength     0.71073
+_diffrn_reflns_limit_h_max       13
+_diffrn_reflns_limit_h_min       -13
+_diffrn_reflns_limit_k_max       13
+_diffrn_reflns_limit_k_min       -12
+_diffrn_reflns_limit_l_max       17
+_diffrn_reflns_limit_l_min       0
+_diffrn_reflns_number            6459
+_diffrn_reflns_theta_max         32.5
+_diffrn_reflns_theta_min         1.9
+_exptl_absorpt_coefficient_mu    0.918
+_exptl_absorpt_correction_type   none
+_exptl_crystal_colour            colourless
+_exptl_crystal_density_diffrn    1.569
+_exptl_crystal_density_method    'not measured'
+_exptl_crystal_description       irregular
+_exptl_crystal_F_000             424
+_exptl_crystal_size_max          0.27
+_exptl_crystal_size_mid          0.23
+_exptl_crystal_size_min          0.23
+_refine_diff_density_max         0.32
+_refine_diff_density_min         -0.42
+_refine_ls_extinction_method     none
+_refine_ls_goodness_of_fit_ref   1.07
+_refine_ls_hydrogen_treatment    mixed
+_refine_ls_matrix_type           full
+_refine_ls_number_reflns         3466
+_refine_ls_R_factor_gt           0.041
+_refine_ls_shift/su_max          0.001
+_refine_ls_shift/su_mean         0.000
+_refine_ls_structure_factor_coef F
+_refine_ls_weighting_details     'calc w=1/[\s^2^(Fo^2^)+0.0015(Fo^2^)]'
+_refine_ls_weighting_scheme      calc
+_refine_ls_wR_factor_ref         0.043
+_reflns_number_gt                3466
+_reflns_number_total             6194
+_reflns_threshold_expression     >3sigma(I)
+_cod_data_source_file            valenciazn.cif
+_cod_data_source_block           valenciazn
+_cod_original_formula_sum        'C28 H38 N4 O16 S2 Zn1'
+_cod_database_code               1511770
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -x,-y,-z
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_adp_type
+Zn Zn 0.50000 0.50000 0.50000 0.031(1) Uani
+N1 N 0.2257(2) 0.6884(2) 0.8965(2) 0.031(1) Uani
+C11 C 0.1305(3) 0.7949(3) 0.9621(2) 0.041(1) Uani
+H111 H 0.17990 0.77710 1.03550 0.061(4) Uiso
+H112 H 0.12350 0.90400 0.90940 0.061(4) Uiso
+C12 C -0.0300(4) 0.7646(4) 0.9973(3) 0.061(2) Uani
+H121 H -0.08780 0.83550 1.03940 0.061(4) Uiso
+H122 H -0.02520 0.65580 1.05010 0.061(4) Uiso
+H123 H -0.07980 0.78360 0.92380 0.061(4) Uiso
+N2 N 0.2306(2) 0.7560(2) 0.7754(2) 0.031(1) Uani
+C2 C 0.3057(3) 0.6750(3) 0.7038(2) 0.028(1) Uani
+C1 C 0.2989(3) 0.7765(3) 0.5673(2) 0.028(1) Uani
+O1 O 0.3804(2) 0.7221(2) 0.4889(2) 0.038(1) Uani
+O2 O 0.2111(2) 0.9112(2) 0.5415(2) 0.047(1) Uani
+C3 C 0.3854(3) 0.5097(3) 0.7523(2) 0.027(1) Uani
+O3 O 0.4590(2) 0.4266(2) 0.6881(1) 0.036(1) Uani
+C4 C 0.3754(3) 0.4382(3) 0.8845(2) 0.026(1) Uani
+C5 C 0.4499(3) 0.2762(3) 0.9419(2) 0.031(1) Uani
+H5 H 0.50550 0.21100 0.89450 0.063(5) Uiso
+C6 C 0.4389(3) 0.2180(3) 1.0666(2) 0.032(1) Uani
+O4 O 0.5016(3) 0.0694(2) 1.1435(2) 0.047(1) Uani
+C7 C 0.4527(4) 0.0691(3) 1.2665(2) 0.047(1) Uani
+H71 H 0.54110 0.03990 1.31450 0.063(5) Uiso
+H72 H 0.38710 -0.00580 1.30430 0.063(5) Uiso
+O5 O 0.3694(3) 0.2265(2) 1.2585(2) 0.047(1) Uani
+C8 C 0.3589(3) 0.3129(3) 1.1370(2) 0.034(1) Uani
+C9 C 0.2869(3) 0.4682(3) 1.0870(2) 0.033(1) Uani
+H9 H 0.23390 0.53110 1.13680 0.063(5) Uiso
+C10 C 0.2946(3) 0.5319(3) 0.9566(2) 0.028(1) Uani
+S1 S 0.7408(1) 0.7201(1) 0.4860(1) 0.038(1) Uani
+O6 O 0.7167(2) 0.5506(2) 0.5202(2) 0.045(1) Uani
+C21 C 0.8027(4) 0.7758(4) 0.3272(3) 0.056(1) Uani
+H211 H 0.82460 0.88070 0.30040 0.067(4) Uiso
+H212 H 0.72190 0.77680 0.28050 0.067(4) Uiso
+H213 H 0.89400 0.70070 0.31500 0.067(4) Uiso
+C22 C 0.9190(3) 0.6958(3) 0.5485(3) 0.047(1) Uani
+H221 H 0.93940 0.80030 0.52880 0.067(4) Uiso
+H222 H 1.00410 0.63020 0.51780 0.067(4) Uiso
+H223 H 0.90580 0.64820 0.63620 0.067(4) Uiso
+O1W O 0.0815(3) 1.0105(3) 0.3135(2) 0.057(1) Uani
+H11W H -0.0031(24) 1.0740(37) 0.3218(31) 0.081(7) Uiso
+H12W H 0.1200(37) 0.9728(41) 0.3838(17) 0.081(7) Uiso
+O2W O 0.1875(3) 0.7286(4) 0.2465(3) 0.083(1) Uani
+H21W H 0.1786(45) 0.8236(17) 0.2448(35) 0.081(7) Uiso
+H22W H 0.2501(36) 0.6688(32) 0.3004(27) 0.081(7) Uiso
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_23
+_atom_site_aniso_U_13
+_atom_site_aniso_U_12
+Zn 0.039(1) 0.027(1) 0.021(1) 0.001(1) 0.003(1) -0.008(1)
+N1 0.037(1) 0.030(1) 0.025(1) -0.001(1) 0.001(1) -0.012(1)
+C11 0.056(2) 0.034(1) 0.031(1) 0.003(1) 0.002(1) -0.019(1)
+C12 0.050(2) 0.076(2) 0.057(2) 0.002(2) 0.007(2) -0.037(2)
+N2 0.036(1) 0.030(1) 0.024(1) -0.002(1) -0.001(1) -0.010(1)
+C2 0.029(1) 0.026(1) 0.026(1) -0.002(1) 0.000(1) -0.010(1)
+C1 0.033(1) 0.024(1) 0.026(1) -0.004(1) 0.000(1) -0.008(1)
+O1 0.050(1) 0.028(1) 0.025(1) 0.002(1) 0.004(1) -0.006(1)
+O2 0.061(1) 0.033(1) 0.030(1) 0.013(1) -0.003(1) -0.006(1)
+C3 0.028(1) 0.029(1) 0.024(1) -0.005(1) 0.001(1) -0.011(1)
+O3 0.048(1) 0.028(1) 0.024(1) 0.003(1) 0.003(1) -0.010(1)
+C4 0.030(1) 0.026(1) 0.023(1) -0.004(1) 0.001(1) -0.010(1)
+C5 0.038(1) 0.026(1) 0.026(1) -0.003(1) 0.002(1) -0.010(1)
+C6 0.037(1) 0.028(1) 0.028(1) -0.006(1) -0.001(1) -0.005(1)
+O4 0.068(1) 0.032(1) 0.028(1) 0.003(1) -0.001(1) -0.002(1)
+C7 0.060(2) 0.040(1) 0.028(1) -0.005(1) 0.002(1) -0.002(1)
+O5 0.064(1) 0.045(1) 0.021(1) 0.001(1) -0.001(1) -0.005(1)
+C8 0.039(1) 0.038(1) 0.022(1) -0.009(1) 0.001(1) -0.008(1)
+C9 0.038(1) 0.036(1) 0.024(1) -0.004(1) 0.002(1) -0.012(1)
+C10 0.032(1) 0.028(1) 0.024(1) -0.005(1) 0.002(1) -0.011(1)
+S1 0.039(1) 0.033(1) 0.039(1) -0.004(1) 0.000(1) -0.011(1)
+O6 0.044(1) 0.035(1) 0.051(1) -0.010(1) -0.005(1) -0.006(1)
+C21 0.066(2) 0.058(2) 0.040(2) -0.021(2) 0.002(1) -0.008(1)
+C22 0.046(2) 0.045(2) 0.051(2) -0.007(1) -0.006(1) -0.018(1)
+O1W 0.056(1) 0.062(1) 0.049(1) 0.004(1) -0.010(1) -0.022(1)
+O2W 0.084(2) 0.103(2) 0.058(2) 0.035(2) -0.032(1) -0.049(2)
+loop_
+_atom_type_symbol
+_atom_type_radius_bond
+C 0.68
+H 0.23
+N 0.68
+O 0.68
+S 1.02
+Zn 1.45
+loop_
+_geom_angle_atom_site_label_1
+_geom_angle_atom_site_label_2
+_geom_angle_atom_site_label_3
+_geom_angle
+O1 Zn O3 89.4(1)
+O1 Zn O6 93.0(1)
+O3 Zn O6 89.9(1)
+C11 N1 N2 113.5(2)
+C11 N1 C10 122.7(2)
+N2 N1 C10 123.7(2)
+N1 C11 C12 112.2(3)
+N1 N2 C2 120.9(2)
+N2 C2 C1 112.3(2)
+N2 C2 C3 122.4(2)
+C1 C2 C3 125.3(2)
+C2 C1 O1 119.6(2)
+C2 C1 O2 116.5(2)
+O1 C1 O2 123.9(2)
+Zn O1 C1 132.0(1)
+C2 C3 O3 125.1(2)
+C2 C3 C4 115.5(2)
+O3 C3 C4 119.5(2)
+Zn O3 C3 127.6(1)
+C3 C4 C5 120.1(2)
+C3 C4 C10 119.5(2)
+C5 C4 C10 120.3(2)
+C4 C5 C6 117.0(2)
+C5 C6 O4 128.7(2)
+C5 C6 C8 122.0(2)
+O4 C6 C8 109.2(2)
+C6 O4 C7 106.2(2)
+O4 C7 O5 107.8(2)
+C7 O5 C8 106.7(2)
+C6 C8 O5 109.8(2)
+C6 C8 C9 123.4(2)
+O5 C8 C9 126.8(2)
+C8 C9 C10 115.8(2)
+N1 C10 C4 118.0(2)
+N1 C10 C9 120.6(2)
+C4 C10 C9 121.4(2)
+O6 S1 C21 105.1(2)
+O6 S1 C22 104.6(1)
+C21 S1 C22 98.7(2)
+Zn O6 S1 122.8(1)
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_distance
+Zn O1 2.019(2)
+Zn O3 2.058(2)
+Zn O6 2.164(3)
+N1 C11 1.484(4)
+N1 N2 1.322(3)
+N1 C10 1.375(3)
+C11 C12 1.505(5)
+N2 C2 1.319(3)
+C2 C1 1.529(3)
+C2 C3 1.445(3)
+C1 O1 1.256(3)
+C1 O2 1.246(3)
+C3 O3 1.263(3)
+C3 C4 1.442(3)
+C4 C5 1.421(3)
+C4 C10 1.417(4)
+C5 C6 1.355(3)
+C6 O4 1.365(3)
+C6 C8 1.408(4)
+O4 C7 1.439(4)
+C7 O5 1.427(4)
+O5 C8 1.355(3)
+C8 C9 1.356(3)
+C9 C10 1.418(3)
+S1 O6 1.523(2)
+S1 C21 1.781(3)
+S1 C22 1.775(4)

@@ -1,0 +1,87 @@
+#------------------------------------------------------------------------------
+#$Date: 2016-02-13 21:28:24 +0200 (Sat, 13 Feb 2016) $
+#$Revision: 176429 $
+#$URL: svn://www.crystallography.net/cod/cif/1/52/86/1528647.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/
+#
+# All data on this site have been placed in the public domain by the
+# contributors.
+#
+data_1528647
+loop_
+_publ_author_name
+'Kornath, A.'
+'Blecher, O.'
+_publ_section_title
+;
+ Zersetzung von Tetrametyhlammoniumcyansulfit und Kristallstrukturen von
+ [(C H3)4 N](+) H S O4(-).S O2 und [(C H3)4 N(+)]2 S2 O7(2-).S O2
+;
+_journal_name_full
+'Zeitschrift fuer Anorganische und Allgemeine Chemie'
+_journal_page_first              625
+_journal_page_last               631
+_journal_volume                  628
+_journal_year                    2002
+_chemical_formula_sum            'C4 H13 N O6 S2'
+_chemical_name_systematic        '((C H3)4 N) (H S O4) (S O2)'
+_space_group_IT_number           14
+_symmetry_space_group_name_Hall  '-P 2yn'
+_symmetry_space_group_name_H-M   'P 1 21/n 1'
+_cell_angle_alpha                90
+_cell_angle_beta                 90.86
+_cell_angle_gamma                90
+_cell_formula_units_Z            4
+_cell_length_a                   7.092
+_cell_length_b                   14.798
+_cell_length_c                   9.896
+_cell_volume                     1038.443
+_citation_journal_id_ASTM        ZAACAB
+_cod_data_source_file            Kornath_ZAACAB_2002_1052.cif
+_cod_data_source_block           C4H13N1O6S2
+_cod_original_sg_symbol_Hall     '-P 2ybc (x-z,y,z)'
+_cod_original_formula_sum        'C4 H13 N1 O6 S2'
+_cod_database_code               1528647
+loop_
+_symmetry_equiv_pos_as_xyz
+x,y,z
+-x+1/2,y+1/2,-z+1/2
+-x,-y,-z
+x-1/2,-y-1/2,z-1/2
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_U_iso_or_equiv
+H5 H-1 -0.0611 0.7554 0.257 1 0.0
+O3 O-2 0.3742 0.61099 0.0178 1 0.0
+H1 H+1 0.3707 0.5668 -0.0167 1 0.0
+O1 O-2 0.9802 0.55252 0.3413 1 0.0
+C4 C+4 0.1749 0.8666 0.0398 1 0.0
+H11 H-1 0.1581 0.8812 -0.0516 1 0.0
+H13 H-1 0.2028 0.9118 0.0969 1 0.0
+O2 O-2 1.0283 0.43085 0.1857 1 0.0
+C3 C+4 -0.1624 0.8782 0.0838 1 0.0
+O5 O-2 0.4045 0.55524 0.2464 1 0.0
+H9 H-1 -0.2754 0.8449 0.1125 1 0.0
+H12 H-1 0.2881 0.8292 0.0473 1 0.0
+H8 H-1 -0.1392 0.9275 0.1397 1 0.0
+C1 C+4 -0.0313 0.7377 -0.0019 1 0.0
+H4 H-1 0.084 0.6983 0.0016 1 0.0
+H6 H-1 0.0592 0.8388 0.2844 1 0.0
+N1 N-3 0.0055 0.81715 0.0881 1 0.0
+O6 O-2 0.6677 0.54708 0.0969 1 0.0
+H7 H-1 0.1558 0.7474 0.2323 1 0.0
+H2 H-1 -0.1485 0.7055 0.0312 1 0.0
+O4 O-2 0.5602 0.69158 0.1766 1 0.0
+H3 H-1 -0.0511 0.7581 -0.0959 1 0.0
+S2 S+6 0.50819 0.60055 0.1427 1 0.0
+S1 S+4 1.02234 0.52476 0.2085 1 0.0
+C2 C+4 0.04 0.7853 0.2293 1 0.0
+H10 H-1 -0.1849 0.8988 -0.0056 1 0.0

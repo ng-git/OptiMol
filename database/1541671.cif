@@ -1,0 +1,129 @@
+#------------------------------------------------------------------------------
+#$Date: 2016-02-13 21:28:24 +0200 (Sat, 13 Feb 2016) $
+#$Revision: 176429 $
+#$URL: svn://www.crystallography.net/cod/cif/1/54/16/1541671.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/
+#
+# All data on this site have been placed in the public domain by the
+# contributors.
+#
+data_1541671
+loop_
+_publ_author_name
+'Xue, L.-X.'
+'Padgett, C.W.'
+'DesMarteau, D.D.'
+'Pennington, W.T.'
+_publ_section_title
+;
+ Synthesis and structures of alkali metal salts of bis((trifluoromethyl)
+ sulfonyl) imide
+;
+_journal_name_full               'Solid State Sciences'
+_journal_page_first              1535
+_journal_page_last               1545
+_journal_volume                  4
+_journal_year                    2002
+_chemical_formula_sum            'C2 H2 F6 Li N O5 S2'
+_chemical_name_systematic        'Li ((C F3)2 (S O2)2 N) (H2 O)'
+_space_group_IT_number           2
+_symmetry_space_group_name_Hall  '-P 1'
+_symmetry_space_group_name_H-M   'P -1'
+_cell_angle_alpha                90.24
+_cell_angle_beta                 99.74
+_cell_angle_gamma                99.92
+_cell_formula_units_Z            8
+_cell_length_a                   11.393
+_cell_length_b                   17.583
+_cell_length_c                   9.587
+_cell_volume                     1863.417
+_citation_journal_id_ASTM        SSSCFJ
+_cod_data_source_file            Xue_SSSCFJ_2002_386.cif
+_cod_data_source_block           C2H2F6Li1N1O5S2
+_cod_original_formula_sum        'C2 H2 F6 Li1 N1 O5 S2'
+_cod_database_code               1541671
+loop_
+_symmetry_equiv_pos_as_xyz
+x,y,z
+-x,-y,-z
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_U_iso_or_equiv
+C3 C+4 -0.3348 0.243 0.5646 1 0.0
+F2 F-1 0.403 0.1069 0.7229 1 0.0
+F19 F-1 -0.3296 0.1145 0.0114 1 0.0
+O16 O-2 -0.1213 0.3921 0.0641 1 0.0
+F3 F-1 0.3628 -0.0138 0.7539 1 0.0
+N1 N-3 0.2017 0.1449 0.8632 1 0.0
+Li6 Li+1 -0.0277 0.3177 -0.0527 1 0.0
+S3 S+4 -0.18363 0.23843 0.66475 1 0.0
+S8 S+4 -0.16524 0.38248 0.19579 1 0.0
+C1 C+4 0.3554 0.0546 0.8046 1 0.0
+O14 O-2 -0.1056 0.2319 0.0603 1 0.0
+F13 F-1 0.3466 0.281 0.4535 1 0.0
+F7 F-1 -0.3343 0.3116 0.5105 1 0.0
+S5 S+4 0.17015 0.32291 0.27949 1 0.0
+N2 N-3 -0.2005 0.1592 0.7385 1 0.0
+O1 O-2 0.1416 0.0475 0.6557 1 0.0
+O6 O-2 -0.1064 0.2455 0.5588 1 0.0
+O8 O-2 -0.1006 0.0495 0.8128 1 0.0
+S1 S+4 0.19592 0.06088 0.80108 1 0.0
+O9 O-2 0.0875 0.2721 0.3494 1 0.0
+C2 C+4 0.3087 0.2872 0.8185 1 0.0
+O2 O-2 0.1567 0.0074 0.901 1 0.0
+O19 O-2 0.0543 0.4024 0.5896 1 0.0
+F23 F-1 -0.357 0.4136 0.2836 1 0.0
+O11 O-2 0.1415 0.484 0.1556 1 0.0
+O12 O-2 0.1602 0.5302 0.3999 1 0.0
+Li2 Li+1 0 0 0.5 1 0.0
+F15 F-1 0.3973 0.3247 0.2607 1 0.0
+C7 C+4 -0.3328 0.1824 0.0669 1 0.0
+F12 F-1 -0.3014 -0.0513 0.619 1 0.0
+Li5 Li+1 0 0.5 0 1 0.0
+F10 F-1 -0.3874 0.0439 0.5605 1 0.0
+F16 F-1 0.3592 0.5969 0.2376 1 0.0
+F6 F-1 0.29 0.353 0.7614 1 0.0
+F11 F-1 -0.3632 0.0104 0.7738 1 0.0
+F8 F-1 -0.4164 0.2305 0.6483 1 0.0
+O7 O-2 -0.1188 0.0822 0.5653 1 0.0
+Li3 Li+1 -0.0247 0.1779 0.4495 1 0.0
+F17 F-1 0.4194 0.537 0.4224 1 0.0
+S7 S+4 -0.18225 0.22172 0.16693 1 0.0
+F1 F-1 0.4153 0.0636 0.9332 1 0.0
+F21 F-1 -0.415 0.1741 0.1524 1 0.0
+F14 F-1 0.291 0.2128 0.2635 1 0.0
+S2 S+4 0.16658 0.21647 0.77892 1 0.0
+O18 O-2 0.0618 0.0958 0.3859 1 0.0
+F24 F-1 -0.3915 0.3693 0.0721 1 0.0
+O3 O-2 0.083 0.2491 0.8472 1 0.0
+C5 C+4 0.3111 0.2834 0.3193 1 0.0
+O20 O-2 0.0606 0.4179 -0.1142 1 0.0
+O4 O-2 0.1417 0.207 0.6288 1 0.0
+F4 F-1 0.3945 0.264 0.7647 1 0.0
+O17 O-2 0.0537 0.1098 1.0918 1 0.0
+F9 F-1 -0.3624 0.1909 0.4604 1 0.0
+O10 O-2 0.1436 0.3259 0.1299 1 0.0
+O5 O-2 -0.1605 0.2997 0.7696 1 0.0
+Li4 Li+1 0 0.5 0.5 1 0.0
+F18 F-1 0.4038 0.4845 0.2158 1 0.0
+O13 O-2 -0.1589 0.1661 0.2706 1 0.0
+O15 O-2 -0.097 0.4303 0.3122 1 0.0
+N3 N-3 0.2074 0.4031 0.3625 1 0.0
+S4 S+4 -0.16555 0.08163 0.69518 1 0.0
+C6 C+4 0.356 0.5282 0.2951 1 0.0
+C4 C+4 -0.3148 0.0168 0.6588 1 0.0
+F5 F-1 0.3428 0.2977 0.9547 1 0.0
+C8 C+4 -0.313 0.4138 0.1652 1 0.0
+Li1 Li+1 0 0 0 1 0.0
+N4 N-3 -0.1999 0.2979 0.2408 1 0.0
+F22 F-1 -0.3001 0.4851 0.1202 1 0.0
+F20 F-1 -0.3628 0.2284 -0.0351 1 0.0
+S6 S+4 0.19832 0.4847 0.29931 1 0.0

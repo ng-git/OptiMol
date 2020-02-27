@@ -1,0 +1,339 @@
+#------------------------------------------------------------------------------
+#$Date: 2016-02-18 17:37:37 +0200 (Thu, 18 Feb 2016) $
+#$Revision: 176729 $
+#$URL: svn://www.crystallography.net/cod/cif/1/50/79/1507914.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/
+#
+# All data on this site have been placed in the public domain by the
+# contributors.
+#
+data_1507914
+loop_
+_publ_author_name
+'Panjaa, Anangamohan'
+'Eichhorn, David M'
+_publ_section_title
+;
+ Mono- and di-nuclear nickel(II) complexes with mixed N/S-donor ligands:
+ Syntheses, structures and physical properties
+;
+_journal_name_full
+;
+Inorganica Chimica Acta
+;
+_journal_page_first              88
+_journal_page_last               92
+_journal_paper_doi               10.1016/j.ica.2012.04.042
+_journal_volume                  391
+_journal_year                    2012
+_chemical_formula_sum            'C30 H24 N12 Ni O6 S2'
+_chemical_formula_weight         771.42
+_space_group_IT_number           15
+_symmetry_cell_setting           monoclinic
+_symmetry_space_group_name_Hall  '-C 2yc'
+_symmetry_space_group_name_H-M   'C 1 2/c 1'
+_atom_sites_solution_hydrogens   geom
+_atom_sites_solution_primary     direct
+_atom_sites_solution_secondary   difmap
+_cell_angle_alpha                90.000(5)
+_cell_angle_beta                 117.519(5)
+_cell_angle_gamma                90.000(5)
+_cell_formula_units_Z            4
+_cell_length_a                   20.568(5)
+_cell_length_b                   12.316(5)
+_cell_length_c                   15.551(5)
+_cell_measurement_temperature    150(2)
+_cell_volume                     3494(2)
+_computing_structure_refinement  'SHELXL-97 (Sheldrick, 2008)'
+_computing_structure_solution    'SHELXS-97 (Sheldrick, 2008)'
+_diffrn_ambient_temperature      150(2)
+_diffrn_measured_fraction_theta_full 0.999
+_diffrn_measured_fraction_theta_max 0.999
+_diffrn_radiation_monochromator  graphite
+_diffrn_radiation_source         'fine-focus sealed tube'
+_diffrn_radiation_type           MoK\a
+_diffrn_radiation_wavelength     0.71069
+_diffrn_reflns_av_R_equivalents  0.1057
+_diffrn_reflns_av_sigmaI/netI    0.0667
+_diffrn_reflns_limit_h_max       25
+_diffrn_reflns_limit_h_min       -24
+_diffrn_reflns_limit_k_max       15
+_diffrn_reflns_limit_k_min       -15
+_diffrn_reflns_limit_l_max       19
+_diffrn_reflns_limit_l_min       -19
+_diffrn_reflns_number            25961
+_diffrn_reflns_theta_full        26.00
+_diffrn_reflns_theta_max         26.00
+_diffrn_reflns_theta_min         2.15
+_exptl_absorpt_coefficient_mu    0.736
+_exptl_absorpt_correction_type   analytical
+_exptl_crystal_colour            pink
+_exptl_crystal_density_diffrn    1.467
+_exptl_crystal_density_method    'not measured'
+_exptl_crystal_description       prism
+_exptl_crystal_F_000             1584
+_exptl_crystal_size_max          0.25
+_exptl_crystal_size_mid          0.24
+_exptl_crystal_size_min          0.19
+_refine_diff_density_max         0.536
+_refine_diff_density_min         -0.475
+_refine_diff_density_rms         0.083
+_refine_ls_extinction_method     none
+_refine_ls_goodness_of_fit_ref   1.042
+_refine_ls_hydrogen_treatment    noref
+_refine_ls_matrix_type           full
+_refine_ls_number_parameters     231
+_refine_ls_number_reflns         3436
+_refine_ls_number_restraints     0
+_refine_ls_restrained_S_all      1.042
+_refine_ls_R_factor_all          0.0844
+_refine_ls_R_factor_gt           0.0528
+_refine_ls_shift/su_max          0.000
+_refine_ls_shift/su_mean         0.000
+_refine_ls_structure_factor_coef Fsqd
+_refine_ls_weighting_details
+'calc w=1/[\s^2^(Fo^2^)+(0.0673P)^2^+4.2233P] where P=(Fo^2^+2Fc^2^)/3'
+_refine_ls_weighting_scheme      calc
+_refine_ls_wR_factor_gt          0.1247
+_refine_ls_wR_factor_ref         0.1442
+_reflns_number_gt                2373
+_reflns_number_total             3436
+_reflns_threshold_expression     >2sigma(I)
+_cod_data_source_file            complex2.cif
+_cod_data_source_block           ap0018c2c
+_cod_original_sg_symbol_H-M      'C 2/c'
+_cod_database_code               1507914
+loop_
+_symmetry_equiv_pos_as_xyz
+'x, y, z'
+'-x, y, -z+1/2'
+'x+1/2, y+1/2, z'
+'-x+1/2, y+1/2, -z+1/2'
+'-x, -y, -z'
+'x, -y, z-1/2'
+'-x+1/2, -y+1/2, -z'
+'x+1/2, -y+1/2, z-1/2'
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_adp_type
+_atom_site_occupancy
+_atom_site_symmetry_multiplicity
+_atom_site_calc_flag
+_atom_site_refinement_flags
+Ni01 Ni 0.0000 0.10014(5) 0.7500 0.0258(2) Uani 1 2 d S
+S1 S 0.06693(5) 0.23553(7) 0.87068(7) 0.0319(3) Uani 1 1 d .
+O3 O 0.25319(15) 0.1858(2) 0.7239(2) 0.0417(7) Uani 1 1 d .
+N4 N 0.19025(16) 0.3182(2) 0.8793(2) 0.0311(7) Uani 1 1 d .
+H4N H 0.2261 0.3125 0.8636 0.037 Uiso 1 1 calc R
+O2 O 0.29295(15) 0.3325(2) 0.8102(2) 0.0454(7) Uani 1 1 d .
+N2 N 0.09302(15) 0.0957(2) 0.7383(2) 0.0237(6) Uani 1 1 d .
+C5 C 0.03426(18) -0.0450(3) 0.6301(2) 0.0264(8) Uani 1 1 d .
+N3 N 0.14769(15) 0.1689(2) 0.7865(2) 0.0261(7) Uani 1 1 d .
+H3N H 0.1878 0.1689 0.7796 0.031 Uiso 1 1 calc R
+O1 O 0.34624(16) 0.2723(3) 0.7294(2) 0.0557(9) Uani 1 1 d .
+N5 N 0.29834(17) 0.2636(3) 0.7545(2) 0.0350(8) Uani 1 1 d .
+C3 C -0.0337(2) -0.1806(3) 0.5138(3) 0.0404(10) Uani 1 1 d .
+H3 H -0.0373 -0.2360 0.4693 0.048 Uiso 1 1 calc R
+C7 C 0.13828(19) 0.2419(3) 0.8453(3) 0.0266(8) Uani 1 1 d .
+N1 N -0.02354(16) -0.0216(2) 0.6452(2) 0.0294(7) Uani 1 1 d .
+C8 C 0.19290(18) 0.4080(3) 0.9384(3) 0.0287(8) Uani 1 1 d .
+C4 C 0.0316(2) -0.1246(3) 0.5656(3) 0.0328(8) Uani 1 1 d .
+H4 H 0.0735 -0.1405 0.5570 0.039 Uiso 1 1 calc R
+C13 C 0.1892(2) 0.3954(3) 1.0241(3) 0.0345(9) Uani 1 1 d .
+H13 H 0.1841 0.3251 1.0453 0.041 Uiso 1 1 calc R
+C6 C 0.09942(19) 0.0229(3) 0.6837(2) 0.0273(8) Uani 1 1 d .
+H6 H 0.1433 0.0135 0.6784 0.033 Uiso 1 1 calc R
+C10 C 0.2060(2) 0.6000(3) 0.9642(3) 0.0413(10) Uani 1 1 d .
+H10 H 0.2117 0.6704 0.9436 0.050 Uiso 1 1 calc R
+C11 C 0.2014(2) 0.5885(3) 1.0491(3) 0.0427(10) Uani 1 1 d .
+H11 H 0.2039 0.6503 1.0871 0.051 Uiso 1 1 calc R
+C9 C 0.2025(2) 0.5107(3) 0.9084(3) 0.0375(9) Uani 1 1 d .
+H9 H 0.2067 0.5192 0.8504 0.045 Uiso 1 1 calc R
+C12 C 0.1931(2) 0.4853(3) 1.0787(3) 0.0407(10) Uani 1 1 d .
+H12 H 0.1901 0.4767 1.1374 0.049 Uiso 1 1 calc R
+C1 C -0.0863(2) -0.0755(3) 0.5954(3) 0.0410(10) Uani 1 1 d .
+H1 H -0.1271 -0.0595 0.6063 0.049 Uiso 1 1 calc R
+C2 C -0.0932(2) -0.1546(3) 0.5280(3) 0.0456(11) Uani 1 1 d .
+H2 H -0.1387 -0.1905 0.4919 0.055 Uiso 1 1 calc R
+N6 N 0.9142(4) 0.6083(5) 0.3426(4) 0.1024(19) Uani 1 1 d .
+C14 C 0.9494(4) 0.5394(7) 0.3451(7) 0.118(3) Uani 1 1 d .
+C15 C 0.9952(7) 0.4485(9) 0.3543(13) 0.293(10) Uani 1 1 d .
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_23
+_atom_site_aniso_U_13
+_atom_site_aniso_U_12
+Ni01 0.0236(4) 0.0242(4) 0.0332(4) 0.000 0.0163(3) 0.000
+S1 0.0292(5) 0.0319(5) 0.0414(6) -0.0079(4) 0.0221(4) -0.0041(4)
+O3 0.0412(16) 0.0395(15) 0.0569(18) -0.0073(13) 0.0333(14) -0.0118(13)
+N4 0.0260(16) 0.0275(16) 0.0440(19) -0.0067(14) 0.0198(14) -0.0051(13)
+O2 0.0424(17) 0.0460(17) 0.0595(19) -0.0153(15) 0.0335(15) -0.0135(13)
+N2 0.0252(15) 0.0201(15) 0.0261(15) 0.0000(12) 0.0121(12) 0.0001(12)
+C5 0.0265(18) 0.0251(18) 0.0270(19) 0.0062(15) 0.0119(15) 0.0060(15)
+N3 0.0219(15) 0.0259(15) 0.0357(17) -0.0071(13) 0.0177(13) -0.0041(12)
+O1 0.0452(18) 0.079(2) 0.059(2) -0.0208(17) 0.0377(17) -0.0208(16)
+N5 0.0288(17) 0.045(2) 0.0331(18) 0.0026(15) 0.0162(15) -0.0034(15)
+C3 0.051(3) 0.032(2) 0.040(2) -0.0086(18) 0.022(2) -0.0049(18)
+C7 0.0247(18) 0.0258(18) 0.0295(19) 0.0036(15) 0.0127(16) 0.0020(14)
+N1 0.0298(17) 0.0270(16) 0.0332(17) -0.0009(13) 0.0160(14) -0.0022(13)
+C8 0.0210(18) 0.0272(19) 0.032(2) -0.0027(15) 0.0075(15) 0.0006(14)
+C4 0.037(2) 0.030(2) 0.031(2) -0.0030(16) 0.0157(17) 0.0043(16)
+C13 0.035(2) 0.030(2) 0.034(2) 0.0030(17) 0.0127(17) 0.0042(16)
+C6 0.0254(18) 0.0291(19) 0.0289(19) 0.0025(15) 0.0140(16) 0.0053(15)
+C10 0.042(2) 0.025(2) 0.048(3) -0.0005(18) 0.013(2) -0.0022(17)
+C11 0.044(2) 0.034(2) 0.035(2) -0.0099(18) 0.0048(19) 0.0051(18)
+C9 0.033(2) 0.035(2) 0.040(2) -0.0046(18) 0.0127(18) -0.0082(17)
+C12 0.048(2) 0.038(2) 0.029(2) 0.0015(17) 0.0113(19) 0.0124(19)
+C1 0.035(2) 0.044(2) 0.047(2) -0.0043(19) 0.021(2) -0.0090(18)
+C2 0.047(3) 0.041(2) 0.050(3) -0.016(2) 0.024(2) -0.021(2)
+N6 0.111(5) 0.111(5) 0.087(4) -0.006(4) 0.047(4) -0.033(4)
+C14 0.073(5) 0.087(6) 0.168(8) -0.012(6) 0.034(5) -0.002(4)
+C15 0.150(10) 0.120(8) 0.48(2) -0.028(12) 0.035(14) 0.053(8)
+loop_
+_atom_type_symbol
+_atom_type_description
+_atom_type_scat_dispersion_real
+_atom_type_scat_dispersion_imag
+_atom_type_scat_source
+C C 0.0033 0.0016 'International Tables Vol C Tables 4.2.6.8 and 6.1.1.4'
+H H 0.0000 0.0000 'International Tables Vol C Tables 4.2.6.8 and 6.1.1.4'
+N N 0.0061 0.0033 'International Tables Vol C Tables 4.2.6.8 and 6.1.1.4'
+O O 0.0106 0.0060 'International Tables Vol C Tables 4.2.6.8 and 6.1.1.4'
+S S 0.1246 0.1234 'International Tables Vol C Tables 4.2.6.8 and 6.1.1.4'
+Ni Ni 0.3393 1.1124 'International Tables Vol C Tables 4.2.6.8 and 6.1.1.4'
+loop_
+_geom_angle_atom_site_label_1
+_geom_angle_atom_site_label_2
+_geom_angle_atom_site_label_3
+_geom_angle
+_geom_angle_site_symmetry_1
+_geom_angle_site_symmetry_3
+N2 Ni01 N2 176.86(15) . 2_556
+N2 Ni01 N1 99.39(11) . 2_556
+N2 Ni01 N1 78.33(11) 2_556 2_556
+N2 Ni01 N1 78.33(11) . .
+N2 Ni01 N1 99.39(11) 2_556 .
+N1 Ni01 N1 88.83(16) 2_556 .
+N2 Ni01 S1 100.02(8) . 2_556
+N2 Ni01 S1 82.18(8) 2_556 2_556
+N1 Ni01 S1 160.43(8) 2_556 2_556
+N1 Ni01 S1 92.64(9) . 2_556
+N2 Ni01 S1 82.18(8) . .
+N2 Ni01 S1 100.02(8) 2_556 .
+N1 Ni01 S1 92.64(9) 2_556 .
+N1 Ni01 S1 160.42(8) . .
+S1 Ni01 S1 92.46(6) 2_556 .
+C7 S1 Ni01 95.50(13) . .
+C7 N4 C8 125.9(3) . .
+C7 N4 H4N 117.0 . .
+C8 N4 H4N 117.0 . .
+C6 N2 N3 121.0(3) . .
+C6 N2 Ni01 118.2(2) . .
+N3 N2 Ni01 120.8(2) . .
+N1 C5 C4 122.4(3) . .
+N1 C5 C6 115.2(3) . .
+C4 C5 C6 122.3(3) . .
+C7 N3 N2 118.0(3) . .
+C7 N3 H3N 121.0 . .
+N2 N3 H3N 121.0 . .
+O1 N5 O2 120.3(3) . .
+O1 N5 O3 120.4(3) . .
+O2 N5 O3 119.3(3) . .
+C2 C3 C4 118.9(4) . .
+C2 C3 H3 120.5 . .
+C4 C3 H3 120.5 . .
+N4 C7 N3 113.2(3) . .
+N4 C7 S1 124.3(3) . .
+N3 C7 S1 122.4(3) . .
+C1 N1 C5 119.2(3) . .
+C1 N1 Ni01 128.3(3) . .
+C5 N1 Ni01 112.5(2) . .
+C13 C8 C9 120.4(3) . .
+C13 C8 N4 122.3(3) . .
+C9 C8 N4 117.2(3) . .
+C5 C4 C3 118.3(4) . .
+C5 C4 H4 120.8 . .
+C3 C4 H4 120.8 . .
+C12 C13 C8 119.5(4) . .
+C12 C13 H13 120.2 . .
+C8 C13 H13 120.2 . .
+N2 C6 C5 115.4(3) . .
+N2 C6 H6 122.3 . .
+C5 C6 H6 122.3 . .
+C11 C10 C9 121.0(4) . .
+C11 C10 H10 119.5 . .
+C9 C10 H10 119.5 . .
+C10 C11 C12 119.1(4) . .
+C10 C11 H11 120.5 . .
+C12 C11 H11 120.5 . .
+C10 C9 C8 119.0(4) . .
+C10 C9 H9 120.5 . .
+C8 C9 H9 120.5 . .
+C13 C12 C11 120.9(4) . .
+C13 C12 H12 119.5 . .
+C11 C12 H12 119.5 . .
+N1 C1 C2 121.4(4) . .
+N1 C1 H1 119.3 . .
+C2 C1 H1 119.3 . .
+C3 C2 C1 119.7(4) . .
+C3 C2 H2 120.1 . .
+C1 C2 H2 120.1 . .
+N6 C14 C15 176.3(14) . .
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_distance
+_geom_bond_site_symmetry_2
+Ni01 N2 2.005(3) .
+Ni01 N2 2.005(3) 2_556
+Ni01 N1 2.100(3) 2_556
+Ni01 N1 2.100(3) .
+Ni01 S1 2.4103(12) 2_556
+Ni01 S1 2.4103(12) .
+S1 C7 1.688(4) .
+O3 N5 1.265(4) .
+N4 C7 1.335(4) .
+N4 C8 1.423(4) .
+N4 H4N 0.8800 .
+O2 N5 1.253(4) .
+N2 C6 1.282(4) .
+N2 N3 1.364(4) .
+C5 N1 1.346(4) .
+C5 C4 1.385(5) .
+C5 C6 1.469(5) .
+N3 C7 1.359(4) .
+N3 H3N 0.8800 .
+O1 N5 1.221(4) .
+C3 C2 1.378(6) .
+C3 C4 1.390(5) .
+C3 H3 0.9500 .
+N1 C1 1.335(5) .
+C8 C13 1.378(5) .
+C8 C9 1.394(5) .
+C4 H4 0.9500 .
+C13 C12 1.375(5) .
+C13 H13 0.9500 .
+C6 H6 0.9500 .
+C10 C11 1.373(6) .
+C10 C9 1.383(5) .
+C10 H10 0.9500 .
+C11 C12 1.390(6) .
+C11 H11 0.9500 .
+C9 H9 0.9500 .
+C12 H12 0.9500 .
+C1 C2 1.389(6) .
+C1 H1 0.9500 .
+C2 H2 0.9500 .
+N6 C14 1.104(9) .
+C14 C15 1.428(12) .
