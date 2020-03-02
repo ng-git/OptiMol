@@ -6,7 +6,7 @@
   "depends": [
     "python >=3.6"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\zipp-2.2.0-py_0",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\zipp-2.2.0-py_0",
   "features": "",
   "files": [
     "Lib/site-packages/zipp-2.2.0.dist-info/INSTALLER",
@@ -23,13 +23,13 @@
   "license": "MIT",
   "license_family": "MIT",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\zipp-2.2.0-py_0",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\zipp-2.2.0-py_0",
     "type": 1
   },
   "md5": "6b724d7fcd6e08993b4c98e0ac2260b9",
   "name": "zipp",
   "noarch": "python",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\zipp-2.2.0-py_0.conda",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\zipp-2.2.0-py_0.conda",
   "package_type": "noarch_python",
   "paths_data": {
     "paths": [

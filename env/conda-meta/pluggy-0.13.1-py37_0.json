@@ -7,7 +7,7 @@
     "importlib_metadata >=0.12",
     "python >=3.7,<3.8.0a0"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\pluggy-0.13.1-py37_0",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\pluggy-0.13.1-py37_0",
   "features": "",
   "files": [
     "Lib/site-packages/pluggy-0.13.1.dist-info/INSTALLER",
@@ -34,12 +34,12 @@
   "license": "MIT",
   "license_family": "MIT",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\pluggy-0.13.1-py37_0",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\pluggy-0.13.1-py37_0",
     "type": 1
   },
   "md5": "1f178aafb800f9906f68beed2cc23ac9",
   "name": "pluggy",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\pluggy-0.13.1-py37_0.conda",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\pluggy-0.13.1-py37_0.conda",
   "paths_data": {
     "paths": [
       {

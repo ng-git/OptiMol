@@ -1,4 +1,4 @@
-#!D:/wsl/DIRECT/OptiMol/env\Library\bin\perl.exe
+#!D:/ProgramFiles/Anaconda3/envs/OptiMol\Library\bin\perl.exe
 # Copyright 2002-2018 The OpenSSL Project Authors. All Rights Reserved.
 # Copyright (c) 2002 The OpenTSA Project. All rights reserved.
 #

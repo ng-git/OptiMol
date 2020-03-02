@@ -8,7 +8,7 @@
     "python >=3.7,<3.8.0a0",
     "wincertstore >=0.2"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\setuptools-45.2.0-py37_0",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\setuptools-45.2.0-py37_0",
   "features": "",
   "files": [
     "Lib/site-packages/__pycache__/easy_install.cpython-37.pyc",
@@ -211,12 +211,12 @@
   "license": "MIT",
   "license_family": "MIT",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\setuptools-45.2.0-py37_0",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\setuptools-45.2.0-py37_0",
     "type": 1
   },
   "md5": "f737b69c01033134e8a9acdf7f2445d8",
   "name": "setuptools",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\setuptools-45.2.0-py37_0.conda",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\setuptools-45.2.0-py37_0.conda",
   "paths_data": {
     "paths": [
       {

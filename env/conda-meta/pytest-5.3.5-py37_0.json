@@ -18,7 +18,7 @@
     "setuptools >=40.0",
     "wcwidth"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\pytest-5.3.5-py37_0",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\pytest-5.3.5-py37_0",
   "features": "",
   "files": [
     "Lib/site-packages/_pytest/__init__.py",
@@ -153,12 +153,12 @@
   "legacy_bz2_md5": "8f46240b145767b0d910fb2a1670e675",
   "license": "MIT",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\pytest-5.3.5-py37_0",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\pytest-5.3.5-py37_0",
     "type": 1
   },
   "md5": "bfebda7037b62c8a626128306fa6255c",
   "name": "pytest",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\pytest-5.3.5-py37_0.conda",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\pytest-5.3.5-py37_0.conda",
   "paths_data": {
     "paths": [
       {

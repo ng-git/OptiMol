@@ -8,7 +8,7 @@
     "python",
     "six"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\packaging-20.1-py_0",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\packaging-20.1-py_0",
   "features": "",
   "files": [
     "Lib/site-packages/packaging-20.1.dist-info/INSTALLER",
@@ -47,13 +47,13 @@
   "legacy_bz2_md5": "924f61a9397370dcb7be9c42f11e1f57",
   "license": "Apache 2.0 or BSD 2-Clause",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\packaging-20.1-py_0",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\packaging-20.1-py_0",
     "type": 1
   },
   "md5": "2d872a2604d5b206f68bab1882cd85c5",
   "name": "packaging",
   "noarch": "python",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\packaging-20.1-py_0.conda",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\packaging-20.1-py_0.conda",
   "package_type": "noarch_python",
   "paths_data": {
     "paths": [

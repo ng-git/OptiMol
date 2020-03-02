@@ -10,7 +10,7 @@
     "vs2015_runtime >=14.16.27012,<15.0a0",
     "pip"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\python-3.7.6-h60c2a47_2",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\python-3.7.6-h60c2a47_2",
   "features": "",
   "files": [
     "DLLs/_asyncio.pyd",
@@ -3562,12 +3562,12 @@
   "legacy_bz2_md5": "e7cbdf8f7b1cfd9072187cfe58d34c31",
   "license": "PSF",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\python-3.7.6-h60c2a47_2",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\python-3.7.6-h60c2a47_2",
     "type": 1
   },
   "md5": "d1140f64432500537844140fda4de8c4",
   "name": "python",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\python-3.7.6-h60c2a47_2.conda",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\python-3.7.6-h60c2a47_2.conda",
   "paths_data": {
     "paths": [
       {

@@ -6,7 +6,7 @@
   "depends": [
     "python"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\wcwidth-0.1.8-py_0",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\wcwidth-0.1.8-py_0",
   "features": "",
   "files": [
     "Lib/site-packages/wcwidth-0.1.8.dist-info/INSTALLER",
@@ -33,13 +33,13 @@
   "legacy_bz2_md5": "da2fb36d979c7fe531be4dbd3c37a361",
   "license": "MIT",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\wcwidth-0.1.8-py_0",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\wcwidth-0.1.8-py_0",
     "type": 1
   },
   "md5": "56fd5668c0d992c31d94656fc63da905",
   "name": "wcwidth",
   "noarch": "python",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\wcwidth-0.1.8-py_0.conda",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\wcwidth-0.1.8-py_0.conda",
   "package_type": "noarch_python",
   "paths_data": {
     "paths": [

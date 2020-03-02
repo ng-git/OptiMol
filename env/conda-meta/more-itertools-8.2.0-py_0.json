@@ -6,7 +6,7 @@
   "depends": [
     "python >=3.4"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\more-itertools-8.2.0-py_0",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\more-itertools-8.2.0-py_0",
   "features": "",
   "files": [
     "Lib/site-packages/more_itertools-8.2.0.dist-info/INSTALLER",
@@ -27,13 +27,13 @@
   "license": "MIT",
   "license_family": "MIT",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\more-itertools-8.2.0-py_0",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\more-itertools-8.2.0-py_0",
     "type": 1
   },
   "md5": "976d782c74d46650bf237c701393f7c2",
   "name": "more-itertools",
   "noarch": "python",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\more-itertools-8.2.0-py_0.conda",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\more-itertools-8.2.0-py_0.conda",
   "package_type": "noarch_python",
   "paths_data": {
     "paths": [

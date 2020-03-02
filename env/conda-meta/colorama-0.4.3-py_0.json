@@ -6,7 +6,7 @@
   "depends": [
     "python"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\colorama-0.4.3-py_0",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\colorama-0.4.3-py_0",
   "features": "",
   "files": [
     "Lib/site-packages/colorama-0.4.3.dist-info/INSTALLER",
@@ -32,13 +32,13 @@
   "legacy_bz2_md5": "cb07abedb66c46ac2704737959115116",
   "license": "BSD-3-Clause",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\colorama-0.4.3-py_0",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\colorama-0.4.3-py_0",
     "type": 1
   },
   "md5": "d5d30f526bab13e604ba20d03289c649",
   "name": "colorama",
   "noarch": "python",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\colorama-0.4.3-py_0.conda",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\colorama-0.4.3-py_0.conda",
   "package_type": "noarch_python",
   "paths_data": {
     "paths": [

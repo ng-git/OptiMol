@@ -6,7 +6,7 @@
   "depends": [
     "python >=3.7,<3.8.0a0"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\six-1.14.0-py37_0",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\six-1.14.0-py37_0",
   "features": "",
   "files": [
     "Lib/site-packages/__pycache__/six.cpython-37.pyc",
@@ -23,12 +23,12 @@
   "license": "MIT",
   "license_family": "MIT",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\six-1.14.0-py37_0",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\six-1.14.0-py37_0",
     "type": 1
   },
   "md5": "4cf8fbb068a0789f69e5eb2688b51be2",
   "name": "six",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\six-1.14.0-py37_0.conda",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\six-1.14.0-py37_0.conda",
   "paths_data": {
     "paths": [
       {

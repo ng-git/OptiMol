@@ -8,7 +8,7 @@
     "pytest",
     "python >=3.7,<3.8.0a0"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\openeye-toolkits-2019.10.2-py37_0",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\openeye-toolkits-2019.10.2-py37_0",
   "features": "",
   "files": [
     "Lib/site-packages/OpenEye_toolkits_python3.7_win64-2019.10.2-py3.7.egg-info/PKG-INFO",
@@ -1650,12 +1650,12 @@
   "fn": "openeye-toolkits-2019.10.2-py37_0.tar.bz2",
   "license": "commercial",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\openeye-toolkits-2019.10.2-py37_0",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\openeye-toolkits-2019.10.2-py37_0",
     "type": 1
   },
   "md5": "b4e08f5c21deb66363742fbcee80facf",
   "name": "openeye-toolkits",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\openeye-toolkits-2019.10.2-py37_0.tar.bz2",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\openeye-toolkits-2019.10.2-py37_0.tar.bz2",
   "paths_data": {
     "paths": [
       {

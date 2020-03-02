@@ -6,7 +6,7 @@
   "depends": [
     "python"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\attrs-19.3.0-py_0",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\attrs-19.3.0-py_0",
   "features": "",
   "files": [
     "Lib/site-packages/attr/__init__.py",
@@ -47,13 +47,13 @@
   "license": "MIT",
   "license_family": "MIT",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\attrs-19.3.0-py_0",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\attrs-19.3.0-py_0",
     "type": 1
   },
   "md5": "ebeb075ab07bf93a297ecfda7f76decb",
   "name": "attrs",
   "noarch": "python",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\attrs-19.3.0-py_0.tar.bz2",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\attrs-19.3.0-py_0.tar.bz2",
   "package_type": "noarch_python",
   "paths_data": {
     "paths": [

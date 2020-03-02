@@ -7,7 +7,7 @@
     "vc >=14.1,<15.0a0",
     "vs2015_runtime >=14.16.27012,<15.0a0"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\sqlite-3.31.1-he774522_0",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\sqlite-3.31.1-he774522_0",
   "features": "",
   "files": [
     "Library/bin/sqlite3.dll",
@@ -19,12 +19,12 @@
   "legacy_bz2_md5": "6794d40ed6788ef595f38627e0b5775f",
   "license": "Public-Domain (http://www.sqlite.org/copyright.html)",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\sqlite-3.31.1-he774522_0",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\sqlite-3.31.1-he774522_0",
     "type": 1
   },
   "md5": "82f35038362c6626709c21f779aff104",
   "name": "sqlite",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\sqlite-3.31.1-he774522_0.conda",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\sqlite-3.31.1-he774522_0.conda",
   "paths_data": {
     "paths": [
       {

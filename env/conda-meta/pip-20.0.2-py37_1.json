@@ -8,7 +8,7 @@
     "setuptools",
     "wheel"
   ],
-  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\pip-20.0.2-py37_1",
+  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\pip-20.0.2-py37_1",
   "features": "",
   "files": [
     "Lib/site-packages/pip-20.0.2-py3.7.egg-info/PKG-INFO",
@@ -719,12 +719,12 @@
   "license": "MIT",
   "license_family": "MIT",
   "link": {
-    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\pip-20.0.2-py37_1",
+    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\pip-20.0.2-py37_1",
     "type": 1
   },
   "md5": "54e6ebfa6c962e5e167514a3c0c82093",
   "name": "pip",
-  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\pip-20.0.2-py37_1.conda",
+  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\pip-20.0.2-py37_1.conda",
   "paths_data": {
     "paths": [
       {
