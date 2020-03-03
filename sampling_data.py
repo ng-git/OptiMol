@@ -13,7 +13,7 @@ if not os.path.isdir('./sample100'):
     os.mkdir('./sample100')
 else:
     text = input("Folder already exist, clear folder and resampling? \
-        \n Press \"y\" to continue, or any keys to abort. ")
+        \n Press \"y\" to continue, or any keys to abort. \n ")
     if 'y' is text:
         shutil.rmtree('./sample100')
     else:
