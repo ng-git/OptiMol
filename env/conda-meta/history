@@ -43,3 +43,32 @@
 +conda-forge/win-64::openssl-1.1.1d-hfa6e2cd_0
 +conda-forge/win-64::zlib-1.2.11-h2fa13f4_1006
 # update specs: ['gemmi']
+==> 2020-03-09 13:12:57 <==
+# cmd: D:\ProgramFiles\Anaconda3\Scripts\conda-script.py install -p D:/wsl/DIRECT/OptiMol/env pandas -y
+# conda version: 4.8.2
++conda-forge/noarch::python-dateutil-2.8.1-py_0
++conda-forge/noarch::pytz-2019.3-py_0
++conda-forge/win-64::libblas-3.8.0-15_mkl
++conda-forge/win-64::libcblas-3.8.0-15_mkl
++conda-forge/win-64::liblapack-3.8.0-15_mkl
++conda-forge/win-64::numpy-1.18.1-py37hc71023c_0
++conda-forge/win-64::pandas-1.0.1-py37he350917_0
++defaults/win-64::intel-openmp-2020.0-166
++defaults/win-64::mkl-2020.0-166
+# update specs: ['pandas']
+==> 2020-03-09 13:15:06 <==
+# cmd: D:\ProgramFiles\Anaconda3\Scripts\conda-script.py install -p D:/wsl/DIRECT/OptiMol/env matplotlib -y
+# conda version: 4.8.2
++conda-forge/noarch::cycler-0.10.0-py_2
++conda-forge/win-64::freetype-2.10.0-h563cfd7_1
++conda-forge/win-64::icu-64.2-he025d50_1
++conda-forge/win-64::jpeg-9c-hfa6e2cd_1001
++conda-forge/win-64::kiwisolver-1.1.0-py37he980bc4_0
++conda-forge/win-64::libclang-9.0.1-default_hf44288c_0
++conda-forge/win-64::libpng-1.6.37-h7602738_0
++conda-forge/win-64::matplotlib-3.2.0-1
++conda-forge/win-64::matplotlib-base-3.2.0-py37h2981e6d_1
++conda-forge/win-64::pyqt-5.12.3-py37h6538335_1
++conda-forge/win-64::qt-5.12.5-h7ef1ec2_0
++conda-forge/win-64::tornado-6.0.4-py37hfa6e2cd_0
+# update specs: ['matplotlib']
