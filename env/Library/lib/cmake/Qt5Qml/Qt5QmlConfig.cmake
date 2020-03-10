@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Qml module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Qml_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Qml_VERSION instead.
-set(Qt5Qml_VERSION_STRING 5.12.5)
+set(Qt5Qml_VERSION_STRING 5.9.7)
 
 set(Qt5Qml_LIBRARIES Qt5::Qml)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::Qml)
 
     set(_Qt5Qml_OWN_INCLUDE_DIRS "${_qt5Qml_install_prefix}/include/qt/" "${_qt5Qml_install_prefix}/include/qt/QtQml")
     set(Qt5Qml_PRIVATE_INCLUDE_DIRS
-        "${_qt5Qml_install_prefix}/include/qt/QtQml/5.12.5"
-        "${_qt5Qml_install_prefix}/include/qt/QtQml/5.12.5/QtQml"
+        "${_qt5Qml_install_prefix}/include/qt/QtQml/5.9.7"
+        "${_qt5Qml_install_prefix}/include/qt/QtQml/5.9.7/QtQml"
     )
 
     foreach(_dir ${_Qt5Qml_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::Qml)
     foreach(_module_dep ${_Qt5Qml_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Qml_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Qml_FIND_VERSION_EXACT}
                 ${_Qt5Qml_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Qml_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::Qml)
     set_property(TARGET Qt5::Qml PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_QML_LIB)
 
-    set_property(TARGET Qt5::Qml PROPERTY INTERFACE_QT_ENABLED_FEATURES qml-debug;qml-network)
-    set_property(TARGET Qt5::Qml PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5Qml_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Qml_PRIVATE_DIR ${Qt5Qml_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Qml_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::Qml)
         endif()
     endforeach()
 
-    if (_Qt5Qml_PRIVATE_DIRS_EXIST)
+    if (_Qt5Qml_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::QmlPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::QmlPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Qml_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::Qml)
         )
     endif()
 
-    _populate_Qml_target_properties(RELEASE "Qt5Qml_conda.dll" "Qt5Qml_conda.lib" )
+    _populate_Qml_target_properties(RELEASE "Qt5Qml.dll" "Qt5Qml.lib" )
 
     if (EXISTS
-        "${_qt5Qml_install_prefix}/bin/Qt5Qml_condad.dll"
+        "${_qt5Qml_install_prefix}/bin/Qt5Qmld.dll"
       AND EXISTS
-        "${_qt5Qml_install_prefix}/lib/Qt5Qml_condad.lib" )
-        _populate_Qml_target_properties(DEBUG "Qt5Qml_condad.dll" "Qt5Qml_condad.lib" )
+        "${_qt5Qml_install_prefix}/lib/Qt5Qmld.lib" )
+        _populate_Qml_target_properties(DEBUG "Qt5Qmld.dll" "Qt5Qmld.lib" )
     endif()
 
 

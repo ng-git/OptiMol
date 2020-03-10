@@ -2,7 +2,7 @@
 //
 // This file is part of the QtOpenGL Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -325,6 +325,9 @@ protected:
 public:
     GLuint bindTexture(const QImage &image, GLenum target, GLint format, QGLContext::BindOptions options);
     GLuint bindTexture(const QPixmap &pixmap, GLenum target, GLint format, QGLContext::BindOptions options);
+
+private:
+    QGLWidget(const QGLWidget &);
 };
 
 %End

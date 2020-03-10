@@ -72,8 +72,8 @@ public:
     };
 
 public:
-    explicit QPieSlice(QObject *parent = nullptr);
-    QPieSlice(QString label, qreal value, QObject *parent = nullptr);
+    explicit QPieSlice(QObject *parent = Q_NULLPTR);
+    QPieSlice(QString label, qreal value, QObject *parent = Q_NULLPTR);
     virtual ~QPieSlice();
 
     void setLabel(QString label);

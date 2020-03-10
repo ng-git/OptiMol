@@ -3,7 +3,7 @@
 ** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the QtConcurrent module of the Qt Toolkit.
+** This file is part of the QtCore module of the Qt Toolkit.
 **
 ** $QT_BEGIN_LICENSE:LGPL$
 ** Commercial License Usage
@@ -43,16 +43,15 @@
 
 #include <QtConcurrent/qtconcurrentcompilertest.h>
 
-#if !defined(QT_NO_CONCURRENT) || defined(Q_CLANG_QDOC)
+#ifndef QT_NO_CONCURRENT
 
 #include <QtConcurrent/qtconcurrentrunbase.h>
 #include <QtConcurrent/qtconcurrentstoredfunctioncall.h>
 
 QT_BEGIN_NAMESPACE
 
-#ifdef Q_CLANG_QDOC
 
-typedef int Function;
+#ifdef Q_QDOC
 
 namespace QtConcurrent {
 
@@ -920,7 +919,7 @@ QFuture<T> run(QThreadPool *pool, const Class *object, T (Class::*fn)(Param1, Pa
 
 } //namespace QtConcurrent
 
-#endif // Q_CLANG_QDOC
+#endif // Q_QDOC
 
 QT_END_NAMESPACE
 

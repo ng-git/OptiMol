@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Concurrent module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Concurrent_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Concurrent_VERSION instead.
-set(Qt5Concurrent_VERSION_STRING 5.12.5)
+set(Qt5Concurrent_VERSION_STRING 5.9.7)
 
 set(Qt5Concurrent_LIBRARIES Qt5::Concurrent)
 
@@ -90,7 +90,7 @@ if (NOT TARGET Qt5::Concurrent)
     foreach(_module_dep ${_Qt5Concurrent_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Concurrent_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Concurrent_FIND_VERSION_EXACT}
                 ${_Qt5Concurrent_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Concurrent_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -124,9 +124,6 @@ if (NOT TARGET Qt5::Concurrent)
     set_property(TARGET Qt5::Concurrent PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_CONCURRENT_LIB)
 
-    set_property(TARGET Qt5::Concurrent PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::Concurrent PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5Concurrent_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Concurrent_PRIVATE_DIR ${Qt5Concurrent_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Concurrent_PRIVATE_DIR})
@@ -134,7 +131,8 @@ if (NOT TARGET Qt5::Concurrent)
         endif()
     endforeach()
 
-    if (_Qt5Concurrent_PRIVATE_DIRS_EXIST)
+    if (_Qt5Concurrent_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::ConcurrentPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::ConcurrentPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Concurrent_OWN_PRIVATE_INCLUDE_DIRS}
@@ -150,13 +148,13 @@ if (NOT TARGET Qt5::Concurrent)
         )
     endif()
 
-    _populate_Concurrent_target_properties(RELEASE "Qt5Concurrent_conda.dll" "Qt5Concurrent_conda.lib" )
+    _populate_Concurrent_target_properties(RELEASE "Qt5Concurrent.dll" "Qt5Concurrent.lib" )
 
     if (EXISTS
-        "${_qt5Concurrent_install_prefix}/bin/Qt5Concurrent_condad.dll"
+        "${_qt5Concurrent_install_prefix}/bin/Qt5Concurrentd.dll"
       AND EXISTS
-        "${_qt5Concurrent_install_prefix}/lib/Qt5Concurrent_condad.lib" )
-        _populate_Concurrent_target_properties(DEBUG "Qt5Concurrent_condad.dll" "Qt5Concurrent_condad.lib" )
+        "${_qt5Concurrent_install_prefix}/lib/Qt5Concurrentd.lib" )
+        _populate_Concurrent_target_properties(DEBUG "Qt5Concurrentd.dll" "Qt5Concurrentd.lib" )
     endif()
 
 

@@ -1,13 +1,13 @@
 {
   "build": "py_0",
   "build_number": 0,
-  "channel": "https://conda.anaconda.org/conda-forge/noarch",
+  "channel": "https://repo.anaconda.com/pkgs/main/noarch",
   "constrains": [],
   "depends": [
     "python",
-    "six"
+    "six >=1.5"
   ],
-  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\python-dateutil-2.8.1-py_0",
+  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\python-dateutil-2.8.1-py_0",
   "features": "",
   "files": [
     "Lib/site-packages/dateutil/__init__.py",
@@ -58,13 +58,13 @@
   "fn": "python-dateutil-2.8.1-py_0.tar.bz2",
   "license": "BSD 3 Clause",
   "link": {
-    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\python-dateutil-2.8.1-py_0",
+    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\python-dateutil-2.8.1-py_0",
     "type": 1
   },
-  "md5": "0d0150ed9c2d25817f5324108d3f7571",
+  "md5": "58a898b1a4a13e8c0cfd0d4b1a999ba9",
   "name": "python-dateutil",
   "noarch": "python",
-  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\python-dateutil-2.8.1-py_0.tar.bz2",
+  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\python-dateutil-2.8.1-py_0.tar.bz2",
   "package_type": "noarch_python",
   "paths_data": {
     "paths": [
@@ -326,11 +326,11 @@
     "paths_version": 1
   },
   "requested_spec": "None",
-  "sha256": "5bf47c858f799d475299f0926fd665b0f07c6ace873b866707856418f69d5c71",
-  "size": 224841,
+  "sha256": "8ba19f56d5df75d217328b0a1111e77ccb0557ae55338be48a03198325686c31",
+  "size": 229368,
   "subdir": "noarch",
-  "timestamp": 1572790276913,
+  "timestamp": 1573224292714,
   "track_features": "",
-  "url": "https://conda.anaconda.org/conda-forge/noarch/python-dateutil-2.8.1-py_0.tar.bz2",
+  "url": "https://repo.anaconda.com/pkgs/main/noarch/python-dateutil-2.8.1-py_0.tar.bz2",
   "version": "2.8.1"
 }

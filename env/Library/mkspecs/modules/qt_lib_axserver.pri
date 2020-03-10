@@ -1,6 +1,6 @@
-QT.axserver.VERSION = 5.12.5
+QT.axserver.VERSION = 5.9.7
 QT.axserver.name = QtAxServer
-QT.axserver.module = Qt5AxServer_conda
+QT.axserver.module = Qt5AxServer
 QT.axserver.libs = $$QT_MODULE_LIB_BASE
 QT.axserver.master_header = ActiveQt
 QT.axserver.includes = 

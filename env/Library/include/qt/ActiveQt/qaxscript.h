@@ -77,7 +77,7 @@ public:
     };
 
     QAxScriptEngine(const QString &language, QAxScript *script);
-    ~QAxScriptEngine() override;
+    ~QAxScriptEngine();
 
     bool isValid() const;
     bool hasIntrospection() const;
@@ -92,7 +92,7 @@ public:
     long queryInterface(const QUuid &, void**) const;
 
 protected:
-    bool initialize(IUnknown** ptr) override;
+    bool initialize(IUnknown** ptr) Q_DECL_OVERRIDE;
 
 private:
     QAxScript *script_code;
@@ -112,7 +112,7 @@ public:
     };
 
     QAxScript(const QString &name, QAxScriptManager *manager);
-    ~QAxScript() override;
+    ~QAxScript();
 
     bool load(const QString &code, const QString &language = QString());
 
@@ -159,8 +159,8 @@ class QAxScriptManager : public QObject
     Q_OBJECT
 
 public:
-    explicit QAxScriptManager(QObject *parent = nullptr);
-    ~QAxScriptManager() override;
+    explicit QAxScriptManager(QObject *parent = Q_NULLPTR);
+    ~QAxScriptManager();
 
     void addObject(QAxBase *object);
     void addObject(QObject *object);
@@ -222,7 +222,7 @@ inline QAxScriptEngine *QAxScript::scriptEngine() const
 
 inline bool QAxScriptEngine::isValid() const
 {
-    return engine != nullptr;
+    return engine != Q_NULLPTR;
 }
 
 inline QString QAxScriptEngine::scriptLanguage() const

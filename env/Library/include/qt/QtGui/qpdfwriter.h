@@ -61,9 +61,6 @@ public:
     explicit QPdfWriter(QIODevice *device);
     ~QPdfWriter();
 
-    void setPdfVersion(PdfVersion version);
-    PdfVersion pdfVersion() const;
-
     QString title() const;
     void setTitle(const QString &title);
 

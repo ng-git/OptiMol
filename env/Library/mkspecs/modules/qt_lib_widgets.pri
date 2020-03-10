@@ -1,6 +1,6 @@
-QT.widgets.VERSION = 5.12.5
+QT.widgets.VERSION = 5.9.7
 QT.widgets.name = QtWidgets
-QT.widgets.module = Qt5Widgets_conda
+QT.widgets.module = Qt5Widgets
 QT.widgets.libs = $$QT_MODULE_LIB_BASE
 QT.widgets.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtWidgets
 QT.widgets.frameworks =

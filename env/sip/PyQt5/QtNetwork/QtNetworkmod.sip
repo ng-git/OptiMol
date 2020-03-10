@@ -2,7 +2,7 @@
 //
 // This file is part of the QtNetwork Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -25,7 +25,7 @@
 %Import QtCore/QtCoremod.sip
 
 %Copying
-Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 
 This file is part of PyQt5.
 
@@ -67,7 +67,6 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qnetworkreply.sip
 %Include qnetworkrequest.sip
 %Include qnetworksession.sip
-%Include qpassworddigestor.sip
 %Include qssl.sip
 %Include qsslcertificate.sip
 %Include qsslcertificateextension.sip
@@ -82,5 +81,5 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qtcpserver.sip
 %Include qtcpsocket.sip
 %Include qudpsocket.sip
-%Include qpynetwork_qmap.sip
 %Include qpynetwork_qhash.sip
+%Include qpynetwork_qmap.sip

@@ -62,7 +62,7 @@ class Q_WIDGETS_EXPORT QShortcut : public QObject
 public:
     explicit QShortcut(QWidget *parent);
     QShortcut(const QKeySequence& key, QWidget *parent,
-              const char *member = nullptr, const char *ambiguousMember = nullptr,
+              const char *member = Q_NULLPTR, const char *ambiguousMember = Q_NULLPTR,
               Qt::ShortcutContext context = Qt::WindowShortcut);
     ~QShortcut();
 
@@ -91,7 +91,7 @@ Q_SIGNALS:
     void activatedAmbiguously();
 
 protected:
-    bool event(QEvent *e) override;
+    bool event(QEvent *e) Q_DECL_OVERRIDE;
 };
 
 #endif // QT_NO_SHORTCUT

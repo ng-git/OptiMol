@@ -2,7 +2,7 @@
 //
 // This file is part of the QtMultimediaWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -24,6 +24,21 @@ class QGraphicsVideoItem : QGraphicsObject, QMediaBindableInterface
 {
 %TypeHeaderCode
 #include <qgraphicsvideoitem.h>
+%End
+
+%ConvertToSubClassCode
+    // QGraphicsVideoItem doesn't reimplement type() so we hope nothing collides
+    // with the default.
+    if (sipCpp->type() == QGraphicsItem::UserType)
+    {
+        // We need to explicitly cast because of the multiple inheritance.
+        *sipCppRet = static_cast<QGraphicsVideoItem *>(sipCpp);
+        sipType = sipType_QGraphicsVideoItem;
+    }
+    else
+    {
+        sipType = 0;
+    }
 %End
 
 public:
@@ -54,7 +69,7 @@ protected:
     virtual bool setMediaObject(QMediaObject *object);
 };
 
-%ModuleCode
+%ModuleHeaderCode
 // This is needed by the %ConvertToSubClassCode.
 #include <QGraphicsVideoItem>
 %End

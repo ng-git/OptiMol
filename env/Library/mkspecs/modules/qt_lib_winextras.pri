@@ -1,6 +1,6 @@
-QT.winextras.VERSION = 5.12.5
+QT.winextras.VERSION = 5.9.7
 QT.winextras.name = QtWinExtras
-QT.winextras.module = Qt5WinExtras_conda
+QT.winextras.module = Qt5WinExtras
 QT.winextras.libs = $$QT_MODULE_LIB_BASE
 QT.winextras.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtWinExtras
 QT.winextras.frameworks =

@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 DataVisualization module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5DataVisualization_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5DataVisualization_VERSION instead.
-set(Qt5DataVisualization_VERSION_STRING 5.12.5)
+set(Qt5DataVisualization_VERSION_STRING 5.9.7)
 
 set(Qt5DataVisualization_LIBRARIES Qt5::DataVisualization)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::DataVisualization)
 
     set(_Qt5DataVisualization_OWN_INCLUDE_DIRS "${_qt5DataVisualization_install_prefix}/include/qt/" "${_qt5DataVisualization_install_prefix}/include/qt/QtDataVisualization")
     set(Qt5DataVisualization_PRIVATE_INCLUDE_DIRS
-        "${_qt5DataVisualization_install_prefix}/include/qt/QtDataVisualization/5.12.5"
-        "${_qt5DataVisualization_install_prefix}/include/qt/QtDataVisualization/5.12.5/QtDataVisualization"
+        "${_qt5DataVisualization_install_prefix}/include/qt/QtDataVisualization/5.9.7"
+        "${_qt5DataVisualization_install_prefix}/include/qt/QtDataVisualization/5.9.7/QtDataVisualization"
     )
 
     foreach(_dir ${_Qt5DataVisualization_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::DataVisualization)
     foreach(_module_dep ${_Qt5DataVisualization_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5DataVisualization_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5DataVisualization_FIND_VERSION_EXACT}
                 ${_Qt5DataVisualization_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5DataVisualization_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::DataVisualization)
     set_property(TARGET Qt5::DataVisualization PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_DATAVISUALIZATION_LIB)
 
-    set_property(TARGET Qt5::DataVisualization PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::DataVisualization PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5DataVisualization_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5DataVisualization_PRIVATE_DIR ${Qt5DataVisualization_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5DataVisualization_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::DataVisualization)
         endif()
     endforeach()
 
-    if (_Qt5DataVisualization_PRIVATE_DIRS_EXIST)
+    if (_Qt5DataVisualization_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::DataVisualizationPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::DataVisualizationPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5DataVisualization_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::DataVisualization)
         )
     endif()
 
-    _populate_DataVisualization_target_properties(RELEASE "Qt5DataVisualization_conda.dll" "Qt5DataVisualization_conda.lib" )
+    _populate_DataVisualization_target_properties(RELEASE "Qt5DataVisualization.dll" "Qt5DataVisualization.lib" )
 
     if (EXISTS
-        "${_qt5DataVisualization_install_prefix}/bin/Qt5DataVisualization_condad.dll"
+        "${_qt5DataVisualization_install_prefix}/bin/Qt5DataVisualizationd.dll"
       AND EXISTS
-        "${_qt5DataVisualization_install_prefix}/lib/Qt5DataVisualization_condad.lib" )
-        _populate_DataVisualization_target_properties(DEBUG "Qt5DataVisualization_condad.dll" "Qt5DataVisualization_condad.lib" )
+        "${_qt5DataVisualization_install_prefix}/lib/Qt5DataVisualizationd.lib" )
+        _populate_DataVisualization_target_properties(DEBUG "Qt5DataVisualizationd.dll" "Qt5DataVisualizationd.lib" )
     endif()
 
 

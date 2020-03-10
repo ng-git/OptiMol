@@ -2,9 +2,9 @@
 //
 // This file is part of the QtWebEngineWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
-// This file is part of PyQtWebEngine.
+// This file is part of PyQt5.
 // 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
@@ -19,6 +19,8 @@
 // This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+
+%If (Qt_5_4_0 -)
 
 class QWebEnginePage : QObject
 {
@@ -42,104 +44,68 @@ public:
         SelectAll,
         ReloadAndBypassCache,
         PasteAndMatchStyle,
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         OpenLinkInThisWindow,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         OpenLinkInNewWindow,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         OpenLinkInNewTab,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         CopyLinkToClipboard,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         DownloadLinkToDisk,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         CopyImageToClipboard,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         CopyImageUrlToClipboard,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         DownloadImageToDisk,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         CopyMediaUrlToClipboard,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         ToggleMediaControls,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         ToggleMediaLoop,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         ToggleMediaPlayPause,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         ToggleMediaMute,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         DownloadMediaToDisk,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         InspectElement,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         ExitFullScreen,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         RequestClose,
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
         Unselect,
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
         SavePage,
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
         OpenLinkInNewBackgroundTab,
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
         ViewSource,
-%End
-%If (QtWebEngine_5_10_0 -)
-        ToggleBold,
-%End
-%If (QtWebEngine_5_10_0 -)
-        ToggleItalic,
-%End
-%If (QtWebEngine_5_10_0 -)
-        ToggleUnderline,
-%End
-%If (QtWebEngine_5_10_0 -)
-        ToggleStrikethrough,
-%End
-%If (QtWebEngine_5_10_0 -)
-        AlignLeft,
-%End
-%If (QtWebEngine_5_10_0 -)
-        AlignCenter,
-%End
-%If (QtWebEngine_5_10_0 -)
-        AlignRight,
-%End
-%If (QtWebEngine_5_10_0 -)
-        AlignJustified,
-%End
-%If (QtWebEngine_5_10_0 -)
-        Indent,
-%End
-%If (QtWebEngine_5_10_0 -)
-        Outdent,
-%End
-%If (QtWebEngine_5_10_0 -)
-        InsertOrderedList,
-%End
-%If (QtWebEngine_5_10_0 -)
-        InsertUnorderedList,
 %End
     };
 
@@ -156,7 +122,7 @@ public:
         WebBrowserWindow,
         WebBrowserTab,
         WebDialog,
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
         WebBrowserBackgroundTab,
 %End
     };
@@ -174,14 +140,8 @@ public:
         MediaAudioCapture,
         MediaVideoCapture,
         MediaAudioVideoCapture,
-%If (QtWebEngine_5_5_0 -)
+%If (Qt_5_5_0 -)
         MouseLock,
-%End
-%If (QtWebEngine_5_10_0 -)
-        DesktopVideoCapture,
-%End
-%If (QtWebEngine_5_10_0 -)
-        DesktopAudioVideoCapture,
 %End
     };
 
@@ -199,7 +159,7 @@ public:
     };
 
     explicit QWebEnginePage(QObject *parent /TransferThis/ = 0);
-%If (QtWebEngine_5_5_0 -)
+%If (Qt_5_5_0 -)
     QWebEnginePage(QWebEngineProfile *profile, QObject *parent /TransferThis/ = 0);
 %End
     virtual ~QWebEnginePage();
@@ -211,7 +171,7 @@ public:
     QAction *action(QWebEnginePage::WebAction action) const;
     virtual void triggerAction(QWebEnginePage::WebAction action, bool checked = false);
     virtual bool event(QEvent *);
-    void findText(const QString &subString, QWebEnginePage::FindFlags options = QWebEnginePage::FindFlags(), SIP_PYCALLABLE resultCallback /AllowNone,TypeHint="Callable[[bool], None]"/ = 0);
+    void findText(const QString &subString, QFlags<QWebEnginePage::FindFlag> options = 0, SIP_PYCALLABLE resultCallback /AllowNone/ = 0);
 %MethodCode
         // Make sure any callable doesn't get garbage collected.
         Py_XINCREF(a2);
@@ -244,12 +204,12 @@ public:
     QMenu *createStandardContextMenu() /Factory/;
     void setFeaturePermission(const QUrl &securityOrigin, QWebEnginePage::Feature feature, QWebEnginePage::PermissionPolicy policy);
     void load(const QUrl &url);
-%If (QtWebEngine_5_9_0 -)
+%If (Qt_5_9_0 -)
     void load(const QWebEngineHttpRequest &request);
 %End
     void setHtml(const QString &html, const QUrl &baseUrl = QUrl());
     void setContent(const QByteArray &data, const QString &mimeType = QString(), const QUrl &baseUrl = QUrl());
-    void toHtml(SIP_PYCALLABLE resultCallback /TypeHint="Callable[[QString], None]"/) const;
+    void toHtml(SIP_PYCALLABLE resultCallback) const;
 %MethodCode
         // Make sure the callable doesn't get garbage collected.
         Py_INCREF(a0);
@@ -276,7 +236,7 @@ public:
         Py_END_ALLOW_THREADS
 %End
 
-    void toPlainText(SIP_PYCALLABLE resultCallback /TypeHint="Callable[[QString], None]"/) const;
+    void toPlainText(SIP_PYCALLABLE resultCallback) const;
 %MethodCode
         // Make sure the callable doesn't get garbage collected.
         Py_INCREF(a0);
@@ -310,10 +270,10 @@ public:
     QUrl iconUrl() const;
     qreal zoomFactor() const;
     void setZoomFactor(qreal factor);
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void runJavaScript(const QString &scriptSource, quint32 worldId);
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void runJavaScript(const QString &scriptSource, quint32 worldId, SIP_PYCALLABLE resultCallback);
 %MethodCode
         // Make sure the callable doesn't get garbage collected.
@@ -343,7 +303,7 @@ public:
 
 %End
     void runJavaScript(const QString &scriptSource);
-    void runJavaScript(const QString &scriptSource, SIP_PYCALLABLE resultCallback /TypeHint="Callable[[Any], None]"/);
+    void runJavaScript(const QString &scriptSource, SIP_PYCALLABLE resultCallback);
 %MethodCode
         // Make sure the callable doesn't get garbage collected.
         Py_INCREF(a1);
@@ -398,7 +358,7 @@ protected:
     virtual bool certificateError(const QWebEngineCertificateError &certificateError /NoCopy/);
 
 public:
-%If (QtWebEngine_5_5_0 -)
+%If (Qt_5_5_0 -)
 
     enum NavigationType
     {
@@ -411,29 +371,29 @@ public:
     };
 
 %End
-%If (QtWebEngine_5_5_0 -)
+%If (Qt_5_5_0 -)
     QWebEngineProfile *profile() const;
 %End
-%If (QtWebEngine_5_5_0 -)
+%If (Qt_5_5_0 -)
     QWebEngineScriptCollection &scripts();
 %End
-%If (QtWebEngine_5_5_0 -)
+%If (Qt_5_5_0 -)
     QWebChannel *webChannel() const;
 %End
-%If (QtWebEngine_5_5_0 -)
+%If (Qt_5_5_0 -)
     void setWebChannel(QWebChannel *);
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void setWebChannel(QWebChannel *, uint worldId);
 %End
 
 protected:
-%If (QtWebEngine_5_5_0 -)
+%If (Qt_5_5_0 -)
     virtual bool acceptNavigationRequest(const QUrl &url, QWebEnginePage::NavigationType type, bool isMainFrame);
 %End
 
 public:
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
 
     enum RenderProcessTerminationStatus
     {
@@ -444,45 +404,45 @@ public:
     };
 
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     QColor backgroundColor() const;
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     void setBackgroundColor(const QColor &color);
 %End
 
 signals:
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     void fullScreenRequested(QWebEngineFullScreenRequest fullScreenRequest);
 %End
-%If (QtWebEngine_5_6_0 -)
-    void renderProcessTerminated(QWebEnginePage::RenderProcessTerminationStatus terminationStatus /ScopesStripped=1/, int exitCode);
+%If (Qt_5_6_0 -)
+    void renderProcessTerminated(QWebEnginePage::RenderProcessTerminationStatus terminationStatus, int exitCode);
 %End
 
 public:
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     QIcon icon() const;
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     QPointF scrollPosition() const;
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     QSizeF contentsSize() const;
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     bool isAudioMuted() const;
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void setAudioMuted(bool muted);
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     bool recentlyAudible() const;
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void printToPdf(const QString &filePath, const QPageLayout &pageLayout = QPageLayout(QPageSize(QPageSize::PageSizeId::A4), QPageLayout::Orientation::Portrait, QMarginsF()));
 %End
-%If (QtWebEngine_5_7_0 -)
-    void printToPdf(SIP_PYCALLABLE resultCallback /TypeHint="Callable[[QByteArray], None]"/, const QPageLayout &pageLayout = QPageLayout(QPageSize(QPageSize::PageSizeId::A4), QPageLayout::Orientation::Portrait, QMarginsF()));
+%If (Qt_5_7_0 -)
+    void printToPdf(SIP_PYCALLABLE resultCallback, const QPageLayout &pageLayout = QPageLayout(QPageSize(QPageSize::PageSizeId::A4), QPageLayout::Orientation::Portrait, QMarginsF()));
 %MethodCode
         // Make sure the callable doesn't get garbage collected.
         Py_INCREF(a0);
@@ -510,41 +470,41 @@ public:
 %End
 
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     const QWebEngineContextMenuData &contextMenuData() const;
 %End
 
 signals:
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void iconChanged(const QIcon &icon);
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void scrollPositionChanged(const QPointF &position);
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void contentsSizeChanged(const QSizeF &size);
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void audioMutedChanged(bool muted);
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void recentlyAudibleChanged(bool recentlyAudible);
 %End
-%If (QtWebEngine_5_9_0 -)
+%If (Qt_5_9_0 -)
     void pdfPrintingFinished(const QString &filePath, bool success);
 %End
 
 public:
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     void replaceMisspelledWord(const QString &replacement);
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     void save(const QString &filePath, QWebEngineDownloadItem::SavePageFormat format = QWebEngineDownloadItem::MimeHtmlSaveFormat) const /ReleaseGIL/;
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
 %If (Py_v3)
 %If (PyQt_Printer)
-    void print(QPrinter *printer, SIP_PYCALLABLE resultCallback /TypeHint="Callable[[bool], None]"/);
+    void print(QPrinter *printer, SIP_PYCALLABLE resultCallback);
 %MethodCode
         // Make sure the callable doesn't get garbage collected.
         Py_INCREF(a1);
@@ -574,39 +534,11 @@ public:
 %End
 %End
 %End
-%If (QtWebEngine_5_10_0 -)
-    void download(const QUrl &url, const QString &filename = QString());
-%End
-%If (QtWebEngine_5_11_0 -)
-    void setInspectedPage(QWebEnginePage *page);
-%End
-%If (QtWebEngine_5_11_0 -)
-    QWebEnginePage *inspectedPage() const;
-%End
-%If (QtWebEngine_5_11_0 -)
-    void setDevToolsPage(QWebEnginePage *page);
-%End
-%If (QtWebEngine_5_11_0 -)
-    QWebEnginePage *devToolsPage() const;
-%End
 
-signals:
-%If (QtWebEngine_5_11_0 -)
-    void quotaRequested(QWebEngineQuotaRequest quotaRequest);
-%End
-%If (QtWebEngine_5_11_0 -)
-    void registerProtocolHandlerRequested(QWebEngineRegisterProtocolHandlerRequest request);
-%End
-%If (QtWebEngine_5_12_0 -)
-%If (PyQt_SSL)
-    void selectClientCertificate(QWebEngineClientCertificateSelection clientCertSelection);
-%End
-%End
-%If (QtWebEngine_5_12_0 -)
-    void printRequested();
+private:
+%If (Qt_5_6_0 -)
+    QWebEnginePage(const QWebEnginePage &);
 %End
 };
 
-%If (QtWebEngine_5_11_0 -)
-QFlags<QWebEnginePage::FindFlag> operator|(QWebEnginePage::FindFlag f1, QFlags<QWebEnginePage::FindFlag> f2);
 %End

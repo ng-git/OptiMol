@@ -34,31 +34,26 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Controls 2.12
-import QtQuick.Controls.impl 2.12
-import QtQuick.Templates 2.12 as T
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.impl 2.2
+import QtQuick.Templates 2.2 as T
 
 T.Tumbler {
     id: control
-
-    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                            implicitContentWidth + leftPadding + rightPadding) || 60 // ### remove 60 in Qt 6
-    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                             implicitContentHeight + topPadding + bottomPadding) || 200 // ### remove 200 in Qt 6
+    implicitWidth: 60
+    implicitHeight: 200
 
     delegate: Text {
         text: modelData
-        color: control.visualFocus ? control.palette.highlight : control.palette.text
+        color: control.visualFocus ? Default.focusColor : Default.textDarkColor
         font: control.font
-        opacity: 1.0 - Math.abs(Tumbler.displacement) / (control.visibleItemCount / 2)
+        opacity: (1.0 - Math.abs(Tumbler.displacement) / (control.visibleItemCount / 2)) * (control.enabled ? 1 : 0.6)
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
 
     contentItem: TumblerView {
-        implicitWidth: 60
-        implicitHeight: 200
         model: control.model
         delegate: control.delegate
         path: Path {

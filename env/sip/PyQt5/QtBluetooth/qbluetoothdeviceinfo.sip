@@ -2,7 +2,7 @@
 //
 // This file is part of the QtBluetooth Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -228,32 +228,6 @@ public:
 %End
 %If (Qt_5_5_0 -)
     QBluetoothUuid deviceUuid() const;
-%End
-%If (Qt_5_12_0 -)
-
-    enum class Field
-    {
-        None /PyName=None_/,
-        RSSI,
-        ManufacturerData,
-        All,
-    };
-
-%End
-%If (Qt_5_12_0 -)
-    typedef QFlags<QBluetoothDeviceInfo::Field> Fields;
-%End
-%If (Qt_5_12_0 -)
-    QVector<quint16> manufacturerIds() const;
-%End
-%If (Qt_5_12_0 -)
-    QByteArray manufacturerData(quint16 manufacturerId) const;
-%End
-%If (Qt_5_12_0 -)
-    bool setManufacturerData(quint16 manufacturerId, const QByteArray &data);
-%End
-%If (Qt_5_12_0 -)
-    QHash<quint16, QByteArray> manufacturerData() const;
 %End
 };
 

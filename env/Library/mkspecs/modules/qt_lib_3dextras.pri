@@ -1,6 +1,6 @@
-QT.3dextras.VERSION = 5.12.5
+QT.3dextras.VERSION = 5.9.7
 QT.3dextras.name = Qt3DExtras
-QT.3dextras.module = Qt53DExtras_conda
+QT.3dextras.module = Qt53DExtras
 QT.3dextras.libs = $$QT_MODULE_LIB_BASE
 QT.3dextras.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/Qt3DExtras
 QT.3dextras.frameworks =

@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Quick module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Quick_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Quick_VERSION instead.
-set(Qt5Quick_VERSION_STRING 5.12.5)
+set(Qt5Quick_VERSION_STRING 5.9.7)
 
 set(Qt5Quick_LIBRARIES Qt5::Quick)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::Quick)
 
     set(_Qt5Quick_OWN_INCLUDE_DIRS "${_qt5Quick_install_prefix}/include/qt/" "${_qt5Quick_install_prefix}/include/qt/QtQuick")
     set(Qt5Quick_PRIVATE_INCLUDE_DIRS
-        "${_qt5Quick_install_prefix}/include/qt/QtQuick/5.12.5"
-        "${_qt5Quick_install_prefix}/include/qt/QtQuick/5.12.5/QtQuick"
+        "${_qt5Quick_install_prefix}/include/qt/QtQuick/5.9.7"
+        "${_qt5Quick_install_prefix}/include/qt/QtQuick/5.9.7/QtQuick"
     )
 
     foreach(_dir ${_Qt5Quick_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::Quick)
     foreach(_module_dep ${_Qt5Quick_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Quick_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Quick_FIND_VERSION_EXACT}
                 ${_Qt5Quick_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Quick_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::Quick)
     set_property(TARGET Qt5::Quick PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_QUICK_LIB)
 
-    set_property(TARGET Qt5::Quick PROPERTY INTERFACE_QT_ENABLED_FEATURES d3d12)
-    set_property(TARGET Qt5::Quick PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5Quick_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Quick_PRIVATE_DIR ${Qt5Quick_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Quick_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::Quick)
         endif()
     endforeach()
 
-    if (_Qt5Quick_PRIVATE_DIRS_EXIST)
+    if (_Qt5Quick_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::QuickPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::QuickPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Quick_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::Quick)
         )
     endif()
 
-    _populate_Quick_target_properties(RELEASE "Qt5Quick_conda.dll" "Qt5Quick_conda.lib" )
+    _populate_Quick_target_properties(RELEASE "Qt5Quick.dll" "Qt5Quick.lib" )
 
     if (EXISTS
-        "${_qt5Quick_install_prefix}/bin/Qt5Quick_condad.dll"
+        "${_qt5Quick_install_prefix}/bin/Qt5Quickd.dll"
       AND EXISTS
-        "${_qt5Quick_install_prefix}/lib/Qt5Quick_condad.lib" )
-        _populate_Quick_target_properties(DEBUG "Qt5Quick_condad.dll" "Qt5Quick_condad.lib" )
+        "${_qt5Quick_install_prefix}/lib/Qt5Quickd.lib" )
+        _populate_Quick_target_properties(DEBUG "Qt5Quickd.dll" "Qt5Quickd.lib" )
     endif()
 
 

@@ -1,6 +1,6 @@
-QT.opengl.VERSION = 5.12.5
+QT.opengl.VERSION = 5.9.7
 QT.opengl.name = QtOpenGL
-QT.opengl.module = Qt5OpenGL_conda
+QT.opengl.module = Qt5OpenGL
 QT.opengl.libs = $$QT_MODULE_LIB_BASE
 QT.opengl.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtOpenGL
 QT.opengl.frameworks =

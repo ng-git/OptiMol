@@ -1,7 +1,7 @@
 // This is the SIP interface definition for the QtAndroidExtras module of
 // PyQt v5.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -24,7 +24,7 @@
 %Import QtCore/QtCoremod.sip
 
 %Copying
-Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 
 This file is part of PyQt5.
 

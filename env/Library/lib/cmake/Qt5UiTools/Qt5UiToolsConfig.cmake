@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 UiTools module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5UiTools_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5UiTools_VERSION instead.
-set(Qt5UiTools_VERSION_STRING 5.12.5)
+set(Qt5UiTools_VERSION_STRING 5.9.7)
 
 set(Qt5UiTools_LIBRARIES Qt5::UiTools)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::UiTools)
 
     set(_Qt5UiTools_OWN_INCLUDE_DIRS "${_qt5UiTools_install_prefix}/include/qt/" "${_qt5UiTools_install_prefix}/include/qt/QtUiTools")
     set(Qt5UiTools_PRIVATE_INCLUDE_DIRS
-        "${_qt5UiTools_install_prefix}/include/qt/QtUiTools/5.12.5"
-        "${_qt5UiTools_install_prefix}/include/qt/QtUiTools/5.12.5/QtUiTools"
+        "${_qt5UiTools_install_prefix}/include/qt/QtUiTools/5.9.7"
+        "${_qt5UiTools_install_prefix}/include/qt/QtUiTools/5.9.7/QtUiTools"
     )
 
     foreach(_dir ${_Qt5UiTools_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::UiTools)
     foreach(_module_dep ${_Qt5UiTools_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5UiTools_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5UiTools_FIND_VERSION_EXACT}
                 ${_Qt5UiTools_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5UiTools_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -128,9 +128,6 @@ if (NOT TARGET Qt5::UiTools)
     set_property(TARGET Qt5::UiTools PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_UITOOLS_LIB)
 
-    set_property(TARGET Qt5::UiTools PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::UiTools PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5UiTools_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5UiTools_PRIVATE_DIR ${Qt5UiTools_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5UiTools_PRIVATE_DIR})
@@ -138,7 +135,8 @@ if (NOT TARGET Qt5::UiTools)
         endif()
     endforeach()
 
-    if (_Qt5UiTools_PRIVATE_DIRS_EXIST)
+    if (_Qt5UiTools_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::UiToolsPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::UiToolsPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5UiTools_OWN_PRIVATE_INCLUDE_DIRS}
@@ -154,10 +152,10 @@ if (NOT TARGET Qt5::UiTools)
         )
     endif()
 
-    _populate_UiTools_target_properties(RELEASE "Qt5UiTools_conda.lib" "" )
+    _populate_UiTools_target_properties(RELEASE "Qt5UiTools.lib" "" )
 
-    if (EXISTS "${_qt5UiTools_install_prefix}/lib/Qt5UiTools_condad.lib" )
-        _populate_UiTools_target_properties(DEBUG "Qt5UiTools_condad.lib" "" )
+    if (EXISTS "${_qt5UiTools_install_prefix}/lib/Qt5UiToolsd.lib" )
+        _populate_UiTools_target_properties(DEBUG "Qt5UiToolsd.lib" "" )
     endif()
 
 

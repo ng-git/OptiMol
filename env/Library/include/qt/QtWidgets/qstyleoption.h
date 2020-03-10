@@ -296,7 +296,7 @@ typedef Q_DECL_DEPRECATED QStyleOptionTab QStyleOptionTabV3;
 #endif // QT_CONFIG(tabbar)
 
 
-#if QT_CONFIG(toolbar)
+#ifndef QT_NO_TOOLBAR
 
 class Q_WIDGETS_EXPORT QStyleOptionToolBar : public QStyleOption
 {
@@ -321,7 +321,7 @@ protected:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(QStyleOptionToolBar::ToolBarFeatures)
 
-#endif // QT_CONFIG(toolbar)
+#endif // QT_NO_TOOLBAR
 
 class Q_WIDGETS_EXPORT QStyleOptionProgressBar : public QStyleOption
 {
@@ -366,7 +366,7 @@ public:
     QString text;
     QIcon icon;
     int maxIconWidth;
-    int tabWidth; // ### Qt 6: rename to reservedShortcutWidth
+    int tabWidth;
     QFont font;
 
     QStyleOptionMenuItem();
@@ -682,7 +682,7 @@ T qstyleoption_cast(const QStyleOption *opt)
         || (int(Opt::Type) == QStyleOption::SO_Complex
             && opt->type > QStyleOption::SO_Complex)))
         return static_cast<T>(opt);
-    return nullptr;
+    return Q_NULLPTR;
 }
 
 template <typename T>
@@ -694,7 +694,7 @@ T qstyleoption_cast(QStyleOption *opt)
         || (int(Opt::Type) == QStyleOption::SO_Complex
             && opt->type > QStyleOption::SO_Complex)))
         return static_cast<T>(opt);
-    return nullptr;
+    return Q_NULLPTR;
 }
 
 // -------------------------- QStyleHintReturn -------------------------------
@@ -743,7 +743,7 @@ T qstyleoption_cast(const QStyleHintReturn *hint)
     if (hint && hint->version <= Opt::Version &&
         (hint->type == Opt::Type || int(Opt::Type) == QStyleHintReturn::SH_Default))
         return static_cast<T>(hint);
-    return nullptr;
+    return Q_NULLPTR;
 }
 
 template <typename T>
@@ -753,7 +753,7 @@ T qstyleoption_cast(QStyleHintReturn *hint)
     if (hint && hint->version <= Opt::Version &&
         (hint->type == Opt::Type || int(Opt::Type) == QStyleHintReturn::SH_Default))
         return static_cast<T>(hint);
-    return nullptr;
+    return Q_NULLPTR;
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)

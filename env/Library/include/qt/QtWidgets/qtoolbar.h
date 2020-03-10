@@ -44,9 +44,10 @@
 #include <QtWidgets/qaction.h>
 #include <QtWidgets/qwidget.h>
 
-QT_REQUIRE_CONFIG(toolbar);
-
 QT_BEGIN_NAMESPACE
+
+
+#ifndef QT_NO_TOOLBAR
 
 class QToolBarPrivate;
 
@@ -75,8 +76,8 @@ class Q_WIDGETS_EXPORT QToolBar : public QWidget
     Q_PROPERTY(bool floatable READ isFloatable WRITE setFloatable)
 
 public:
-    explicit QToolBar(const QString &title, QWidget *parent = nullptr);
-    explicit QToolBar(QWidget *parent = nullptr);
+    explicit QToolBar(const QString &title, QWidget *parent = Q_NULLPTR);
+    explicit QToolBar(QWidget *parent = Q_NULLPTR);
     ~QToolBar();
 
     void setMovable(bool movable);
@@ -120,7 +121,7 @@ public:
         addAction(const QString &text, const Obj *object, Func1 slot)
     {
         QAction *result = addAction(text);
-        connect(result, &QAction::triggered, object, std::move(slot));
+        connect(result, &QAction::triggered, object, slot);
         return result;
     }
     // addAction(QString): Connect to a functor or function pointer (without context)
@@ -138,7 +139,7 @@ public:
         addAction(const QIcon &actionIcon, const QString &text, const Obj *object, Func1 slot)
     {
         QAction *result = addAction(actionIcon, text);
-        connect(result, &QAction::triggered, object, std::move(slot));
+        connect(result, &QAction::triggered, object, slot);
         return result;
     }
     // addAction(QIcon, QString): Connect to a functor or function pointer (without context)
@@ -187,10 +188,10 @@ Q_SIGNALS:
     void visibilityChanged(bool visible);
 
 protected:
-    void actionEvent(QActionEvent *event) override;
-    void changeEvent(QEvent *event) override;
-    void paintEvent(QPaintEvent *event) override;
-    bool event(QEvent *event) override;
+    void actionEvent(QActionEvent *event) Q_DECL_OVERRIDE;
+    void changeEvent(QEvent *event) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
+    bool event(QEvent *event) Q_DECL_OVERRIDE;
     void initStyleOption(QStyleOptionToolBar *option) const;
 
 
@@ -209,6 +210,8 @@ private:
 
 inline QAction *QToolBar::actionAt(int ax, int ay) const
 { return actionAt(QPoint(ax, ay)); }
+
+#endif // QT_NO_TOOLBAR
 
 QT_END_NAMESPACE
 

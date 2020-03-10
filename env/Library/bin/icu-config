@@ -24,7 +24,7 @@ prefix=
 loaddefs()
 {
 
-# Following from icu/icu4c/source/config/Makefile.inc
+# Following from ./config/mh-cygwin-msvc
 # Copyright (C) 2016 and later: Unicode, Inc. and others.
 # License & terms of use: http://www.unicode.org/copyright.html
 ## -*-makefile-*-
@@ -53,7 +53,7 @@ loaddefs()
 # etc.  If ICU is not installed in this directory, you must change the
 # following line.  There should exist ${prefix}/include/unicode/utypes.h
 # for example.
-default_prefix="/c/bld/icu_1566795167539/_h_env/Library"
+default_prefix="/icu"
 if [ "x${prefix}" = "x" ]; then prefix="$default_prefix"; fi
 exec_prefix="${prefix}"
 libdir="${exec_prefix}/lib"
@@ -64,8 +64,8 @@ datadir="${datarootdir}"
 sbindir="${exec_prefix}/sbin"
 
 # about the ICU version
-VERSION="64.2"
-UNICODE_VERSION="12.1"
+VERSION="58.2"
+UNICODE_VERSION="9.0"
 
 # The prefix for ICU libraries, normally 'icu'
 ICUPREFIX="icu"
@@ -189,7 +189,7 @@ pkglibdir="${libdir}/${PACKAGE}${ICULIBSUFFIX}/${VERSION}"
 
 # Information about the host that 'configure' was run on.
 host="x86_64-pc-cygwin"
-host_alias="x86_64-pc-cygwin"
+host_alias=""
 host_cpu="x86_64"
 host_vendor="pc"
 host_os="cygwin"
@@ -205,14 +205,14 @@ platform="U_CYGWIN"
 AR="false"
 # initial tab keeps it out of the shell version.
 ARFLAGS=" ${ARFLAGS}"
-CC="cl.exe"
-CPP="cl.exe -E"
+CC="cl"
+CPP="cl -E"
 CFLAGS=""
 CPPFLAGS="-I${prefix}/include"
 CXXFLAGS=""
-CXX="cl.exe"
+CXX="cl"
 DEFAULT_MODE="dll"
-DEFS="-DPACKAGE_NAME=\"ICU\" -DPACKAGE_TARNAME=\"International\ Components\ for\ Unicode\" -DPACKAGE_VERSION=\"64.2\" -DPACKAGE_STRING=\"ICU\ 64.2\" -DPACKAGE_BUGREPORT=\"http://icu-project.org/bugs\" -DPACKAGE_URL=\"http://icu-project.org\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DSIZEOF_VOID_P=8 -DHAVE_LIBM=1 -DHAVE_INTTYPES_H=1 -DHAVE_WCHAR_H=1 -DSIZEOF_WCHAR_T=2 "
+DEFS="-DPACKAGE_NAME=\"ICU\" -DPACKAGE_TARNAME=\"International\ Components\ for\ Unicode\" -DPACKAGE_VERSION=\"58.1\" -DPACKAGE_STRING=\"ICU\ 58.1\" -DPACKAGE_BUGREPORT=\"http://icu-project.org/bugs\" -DPACKAGE_URL=\"http://icu-project.org\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DSIZEOF_VOID_P=8 -DHAVE_LIBM=1 -DHAVE_INTTYPES_H=1 -DHAVE_WCHAR_H=1 -DSIZEOF_WCHAR_T=2 "
 # use a consistent INSTALL 
 INSTALL="${SHELL} ${pkgdatadir}/install-sh -c"
 INSTALL_DATA="${INSTALL} -m 644"
@@ -221,8 +221,8 @@ INSTALL_SCRIPT="${INSTALL}"
 LDFLAGS="${RPATHLDFLAGS}"
 LIBS="-lm  "
 LIB_M=""
-LIB_VERSION="64.2"
-LIB_VERSION_MAJOR="64"
+LIB_VERSION="58.2"
+LIB_VERSION_MAJOR="58"
 MKINSTALLDIRS="${SHELL} ${pkgdatadir}/mkinstalldirs"
 RANLIB=":"
 RMV="rm -rf"
@@ -250,7 +250,7 @@ INSTALL_L="${INSTALL_DATA}"
 
 # The basename of the ICU data file (i.e. icudt21b )
 ICUDATA_CHAR="l"
-ICUDATA_NAME="icudt64l"
+ICUDATA_NAME="icudt58l"
 
 # Defaults for pkgdata's mode and directories
 # The default data dir changes depending on what packaging mode 
@@ -289,7 +289,6 @@ GENCCODE_ASSEMBLY=""
 # The selfcheck is just a sanity check that this makefile is
 # parseable. The mh fragment is only included if this does not occur.
 
-# Following from ./config/mh-cygwin-msvc
 ## Cygwin with Microsoft Visual C++ compiler specific setup
 ## Copyright (C) 2016 and later: Unicode, Inc. and others.
 ## License & terms of use: http://www.unicode.org/copyright.html
@@ -312,10 +311,6 @@ GEN_DEPS_cc=":"
 ## Make sure that the static libraries can be built
 STATICCPPFLAGS="-DU_STATIC_IMPLEMENTATION"
 
-## ICU requires a minimum target of Windows 7, and WINVER is not set to this by default.
-## https://msdn.microsoft.com/en-us/library/aa383745.aspx
-CPPFLAGS="${CPPFLAGS}  -DWINVER=0x0601 -D_WIN32_WINNT=0x0601"
-
 ## Flags for position independent code
 SHAREDLIBCFLAGS=""
 SHAREDLIBCXXFLAGS=""
@@ -332,9 +327,8 @@ LIBCPPFLAGS=""
 # /EHsc enables exception handling
 # /Zc:wchar_t makes wchar_t a native type. Required for C++ ABI compatibility.
 # -D_CRT_SECURE_NO_DEPRECATE is needed to quiet warnings about using standard C functions.
-# -utf-8 set source file encoding to utf-8.
-CFLAGS="${CFLAGS} -GF -nologo -utf-8"
-CXXFLAGS="${CXXFLAGS} -GF -nologo -EHsc -Zc:wchar_t -utf-8"
+CFLAGS="${CFLAGS} -GF -nologo"
+CXXFLAGS="${CXXFLAGS} -GF -nologo -EHsc -Zc:wchar_t"
 CPPFLAGS="${CPPFLAGS} -D_CRT_SECURE_NO_DEPRECATE"
 DEFS="${DEFS} -DWIN32 -DCYGWINMSVC"
 LDFLAGS="${LDFLAGS} -nologo"

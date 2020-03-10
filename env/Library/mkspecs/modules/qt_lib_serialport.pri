@@ -1,6 +1,6 @@
-QT.serialport.VERSION = 5.12.5
+QT.serialport.VERSION = 5.9.7
 QT.serialport.name = QtSerialPort
-QT.serialport.module = Qt5SerialPort_conda
+QT.serialport.module = Qt5SerialPort
 QT.serialport.libs = $$QT_MODULE_LIB_BASE
 QT.serialport.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtSerialPort
 QT.serialport.frameworks =

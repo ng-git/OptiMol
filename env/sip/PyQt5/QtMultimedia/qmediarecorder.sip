@@ -2,7 +2,7 @@
 //
 // This file is part of the QtMultimedia Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -109,10 +109,11 @@ signals:
     void metaDataAvailableChanged(bool available);
     void metaDataWritableChanged(bool writable);
     void metaDataChanged(const QString &key, const QVariant &value);
-    void metaDataChanged();
-    void availabilityChanged(QMultimedia::AvailabilityStatus availability /Constrained/);
-    void availabilityChanged(bool available);
+    void availabilityChanged(QMultimedia::AvailabilityStatus availability);
 
 protected:
     virtual bool setMediaObject(QMediaObject *object);
+
+private:
+    QMediaRecorder(const QMediaRecorder &);
 };

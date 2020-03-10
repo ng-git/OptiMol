@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -85,4 +85,7 @@ protected:
     virtual qint64 writeData(const char *data /Array/, qint64 len /ArraySize/) /ReleaseGIL/;
     virtual void connectNotify(const QMetaMethod &);
     virtual void disconnectNotify(const QMetaMethod &);
+
+private:
+    QBuffer(const QBuffer &);
 };

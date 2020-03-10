@@ -2,7 +2,7 @@
 //
 // This file is part of the QtMultimedia Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -86,6 +86,9 @@ signals:
 
 protected:
     virtual bool setMediaObject(QMediaObject *);
+
+private:
+    QCameraImageCapture(const QCameraImageCapture &);
 };
 
 QFlags<QCameraImageCapture::CaptureDestination> operator|(QCameraImageCapture::CaptureDestination f1, QFlags<QCameraImageCapture::CaptureDestination> f2);

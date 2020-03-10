@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Network module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Network_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Network_VERSION instead.
-set(Qt5Network_VERSION_STRING 5.12.5)
+set(Qt5Network_VERSION_STRING 5.9.7)
 
 set(Qt5Network_LIBRARIES Qt5::Network)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::Network)
 
     set(_Qt5Network_OWN_INCLUDE_DIRS "${_qt5Network_install_prefix}/include/qt/" "${_qt5Network_install_prefix}/include/qt/QtNetwork")
     set(Qt5Network_PRIVATE_INCLUDE_DIRS
-        "${_qt5Network_install_prefix}/include/qt/QtNetwork/5.12.5"
-        "${_qt5Network_install_prefix}/include/qt/QtNetwork/5.12.5/QtNetwork"
+        "${_qt5Network_install_prefix}/include/qt/QtNetwork/5.9.7"
+        "${_qt5Network_install_prefix}/include/qt/QtNetwork/5.9.7/QtNetwork"
     )
 
     foreach(_dir ${_Qt5Network_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::Network)
     foreach(_module_dep ${_Qt5Network_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Network_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Network_FIND_VERSION_EXACT}
                 ${_Qt5Network_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Network_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::Network)
     set_property(TARGET Qt5::Network PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_NETWORK_LIB)
 
-    set_property(TARGET Qt5::Network PROPERTY INTERFACE_QT_ENABLED_FEATURES networkinterface;bearermanagement;dnslookup;dtls;ftp;http;localserver;networkdiskcache;networkproxy;opensslv11;socks5;ssl;udpsocket)
-    set_property(TARGET Qt5::Network PROPERTY INTERFACE_QT_DISABLED_FEATURES sctp)
-
     set(_Qt5Network_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Network_PRIVATE_DIR ${Qt5Network_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Network_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::Network)
         endif()
     endforeach()
 
-    if (_Qt5Network_PRIVATE_DIRS_EXIST)
+    if (_Qt5Network_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::NetworkPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::NetworkPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Network_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::Network)
         )
     endif()
 
-    _populate_Network_target_properties(RELEASE "Qt5Network_conda.dll" "Qt5Network_conda.lib" )
+    _populate_Network_target_properties(RELEASE "Qt5Network.dll" "Qt5Network.lib" )
 
     if (EXISTS
-        "${_qt5Network_install_prefix}/bin/Qt5Network_condad.dll"
+        "${_qt5Network_install_prefix}/bin/Qt5Networkd.dll"
       AND EXISTS
-        "${_qt5Network_install_prefix}/lib/Qt5Network_condad.lib" )
-        _populate_Network_target_properties(DEBUG "Qt5Network_condad.dll" "Qt5Network_condad.lib" )
+        "${_qt5Network_install_prefix}/lib/Qt5Networkd.lib" )
+        _populate_Network_target_properties(DEBUG "Qt5Networkd.dll" "Qt5Networkd.lib" )
     endif()
 
 

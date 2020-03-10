@@ -1,6 +1,6 @@
-QT.3dinput.VERSION = 5.12.5
+QT.3dinput.VERSION = 5.9.7
 QT.3dinput.name = Qt3DInput
-QT.3dinput.module = Qt53DInput_conda
+QT.3dinput.module = Qt53DInput
 QT.3dinput.libs = $$QT_MODULE_LIB_BASE
 QT.3dinput.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/Qt3DInput
 QT.3dinput.frameworks =

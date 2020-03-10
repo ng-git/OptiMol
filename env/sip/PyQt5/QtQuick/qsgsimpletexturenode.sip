@@ -2,7 +2,7 @@
 //
 // This file is part of the QtQuick Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -52,10 +52,10 @@ public:
     typedef QFlags<QSGSimpleTextureNode::TextureCoordinatesTransformFlag> TextureCoordinatesTransformMode;
 %End
 %If (Qt_5_2_0 -)
-    void setTextureCoordinatesTransform(QSGSimpleTextureNode::TextureCoordinatesTransformMode mode);
+    void setTextureCoordinatesTransform(QFlags<QSGSimpleTextureNode::TextureCoordinatesTransformFlag> mode);
 %End
 %If (Qt_5_2_0 -)
-    QSGSimpleTextureNode::TextureCoordinatesTransformMode textureCoordinatesTransform() const;
+    QFlags<QSGSimpleTextureNode::TextureCoordinatesTransformFlag> textureCoordinatesTransform() const;
 %End
 %If (Qt_5_4_0 -)
     void setOwnsTexture(bool owns);

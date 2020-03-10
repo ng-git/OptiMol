@@ -1,8 +1,8 @@
-QT.texttospeech_private.VERSION = 5.12.5
+QT.texttospeech_private.VERSION = 5.9.7
 QT.texttospeech_private.name = QtTextToSpeech
 QT.texttospeech_private.module =
 QT.texttospeech_private.libs = $$QT_MODULE_LIB_BASE
-QT.texttospeech_private.includes = $$QT_MODULE_INCLUDE_BASE/QtTextToSpeech/5.12.5 $$QT_MODULE_INCLUDE_BASE/QtTextToSpeech/5.12.5/QtTextToSpeech
+QT.texttospeech_private.includes = $$QT_MODULE_INCLUDE_BASE/QtTextToSpeech/5.9.7 $$QT_MODULE_INCLUDE_BASE/QtTextToSpeech/5.9.7/QtTextToSpeech
 QT.texttospeech_private.frameworks =
 QT.texttospeech_private.depends = core_private texttospeech
 QT.texttospeech_private.uses =

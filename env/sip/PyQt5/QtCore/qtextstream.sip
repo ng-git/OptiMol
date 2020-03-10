@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -104,46 +104,12 @@ public:
     void resetStatus();
     qint64 pos() const;
     QTextStream &operator>>(QByteArray &array /Constrained/);
+    QTextStream &operator<<(double f /Constrained/);
+    QTextStream &operator<<(int i /Constrained/);
+    QTextStream &operator<<(qlonglong i);
+    QTextStream &operator<<(qulonglong i);
     QTextStream &operator<<(const QString &s);
     QTextStream &operator<<(const QByteArray &array);
-    QTextStream &operator<<(double f /Constrained/);
-    QTextStream &operator<<(SIP_PYOBJECT i /TypeHint="int"/);
-%MethodCode
-        #if PY_MAJOR_VERSION < 3
-        if (PyInt_Check(a1))
-        {
-            qlonglong val = PyInt_AsLong(a1);
-        
-            sipRes = &(*a0 << val);
-        }
-        else
-        #endif
-        {
-            qlonglong val = sipLong_AsLongLong(a1);
-        
-            if (!PyErr_Occurred())
-            {
-                sipRes = &(*a0 << val);
-            }
-            else
-            {
-                // If it is positive then it might fit an unsigned long long.
-        
-                qulonglong uval = sipLong_AsUnsignedLongLong(a1);
-        
-                if (!PyErr_Occurred())
-                {
-                    sipRes = &(*a0 << uval);
-                }
-                else
-                {
-                    sipError = (PyErr_ExceptionMatches(PyExc_OverflowError)
-                            ? sipErrorFail : sipErrorContinue);
-                }
-            }
-        }
-%End
-
     void setLocale(const QLocale &locale);
     QLocale locale() const;
 

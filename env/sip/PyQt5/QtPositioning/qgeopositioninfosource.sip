@@ -2,7 +2,7 @@
 //
 // This file is part of the QtPositioning Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -81,10 +81,10 @@ public:
     virtual ~QGeoPositionInfoSource();
     virtual void setUpdateInterval(int msec);
     int updateInterval() const;
-    virtual void setPreferredPositioningMethods(QGeoPositionInfoSource::PositioningMethods methods);
-    QGeoPositionInfoSource::PositioningMethods preferredPositioningMethods() const;
+    virtual void setPreferredPositioningMethods(QFlags<QGeoPositionInfoSource::PositioningMethod> methods);
+    QFlags<QGeoPositionInfoSource::PositioningMethod> preferredPositioningMethods() const;
     virtual QGeoPositionInfo lastKnownPosition(bool fromSatellitePositioningMethodsOnly = false) const = 0;
-    virtual QGeoPositionInfoSource::PositioningMethods supportedPositioningMethods() const = 0;
+    virtual QFlags<QGeoPositionInfoSource::PositioningMethod> supportedPositioningMethods() const = 0;
     virtual int minimumUpdateInterval() const = 0;
     QString sourceName() const;
     static QGeoPositionInfoSource *createDefaultSource(QObject *parent /TransferThis/) /Factory/;
@@ -101,9 +101,6 @@ signals:
     void positionUpdated(const QGeoPositionInfo &update);
     void updateTimeout();
     void error(QGeoPositionInfoSource::Error);
-%If (Qt_5_12_0 -)
-    void supportedPositioningMethodsChanged();
-%End
 
 private:
     QGeoPositionInfoSource(const QGeoPositionInfoSource &);

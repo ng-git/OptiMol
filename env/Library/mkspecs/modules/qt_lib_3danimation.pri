@@ -1,6 +1,6 @@
-QT.3danimation.VERSION = 5.12.5
+QT.3danimation.VERSION = 5.9.7
 QT.3danimation.name = Qt3DAnimation
-QT.3danimation.module = Qt53DAnimation_conda
+QT.3danimation.module = Qt53DAnimation
 QT.3danimation.libs = $$QT_MODULE_LIB_BASE
 QT.3danimation.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/Qt3DAnimation
 QT.3danimation.frameworks =

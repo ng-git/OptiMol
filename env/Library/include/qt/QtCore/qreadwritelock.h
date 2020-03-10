@@ -45,7 +45,7 @@
 QT_BEGIN_NAMESPACE
 
 
-#if QT_CONFIG(thread)
+#ifndef QT_NO_THREAD
 
 class QReadWriteLockPrivate;
 
@@ -174,7 +174,7 @@ inline QWriteLocker::QWriteLocker(QReadWriteLock *areadWriteLock)
 #pragma warning( pop )
 #endif
 
-#else // QT_CONFIG(thread)
+#else // QT_NO_THREAD
 
 class Q_CORE_EXPORT QReadWriteLock
 {
@@ -205,7 +205,7 @@ public:
 
     static inline void unlock() Q_DECL_NOTHROW { }
     static inline void relock() Q_DECL_NOTHROW { }
-    static inline QReadWriteLock *readWriteLock() Q_DECL_NOTHROW { return nullptr; }
+    static inline QReadWriteLock *readWriteLock() Q_DECL_NOTHROW { return Q_NULLPTR; }
 
 private:
     Q_DISABLE_COPY(QReadLocker)
@@ -219,13 +219,13 @@ public:
 
     static inline void unlock() Q_DECL_NOTHROW { }
     static inline void relock() Q_DECL_NOTHROW { }
-    static inline QReadWriteLock *readWriteLock() Q_DECL_NOTHROW { return nullptr; }
+    static inline QReadWriteLock *readWriteLock() Q_DECL_NOTHROW { return Q_NULLPTR; }
 
 private:
     Q_DISABLE_COPY(QWriteLocker)
 };
 
-#endif // QT_CONFIG(thread)
+#endif // QT_NO_THREAD
 
 QT_END_NAMESPACE
 

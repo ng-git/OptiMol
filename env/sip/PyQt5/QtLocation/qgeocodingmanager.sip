@@ -2,7 +2,7 @@
 //
 // This file is part of the QtLocation Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -22,7 +22,7 @@
 
 %If (Qt_5_5_0 -)
 
-class QGeoCodingManager : QObject /NoDefaultCtors/
+class QGeoCodingManager : QObject
 {
 %TypeHeaderCode
 #include <qgeocodingmanager.h>
@@ -41,6 +41,9 @@ public:
 signals:
     void finished(QGeoCodeReply *reply);
     void error(QGeoCodeReply *reply, QGeoCodeReply::Error error, QString errorString = QString());
+
+private:
+    QGeoCodingManager(const QGeoCodingManager &);
 };
 
 %End

@@ -1,6 +1,6 @@
-QT.quick.VERSION = 5.12.5
+QT.quick.VERSION = 5.9.7
 QT.quick.name = QtQuick
-QT.quick.module = Qt5Quick_conda
+QT.quick.module = Qt5Quick
 QT.quick.libs = $$QT_MODULE_LIB_BASE
 QT.quick.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtQuick
 QT.quick.frameworks =

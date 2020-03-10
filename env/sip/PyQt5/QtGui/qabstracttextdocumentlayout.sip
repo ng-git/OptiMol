@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -70,7 +70,7 @@ public:
     QTextObjectInterface *handlerForObject(int objectType) const;
 
 signals:
-    void update(const QRectF &rect = QRectF(0., 0., 1.0E+9, 1.0E+9));
+    void update(const QRectF &rect = QRectF(0.0, 0.0, 1.0e+9, 1.0e+9));
     void documentSizeChanged(const QSizeF &newSize);
     void pageCountChanged(int newPages);
     void updateBlock(const QTextBlock &block);

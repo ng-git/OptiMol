@@ -1,6 +1,6 @@
-QT.script.VERSION = 5.12.5
+QT.script.VERSION = 5.9.7
 QT.script.name = QtScript
-QT.script.module = Qt5Script_conda
+QT.script.module = Qt5Script
 QT.script.libs = $$QT_MODULE_LIB_BASE
 QT.script.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtScript
 QT.script.frameworks =

@@ -2,9 +2,9 @@
 //
 // This file is part of the QtWebEngineCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
-// This file is part of PyQtWebEngine.
+// This file is part of PyQt5.
 // 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
@@ -20,7 +20,7 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
 
 class QWebEngineUrlRequestJob : QObject /NoDefaultCtors/
 {
@@ -46,9 +46,6 @@ public:
     void reply(const QByteArray &contentType, QIODevice *device);
     void fail(QWebEngineUrlRequestJob::Error error);
     void redirect(const QUrl &url);
-%If (QtWebEngine_5_11_0 -)
-    QUrl initiator() const;
-%End
 };
 
 %End

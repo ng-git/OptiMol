@@ -1,4 +1,4 @@
-// © 2016 and later: Unicode, Inc. and others.
+// Copyright (C) 2016 and later: Unicode, Inc. and others.
 // License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
@@ -192,7 +192,7 @@ private:
     char id[4];
     UnicodeString idStr;
     int32_t code;
-    URegionType fType;
+    URegionType type;
     Region *containingRegion;
     UVector *containedRegions;
     UVector *preferredValues;

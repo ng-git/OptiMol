@@ -31,7 +31,7 @@
 
 #include <QtDesigner/extension_global.h>
 #include <QtDesigner/extension.h>
-#include <QtCore/qhash.h>
+#include <QtCore/QHash>
 
 QT_BEGIN_NAMESPACE
 
@@ -45,10 +45,10 @@ public:
     explicit QExtensionManager(QObject *parent = Q_NULLPTR);
     ~QExtensionManager();
 
-    void registerExtensions(QAbstractExtensionFactory *factory, const QString &iid = QString()) override;
-    void unregisterExtensions(QAbstractExtensionFactory *factory, const QString &iid = QString()) override;
+    void registerExtensions(QAbstractExtensionFactory *factory, const QString &iid = QString()) Q_DECL_OVERRIDE;
+    void unregisterExtensions(QAbstractExtensionFactory *factory, const QString &iid = QString()) Q_DECL_OVERRIDE;
 
-    QObject *extension(QObject *object, const QString &iid) const override;
+    QObject *extension(QObject *object, const QString &iid) const Q_DECL_OVERRIDE;
 
 private:
     typedef QList<QAbstractExtensionFactory*> FactoryList;

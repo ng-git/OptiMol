@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -85,4 +85,7 @@ protected:
     QGraphicsProxyWidget *newProxyWidget(const QWidget *) /Factory/;
     virtual QVariant inputMethodQuery(Qt::InputMethodQuery query) const;
     virtual void inputMethodEvent(QInputMethodEvent *event);
+
+private:
+    QGraphicsProxyWidget(const QGraphicsProxyWidget &);
 };

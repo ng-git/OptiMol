@@ -2,7 +2,7 @@
 //
 // This file is part of the QtLocation Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -57,6 +57,9 @@ protected:
     void setSupportedRouteOptimizations(QGeoRouteRequest::RouteOptimizations optimizations);
     void setSupportedSegmentDetails(QGeoRouteRequest::SegmentDetails segmentDetails);
     void setSupportedManeuverDetails(QGeoRouteRequest::ManeuverDetails maneuverDetails);
+
+private:
+    QGeoRoutingManagerEngine(const QGeoRoutingManagerEngine &);
 };
 
 %End

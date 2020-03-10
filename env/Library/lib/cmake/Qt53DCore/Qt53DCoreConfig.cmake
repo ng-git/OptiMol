@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 3DCore module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt53DCore_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt53DCore_VERSION instead.
-set(Qt53DCore_VERSION_STRING 5.12.5)
+set(Qt53DCore_VERSION_STRING 5.9.7)
 
 set(Qt53DCore_LIBRARIES Qt5::3DCore)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::3DCore)
 
     set(_Qt53DCore_OWN_INCLUDE_DIRS "${_qt53DCore_install_prefix}/include/qt/" "${_qt53DCore_install_prefix}/include/qt/Qt3DCore")
     set(Qt53DCore_PRIVATE_INCLUDE_DIRS
-        "${_qt53DCore_install_prefix}/include/qt/Qt3DCore/5.12.5"
-        "${_qt53DCore_install_prefix}/include/qt/Qt3DCore/5.12.5/Qt3DCore"
+        "${_qt53DCore_install_prefix}/include/qt/Qt3DCore/5.9.7"
+        "${_qt53DCore_install_prefix}/include/qt/Qt3DCore/5.9.7/Qt3DCore"
     )
 
     foreach(_dir ${_Qt53DCore_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::3DCore)
     foreach(_module_dep ${_Qt53DCore_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt53DCore_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt53DCore_FIND_VERSION_EXACT}
                 ${_Qt53DCore_DEPENDENCIES_FIND_QUIET}
                 ${_Qt53DCore_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::3DCore)
     set_property(TARGET Qt5::3DCore PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_3DCORE_LIB)
 
-    set_property(TARGET Qt5::3DCore PROPERTY INTERFACE_QT_ENABLED_FEATURES qt3d-render;qt3d-animation;qt3d-input;qt3d-logic;qt3d-extras)
-    set_property(TARGET Qt5::3DCore PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt53DCore_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt53DCore_PRIVATE_DIR ${Qt53DCore_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt53DCore_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::3DCore)
         endif()
     endforeach()
 
-    if (_Qt53DCore_PRIVATE_DIRS_EXIST)
+    if (_Qt53DCore_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::3DCorePrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::3DCorePrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt53DCore_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::3DCore)
         )
     endif()
 
-    _populate_3DCore_target_properties(RELEASE "Qt53DCore_conda.dll" "Qt53DCore_conda.lib" )
+    _populate_3DCore_target_properties(RELEASE "Qt53DCore.dll" "Qt53DCore.lib" )
 
     if (EXISTS
-        "${_qt53DCore_install_prefix}/bin/Qt53DCore_condad.dll"
+        "${_qt53DCore_install_prefix}/bin/Qt53DCored.dll"
       AND EXISTS
-        "${_qt53DCore_install_prefix}/lib/Qt53DCore_condad.lib" )
-        _populate_3DCore_target_properties(DEBUG "Qt53DCore_condad.dll" "Qt53DCore_condad.lib" )
+        "${_qt53DCore_install_prefix}/lib/Qt53DCored.lib" )
+        _populate_3DCore_target_properties(DEBUG "Qt53DCored.dll" "Qt53DCored.lib" )
     endif()
 
 

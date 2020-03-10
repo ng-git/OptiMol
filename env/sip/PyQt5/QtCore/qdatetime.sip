@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -140,9 +140,7 @@ public:
     qint64 toJulianDay() const;
     bool setDate(int year, int month, int date);
 %If (- Qt_5_7_0)
-%If (Qt_5_11_0 -)
     void getDate(int *year, int *month, int *day);
-%End
 %End
 %If (Qt_5_7_0 -)
     void getDate(int *year, int *month, int *day) const;
@@ -548,7 +546,7 @@ public:
     void setSecsSinceEpoch(qint64 secs);
 %End
 %If (Qt_5_8_0 -)
-    static QDateTime fromSecsSinceEpoch(qint64 secs, Qt::TimeSpec spec = Qt::LocalTime, int offsetSeconds = 0);
+    static QDateTime fromSecsSinceEpoch(qint64 secs, Qt::TimeSpec spec = Qt::TimeSpec::LocalTime, int offsetSeconds = 0);
 %End
 %If (Qt_5_8_0 -)
     static QDateTime fromSecsSinceEpoch(qint64 secs, const QTimeZone &timeZone);

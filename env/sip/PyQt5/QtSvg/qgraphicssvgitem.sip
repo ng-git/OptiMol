@@ -2,7 +2,7 @@
 //
 // This file is part of the QtSvg Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -29,9 +29,9 @@ class QGraphicsSvgItem : QGraphicsObject
 %ConvertToSubClassCode
     if (sipCpp->type() == 13)
     {
-        // Switch to the QObject convertor.
+        // We need to explicitly cast because of the multiple inheritance.
         *sipCppRet = static_cast<QGraphicsSvgItem *>(sipCpp);
-        sipType = sipType_QObject;
+        sipType = sipType_QGraphicsSvgItem;
     }
     else
         sipType = 0;
@@ -49,9 +49,12 @@ public:
     virtual QRectF boundingRect() const;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
     virtual int type() const;
+
+private:
+    QGraphicsSvgItem(const QGraphicsSvgItem &);
 };
 
-%ModuleCode
+%ModuleHeaderCode
 // This is needed by the %ConvertToSubClassCode.
 #include <qgraphicssvgitem.h>
 %End

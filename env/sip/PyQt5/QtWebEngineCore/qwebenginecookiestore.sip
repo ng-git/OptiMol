@@ -2,9 +2,9 @@
 //
 // This file is part of the QtWebEngineCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
-// This file is part of PyQtWebEngine.
+// This file is part of PyQt5.
 // 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
@@ -20,7 +20,7 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
 
 class QWebEngineCookieStore : QObject
 {
@@ -73,84 +73,7 @@ signals:
 
 private:
     explicit QWebEngineCookieStore(QObject *parent = 0);
-
-public:
-%If (QtWebEngine_5_11_0 -)
-
-    struct FilterRequest
-    {
-%TypeHeaderCode
-#include <qwebenginecookiestore.h>
-%End
-
-        QUrl firstPartyUrl;
-        QUrl origin;
-        bool thirdParty;
-    };
-
-%End
-%If (QtWebEngine_5_11_0 -)
-    void setCookieFilter(SIP_PYCALLABLE filterCallback /AllowNone,KeepReference,TypeHint="Callable[[FilterRequest], bool]"/ = 0);
-%MethodCode
-        Py_BEGIN_ALLOW_THREADS
-        
-        sipCpp->setCookieFilter([a0](const QWebEngineCookieStore::FilterRequest &arg) {
-            int res_int = 1;
-            
-            if (a0)
-            {
-                SIP_BLOCK_THREADS
-            
-                PyObject *res;
-        
-                res = sipCallMethod(NULL, a0, "N",
-                        new QWebEngineCookieStore::FilterRequest(arg),
-                        sipType_QWebEngineCookieStore_FilterRequest, NULL);
-            
-                if (!res)
-                {
-                    res_int = -1;
-                }
-                else
-                {
-                    res_int = sipConvertToBool(res);
-                
-                    Py_DECREF(res);
-                }
-        
-                if (res_int < 0)
-                {
-                    pyqt5_qtwebenginecore_err_print();
-                    res_int = 0;
-                }
-        
-                SIP_UNBLOCK_THREADS
-            }
-        
-            return res_int;
-        });
-        
-        Py_END_ALLOW_THREADS
-%End
-
-%End
+    QWebEngineCookieStore(const QWebEngineCookieStore &);
 };
 
-%End
-
-%ModuleHeaderCode
-// Imports from QtCore.
-typedef void (*pyqt5_qtwebenginecore_err_print_t)();
-extern pyqt5_qtwebenginecore_err_print_t pyqt5_qtwebenginecore_err_print;
-%End
-
-%ModuleCode
-// Imports from QtCore.
-pyqt5_qtwebenginecore_err_print_t pyqt5_qtwebenginecore_err_print;
-%End
-
-%PostInitialisationCode
-// Imports from QtCore.
-pyqt5_qtwebenginecore_err_print = (pyqt5_qtwebenginecore_err_print_t)sipImportSymbol("pyqt5_err_print");
-Q_ASSERT(pyqt5_qtwebenginecore_err_print);
 %End

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -33,9 +33,6 @@ public:
         MacLayout,
         KdeLayout,
         GnomeLayout,
-%If (Qt_5_10_0 -)
-        AndroidLayout,
-%End
     };
 
     enum ButtonRole
@@ -113,6 +110,9 @@ signals:
 protected:
     virtual void changeEvent(QEvent *event);
     virtual bool event(QEvent *event);
+
+private:
+    QDialogButtonBox(const QDialogButtonBox &);
 };
 
 QFlags<QDialogButtonBox::StandardButton> operator|(QDialogButtonBox::StandardButton f1, QFlags<QDialogButtonBox::StandardButton> f2);

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtSql Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -31,7 +31,4 @@ public:
     virtual ~QSqlRelationalDelegate();
     virtual QWidget *createEditor(QWidget *parent /TransferThis/, const QStyleOptionViewItem &option /NoCopy/, const QModelIndex &index) const /Factory/;
     virtual void setModelData(QWidget *editor, QAbstractItemModel *model /KeepReference/, const QModelIndex &index) const;
-%If (Qt_5_12_0 -)
-    virtual void setEditorData(QWidget *editor, const QModelIndex &index) const;
-%End
 };

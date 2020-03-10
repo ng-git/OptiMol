@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -434,7 +434,7 @@ callable.
         return qpycore_pyqtconfigure(sipSelf, sipArgs, sipKwds);
 %End
 
-    SIP_PYOBJECT __getattr__(const char *name /Encoding="UTF-8"/) const;
+    SIP_PYOBJECT __getattr__(const char *name) const;
 %MethodCode
         sipRes = qpycore_qobject_getattr(sipCpp, sipSelf, a0);
 %End
@@ -642,19 +642,9 @@ SIP_PYOBJECT Q_CLASSINFO(const char *name, const char *value) /TypeHint=""/;
     sipRes = qpycore_ClassInfo(a0, a1);
 %End
 
-SIP_PYOBJECT Q_ENUM(SIP_PYOBJECT /TypeHint="Union[type, enum.Enum]"/) /TypeHint=""/;
-%MethodCode
-    sipRes = qpycore_Enum(a0);
-%End
-
 SIP_PYOBJECT Q_ENUMS(...) /TypeHint=""/;
 %MethodCode
     sipRes = qpycore_Enums(a0);
-%End
-
-SIP_PYOBJECT Q_FLAG(SIP_PYOBJECT /TypeHint="Union[type, enum.Enum]"/) /TypeHint=""/;
-%MethodCode
-    sipRes = qpycore_Flag(a0);
 %End
 
 SIP_PYOBJECT Q_FLAGS(...) /TypeHint=""/;

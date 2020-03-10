@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2016 The Qt Company Ltd.
 ** Copyright (C) 2016 Intel Corporation.
 ** Contact: https://www.qt.io/licensing/
 **
@@ -59,7 +59,7 @@ class QTimeZone;
 class Q_CORE_EXPORT QDate
 {
 public:
-    enum MonthNameType { // ### Qt 6: remove, along with methods using it
+    enum MonthNameType {
         DateFormat = 0,
         StandaloneFormat
     };
@@ -79,24 +79,17 @@ public:
     int dayOfYear() const;
     int daysInMonth() const;
     int daysInYear() const;
-    int weekNumber(int *yearNum = nullptr) const;
+    int weekNumber(int *yearNum = Q_NULLPTR) const;
 
-#if QT_DEPRECATED_SINCE(5, 10) && QT_CONFIG(textdate)
-    QT_DEPRECATED_X("Use QLocale::monthName or QLocale::standaloneMonthName")
-        static QString shortMonthName(int month, MonthNameType type = DateFormat);
-    QT_DEPRECATED_X("Use QLocale::dayName or QLocale::standaloneDayName")
-        static QString shortDayName(int weekday, MonthNameType type = DateFormat);
-    QT_DEPRECATED_X("Use QLocale::monthName or QLocale::standaloneMonthName")
-        static QString longMonthName(int month, MonthNameType type = DateFormat);
-    QT_DEPRECATED_X("Use QLocale::dayName or QLocale::standaloneDayName")
-        static QString longDayName(int weekday, MonthNameType type = DateFormat);
-#endif // textdate && deprecated
-#if QT_CONFIG(datestring)
+#ifndef QT_NO_TEXTDATE
+    static QString shortMonthName(int month, MonthNameType type = DateFormat);
+    static QString shortDayName(int weekday, MonthNameType type = DateFormat);
+    static QString longMonthName(int month, MonthNameType type = DateFormat);
+    static QString longDayName(int weekday, MonthNameType type = DateFormat);
+#endif // QT_NO_TEXTDATE
+#ifndef QT_NO_DATESTRING
     QString toString(Qt::DateFormat f = Qt::TextDate) const;
-#if QT_STRINGVIEW_LEVEL < 2
     QString toString(const QString &format) const;
-#endif
-    QString toString(QStringView format) const;
 #endif
 #if QT_DEPRECATED_SINCE(5,0)
 QT_DEPRECATED inline bool setYMD(int y, int m, int d)
@@ -123,7 +116,7 @@ QT_DEPRECATED inline bool setYMD(int y, int m, int d)
     Q_DECL_CONSTEXPR bool operator>=(const QDate &other) const { return jd >= other.jd; }
 
     static QDate currentDate();
-#if QT_CONFIG(datestring)
+#ifndef QT_NO_DATESTRING
     static QDate fromString(const QString &s, Qt::DateFormat f = Qt::TextDate);
     static QDate fromString(const QString &s, const QString &format);
 #endif
@@ -167,12 +160,9 @@ public:
     int minute() const;
     int second() const;
     int msec() const;
-#if QT_CONFIG(datestring)
+#ifndef QT_NO_DATESTRING
     QString toString(Qt::DateFormat f = Qt::TextDate) const;
-#if QT_STRINGVIEW_LEVEL < 2
     QString toString(const QString &format) const;
-#endif
-    QString toString(QStringView format) const;
 #endif
     bool setHMS(int h, int m, int s, int ms = 0);
 
@@ -192,7 +182,7 @@ public:
     Q_DECL_CONSTEXPR inline int msecsSinceStartOfDay() const { return mds == NullTime ? 0 : mds; }
 
     static QTime currentTime();
-#if QT_CONFIG(datestring)
+#ifndef QT_NO_DATESTRING
     static QTime fromString(const QString &s, Qt::DateFormat f = Qt::TextDate);
     static QTime fromString(const QString &s, const QString &format);
 #endif
@@ -303,12 +293,9 @@ public:
     void setMSecsSinceEpoch(qint64 msecs);
     void setSecsSinceEpoch(qint64 secs);
 
-#if QT_CONFIG(datestring)
+#ifndef QT_NO_DATESTRING
     QString toString(Qt::DateFormat f = Qt::TextDate) const;
-#if QT_STRINGVIEW_LEVEL < 2
     QString toString(const QString &format) const;
-#endif
-    QString toString(QStringView format) const;
 #endif
     Q_REQUIRED_RESULT QDateTime addDays(qint64 days) const;
     Q_REQUIRED_RESULT QDateTime addMonths(int months) const;
@@ -342,7 +329,7 @@ public:
 
     static QDateTime currentDateTime();
     static QDateTime currentDateTimeUtc();
-#if QT_CONFIG(datestring)
+#ifndef QT_NO_DATESTRING
     static QDateTime fromString(const QString &s, Qt::DateFormat f = Qt::TextDate);
     static QDateTime fromString(const QString &s, const QString &format);
 #endif
@@ -386,7 +373,7 @@ private:
     friend Q_CORE_EXPORT QDataStream &operator>>(QDataStream &, QDateTime &);
 #endif
 
-#if !defined(QT_NO_DEBUG_STREAM) && QT_CONFIG(datestring)
+#if !defined(QT_NO_DEBUG_STREAM) && !defined(QT_NO_DATESTRING)
     friend Q_CORE_EXPORT QDebug operator<<(QDebug, const QDateTime &);
 #endif
 };
@@ -401,7 +388,7 @@ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QDateTime &);
 Q_CORE_EXPORT QDataStream &operator>>(QDataStream &, QDateTime &);
 #endif // QT_NO_DATASTREAM
 
-#if !defined(QT_NO_DEBUG_STREAM) && QT_CONFIG(datestring)
+#if !defined(QT_NO_DEBUG_STREAM) && !defined(QT_NO_DATESTRING)
 Q_CORE_EXPORT QDebug operator<<(QDebug, const QDate &);
 Q_CORE_EXPORT QDebug operator<<(QDebug, const QTime &);
 Q_CORE_EXPORT QDebug operator<<(QDebug, const QDateTime &);

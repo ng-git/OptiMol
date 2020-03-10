@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Purchasing module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Purchasing_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Purchasing_VERSION instead.
-set(Qt5Purchasing_VERSION_STRING 5.12.5)
+set(Qt5Purchasing_VERSION_STRING 5.9.7)
 
 set(Qt5Purchasing_LIBRARIES Qt5::Purchasing)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::Purchasing)
 
     set(_Qt5Purchasing_OWN_INCLUDE_DIRS "${_qt5Purchasing_install_prefix}/include/qt/" "${_qt5Purchasing_install_prefix}/include/qt/QtPurchasing")
     set(Qt5Purchasing_PRIVATE_INCLUDE_DIRS
-        "${_qt5Purchasing_install_prefix}/include/qt/QtPurchasing/5.12.5"
-        "${_qt5Purchasing_install_prefix}/include/qt/QtPurchasing/5.12.5/QtPurchasing"
+        "${_qt5Purchasing_install_prefix}/include/qt/QtPurchasing/5.9.7"
+        "${_qt5Purchasing_install_prefix}/include/qt/QtPurchasing/5.9.7/QtPurchasing"
     )
 
     foreach(_dir ${_Qt5Purchasing_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::Purchasing)
     foreach(_module_dep ${_Qt5Purchasing_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Purchasing_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Purchasing_FIND_VERSION_EXACT}
                 ${_Qt5Purchasing_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Purchasing_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::Purchasing)
     set_property(TARGET Qt5::Purchasing PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_PURCHASING_LIB)
 
-    set_property(TARGET Qt5::Purchasing PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::Purchasing PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5Purchasing_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Purchasing_PRIVATE_DIR ${Qt5Purchasing_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Purchasing_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::Purchasing)
         endif()
     endforeach()
 
-    if (_Qt5Purchasing_PRIVATE_DIRS_EXIST)
+    if (_Qt5Purchasing_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::PurchasingPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::PurchasingPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Purchasing_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::Purchasing)
         )
     endif()
 
-    _populate_Purchasing_target_properties(RELEASE "Qt5Purchasing_conda.dll" "Qt5Purchasing_conda.lib" )
+    _populate_Purchasing_target_properties(RELEASE "Qt5Purchasing.dll" "Qt5Purchasing.lib" )
 
     if (EXISTS
-        "${_qt5Purchasing_install_prefix}/bin/Qt5Purchasing_condad.dll"
+        "${_qt5Purchasing_install_prefix}/bin/Qt5Purchasingd.dll"
       AND EXISTS
-        "${_qt5Purchasing_install_prefix}/lib/Qt5Purchasing_condad.lib" )
-        _populate_Purchasing_target_properties(DEBUG "Qt5Purchasing_condad.dll" "Qt5Purchasing_condad.lib" )
+        "${_qt5Purchasing_install_prefix}/lib/Qt5Purchasingd.lib" )
+        _populate_Purchasing_target_properties(DEBUG "Qt5Purchasingd.dll" "Qt5Purchasingd.lib" )
     endif()
 
 

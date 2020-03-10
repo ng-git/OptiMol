@@ -2,7 +2,7 @@
 //
 // This file is part of the QtLocation Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -61,6 +61,9 @@ protected:
     void setFinished(bool finished);
     void setRoutes(const QList<QGeoRoute> &routes);
     void addRoutes(const QList<QGeoRoute> &routes);
+
+private:
+    QGeoRouteReply(const QGeoRouteReply &);
 };
 
 %End

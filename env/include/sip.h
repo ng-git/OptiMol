@@ -54,8 +54,8 @@ extern "C" {
 /*
  * Define the SIP version number.
  */
-#define SIP_VERSION         0x041312
-#define SIP_VERSION_STR     "4.19.18"
+#define SIP_VERSION         0x041308
+#define SIP_VERSION_STR     "4.19.8"
 
 
 /*
@@ -67,13 +67,6 @@ extern "C" {
  * minor number set * to 0.
  *
  * History:
- *
- * 12.6 Added sip_api_long_as_size_t() to the public API.
- *      Added the '=' format character to sip_api_build_result().
- *      Added the '=' format character to sip_api_parse_result_ex().
- *
- * 12.5 Replaced the sipConvertFromSliceObject() macro with
- *      sip_api_convert_from_slice_object() in the public API.
  *
  * 12.4 Added sip_api_instance_destroyed_ex() to the private API.
  *
@@ -272,7 +265,11 @@ extern "C" {
  * 0.0  Original version.
  */
 #define SIP_API_MAJOR_NR    12
-#define SIP_API_MINOR_NR    6
+#define SIP_API_MINOR_NR    4
+
+
+/* The name of the sip module. */
+#define SIP_MODULE_NAME     "sip"
 
 
 /*
@@ -283,41 +280,6 @@ extern "C" {
  * that don't include it themselves (i.e. MSVC).
  */
 typedef unsigned int uint;
-
-
-/* Some C++ compatibility stuff. */
-#if defined(__cplusplus)
-
-/*
- * Cast a PyCFunctionWithKeywords to a PyCFunction in such a way that it
- * suppresses the GCC -Wcast-function-type warning.
- */
-#define SIP_MLMETH_CAST(m)  reinterpret_cast<PyCFunction>(reinterpret_cast<void (*)(void)>(m))
-
-#if __cplusplus >= 201103L || defined(_MSVC_LANG)
-
-/* C++11 and later. */
-#define SIP_NULLPTR     nullptr
-#define SIP_OVERRIDE    override
-
-#else
-
-/* Earlier versions of C++. */
-#define SIP_NULLPTR     NULL
-#define SIP_OVERRIDE
-
-#endif
-
-#else
-
-/* Cast a PyCFunctionWithKeywords to a PyCFunction. */
-#define SIP_MLMETH_CAST(m)  ((PyCFunction)(m))
-
-/* C. */
-#define SIP_NULLPTR     NULL
-#define SIP_OVERRIDE
-
-#endif
 
 
 /* Some Python compatibility stuff. */
@@ -1931,14 +1893,6 @@ typedef struct _sipAPIDef {
      * The following are not part of the public API.
      */
     void (*api_instance_destroyed_ex)(sipSimpleWrapper **sipSelfp);
-
-    /*
-     * The following are part of the public API.
-     */
-    int (*api_convert_from_slice_object)(PyObject *slice, SIP_SSIZE_T length,
-            SIP_SSIZE_T *start, SIP_SSIZE_T *stop, SIP_SSIZE_T *step,
-            SIP_SSIZE_T *slicelength);
-    size_t (*api_long_as_size_t)(PyObject *o);
 } sipAPIDef;
 
 
@@ -2057,12 +2011,19 @@ typedef struct _sipQtAPI {
 #define sipTypeName(td)     sipNameFromPool((td)->td_module, (td)->td_cname)
 #define sipTypePluginData(td)   ((td)->td_plugin_data)
 
-
 /*
  * Note that this was never actually documented as being part of the public
  * API.  It is now deprecated.  sipIsUserType() should be used instead.
  */
 #define sipIsExactWrappedType(wt)   (sipTypeAsPyTypeObject((wt)->wt_td) == (PyTypeObject *)(wt))
+
+#if PY_VERSION_HEX >= 0x03020000
+#define sipConvertFromSliceObject   PySlice_GetIndicesEx
+#else
+#define sipConvertFromSliceObject(o, len, start, stop, step, slen) \
+        PySlice_GetIndicesEx((PySliceObject *)(o), (len), (start), (stop), \
+                (step), (slen))
+#endif
 
 
 /*

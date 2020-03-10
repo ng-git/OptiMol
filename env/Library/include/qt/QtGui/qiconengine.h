@@ -90,7 +90,6 @@ public:
         QPixmap pixmap;
     };
 
-    // ### Qt6: move content to proper virtual functions
     virtual void virtual_hook(int id, void *data);
 
 private:

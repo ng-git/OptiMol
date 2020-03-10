@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -49,4 +49,7 @@ protected:
     virtual void drawContents(QPainter *painter);
     virtual bool event(QEvent *e);
     virtual void mousePressEvent(QMouseEvent *);
+
+private:
+    QSplashScreen(const QSplashScreen &);
 };

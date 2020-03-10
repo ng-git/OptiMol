@@ -131,7 +131,7 @@ public Q_SLOTS:
     virtual void clear() = 0;
 
 protected:
-    explicit QAbstractNetworkCache(QObject *parent = nullptr);
+    explicit QAbstractNetworkCache(QObject *parent = Q_NULLPTR);
     QAbstractNetworkCache(QAbstractNetworkCachePrivate &dd, QObject *parent);
 
 private:

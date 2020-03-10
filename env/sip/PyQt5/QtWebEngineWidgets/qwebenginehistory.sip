@@ -2,9 +2,9 @@
 //
 // This file is part of the QtWebEngineWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
-// This file is part of PyQtWebEngine.
+// This file is part of PyQt5.
 // 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
@@ -20,7 +20,7 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-%If (QtWebEngine_5_4_0 -)
+%If (Qt_5_4_0 -)
 
 class QWebEngineHistoryItem
 {
@@ -37,13 +37,13 @@ public:
     QDateTime lastVisited() const;
     QUrl iconUrl() const;
     bool isValid() const;
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     void swap(QWebEngineHistoryItem &other /Constrained/);
 %End
 };
 
 %End
-%If (QtWebEngine_5_4_0 -)
+%If (Qt_5_4_0 -)
 
 class QWebEngineHistory /NoDefaultCtors/
 {
@@ -74,9 +74,9 @@ private:
 };
 
 %End
-%If (QtWebEngine_5_4_0 -)
+%If (Qt_5_4_0 -)
 QDataStream &operator<<(QDataStream &, const QWebEngineHistory & /Constrained/) /ReleaseGIL/;
 %End
-%If (QtWebEngine_5_4_0 -)
+%If (Qt_5_4_0 -)
 QDataStream &operator>>(QDataStream &, QWebEngineHistory & /Constrained/) /ReleaseGIL/;
 %End

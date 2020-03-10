@@ -2,9 +2,9 @@
 //
 // This file is part of the QtWebEngine Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
-// This file is part of PyQtWebEngine.
+// This file is part of PyQt5.
 // 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
@@ -20,7 +20,7 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-%If (QtWebEngine_5_9_0 -)
+%If (Qt_5_9_0 -)
 
 class QQuickWebEngineScript : QObject
 {
@@ -63,8 +63,8 @@ signals:
     void nameChanged(const QString &name);
     void sourceUrlChanged(const QUrl &url);
     void sourceCodeChanged(const QString &code);
-    void injectionPointChanged(QQuickWebEngineScript::InjectionPoint injectionPoint /ScopesStripped=1/);
-    void worldIdChanged(QQuickWebEngineScript::ScriptWorldId scriptWorldId /ScopesStripped=1/);
+    void injectionPointChanged(QQuickWebEngineScript::InjectionPoint injectionPoint);
+    void worldIdChanged(QQuickWebEngineScript::ScriptWorldId scriptWorldId);
     void runOnSubframesChanged(bool on);
 
 protected:

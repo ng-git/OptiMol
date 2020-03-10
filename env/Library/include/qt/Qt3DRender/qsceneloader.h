@@ -60,7 +60,7 @@ public:
     explicit QSceneLoader(Qt3DCore::QNode *parent = nullptr);
     ~QSceneLoader();
 
-    void sceneChangeEvent(const Qt3DCore::QSceneChangePtr &change) override;
+    void sceneChangeEvent(const Qt3DCore::QSceneChangePtr &change) Q_DECL_OVERRIDE;
     enum Status {
         None = 0,
         Loading,
@@ -100,7 +100,7 @@ protected:
 
 private:
     Q_DECLARE_PRIVATE(QSceneLoader)
-    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const override;
+    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const Q_DECL_OVERRIDE;
 };
 
 } // namespace Qt3DRender

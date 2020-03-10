@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Positioning module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Positioning_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Positioning_VERSION instead.
-set(Qt5Positioning_VERSION_STRING 5.12.5)
+set(Qt5Positioning_VERSION_STRING 5.9.7)
 
 set(Qt5Positioning_LIBRARIES Qt5::Positioning)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::Positioning)
 
     set(_Qt5Positioning_OWN_INCLUDE_DIRS "${_qt5Positioning_install_prefix}/include/qt/" "${_qt5Positioning_install_prefix}/include/qt/QtPositioning")
     set(Qt5Positioning_PRIVATE_INCLUDE_DIRS
-        "${_qt5Positioning_install_prefix}/include/qt/QtPositioning/5.12.5"
-        "${_qt5Positioning_install_prefix}/include/qt/QtPositioning/5.12.5/QtPositioning"
+        "${_qt5Positioning_install_prefix}/include/qt/QtPositioning/5.9.7"
+        "${_qt5Positioning_install_prefix}/include/qt/QtPositioning/5.9.7/QtPositioning"
     )
 
     foreach(_dir ${_Qt5Positioning_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::Positioning)
     foreach(_module_dep ${_Qt5Positioning_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Positioning_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Positioning_FIND_VERSION_EXACT}
                 ${_Qt5Positioning_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Positioning_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::Positioning)
     set_property(TARGET Qt5::Positioning PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_POSITIONING_LIB)
 
-    set_property(TARGET Qt5::Positioning PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::Positioning PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5Positioning_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Positioning_PRIVATE_DIR ${Qt5Positioning_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Positioning_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::Positioning)
         endif()
     endforeach()
 
-    if (_Qt5Positioning_PRIVATE_DIRS_EXIST)
+    if (_Qt5Positioning_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::PositioningPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::PositioningPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Positioning_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::Positioning)
         )
     endif()
 
-    _populate_Positioning_target_properties(RELEASE "Qt5Positioning_conda.dll" "Qt5Positioning_conda.lib" )
+    _populate_Positioning_target_properties(RELEASE "Qt5Positioning.dll" "Qt5Positioning.lib" )
 
     if (EXISTS
-        "${_qt5Positioning_install_prefix}/bin/Qt5Positioning_condad.dll"
+        "${_qt5Positioning_install_prefix}/bin/Qt5Positioningd.dll"
       AND EXISTS
-        "${_qt5Positioning_install_prefix}/lib/Qt5Positioning_condad.lib" )
-        _populate_Positioning_target_properties(DEBUG "Qt5Positioning_condad.dll" "Qt5Positioning_condad.lib" )
+        "${_qt5Positioning_install_prefix}/lib/Qt5Positioningd.lib" )
+        _populate_Positioning_target_properties(DEBUG "Qt5Positioningd.dll" "Qt5Positioningd.lib" )
     endif()
 
 

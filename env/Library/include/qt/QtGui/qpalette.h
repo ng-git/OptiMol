@@ -70,7 +70,7 @@ public:
 #ifdef Q_COMPILER_RVALUE_REFS
     QPalette(QPalette &&other) Q_DECL_NOTHROW
         : d(other.d), data(other.data)
-    { other.d = nullptr; }
+    { other.d = Q_NULLPTR; }
     inline QPalette &operator=(QPalette &&other) Q_DECL_NOEXCEPT
     {
         for_faster_swapping_dont_use = other.for_faster_swapping_dont_use;
@@ -96,8 +96,7 @@ public:
                      AlternateBase,
                      NoRole,
                      ToolTipBase, ToolTipText,
-                     PlaceholderText,
-                     NColorRoles = PlaceholderText + 1,
+                     NColorRoles = ToolTipText + 1,
                      Foreground = WindowText, Background = Window
                    };
     Q_ENUM(ColorRole)
@@ -142,7 +141,6 @@ public:
     inline const QBrush &highlightedText() const { return brush(HighlightedText); }
     inline const QBrush &link() const { return brush(Link); }
     inline const QBrush &linkVisited() const { return brush(LinkVisited); }
-    inline const QBrush &placeholderText() const { return brush(PlaceholderText); }
 
     bool operator==(const QPalette &p) const;
     inline bool operator!=(const QPalette &p) const { return !(operator==(p)); }

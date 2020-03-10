@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 AxBase module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5AxBase_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5AxBase_VERSION instead.
-set(Qt5AxBase_VERSION_STRING 5.12.5)
+set(Qt5AxBase_VERSION_STRING 5.9.7)
 
 set(Qt5AxBase_LIBRARIES Qt5::AxBase)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::AxBase)
 
     set(_Qt5AxBase_OWN_INCLUDE_DIRS "${_qt5AxBase_install_prefix}/include/qt/" "${_qt5AxBase_install_prefix}/include/qt/ActiveQt")
     set(Qt5AxBase_PRIVATE_INCLUDE_DIRS
-        "${_qt5AxBase_install_prefix}/include/qt/ActiveQt/5.12.5"
-        "${_qt5AxBase_install_prefix}/include/qt/ActiveQt/5.12.5/ActiveQt"
+        "${_qt5AxBase_install_prefix}/include/qt/ActiveQt/5.9.7"
+        "${_qt5AxBase_install_prefix}/include/qt/ActiveQt/5.9.7/ActiveQt"
     )
 
     foreach(_dir ${_Qt5AxBase_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::AxBase)
     foreach(_module_dep ${_Qt5AxBase_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5AxBase_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5AxBase_FIND_VERSION_EXACT}
                 ${_Qt5AxBase_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5AxBase_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -128,9 +128,6 @@ if (NOT TARGET Qt5::AxBase)
     set_property(TARGET Qt5::AxBase PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_AXBASE_LIB)
 
-    set_property(TARGET Qt5::AxBase PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::AxBase PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5AxBase_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5AxBase_PRIVATE_DIR ${Qt5AxBase_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5AxBase_PRIVATE_DIR})
@@ -138,7 +135,8 @@ if (NOT TARGET Qt5::AxBase)
         endif()
     endforeach()
 
-    if (_Qt5AxBase_PRIVATE_DIRS_EXIST)
+    if (_Qt5AxBase_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::AxBasePrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::AxBasePrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5AxBase_OWN_PRIVATE_INCLUDE_DIRS}
@@ -154,10 +152,10 @@ if (NOT TARGET Qt5::AxBase)
         )
     endif()
 
-    _populate_AxBase_target_properties(RELEASE "Qt5AxBase_conda.lib" "" )
+    _populate_AxBase_target_properties(RELEASE "Qt5AxBase.lib" "" )
 
-    if (EXISTS "${_qt5AxBase_install_prefix}/lib/Qt5AxBase_condad.lib" )
-        _populate_AxBase_target_properties(DEBUG "Qt5AxBase_condad.lib" "" )
+    if (EXISTS "${_qt5AxBase_install_prefix}/lib/Qt5AxBased.lib" )
+        _populate_AxBase_target_properties(DEBUG "Qt5AxBased.lib" "" )
     endif()
 
 

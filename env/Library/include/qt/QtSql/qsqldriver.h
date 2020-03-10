@@ -89,7 +89,7 @@ public:
         DB2
     };
 
-    explicit QSqlDriver(QObject *parent = nullptr);
+    explicit QSqlDriver(QObject *parent = Q_NULLPTR);
     ~QSqlDriver();
     virtual bool isOpen() const;
     bool isOpenError() const;
@@ -139,7 +139,7 @@ Q_SIGNALS:
     void notification(const QString &name, QSqlDriver::NotificationSource source, const QVariant &payload);
 
 protected:
-    QSqlDriver(QSqlDriverPrivate &dd, QObject *parent = nullptr);
+    QSqlDriver(QSqlDriverPrivate &dd, QObject *parent = Q_NULLPTR);
     virtual void setOpen(bool o);
     virtual void setOpenError(bool e);
     virtual void setLastError(const QSqlError& e);

@@ -315,7 +315,7 @@ public:
         typedef T *pointer;
         typedef T &reference;
 
-        inline iterator() : i(nullptr) { }
+        inline iterator() : i(Q_NULLPTR) { }
         explicit inline iterator(void *node) : i(reinterpret_cast<QHashData::Node *>(node)) { }
 
         inline const Key &key() const { return concrete(i)->key; }
@@ -348,7 +348,6 @@ public:
         inline iterator operator-(int j) const { return operator+(-j); }
         inline iterator &operator+=(int j) { return *this = *this + j; }
         inline iterator &operator-=(int j) { return *this = *this - j; }
-        friend inline iterator operator+(int j, iterator k) { return k + j; }
 
 #ifndef QT_STRICT_ITERATORS
     public:
@@ -374,7 +373,7 @@ public:
         typedef const T *pointer;
         typedef const T &reference;
 
-        Q_DECL_CONSTEXPR inline const_iterator() : i(nullptr) { }
+        Q_DECL_CONSTEXPR inline const_iterator() : i(Q_NULLPTR) { }
         explicit inline const_iterator(void *node)
             : i(reinterpret_cast<QHashData::Node *>(node)) { }
 #ifdef QT_STRICT_ITERATORS
@@ -414,7 +413,6 @@ public:
         inline const_iterator operator-(int j) const { return operator+(-j); }
         inline const_iterator &operator+=(int j) { return *this = *this + j; }
         inline const_iterator &operator-=(int j) { return *this = *this - j; }
-        friend inline const_iterator operator+(int j, const_iterator k) { return k + j; }
 
         // ### Qt 5: not sure this is necessary anymore
 #ifdef QT_STRICT_ITERATORS
@@ -451,9 +449,6 @@ public:
         const_iterator base() const { return i; }
     };
 
-    typedef QKeyValueIterator<const Key&, const T&, const_iterator> const_key_value_iterator;
-    typedef QKeyValueIterator<const Key&, T&, iterator> key_value_iterator;
-
     // STL style
     inline iterator begin() { detach(); return iterator(d->firstNode()); }
     inline const_iterator begin() const { return const_iterator(d->firstNode()); }
@@ -465,12 +460,6 @@ public:
     inline const_iterator constEnd() const { return const_iterator(e); }
     inline key_iterator keyBegin() const { return key_iterator(begin()); }
     inline key_iterator keyEnd() const { return key_iterator(end()); }
-    inline key_value_iterator keyValueBegin() { return key_value_iterator(begin()); }
-    inline key_value_iterator keyValueEnd() { return key_value_iterator(end()); }
-    inline const_key_value_iterator keyValueBegin() const { return const_key_value_iterator(begin()); }
-    inline const_key_value_iterator constKeyValueBegin() const { return const_key_value_iterator(begin()); }
-    inline const_key_value_iterator keyValueEnd() const { return const_key_value_iterator(end()); }
-    inline const_key_value_iterator constKeyValueEnd() const { return const_key_value_iterator(end()); }
 
     QPair<iterator, iterator> equal_range(const Key &key);
     QPair<const_iterator, const_iterator> equal_range(const Key &key) const Q_DECL_NOTHROW;
@@ -504,7 +493,7 @@ public:
 private:
     void detach_helper();
     void freeData(QHashData *d);
-    Node **findNode(const Key &key, uint *hp = nullptr) const;
+    Node **findNode(const Key &key, uint *hp = Q_NULLPTR) const;
     Node **findNode(const Key &key, uint h) const;
     Node *createNode(uint h, const Key &key, const T &value, Node **nextNode);
     void deleteNode(Node *node);
@@ -552,7 +541,7 @@ template <class Key, class T>
 Q_INLINE_TEMPLATE void QHash<Key, T>::duplicateNode(QHashData::Node *node, void *newNode)
 {
     Node *concreteNode = concrete(node);
-    new (newNode) Node(concreteNode->key, concreteNode->value, concreteNode->h, nullptr);
+    new (newNode) Node(concreteNode->key, concreteNode->value, concreteNode->h, Q_NULLPTR);
 }
 
 template <class Key, class T>
@@ -827,7 +816,7 @@ Q_OUTOFLINE_TEMPLATE T QHash<Key, T>::take(const Key &akey)
 
     Node **node = findNode(akey);
     if (*node != e) {
-        T t = std::move((*node)->value);
+        T t = (*node)->value;
         Node *next = (*node)->next;
         deleteNode(*node);
         *node = next;
@@ -971,7 +960,7 @@ Q_OUTOFLINE_TEMPLATE bool QHash<Key, T>::operator==(const QHash &other) const
         //
         // ### Qt 6: if C++14 library support is a mandated minimum, remove the ifdef for MSVC.
         if (!std::is_permutation(it, thisEqualRangeEnd, otherEqualRange.first
-#ifdef Q_CC_MSVC
+#if defined(Q_CC_MSVC) && _MSC_VER >= 1900
                                  , otherEqualRange.second
 #endif
                                  )) {

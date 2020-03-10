@@ -42,7 +42,6 @@
 
 #include <Qt3DCore/qnodecreatedchange.h>
 #include <Qt3DCore/qnodeid.h>
-#include <Qt3DCore/qnodecommand.h>
 #include <Qt3DCore/qscenechange.h>
 #include <Qt3DCore/qt3dcore_global.h>
 #include <QtCore/QObject>
@@ -98,10 +97,6 @@ public:
     PropertyTrackingMode propertyTracking(const QString &propertyName) const;
     void clearPropertyTracking(const QString &propertyName);
     void clearPropertyTrackings();
-
-    QNodeCommand::CommandId sendCommand(const QString &name, const QVariant &data = QVariant(),
-                                        QNodeCommand::CommandId replyTo = QNodeCommand::CommandId());
-    void sendReply(const QNodeCommandPtr &command);
 
 public Q_SLOTS:
     void setParent(QNode *parent);

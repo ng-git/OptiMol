@@ -2,7 +2,7 @@
 //
 // This file is part of the QtQuick Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -35,9 +35,7 @@ public:
     bool saveToFile(const QString &fileName) const;
 %End
 %If (- Qt_5_9_0)
-%If (Qt_5_11_0 -)
     bool saveToFile(const QString &fileName);
-%End
 %End
 
 protected:

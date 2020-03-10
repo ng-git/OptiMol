@@ -70,13 +70,10 @@ public:
 protected:
     explicit QEntity(QEntityPrivate &dd, QNode *parent = nullptr);
 
-private Q_SLOTS:
-    void onParentChanged(QObject *);
-
 private:
     Q_DECLARE_PRIVATE(QEntity)
 
-    QNodeCreatedChangeBasePtr createNodeCreationChange() const override;
+    QNodeCreatedChangeBasePtr createNodeCreationChange() const Q_DECL_OVERRIDE;
 };
 
 typedef QSharedPointer<QEntity> QEntityPtr;

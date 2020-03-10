@@ -59,7 +59,11 @@ public:
     explicit QSignalSpy(const QObject *obj, const char *aSignal)
         : m_waiting(false)
     {
+#ifdef Q_CC_BOR
+        const int memberOffset = QObject::staticMetaObject.methodCount();
+#else
         static const int memberOffset = QObject::staticMetaObject.methodCount();
+#endif
         if (!obj) {
             qWarning("QSignalSpy: Cannot spy on a null object");
             return;
@@ -84,7 +88,7 @@ public:
         }
 
         if (!QMetaObject::connect(obj, sigIndex, this, memberOffset,
-                    Qt::DirectConnection, nullptr)) {
+                    Qt::DirectConnection, Q_NULLPTR)) {
             qWarning("QSignalSpy: QMetaObject::connect returned false. Unable to connect.");
             return;
         }
@@ -92,15 +96,18 @@ public:
         initArgs(mo->method(sigIndex), obj);
     }
 
-#ifdef Q_CLANG_QDOC
-    template <typename PointerToMemberFunction>
+#ifdef Q_QDOC
     QSignalSpy(const QObject *object, PointerToMemberFunction signal);
 #else
     template <typename Func>
     QSignalSpy(const typename QtPrivate::FunctionPointer<Func>::Object *obj, Func signal0)
         : m_waiting(false)
     {
+#ifdef Q_CC_BOR
+        const int memberOffset = QObject::staticMetaObject.methodCount();
+#else
         static const int memberOffset = QObject::staticMetaObject.methodCount();
+#endif
         if (!obj) {
             qWarning("QSignalSpy: Cannot spy on a null object");
             return;
@@ -129,7 +136,7 @@ public:
         sig = signalMetaMethod.methodSignature();
         initArgs(mo->method(sigIndex), obj);
     }
-#endif // Q_CLANG_QDOC
+#endif // Q_QDOC
 
     inline bool isValid() const { return !sig.isEmpty(); }
     inline QByteArray signal() const { return sig; }
@@ -144,7 +151,7 @@ public:
         return count() > origCount;
     }
 
-    int qt_metacall(QMetaObject::Call call, int methodId, void **a) override
+    int qt_metacall(QMetaObject::Call call, int methodId, void **a) Q_DECL_OVERRIDE
     {
         methodId = QObject::qt_metacall(call, methodId, a);
         if (methodId < 0)

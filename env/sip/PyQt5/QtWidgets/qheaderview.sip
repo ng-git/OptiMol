@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -174,10 +174,7 @@ public:
 %If (Qt_5_5_0 -)
     void resetDefaultSectionSize();
 %End
-%If (Qt_5_11_0 -)
-    void setFirstSectionMovable(bool movable);
-%End
-%If (Qt_5_11_0 -)
-    bool isFirstSectionMovable() const;
-%End
+
+private:
+    QHeaderView(const QHeaderView &);
 };

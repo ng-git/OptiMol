@@ -1,6 +1,6 @@
-QT.3drender.VERSION = 5.12.5
+QT.3drender.VERSION = 5.9.7
 QT.3drender.name = Qt3DRender
-QT.3drender.module = Qt53DRender_conda
+QT.3drender.module = Qt53DRender
 QT.3drender.libs = $$QT_MODULE_LIB_BASE
 QT.3drender.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/Qt3DRender
 QT.3drender.frameworks =

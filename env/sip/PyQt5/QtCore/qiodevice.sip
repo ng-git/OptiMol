@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -37,12 +37,6 @@ public:
         Truncate,
         Text,
         Unbuffered,
-%If (Qt_5_11_0 -)
-        NewOnly,
-%End
-%If (Qt_5_11_0 -)
-        ExistingOnly,
-%End
     };
 
     typedef QFlags<QIODevice::OpenModeFlag> OpenMode;
@@ -338,10 +332,8 @@ signals:
     void channelBytesWritten(int channel, qint64 bytes);
 %End
 
-public:
-%If (Qt_5_10_0 -)
-    qint64 skip(qint64 maxSize);
-%End
+private:
+    QIODevice(const QIODevice &);
 };
 
 QFlags<QIODevice::OpenModeFlag> operator|(QIODevice::OpenModeFlag f1, QFlags<QIODevice::OpenModeFlag> f2);

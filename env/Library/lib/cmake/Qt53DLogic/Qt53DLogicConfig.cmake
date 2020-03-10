@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 3DLogic module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt53DLogic_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt53DLogic_VERSION instead.
-set(Qt53DLogic_VERSION_STRING 5.12.5)
+set(Qt53DLogic_VERSION_STRING 5.9.7)
 
 set(Qt53DLogic_LIBRARIES Qt5::3DLogic)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::3DLogic)
 
     set(_Qt53DLogic_OWN_INCLUDE_DIRS "${_qt53DLogic_install_prefix}/include/qt/" "${_qt53DLogic_install_prefix}/include/qt/Qt3DLogic")
     set(Qt53DLogic_PRIVATE_INCLUDE_DIRS
-        "${_qt53DLogic_install_prefix}/include/qt/Qt3DLogic/5.12.5"
-        "${_qt53DLogic_install_prefix}/include/qt/Qt3DLogic/5.12.5/Qt3DLogic"
+        "${_qt53DLogic_install_prefix}/include/qt/Qt3DLogic/5.9.7"
+        "${_qt53DLogic_install_prefix}/include/qt/Qt3DLogic/5.9.7/Qt3DLogic"
     )
 
     foreach(_dir ${_Qt53DLogic_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::3DLogic)
     foreach(_module_dep ${_Qt53DLogic_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt53DLogic_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt53DLogic_FIND_VERSION_EXACT}
                 ${_Qt53DLogic_DEPENDENCIES_FIND_QUIET}
                 ${_Qt53DLogic_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::3DLogic)
     set_property(TARGET Qt5::3DLogic PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_3DLOGIC_LIB)
 
-    set_property(TARGET Qt5::3DLogic PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::3DLogic PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt53DLogic_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt53DLogic_PRIVATE_DIR ${Qt53DLogic_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt53DLogic_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::3DLogic)
         endif()
     endforeach()
 
-    if (_Qt53DLogic_PRIVATE_DIRS_EXIST)
+    if (_Qt53DLogic_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::3DLogicPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::3DLogicPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt53DLogic_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::3DLogic)
         )
     endif()
 
-    _populate_3DLogic_target_properties(RELEASE "Qt53DLogic_conda.dll" "Qt53DLogic_conda.lib" )
+    _populate_3DLogic_target_properties(RELEASE "Qt53DLogic.dll" "Qt53DLogic.lib" )
 
     if (EXISTS
-        "${_qt53DLogic_install_prefix}/bin/Qt53DLogic_condad.dll"
+        "${_qt53DLogic_install_prefix}/bin/Qt53DLogicd.dll"
       AND EXISTS
-        "${_qt53DLogic_install_prefix}/lib/Qt53DLogic_condad.lib" )
-        _populate_3DLogic_target_properties(DEBUG "Qt53DLogic_condad.dll" "Qt53DLogic_condad.lib" )
+        "${_qt53DLogic_install_prefix}/lib/Qt53DLogicd.lib" )
+        _populate_3DLogic_target_properties(DEBUG "Qt53DLogicd.dll" "Qt53DLogicd.lib" )
     endif()
 
 

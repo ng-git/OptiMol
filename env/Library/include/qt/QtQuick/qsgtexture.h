@@ -54,12 +54,11 @@ class Q_QUICK_EXPORT QSGTexture : public QObject
 
 public:
     QSGTexture();
-    ~QSGTexture() override;
+    ~QSGTexture();
 
     enum WrapMode {
         Repeat,
-        ClampToEdge,
-        MirroredRepeat
+        ClampToEdge
     };
 
     enum Filtering {

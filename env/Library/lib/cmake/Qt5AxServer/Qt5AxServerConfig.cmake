@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 AxServer module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5AxServer_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5AxServer_VERSION instead.
-set(Qt5AxServer_VERSION_STRING 5.12.5)
+set(Qt5AxServer_VERSION_STRING 5.9.7)
 
 set(Qt5AxServer_LIBRARIES Qt5::AxServer)
 
@@ -90,7 +90,7 @@ if (NOT TARGET Qt5::AxServer)
     foreach(_module_dep ${_Qt5AxServer_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5AxServer_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5AxServer_FIND_VERSION_EXACT}
                 ${_Qt5AxServer_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5AxServer_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -125,9 +125,6 @@ if (NOT TARGET Qt5::AxServer)
     set_property(TARGET Qt5::AxServer PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_AXSERVER_LIB QAXSERVER)
 
-    set_property(TARGET Qt5::AxServer PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::AxServer PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5AxServer_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5AxServer_PRIVATE_DIR ${Qt5AxServer_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5AxServer_PRIVATE_DIR})
@@ -135,7 +132,8 @@ if (NOT TARGET Qt5::AxServer)
         endif()
     endforeach()
 
-    if (_Qt5AxServer_PRIVATE_DIRS_EXIST)
+    if (_Qt5AxServer_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::AxServerPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::AxServerPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5AxServer_OWN_PRIVATE_INCLUDE_DIRS}
@@ -151,10 +149,10 @@ if (NOT TARGET Qt5::AxServer)
         )
     endif()
 
-    _populate_AxServer_target_properties(RELEASE "Qt5AxServer_conda.lib" "" )
+    _populate_AxServer_target_properties(RELEASE "Qt5AxServer.lib" "" )
 
-    if (EXISTS "${_qt5AxServer_install_prefix}/lib/Qt5AxServer_condad.lib" )
-        _populate_AxServer_target_properties(DEBUG "Qt5AxServer_condad.lib" "" )
+    if (EXISTS "${_qt5AxServer_install_prefix}/lib/Qt5AxServerd.lib" )
+        _populate_AxServer_target_properties(DEBUG "Qt5AxServerd.lib" "" )
     endif()
 
 

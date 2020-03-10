@@ -1,6 +1,6 @@
-QT.svg.VERSION = 5.12.5
+QT.svg.VERSION = 5.9.7
 QT.svg.name = QtSvg
-QT.svg.module = Qt5Svg_conda
+QT.svg.module = Qt5Svg
 QT.svg.libs = $$QT_MODULE_LIB_BASE
 QT.svg.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtSvg
 QT.svg.frameworks =

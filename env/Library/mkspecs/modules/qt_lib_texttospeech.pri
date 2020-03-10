@@ -1,6 +1,6 @@
-QT.texttospeech.VERSION = 5.12.5
+QT.texttospeech.VERSION = 5.9.7
 QT.texttospeech.name = QtTextToSpeech
-QT.texttospeech.module = Qt5TextToSpeech_conda
+QT.texttospeech.module = Qt5TextToSpeech
 QT.texttospeech.libs = $$QT_MODULE_LIB_BASE
 QT.texttospeech.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtTextToSpeech
 QT.texttospeech.frameworks =

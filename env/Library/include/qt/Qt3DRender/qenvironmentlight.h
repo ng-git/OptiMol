@@ -76,9 +76,7 @@ Q_SIGNALS:
 
 private:
     Q_DECLARE_PRIVATE(QEnvironmentLight)
-    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const override;
-
-    Q_PRIVATE_SLOT(d_func(), void _q_updateEnvMapsSize())
+    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const Q_DECL_OVERRIDE;
 };
 
 } // namespace Qt3DRender

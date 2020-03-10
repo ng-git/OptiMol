@@ -1,6 +1,6 @@
-QT.uitools.VERSION = 5.12.5
+QT.uitools.VERSION = 5.9.7
 QT.uitools.name = QtUiTools
-QT.uitools.module = Qt5UiTools_conda
+QT.uitools.module = Qt5UiTools
 QT.uitools.libs = $$QT_MODULE_LIB_BASE
 QT.uitools.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtUiTools
 QT.uitools.frameworks =

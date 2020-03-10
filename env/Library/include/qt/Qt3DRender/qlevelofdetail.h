@@ -78,7 +78,7 @@ public:
     QVector<qreal> thresholds() const;
     QLevelOfDetailBoundingSphere volumeOverride() const;
 
-    Q_INVOKABLE Qt3DRender::QLevelOfDetailBoundingSphere createBoundingSphere(const QVector3D &center, float radius);
+    Q_INVOKABLE QLevelOfDetailBoundingSphere createBoundingSphere(const QVector3D &center, float radius);
 
 public Q_SLOTS:
     void setCamera(QCamera *camera);
@@ -96,8 +96,8 @@ Q_SIGNALS:
 
 protected:
     explicit QLevelOfDetail(QLevelOfDetailPrivate &dd, Qt3DCore::QNode *parent = nullptr);
-    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const override;
-    void sceneChangeEvent(const Qt3DCore::QSceneChangePtr &change) override;
+    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const Q_DECL_OVERRIDE;
+    void sceneChangeEvent(const Qt3DCore::QSceneChangePtr &change) Q_DECL_OVERRIDE;
 
 private:
     Q_DECLARE_PRIVATE(QLevelOfDetail)

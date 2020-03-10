@@ -2,7 +2,7 @@
 //
 // This file is part of the QtPositioning Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -61,6 +61,9 @@ public:
 %If (Qt_5_3_0 -)
     double userEquivalentRangeError() const;
 %End
+
+private:
+    QNmeaPositionInfoSource(const QNmeaPositionInfoSource &);
 };
 
 %End

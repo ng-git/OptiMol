@@ -1,4 +1,4 @@
-// © 2016 and later: Unicode, Inc. and others.
+// Copyright (C) 2016 and later: Unicode, Inc. and others.
 // License & terms of use: http://www.unicode.org/copyright.html
 /*
 *******************************************************************************
@@ -291,12 +291,14 @@ public:
     virtual UnicodeString& getDisplayName(const UnicodeString& tzID, UTimeZoneNameType type, UDate date, UnicodeString& name) const;
 
     /**
-     * @internal ICU internal only, for specific users only until proposed publicly.
+     * @internal For specific users only until proposed publicly.
+     * @deprecated This API is ICU internal only.
      */
     virtual void loadAllDisplayNames(UErrorCode& status);
 
     /**
-     * @internal ICU internal only, for specific users only until proposed publicly.
+     * @internal For specific users only until proposed publicly.
+     * @deprecated This API is ICU internal only.
      */
     virtual void getDisplayNames(const UnicodeString& tzID, const UTimeZoneNameType types[], int32_t numTypes, UDate date, UnicodeString dest[], UErrorCode& status) const;
 

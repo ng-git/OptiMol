@@ -134,7 +134,7 @@ public:
         typedef T *pointer;
         typedef T &reference;
         Node *i;
-        inline iterator() : i(nullptr) {}
+        inline iterator() : i(Q_NULLPTR) {}
         inline iterator(Node *n) : i(n) {}
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
         iterator(const iterator &other) Q_DECL_NOTHROW : i(other.i) {}
@@ -159,7 +159,6 @@ public:
         inline iterator operator-(int j) const { return operator+(-j); }
         inline iterator &operator+=(int j) { return *this = *this + j; }
         inline iterator &operator-=(int j) { return *this = *this - j; }
-        friend inline iterator operator+(int j, iterator k) { return k + j; }
     };
     friend class iterator;
 
@@ -172,7 +171,7 @@ public:
         typedef const T *pointer;
         typedef const T &reference;
         Node *i;
-        inline const_iterator() : i(nullptr) {}
+        inline const_iterator() : i(Q_NULLPTR) {}
         inline const_iterator(Node *n) : i(n) {}
         inline const_iterator(iterator ci) : i(ci.i){}
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
@@ -194,7 +193,6 @@ public:
         inline const_iterator operator-(int j) const { return operator+(-j); }
         inline const_iterator &operator+=(int j) { return *this = *this + j; }
         inline const_iterator &operator-=(int j) { return *this = *this - j; }
-        friend inline const_iterator operator+(int j, const_iterator k) { return k + j; }
     };
     friend class const_iterator;
 
@@ -450,7 +448,7 @@ bool QLinkedList<T>::removeOne(const T &_t)
 template <typename T>
 inline T QLinkedList<T>::takeFirst()
 {
-    T t = std::move(first());
+    T t = first();
     removeFirst();
     return t;
 }
@@ -458,7 +456,7 @@ inline T QLinkedList<T>::takeFirst()
 template <typename T>
 inline T QLinkedList<T>::takeLast()
 {
-    T t = std::move(last());
+    T t = last();
     removeLast();
     return t;
 }

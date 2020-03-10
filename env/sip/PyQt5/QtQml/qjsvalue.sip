@@ -2,7 +2,7 @@
 //
 // This file is part of the QtQml Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -80,21 +80,4 @@ public:
     QJSValue call(const QJSValueList &args = QJSValueList());
     QJSValue callWithInstance(const QJSValue &instance, const QJSValueList &args = QJSValueList());
     QJSValue callAsConstructor(const QJSValueList &args = QJSValueList());
-%If (Qt_5_12_0 -)
-
-    enum ErrorType
-    {
-        GenericError,
-        EvalError,
-        RangeError,
-        ReferenceError,
-        SyntaxError,
-        TypeError,
-        URIError,
-    };
-
-%End
-%If (Qt_5_12_0 -)
-    QJSValue::ErrorType errorType() const;
-%End
 };

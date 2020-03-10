@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -118,18 +118,9 @@ public:
 %If (Qt_5_3_0 -)
     static bool isSetuidAllowed();
 %End
-    SIP_PYOBJECT __enter__();
-%MethodCode
-        // Just return a reference to self.
-        sipRes = sipSelf;
-        Py_INCREF(sipRes);
-%End
 
-    void __exit__(SIP_PYOBJECT type, SIP_PYOBJECT value, SIP_PYOBJECT traceback);
-%MethodCode
-        // Make sure the QCoreApplication is destroyed.
-        delete sipCpp;
-%End
+private:
+    QCoreApplication(const QCoreApplication &);
 };
 
 void qAddPostRoutine(SIP_PYCALLABLE);

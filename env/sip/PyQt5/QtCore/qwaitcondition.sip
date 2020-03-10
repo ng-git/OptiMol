@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -31,12 +31,6 @@ public:
     ~QWaitCondition();
     bool wait(QMutex *mutex, unsigned long msecs = ULONG_MAX) /ReleaseGIL/;
     bool wait(QReadWriteLock *readWriteLock, unsigned long msecs = ULONG_MAX) /ReleaseGIL/;
-%If (Qt_5_12_0 -)
-    bool wait(QMutex *lockedMutex, QDeadlineTimer deadline) /ReleaseGIL/;
-%End
-%If (Qt_5_12_0 -)
-    bool wait(QReadWriteLock *lockedReadWriteLock, QDeadlineTimer deadline) /ReleaseGIL/;
-%End
     void wakeOne();
     void wakeAll();
 

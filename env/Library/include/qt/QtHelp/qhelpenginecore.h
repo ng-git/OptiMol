@@ -60,7 +60,7 @@ class QHELP_EXPORT QHelpEngineCore : public QObject
     Q_PROPERTY(QString currentFilter READ currentFilter WRITE setCurrentFilter)
 
 public:
-    explicit QHelpEngineCore(const QString &collectionFile, QObject *parent = nullptr);
+    explicit QHelpEngineCore(const QString &collectionFile, QObject *parent = Q_NULLPTR);
     virtual ~QHelpEngineCore();
 
     bool setupData();

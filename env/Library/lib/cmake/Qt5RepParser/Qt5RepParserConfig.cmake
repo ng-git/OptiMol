@@ -1,6 +1,6 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 RepParser module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 3.0.0)
+    message(FATAL_ERROR "Qt 5 RepParser module requires at least CMake version 3.0.0")
 endif()
 
 get_filename_component(_qt5RepParser_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
@@ -61,7 +61,7 @@ if (NOT TARGET Qt5::RepParser)
     foreach(_module_dep ${_Qt5RepParser_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5RepParser_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5RepParser_FIND_VERSION_EXACT}
                 ${_Qt5RepParser_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5RepParser_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -85,9 +85,6 @@ if (NOT TARGET Qt5::RepParser)
     set_property(TARGET Qt5::RepParser PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_REPPARSER_LIB)
 
-    set_property(TARGET Qt5::RepParser PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::RepParser PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5RepParser_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5RepParser_PRIVATE_DIR ${Qt5RepParser_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5RepParser_PRIVATE_DIR})
@@ -95,7 +92,8 @@ if (NOT TARGET Qt5::RepParser)
         endif()
     endforeach()
 
-    if (_Qt5RepParser_PRIVATE_DIRS_EXIST)
+    if (_Qt5RepParser_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::RepParserPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::RepParserPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5RepParser_OWN_PRIVATE_INCLUDE_DIRS}

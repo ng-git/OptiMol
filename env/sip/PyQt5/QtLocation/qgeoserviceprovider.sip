@@ -2,7 +2,7 @@
 //
 // This file is part of the QtLocation Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -20,9 +20,6 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-%If (Qt_5_11_0 -)
-class QNavigationManager;
-%End
 %If (Qt_5_5_0 -)
 
 class QGeoServiceProvider : QObject
@@ -82,9 +79,6 @@ public:
         UnknownParameterError,
         MissingRequiredParameterError,
         ConnectionError,
-%If (Qt_5_12_1 -)
-        LoaderError,
-%End
     };
 
     enum RoutingFeature
@@ -140,12 +134,12 @@ public:
     typedef QFlags<QGeoServiceProvider::MappingFeature> MappingFeatures;
     typedef QFlags<QGeoServiceProvider::PlacesFeature> PlacesFeatures;
     static QStringList availableServiceProviders();
-    QGeoServiceProvider(const QString &providerName, const QVariantMap &parameters = QVariantMap(), bool allowExperimental = false);
+    QGeoServiceProvider(const QString &providerName, const QVariantMap &parameters = QMap<QString, QVariant>(), bool allowExperimental = false);
     virtual ~QGeoServiceProvider();
-    QGeoServiceProvider::RoutingFeatures routingFeatures() const;
-    QGeoServiceProvider::GeocodingFeatures geocodingFeatures() const;
-    QGeoServiceProvider::MappingFeatures mappingFeatures() const;
-    QGeoServiceProvider::PlacesFeatures placesFeatures() const;
+    QFlags<QGeoServiceProvider::RoutingFeature> routingFeatures() const;
+    QFlags<QGeoServiceProvider::GeocodingFeature> geocodingFeatures() const;
+    QFlags<QGeoServiceProvider::MappingFeature> mappingFeatures() const;
+    QFlags<QGeoServiceProvider::PlacesFeature> placesFeatures() const;
     QGeoCodingManager *geocodingManager() const;
     QGeoRoutingManager *routingManager() const;
     QPlaceManager *placeManager() const;
@@ -154,26 +148,6 @@ public:
     void setParameters(const QVariantMap &parameters);
     void setLocale(const QLocale &locale);
     void setAllowExperimental(bool allow);
-%If (Qt_5_11_0 -)
-
-    enum NavigationFeature
-    {
-        NoNavigationFeatures,
-        OnlineNavigationFeature,
-        OfflineNavigationFeature,
-        AnyNavigationFeatures,
-    };
-
-%End
-%If (Qt_5_11_0 -)
-    typedef QFlags<QGeoServiceProvider::NavigationFeature> NavigationFeatures;
-%End
-%If (Qt_5_11_0 -)
-    QGeoServiceProvider::NavigationFeatures navigationFeatures() const;
-%End
-%If (Qt_5_11_0 -)
-    QNavigationManager *navigationManager() const;
-%End
 };
 
 %End
@@ -188,7 +162,4 @@ QFlags<QGeoServiceProvider::MappingFeature> operator|(QGeoServiceProvider::Mappi
 %End
 %If (Qt_5_5_0 -)
 QFlags<QGeoServiceProvider::PlacesFeature> operator|(QGeoServiceProvider::PlacesFeature f1, QFlags<QGeoServiceProvider::PlacesFeature> f2);
-%End
-%If (Qt_5_11_0 -)
-QFlags<QGeoServiceProvider::NavigationFeature> operator|(QGeoServiceProvider::NavigationFeature f1, QFlags<QGeoServiceProvider::NavigationFeature> f2);
 %End

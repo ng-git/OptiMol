@@ -1,4 +1,4 @@
-// © 2016 and later: Unicode, Inc. and others.
+// Copyright (C) 2016 and later: Unicode, Inc. and others.
 // License & terms of use: http://www.unicode.org/copyright.html
 /*
 **********************************************************************
@@ -24,6 +24,7 @@
 U_NAMESPACE_BEGIN
 
 class FieldPositionIterator;
+class DecimalFormatStaticSets;
 class DecimalFormatSymbols;
 class DecimalFormat;
 class Formattable;
@@ -149,6 +150,7 @@ public:
                 const UnicodeString &original,
                 FieldPositionIterator &fpi,
                 const UnicodeString &preExponent,
+                const DecimalFormatStaticSets &decimalFormatSets,
                 UnicodeString &appendTo,
                 UErrorCode &status) const = 0;
     private:
@@ -163,6 +165,7 @@ public:
                 const UnicodeString &original,
                 FieldPositionIterator &fpi,
                 const UnicodeString &preExponent,
+                const DecimalFormatStaticSets &decimalFormatSets,
                 UnicodeString &appendTo,
                 UErrorCode &status) const;
     };
@@ -181,6 +184,7 @@ public:
                 const UnicodeString &original,
                 FieldPositionIterator &fpi,
                 const UnicodeString &preExponent,
+                const DecimalFormatStaticSets &decimalFormatSets,
                 UnicodeString &appendTo,
                 UErrorCode &status) const;
     private:
@@ -207,6 +211,7 @@ public:
     UnicodeString fPreExponent;
     DecimalFormat *fDecimalFormat;
     Style *fStyle;
+    const DecimalFormatStaticSets *fStaticSets;
 
 };
 

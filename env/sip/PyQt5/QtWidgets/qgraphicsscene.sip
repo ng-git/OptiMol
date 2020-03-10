@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -171,12 +171,9 @@ public:
 %If (Qt_5_5_0 -)
     void setSelectionArea(const QPainterPath &path, Qt::ItemSelectionOperation selectionOperation, Qt::ItemSelectionMode mode = Qt::IntersectsItemShape, const QTransform &deviceTransform = QTransform());
 %End
-%If (Qt_5_12_0 -)
-    bool focusOnTouch() const;
-%End
-%If (Qt_5_12_0 -)
-    void setFocusOnTouch(bool enabled);
-%End
+
+private:
+    QGraphicsScene(const QGraphicsScene &);
 };
 
 QFlags<QGraphicsScene::SceneLayer> operator|(QGraphicsScene::SceneLayer f1, QFlags<QGraphicsScene::SceneLayer> f2);

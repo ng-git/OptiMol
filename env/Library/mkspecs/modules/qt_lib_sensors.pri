@@ -1,6 +1,6 @@
-QT.sensors.VERSION = 5.12.5
+QT.sensors.VERSION = 5.9.7
 QT.sensors.name = QtSensors
-QT.sensors.module = Qt5Sensors_conda
+QT.sensors.module = Qt5Sensors
 QT.sensors.libs = $$QT_MODULE_LIB_BASE
 QT.sensors.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtSensors
 QT.sensors.frameworks =

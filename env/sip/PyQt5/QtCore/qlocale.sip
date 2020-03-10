@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -887,15 +887,6 @@ public:
 %If (Qt_5_7_0 -)
         OutlyingOceania,
 %End
-%If (Qt_5_12_0 -)
-        LatinAmerica,
-%End
-%If (Qt_5_12_0 -)
-        World,
-%End
-%If (Qt_5_12_0 -)
-        Europe,
-%End
     };
 
     enum NumberOption
@@ -1515,23 +1506,6 @@ public:
                 sipRes = new QString(sipCpp->toCurrencyString(value, *a1));
             }
         }
-%End
-
-%If (Qt_5_10_0 -)
-
-    enum DataSizeFormat
-    {
-        DataSizeIecFormat,
-        DataSizeTraditionalFormat,
-        DataSizeSIFormat,
-    };
-
-%End
-%If (Qt_5_10_0 -)
-    typedef QFlags<QLocale::DataSizeFormat> DataSizeFormats;
-%End
-%If (Qt_5_10_0 -)
-    QString formattedDataSize(qint64 bytes, int precision = 2, QLocale::DataSizeFormats format = QLocale::DataSizeIecFormat);
 %End
 };
 

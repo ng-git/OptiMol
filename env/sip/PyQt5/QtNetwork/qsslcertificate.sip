@@ -2,7 +2,7 @@
 //
 // This file is part of the QtNetwork Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -86,12 +86,6 @@ public:
 %End
 %If (Qt_5_4_0 -)
     static bool importPkcs12(QIODevice *device, QSslKey *key, QSslCertificate *certificate, QList<QSslCertificate> *caCertificates = 0, const QByteArray &passPhrase = QByteArray()) /ReleaseGIL/;
-%End
-%If (Qt_5_12_0 -)
-    QString issuerDisplayName() const;
-%End
-%If (Qt_5_12_0 -)
-    QString subjectDisplayName() const;
 %End
 };
 

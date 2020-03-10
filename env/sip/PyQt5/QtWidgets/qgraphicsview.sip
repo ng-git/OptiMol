@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -188,6 +188,9 @@ signals:
 %If (Qt_5_1_0 -)
     void rubberBandChanged(QRect viewportRect, QPointF fromScenePoint, QPointF toScenePoint);
 %End
+
+private:
+    QGraphicsView(const QGraphicsView &);
 };
 
 QFlags<QGraphicsView::CacheModeFlag> operator|(QGraphicsView::CacheModeFlag f1, QFlags<QGraphicsView::CacheModeFlag> f2);

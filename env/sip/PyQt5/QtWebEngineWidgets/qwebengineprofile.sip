@@ -2,9 +2,9 @@
 //
 // This file is part of the QtWebEngineWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
-// This file is part of PyQtWebEngine.
+// This file is part of PyQt5.
 // 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
@@ -20,7 +20,7 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-%If (QtWebEngine_5_5_0 -)
+%If (Qt_5_5_0 -)
 
 class QWebEngineProfile : QObject
 {
@@ -37,7 +37,7 @@ public:
     {
         MemoryHttpCache,
         DiskHttpCache,
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
         NoCache,
 %End
     };
@@ -68,57 +68,57 @@ public:
     bool visitedLinksContainsUrl(const QUrl &url) const;
     QWebEngineSettings *settings() const;
     QWebEngineScriptCollection *scripts() const;
-    static QWebEngineProfile *defaultProfile() /Transfer/;
+    static QWebEngineProfile *defaultProfile();
 
 signals:
     void downloadRequested(QWebEngineDownloadItem *download);
 
 public:
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     void setHttpAcceptLanguage(const QString &httpAcceptLanguage);
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     QString httpAcceptLanguage() const;
 %End
-%If (QtWebEngine_5_6_0 -)
-    QWebEngineCookieStore *cookieStore() /Transfer/;
+%If (Qt_5_6_0 -)
+    QWebEngineCookieStore *cookieStore();
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     void setRequestInterceptor(QWebEngineUrlRequestInterceptor *interceptor);
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     const QWebEngineUrlSchemeHandler *urlSchemeHandler(const QByteArray &) const;
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     void installUrlSchemeHandler(const QByteArray &scheme, QWebEngineUrlSchemeHandler *);
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     void removeUrlScheme(const QByteArray &scheme);
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     void removeUrlSchemeHandler(QWebEngineUrlSchemeHandler *);
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     void removeAllUrlSchemeHandlers();
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void clearHttpCache();
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     void setSpellCheckLanguages(const QStringList &languages);
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     QStringList spellCheckLanguages() const;
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     void setSpellCheckEnabled(bool enabled);
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     bool isSpellCheckEnabled() const;
 %End
 
 private:
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     QWebEngineProfile(const QWebEngineProfile &);
 %End
 };

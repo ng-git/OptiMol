@@ -45,8 +45,6 @@
 
 #include <QtCore/qtypeinfo.h>
 
-QT_REQUIRE_CONFIG(sqlmodel);
-
 QT_BEGIN_NAMESPACE
 
 
@@ -90,31 +88,31 @@ public:
         LeftJoin
     };
 
-    explicit QSqlRelationalTableModel(QObject *parent = nullptr,
+    explicit QSqlRelationalTableModel(QObject *parent = Q_NULLPTR,
                                       QSqlDatabase db = QSqlDatabase());
     virtual ~QSqlRelationalTableModel();
 
-    QVariant data(const QModelIndex &item, int role = Qt::DisplayRole) const override;
-    bool setData(const QModelIndex &item, const QVariant &value, int role = Qt::EditRole) override;
-    bool removeColumns(int column, int count, const QModelIndex &parent = QModelIndex()) override;
+    QVariant data(const QModelIndex &item, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+    bool setData(const QModelIndex &item, const QVariant &value, int role = Qt::EditRole) Q_DECL_OVERRIDE;
+    bool removeColumns(int column, int count, const QModelIndex &parent = QModelIndex()) Q_DECL_OVERRIDE;
 
-    void clear() override;
-    bool select() override;
+    void clear() Q_DECL_OVERRIDE;
+    bool select() Q_DECL_OVERRIDE;
 
-    void setTable(const QString &tableName) override;
+    void setTable(const QString &tableName) Q_DECL_OVERRIDE;
     virtual void setRelation(int column, const QSqlRelation &relation);
     QSqlRelation relation(int column) const;
     virtual QSqlTableModel *relationModel(int column) const;
     void setJoinMode( QSqlRelationalTableModel::JoinMode joinMode );
 
 public Q_SLOTS:
-    void revertRow(int row) override;
+    void revertRow(int row) Q_DECL_OVERRIDE;
 
 protected:
-    QString selectStatement() const override;
-    bool updateRowInTable(int row, const QSqlRecord &values) override;
-    bool insertRowIntoTable(const QSqlRecord &values) override;
-    QString orderByClause() const override;
+    QString selectStatement() const Q_DECL_OVERRIDE;
+    bool updateRowInTable(int row, const QSqlRecord &values) Q_DECL_OVERRIDE;
+    bool insertRowIntoTable(const QSqlRecord &values) Q_DECL_OVERRIDE;
+    QString orderByClause() const Q_DECL_OVERRIDE;
 
 private:
     Q_DECLARE_PRIVATE(QSqlRelationalTableModel)

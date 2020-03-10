@@ -2,7 +2,7 @@
 //
 // This file is part of the QtQuick Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -53,9 +53,6 @@ public:
 %End
 %If (Qt_5_6_0 -)
         ItemDevicePixelRatioHasChanged,
-%End
-%If (Qt_5_10_0 -)
-        ItemEnabledHasChanged,
 %End
     };
 
@@ -299,26 +296,9 @@ public:
 %If (Qt_5_7_0 -)
     QPointF mapFromGlobal(const QPointF &point) const;
 %End
-%If (Qt_5_10_0 -)
-    QSizeF size() const;
-%End
-%If (Qt_5_10_0 -)
-    bool acceptTouchEvents() const;
-%End
-%If (Qt_5_10_0 -)
-    void setAcceptTouchEvents(bool accept);
-%End
-%If (Qt_5_11_0 -)
-    QObject *containmentMask() const;
-%End
-%If (Qt_5_11_0 -)
-    void setContainmentMask(QObject *mask /KeepReference/);
-%End
 
-signals:
-%If (Qt_5_11_0 -)
-    void containmentMaskChanged();
-%End
+private:
+    QQuickItem(const QQuickItem &);
 };
 
 QFlags<QQuickItem::Flag> operator|(QQuickItem::Flag f1, QFlags<QQuickItem::Flag> f2);

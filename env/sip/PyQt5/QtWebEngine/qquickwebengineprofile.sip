@@ -2,9 +2,9 @@
 //
 // This file is part of the QtWebEngine Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
-// This file is part of PyQtWebEngine.
+// This file is part of PyQt5.
 // 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
@@ -20,7 +20,7 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
 
 class QQuickWebEngineProfile : QObject
 {
@@ -69,7 +69,7 @@ public:
     {
         MemoryHttpCache,
         DiskHttpCache,
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
         NoCache,
 %End
     };
@@ -99,17 +99,17 @@ public:
     void setHttpCacheMaximumSize(int maxSize);
     QString httpAcceptLanguage() const;
     void setHttpAcceptLanguage(const QString &httpAcceptLanguage);
-    QWebEngineCookieStore *cookieStore() const /Transfer/;
+    QWebEngineCookieStore *cookieStore() const;
     void setRequestInterceptor(QWebEngineUrlRequestInterceptor *interceptor);
     const QWebEngineUrlSchemeHandler *urlSchemeHandler(const QByteArray &) const;
     void installUrlSchemeHandler(const QByteArray &scheme, QWebEngineUrlSchemeHandler *);
     void removeUrlScheme(const QByteArray &scheme);
     void removeUrlSchemeHandler(QWebEngineUrlSchemeHandler *);
     void removeAllUrlSchemeHandlers();
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void clearHttpCache();
 %End
-    static QQuickWebEngineProfile *defaultProfile() /Transfer/;
+    static QQuickWebEngineProfile *defaultProfile();
 
 signals:
     void storageNameChanged();
@@ -123,24 +123,24 @@ signals:
     void httpAcceptLanguageChanged();
 
 public:
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     void setSpellCheckLanguages(const QStringList &languages);
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     QStringList spellCheckLanguages() const;
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     void setSpellCheckEnabled(bool enabled);
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     bool isSpellCheckEnabled() const;
 %End
 
 signals:
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     void spellCheckLanguagesChanged();
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     void spellCheckEnabledChanged();
 %End
 };

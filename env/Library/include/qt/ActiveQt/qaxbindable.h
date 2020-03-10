@@ -51,7 +51,7 @@
 #ifndef QAXBINDABLE_H
 #define QAXBINDABLE_H
 
-#include <QtWidgets/qwidget.h>
+#include <QtWidgets/QWidget>
 
 struct IUnknown;
 
@@ -63,7 +63,6 @@ struct IAxServerBase;
 
 class QAxBindable
 {
-    Q_DISABLE_COPY(QAxBindable)
     friend class QAxServerBase;
 public:
     QAxBindable();

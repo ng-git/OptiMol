@@ -2,7 +2,7 @@
 //
 // This file is part of the QtNfc Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -62,7 +62,9 @@ public:
 
     void __delitem__(int i);
 %MethodCode
-        if ((a0 = (int)sipConvertFromSequenceIndex(a0, sipCpp->count())) < 0)
+        int len = sipCpp->count();
+        
+        if ((a0 = (int)sipConvertFromSequenceIndex(a0, len)) < 0)
             sipIsErr = 1;
         else
             sipCpp->removeAt(a0);

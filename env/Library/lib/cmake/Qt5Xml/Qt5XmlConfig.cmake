@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Xml module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Xml_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Xml_VERSION instead.
-set(Qt5Xml_VERSION_STRING 5.12.5)
+set(Qt5Xml_VERSION_STRING 5.9.7)
 
 set(Qt5Xml_LIBRARIES Qt5::Xml)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::Xml)
 
     set(_Qt5Xml_OWN_INCLUDE_DIRS "${_qt5Xml_install_prefix}/include/qt/" "${_qt5Xml_install_prefix}/include/qt/QtXml")
     set(Qt5Xml_PRIVATE_INCLUDE_DIRS
-        "${_qt5Xml_install_prefix}/include/qt/QtXml/5.12.5"
-        "${_qt5Xml_install_prefix}/include/qt/QtXml/5.12.5/QtXml"
+        "${_qt5Xml_install_prefix}/include/qt/QtXml/5.9.7"
+        "${_qt5Xml_install_prefix}/include/qt/QtXml/5.9.7/QtXml"
     )
 
     foreach(_dir ${_Qt5Xml_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::Xml)
     foreach(_module_dep ${_Qt5Xml_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Xml_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Xml_FIND_VERSION_EXACT}
                 ${_Qt5Xml_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Xml_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::Xml)
     set_property(TARGET Qt5::Xml PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_XML_LIB)
 
-    set_property(TARGET Qt5::Xml PROPERTY INTERFACE_QT_ENABLED_FEATURES dom)
-    set_property(TARGET Qt5::Xml PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5Xml_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Xml_PRIVATE_DIR ${Qt5Xml_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Xml_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::Xml)
         endif()
     endforeach()
 
-    if (_Qt5Xml_PRIVATE_DIRS_EXIST)
+    if (_Qt5Xml_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::XmlPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::XmlPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Xml_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::Xml)
         )
     endif()
 
-    _populate_Xml_target_properties(RELEASE "Qt5Xml_conda.dll" "Qt5Xml_conda.lib" )
+    _populate_Xml_target_properties(RELEASE "Qt5Xml.dll" "Qt5Xml.lib" )
 
     if (EXISTS
-        "${_qt5Xml_install_prefix}/bin/Qt5Xml_condad.dll"
+        "${_qt5Xml_install_prefix}/bin/Qt5Xmld.dll"
       AND EXISTS
-        "${_qt5Xml_install_prefix}/lib/Qt5Xml_condad.lib" )
-        _populate_Xml_target_properties(DEBUG "Qt5Xml_condad.dll" "Qt5Xml_condad.lib" )
+        "${_qt5Xml_install_prefix}/lib/Qt5Xmld.lib" )
+        _populate_Xml_target_properties(DEBUG "Qt5Xmld.dll" "Qt5Xmld.lib" )
     endif()
 
 

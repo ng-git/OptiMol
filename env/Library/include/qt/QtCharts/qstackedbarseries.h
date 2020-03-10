@@ -41,7 +41,7 @@ class QT_CHARTS_EXPORT QStackedBarSeries : public QAbstractBarSeries
 {
     Q_OBJECT
 public:
-    explicit QStackedBarSeries(QObject *parent = nullptr);
+    explicit QStackedBarSeries(QObject *parent = Q_NULLPTR);
     ~QStackedBarSeries();
     QAbstractSeries::SeriesType type() const;
 

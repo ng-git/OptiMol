@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -118,6 +118,9 @@ public:
 %If (Qt_5_6_0 -)
     void resizeDocks(const QList<QDockWidget *> &docks, const QList<int> &sizes, Qt::Orientation orientation);
 %End
+
+private:
+    QMainWindow(const QMainWindow &);
 };
 
 QFlags<QMainWindow::DockOption> operator|(QMainWindow::DockOption f1, QFlags<QMainWindow::DockOption> f2);

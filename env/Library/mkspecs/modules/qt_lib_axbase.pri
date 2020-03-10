@@ -1,6 +1,6 @@
-QT.axbase.VERSION = 5.12.5
+QT.axbase.VERSION = 5.9.7
 QT.axbase.name = QtAxBase
-QT.axbase.module = Qt5AxBase_conda
+QT.axbase.module = Qt5AxBase
 QT.axbase.libs = $$QT_MODULE_LIB_BASE
 QT.axbase.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/ActiveQt
 QT.axbase.frameworks =

@@ -1,6 +1,6 @@
-QT.multimedia.VERSION = 5.12.5
+QT.multimedia.VERSION = 5.9.7
 QT.multimedia.name = QtMultimedia
-QT.multimedia.module = Qt5Multimedia_conda
+QT.multimedia.module = Qt5Multimedia
 QT.multimedia.libs = $$QT_MODULE_LIB_BASE
 QT.multimedia.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtMultimedia
 QT.multimedia.frameworks =

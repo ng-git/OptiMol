@@ -63,9 +63,6 @@ public:
     void setName(const QString &name);
     QString name() const;
 
-    void setJointIndex(int jointIndex);
-    int jointIndex() const;
-
     int channelComponentCount() const;
     void appendChannelComponent(const QChannelComponent &component);
     void insertChannelComponent(int index, const QChannelComponent &component);

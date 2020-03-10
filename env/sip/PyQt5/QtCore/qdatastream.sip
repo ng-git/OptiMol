@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -72,15 +72,6 @@ public:
 %End
 %If (Qt_5_9_0 -)
         Qt_5_9,
-%End
-%If (Qt_5_10_0 -)
-        Qt_5_10,
-%End
-%If (Qt_5_11_0 -)
-        Qt_5_11,
-%End
-%If (Qt_5_12_0 -)
-        Qt_5_12,
 %End
     };
 

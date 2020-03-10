@@ -60,33 +60,33 @@ class QAxObject : public QObject, public QAxBase
     friend class QAxEventSink;
     Q_OBJECT_FAKE
 public:
-    QObject* qObject() const override { return static_cast<QObject *>(const_cast<QAxObject *>(this)); }
-    const char *className() const override;
+    QObject* qObject() const Q_DECL_OVERRIDE { return static_cast<QObject *>(const_cast<QAxObject *>(this)); }
+    const char *className() const Q_DECL_OVERRIDE;
 
-    explicit QAxObject(QObject *parent = nullptr);
-    explicit QAxObject(const QString &c, QObject *parent = nullptr);
-    explicit QAxObject(IUnknown *iface, QObject *parent = nullptr);
-    ~QAxObject() override;
+    explicit QAxObject(QObject *parent = Q_NULLPTR);
+    explicit QAxObject(const QString &c, QObject *parent = Q_NULLPTR);
+    explicit QAxObject(IUnknown *iface, QObject *parent = Q_NULLPTR);
+    ~QAxObject();
 
     bool doVerb(const QString &verb);
 
 protected:
-    void connectNotify(const QMetaMethod &signal) override;
-    const QMetaObject *fallbackMetaObject() const override;
+    void connectNotify(const QMetaMethod &signal) Q_DECL_OVERRIDE;
+    const QMetaObject *fallbackMetaObject() const Q_DECL_OVERRIDE;
 
 private:
-    const QMetaObject *parentMetaObject() const override;
+    const QMetaObject *parentMetaObject() const Q_DECL_OVERRIDE;
 };
 
 template <> inline QAxObject *qobject_cast<QAxObject*>(const QObject *o)
 {
-    void *result = o ? const_cast<QObject *>(o)->qt_metacast("QAxObject") : nullptr;
+    void *result = o ? const_cast<QObject *>(o)->qt_metacast("QAxObject") : Q_NULLPTR;
     return reinterpret_cast<QAxObject*>(result);
 }
 
 template <> inline QAxObject *qobject_cast<QAxObject*>(QObject *o)
 {
-    void *result = o ? o->qt_metacast("QAxObject") : nullptr;
+    void *result = o ? o->qt_metacast("QAxObject") : Q_NULLPTR;
     return reinterpret_cast<QAxObject*>(result);
 }
 

@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Widgets module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Widgets_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Widgets_VERSION instead.
-set(Qt5Widgets_VERSION_STRING 5.12.5)
+set(Qt5Widgets_VERSION_STRING 5.9.7)
 
 set(Qt5Widgets_LIBRARIES Qt5::Widgets)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::Widgets)
 
     set(_Qt5Widgets_OWN_INCLUDE_DIRS "${_qt5Widgets_install_prefix}/include/qt/" "${_qt5Widgets_install_prefix}/include/qt/QtWidgets")
     set(Qt5Widgets_PRIVATE_INCLUDE_DIRS
-        "${_qt5Widgets_install_prefix}/include/qt/QtWidgets/5.12.5"
-        "${_qt5Widgets_install_prefix}/include/qt/QtWidgets/5.12.5/QtWidgets"
+        "${_qt5Widgets_install_prefix}/include/qt/QtWidgets/5.9.7"
+        "${_qt5Widgets_install_prefix}/include/qt/QtWidgets/5.9.7/QtWidgets"
     )
 
     foreach(_dir ${_Qt5Widgets_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::Widgets)
     foreach(_module_dep ${_Qt5Widgets_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Widgets_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Widgets_FIND_VERSION_EXACT}
                 ${_Qt5Widgets_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Widgets_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::Widgets)
     set_property(TARGET Qt5::Widgets PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_WIDGETS_LIB)
 
-    set_property(TARGET Qt5::Widgets PROPERTY INTERFACE_QT_ENABLED_FEATURES abstractbutton;abstractslider;groupbox;buttongroup;label;pushbutton;menu;lineedit;spinbox;slider;scrollbar;scrollarea;itemviews;tableview;toolbutton;calendarwidget;checkbox;dialog;dialogbuttonbox;colordialog;listview;columnview;combobox;commandlinkbutton;completer;contextmenu;datawidgetmapper;datetimeedit;dial;filesystemmodel;dirmodel;resizehandler;mainwindow;dockwidget;textedit;errormessage;splitter;stackedwidget;treeview;filedialog;fontcombobox;fontdialog;formlayout;fscompleter;graphicsview;graphicseffect;inputdialog;keysequenceedit;lcdnumber;listwidget;mdiarea;menubar;messagebox;paint_debug;progressbar;progressdialog;radiobutton;rubberband;scroller;sizegrip;splashscreen;statusbar;statustip;style-stylesheet;syntaxhighlighter;tabbar;tablewidget;tabwidget;textbrowser;toolbar;toolbox;tooltip;treewidget;undocommand;undostack;undogroup;undoview;wizard)
-    set_property(TARGET Qt5::Widgets PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5Widgets_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Widgets_PRIVATE_DIR ${Qt5Widgets_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Widgets_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::Widgets)
         endif()
     endforeach()
 
-    if (_Qt5Widgets_PRIVATE_DIRS_EXIST)
+    if (_Qt5Widgets_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::WidgetsPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::WidgetsPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Widgets_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::Widgets)
         )
     endif()
 
-    _populate_Widgets_target_properties(RELEASE "Qt5Widgets_conda.dll" "Qt5Widgets_conda.lib" )
+    _populate_Widgets_target_properties(RELEASE "Qt5Widgets.dll" "Qt5Widgets.lib" )
 
     if (EXISTS
-        "${_qt5Widgets_install_prefix}/bin/Qt5Widgets_condad.dll"
+        "${_qt5Widgets_install_prefix}/bin/Qt5Widgetsd.dll"
       AND EXISTS
-        "${_qt5Widgets_install_prefix}/lib/Qt5Widgets_condad.lib" )
-        _populate_Widgets_target_properties(DEBUG "Qt5Widgets_condad.dll" "Qt5Widgets_condad.lib" )
+        "${_qt5Widgets_install_prefix}/lib/Qt5Widgetsd.lib" )
+        _populate_Widgets_target_properties(DEBUG "Qt5Widgetsd.dll" "Qt5Widgetsd.lib" )
     endif()
 
 

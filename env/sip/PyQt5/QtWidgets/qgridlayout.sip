@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -73,7 +73,7 @@ public:
         }
 %End
 
-    void addWidget(QWidget * /GetWrapper/, int row, int column, Qt::Alignment alignment = Qt::Alignment());
+    void addWidget(QWidget * /GetWrapper/, int row, int column, Qt::Alignment alignment = 0);
 %MethodCode
         Py_BEGIN_ALLOW_THREADS
         sipCpp->addWidget(a0, a1, a2, *a3);
@@ -97,7 +97,7 @@ public:
         }
 %End
 
-    void addWidget(QWidget * /GetWrapper/, int row, int column, int rowSpan, int columnSpan, Qt::Alignment alignment = Qt::Alignment());
+    void addWidget(QWidget * /GetWrapper/, int row, int column, int rowSpan, int columnSpan, Qt::Alignment alignment = 0);
 %MethodCode
         Py_BEGIN_ALLOW_THREADS
         sipCpp->addWidget(a0, a1, a2, a3, a4, *a5);
@@ -142,4 +142,7 @@ public:
 
 protected:
     virtual void addItem(QLayoutItem * /Transfer/);
+
+private:
+    QGridLayout(const QGridLayout &);
 };

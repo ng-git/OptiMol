@@ -2,7 +2,7 @@
 //
 // This file is part of the QtQuick Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -50,8 +50,8 @@ public:
     void initialize(QOpenGLContext *context);
     void invalidate();
     QSGAbstractRenderer *createRenderer() const;
-    QSGTexture *createTextureFromImage(const QImage &image, QSGEngine::CreateTextureOptions options = QSGEngine::CreateTextureOption()) const;
-    QSGTexture *createTextureFromId(uint id, const QSize &size, QSGEngine::CreateTextureOptions options = QSGEngine::CreateTextureOption()) const;
+    QSGTexture *createTextureFromImage(const QImage &image, QSGEngine::CreateTextureOptions options = QSGEngine::CreateTextureOption(0)) const /Factory/;
+    QSGTexture *createTextureFromId(uint id, const QSize &size, QSGEngine::CreateTextureOptions options = QSGEngine::CreateTextureOption(0)) const /Factory/;
 %If (Qt_5_8_0 -)
     QSGRendererInterface *rendererInterface() const;
 %End

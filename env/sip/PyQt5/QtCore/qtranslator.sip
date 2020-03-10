@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -34,4 +34,7 @@ public:
     bool load(const QString &fileName, const QString &directory = QString(), const QString &searchDelimiters = QString(), const QString &suffix = QString()) /ReleaseGIL/;
     bool load(const QLocale &locale, const QString &fileName, const QString &prefix = QString(), const QString &directory = QString(), const QString &suffix = QString()) /ReleaseGIL/;
     bool load(const uchar *data /Array/, int len /ArraySize/, const QString &directory = QString()) /PyName=loadFromData,ReleaseGIL/;
+
+private:
+    QTranslator(const QTranslator &);
 };

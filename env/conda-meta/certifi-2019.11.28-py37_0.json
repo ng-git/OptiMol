@@ -1,14 +1,12 @@
 {
   "build": "py37_0",
   "build_number": 0,
-  "channel": "https://conda.anaconda.org/conda-forge/win-64",
-  "constrains": [
-    "python_abi * *_cp37m"
-  ],
+  "channel": "https://repo.anaconda.com/pkgs/main/win-64",
+  "constrains": [],
   "depends": [
     "python >=3.7,<3.8.0a0"
   ],
-  "extracted_package_dir": "D:\\ProgramFiles\\Anaconda3\\pkgs\\certifi-2019.11.28-py37_0",
+  "extracted_package_dir": "C:\\Users\\Senae.000\\.conda\\pkgs\\certifi-2019.11.28-py37_0",
   "features": "",
   "files": [
     "Lib/site-packages/certifi-2019.11.28-py3.7.egg-info/PKG-INFO",
@@ -25,15 +23,17 @@
     "Lib/site-packages/certifi/cacert.pem",
     "Lib/site-packages/certifi/core.py"
   ],
-  "fn": "certifi-2019.11.28-py37_0.tar.bz2",
+  "fn": "certifi-2019.11.28-py37_0.conda",
+  "legacy_bz2_md5": "b67ebd7d000e1bada5fd3067cab454d0",
+  "legacy_bz2_size": 160346,
   "license": "ISC",
   "link": {
-    "source": "D:\\ProgramFiles\\Anaconda3\\pkgs\\certifi-2019.11.28-py37_0",
+    "source": "C:\\Users\\Senae.000\\.conda\\pkgs\\certifi-2019.11.28-py37_0",
     "type": 1
   },
-  "md5": "c1fabec67d3ce41f40d2e3e56d27e2b5",
+  "md5": "4c2ce156eff57123e998dab0d37fb981",
   "name": "certifi",
-  "package_tarball_full_path": "D:\\ProgramFiles\\Anaconda3\\pkgs\\certifi-2019.11.28-py37_0.tar.bz2",
+  "package_tarball_full_path": "C:\\Users\\Senae.000\\.conda\\pkgs\\certifi-2019.11.28-py37_0.conda",
   "paths_data": {
     "paths": [
       {
@@ -131,11 +131,11 @@
     "paths_version": 1
   },
   "requested_spec": "None",
-  "sha256": "5d79041424dcbf58223ce3029004436a4415e710e2d78b21c33a2e1ee2cac756",
-  "size": 151913,
+  "sha256": "cdb6f6ca8f9a13a27c0ee0ae9cda23f9edd2dfd6f3c32f1c7efdd43fcb272b2c",
+  "size": 157222,
   "subdir": "win-64",
-  "timestamp": 1574941782933,
+  "timestamp": 1575389749765,
   "track_features": "",
-  "url": "https://conda.anaconda.org/conda-forge/win-64/certifi-2019.11.28-py37_0.tar.bz2",
+  "url": "https://repo.anaconda.com/pkgs/main/win-64/certifi-2019.11.28-py37_0.conda",
   "version": "2019.11.28"
 }

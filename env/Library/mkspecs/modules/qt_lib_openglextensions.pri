@@ -1,6 +1,6 @@
-QT.openglextensions.VERSION = 5.12.5
+QT.openglextensions.VERSION = 5.9.7
 QT.openglextensions.name = QtOpenGLExtensions
-QT.openglextensions.module = Qt5OpenGLExtensions_conda
+QT.openglextensions.module = Qt5OpenGLExtensions
 QT.openglextensions.libs = $$QT_MODULE_LIB_BASE
 QT.openglextensions.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtOpenGLExtensions
 QT.openglextensions.frameworks =

@@ -1,6 +1,6 @@
-QT.xml.VERSION = 5.12.5
+QT.xml.VERSION = 5.9.7
 QT.xml.name = QtXml
-QT.xml.module = Qt5Xml_conda
+QT.xml.module = Qt5Xml
 QT.xml.libs = $$QT_MODULE_LIB_BASE
 QT.xml.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtXml
 QT.xml.frameworks =

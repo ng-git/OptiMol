@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -58,4 +58,7 @@ public:
     static QFileDevice::Permissions permissions(const QString &filename);
     virtual bool setPermissions(QFileDevice::Permissions permissionSpec);
     static bool setPermissions(const QString &filename, QFileDevice::Permissions permissionSpec);
+
+private:
+    QFile(const QFile &);
 };

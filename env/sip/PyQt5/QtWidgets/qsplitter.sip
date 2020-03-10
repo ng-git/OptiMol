@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -71,6 +71,9 @@ protected:
     void moveSplitter(int pos, int index);
     void setRubberBand(int position);
     int closestLegalPosition(int, int);
+
+private:
+    QSplitter(const QSplitter &);
 };
 
 class QSplitterHandle : QWidget
@@ -97,4 +100,7 @@ protected:
     void moveSplitter(int p);
     int closestLegalPosition(int p);
     virtual void resizeEvent(QResizeEvent *);
+
+private:
+    QSplitterHandle(const QSplitterHandle &);
 };

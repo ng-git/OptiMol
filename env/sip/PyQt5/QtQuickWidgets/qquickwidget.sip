@@ -2,7 +2,7 @@
 //
 // This file is part of the QtQuickWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -67,7 +67,7 @@ public:
     QSurfaceFormat format() const;
 
 public slots:
-    void setSource(const QUrl &) /ReleaseGIL/;
+    void setSource(const QUrl &);
 
 signals:
     void statusChanged(QQuickWidget::Status);
@@ -119,10 +119,8 @@ public:
     QQuickWindow *quickWindow() const;
 %End
 
-protected:
-%If (Qt_5_11_0 -)
-    virtual bool focusNextPrevChild(bool next);
-%End
+private:
+    QQuickWidget(const QQuickWidget &);
 };
 
 %End

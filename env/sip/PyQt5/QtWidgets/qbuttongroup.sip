@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -53,4 +53,7 @@ signals:
 %If (Qt_5_2_0 -)
     void buttonToggled(int, bool);
 %End
+
+private:
+    QButtonGroup(const QButtonGroup &);
 };

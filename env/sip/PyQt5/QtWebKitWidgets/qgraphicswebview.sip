@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWebKitWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -24,6 +24,23 @@ class QGraphicsWebView : QGraphicsWidget
 {
 %TypeHeaderCode
 #include <qgraphicswebview.h>
+%End
+
+%ConvertToSubClassCode
+    sipType = 0;
+    
+    // For some reason Qt doesn't allocate a new type for this so we have to test
+    // the numeric and QObject types.
+    if (sipCpp->type() == 11)
+    {
+        QGraphicsWidget *gw = static_cast<QGraphicsWidget *>(sipCpp);
+    
+        if (gw->inherits("QGraphicsWebView"))
+        {
+            *sipCppRet = static_cast<QGraphicsWebView *>(gw);
+            sipType = sipType_QGraphicsWebView;
+        }
+    }
 %End
 
 public:
@@ -102,7 +119,7 @@ public:
     void setRenderHint(QPainter::RenderHint hint, bool enabled = true);
 };
 
-%ModuleCode
+%ModuleHeaderCode
 // This is needed by the %ConvertSubClassCode.
 #include <QGraphicsWebView>
 

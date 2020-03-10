@@ -76,7 +76,7 @@ public:
         CosineCurve
     };
 
-    explicit QTimeLine(int duration = 1000, QObject *parent = nullptr);
+    explicit QTimeLine(int duration = 1000, QObject *parent = Q_NULLPTR);
     virtual ~QTimeLine();
 
     State state() const;
@@ -127,7 +127,7 @@ Q_SIGNALS:
     void finished(QPrivateSignal);
 
 protected:
-    void timerEvent(QTimerEvent *event) override;
+    void timerEvent(QTimerEvent *event) Q_DECL_OVERRIDE;
 
 private:
     Q_DISABLE_COPY(QTimeLine)

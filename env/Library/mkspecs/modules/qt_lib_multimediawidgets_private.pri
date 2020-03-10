@@ -1,8 +1,8 @@
-QT.multimediawidgets_private.VERSION = 5.12.5
+QT.multimediawidgets_private.VERSION = 5.9.7
 QT.multimediawidgets_private.name = QtMultimediaWidgets
 QT.multimediawidgets_private.module =
 QT.multimediawidgets_private.libs = $$QT_MODULE_LIB_BASE
-QT.multimediawidgets_private.includes = $$QT_MODULE_INCLUDE_BASE/QtMultimediaWidgets/5.12.5 $$QT_MODULE_INCLUDE_BASE/QtMultimediaWidgets/5.12.5/QtMultimediaWidgets
+QT.multimediawidgets_private.includes = $$QT_MODULE_INCLUDE_BASE/QtMultimediaWidgets/5.9.7 $$QT_MODULE_INCLUDE_BASE/QtMultimediaWidgets/5.9.7/QtMultimediaWidgets
 QT.multimediawidgets_private.frameworks =
 QT.multimediawidgets_private.depends = multimedia_private widgets_private multimediawidgets
 QT.multimediawidgets_private.uses =

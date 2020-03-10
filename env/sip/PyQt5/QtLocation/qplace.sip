@@ -2,7 +2,7 @@
 //
 // This file is part of the QtLocation Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -47,9 +47,9 @@ public:
     void setAttribution(const QString &attribution);
     QPlaceIcon icon() const;
     void setIcon(const QPlaceIcon &icon);
-    QPlaceContent::Collection content(QPlaceContent::Type type) const;
-    void setContent(QPlaceContent::Type type, const QPlaceContent::Collection &content);
-    void insertContent(QPlaceContent::Type type, const QPlaceContent::Collection &content);
+    QMap<int, QPlaceContent> content(QPlaceContent::Type type) const;
+    void setContent(QPlaceContent::Type type, const QMap<int, QPlaceContent> &content);
+    void insertContent(QPlaceContent::Type type, const QMap<int, QPlaceContent> &content);
     int totalContentCount(QPlaceContent::Type type) const;
     void setTotalContentCount(QPlaceContent::Type type, int total);
     QString name() const;

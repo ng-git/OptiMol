@@ -59,8 +59,8 @@ class Q_QUICK_EXPORT QQuickTransform : public QObject
 {
     Q_OBJECT
 public:
-    explicit QQuickTransform(QObject *parent = nullptr);
-    ~QQuickTransform() override;
+    explicit QQuickTransform(QObject *parent = Q_NULLPTR);
+    ~QQuickTransform();
 
     void appendToItem(QQuickItem *);
     void prependToItem(QQuickItem *);
@@ -144,7 +144,6 @@ class Q_QUICK_EXPORT QQuickItem : public QObject, public QQmlParserStatus
     Q_PROPERTY(bool antialiasing READ antialiasing WRITE setAntialiasing NOTIFY antialiasingChanged RESET resetAntialiasing)
     Q_PROPERTY(qreal implicitWidth READ implicitWidth WRITE setImplicitWidth NOTIFY implicitWidthChanged)
     Q_PROPERTY(qreal implicitHeight READ implicitHeight WRITE setImplicitHeight NOTIFY implicitHeightChanged)
-    Q_PROPERTY(QObject *containmentMask READ containmentMask WRITE setContainmentMask NOTIFY containmentMaskChanged REVISION 11)
 
     Q_PRIVATE_PROPERTY(QQuickItem::d_func(), QQuickItemLayer *layer READ layer DESIGNABLE false CONSTANT FINAL)
 
@@ -163,7 +162,6 @@ public:
         // Remember to increment the size of QQuickItemPrivate::flags
     };
     Q_DECLARE_FLAGS(Flags, Flag)
-    Q_FLAG(Flags)
 
     enum ItemChange {
         ItemChildAddedChange,      // value.item
@@ -175,8 +173,7 @@ public:
         ItemActiveFocusHasChanged, // value.boolValue
         ItemRotationHasChanged,    // value.realValue
         ItemAntialiasingHasChanged, // value.boolValue
-        ItemDevicePixelRatioHasChanged, // value.realValue
-        ItemEnabledHasChanged      // value.boolValue
+        ItemDevicePixelRatioHasChanged // value.realValue
     };
 
     union ItemChangeData {
@@ -198,8 +195,8 @@ public:
     };
     Q_ENUM(TransformOrigin)
 
-    explicit QQuickItem(QQuickItem *parent = nullptr);
-    ~QQuickItem() override;
+    explicit QQuickItem(QQuickItem *parent = Q_NULLPTR);
+    virtual ~QQuickItem();
 
     QQuickWindow *window() const;
     QQuickItem *parentItem() const;
@@ -240,7 +237,6 @@ public:
     void setImplicitHeight(qreal);
     qreal implicitHeight() const;
 
-    QSizeF size() const;
     void setSize(const QSizeF &size);
 
     TransformOrigin transformOrigin() const;
@@ -295,8 +291,6 @@ public:
     void setAcceptedMouseButtons(Qt::MouseButtons buttons);
     bool acceptHoverEvents() const;
     void setAcceptHoverEvents(bool enabled);
-    bool acceptTouchEvents() const;
-    void setAcceptTouchEvents(bool accept);
 
 #if QT_CONFIG(cursor)
     QCursor cursor() const;
@@ -322,8 +316,6 @@ public:
     QSharedPointer<QQuickItemGrabResult> grabToImage(const QSize &targetSize = QSize());
 
     Q_INVOKABLE virtual bool contains(const QPointF &point) const;
-    QObject *containmentMask() const;
-    void setContainmentMask(QObject *mask);
 
     QTransform itemTransform(QQuickItem *, bool *) const;
     QPointF mapToItem(const QQuickItem *item, const QPointF &point) const;
@@ -394,10 +386,9 @@ Q_SIGNALS:
     void zChanged();
     void implicitWidthChanged();
     void implicitHeightChanged();
-    Q_REVISION(11) void containmentMaskChanged();
 
 protected:
-    bool event(QEvent *) override;
+    bool event(QEvent *) Q_DECL_OVERRIDE;
 
     bool isComponentComplete() const;
     virtual void itemChange(ItemChange, const ItemChangeData &);
@@ -410,8 +401,8 @@ protected:
     bool heightValid() const; // ### better name?
     void setImplicitSize(qreal, qreal);
 
-    void classBegin() override;
-    void componentComplete() override;
+    void classBegin() Q_DECL_OVERRIDE;
+    void componentComplete() Q_DECL_OVERRIDE;
 
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void keyReleaseEvent(QKeyEvent *event);
@@ -450,13 +441,12 @@ protected:
     virtual void updatePolish();
 
 protected:
-    QQuickItem(QQuickItemPrivate &dd, QQuickItem *parent = nullptr);
+    QQuickItem(QQuickItemPrivate &dd, QQuickItem *parent = Q_NULLPTR);
 
 private:
     Q_PRIVATE_SLOT(d_func(), void _q_resourceObjectDeleted(QObject *))
     Q_PRIVATE_SLOT(d_func(), quint64 _q_createJSWrapper(QV4::ExecutionEngine *))
 
-    friend class QQuickEventPoint;
     friend class QQuickWindow;
     friend class QQuickWindowPrivate;
     friend class QSGRenderer;

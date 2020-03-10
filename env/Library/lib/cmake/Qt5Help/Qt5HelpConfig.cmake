@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Help module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Help_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Help_VERSION instead.
-set(Qt5Help_VERSION_STRING 5.12.5)
+set(Qt5Help_VERSION_STRING 5.9.7)
 
 set(Qt5Help_LIBRARIES Qt5::Help)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::Help)
 
     set(_Qt5Help_OWN_INCLUDE_DIRS "${_qt5Help_install_prefix}/include/qt/" "${_qt5Help_install_prefix}/include/qt/QtHelp")
     set(Qt5Help_PRIVATE_INCLUDE_DIRS
-        "${_qt5Help_install_prefix}/include/qt/QtHelp/5.12.5"
-        "${_qt5Help_install_prefix}/include/qt/QtHelp/5.12.5/QtHelp"
+        "${_qt5Help_install_prefix}/include/qt/QtHelp/5.9.7"
+        "${_qt5Help_install_prefix}/include/qt/QtHelp/5.9.7/QtHelp"
     )
 
     foreach(_dir ${_Qt5Help_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::Help)
     foreach(_module_dep ${_Qt5Help_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Help_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Help_FIND_VERSION_EXACT}
                 ${_Qt5Help_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Help_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::Help)
     set_property(TARGET Qt5::Help PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_HELP_LIB)
 
-    set_property(TARGET Qt5::Help PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::Help PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5Help_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Help_PRIVATE_DIR ${Qt5Help_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Help_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::Help)
         endif()
     endforeach()
 
-    if (_Qt5Help_PRIVATE_DIRS_EXIST)
+    if (_Qt5Help_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::HelpPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::HelpPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Help_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::Help)
         )
     endif()
 
-    _populate_Help_target_properties(RELEASE "Qt5Help_conda.dll" "Qt5Help_conda.lib" )
+    _populate_Help_target_properties(RELEASE "Qt5Help.dll" "Qt5Help.lib" )
 
     if (EXISTS
-        "${_qt5Help_install_prefix}/bin/Qt5Help_condad.dll"
+        "${_qt5Help_install_prefix}/bin/Qt5Helpd.dll"
       AND EXISTS
-        "${_qt5Help_install_prefix}/lib/Qt5Help_condad.lib" )
-        _populate_Help_target_properties(DEBUG "Qt5Help_condad.dll" "Qt5Help_condad.lib" )
+        "${_qt5Help_install_prefix}/lib/Qt5Helpd.lib" )
+        _populate_Help_target_properties(DEBUG "Qt5Helpd.dll" "Qt5Helpd.lib" )
     endif()
 
 

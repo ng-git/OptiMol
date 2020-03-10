@@ -69,6 +69,7 @@ namespace CompiledData {
 struct Unit;
 struct CompilationUnit;
 }
+typedef CompiledData::CompilationUnit *(*CompilationUnitFactoryFunction)();
 }
 namespace QmlIR {
 struct Document;
@@ -76,11 +77,6 @@ typedef void (*IRLoaderFunction)(Document *, const QQmlPrivate::CachedQmlUnit *)
 }
 
 typedef QObject *(*QQmlAttachedPropertiesFunc)(QObject *);
-
-inline uint qHash(QQmlAttachedPropertiesFunc func, uint seed = 0)
-{
-    return qHash(quintptr(func), seed);
-}
 
 template <typename TYPE>
 class QQmlTypeInfo
@@ -100,23 +96,11 @@ namespace QQmlPrivate
 {
     void Q_QML_EXPORT qdeclarativeelement_destructor(QObject *);
     template<typename T>
-    class QQmlElement final : public T
+    class QQmlElement : public T
     {
     public:
-        ~QQmlElement() override {
+        virtual ~QQmlElement() {
             QQmlPrivate::qdeclarativeelement_destructor(this);
-        }
-        static void operator delete(void *ptr) {
-            // We allocate memory from this class in QQmlType::create
-            // along with some additional memory.
-            // So we override the operator delete in order to avoid the
-            // sized operator delete to be called with a different size than
-            // the size that was allocated.
-            ::operator delete (ptr);
-        }
-        static void operator delete(void *, void *) {
-            // Deliberately empty placement delete operator.
-            // Silences MSVC warning C4291: no matching operator delete found
         }
     };
 
@@ -184,19 +168,22 @@ namespace QQmlPrivate
     class AttachedPropertySelector
     {
     public:
-        static inline QQmlAttachedPropertiesFunc func() { return nullptr; }
-        static inline const QMetaObject *metaObject() { return nullptr; }
+        static inline QQmlAttachedPropertiesFunc func() { return 0; }
+        static inline const QMetaObject *metaObject() { return 0; }
     };
     template<typename T>
     class AttachedPropertySelector<T, 1>
     {
+        static inline QObject *attachedProperties(QObject *obj) {
+            return T::qmlAttachedProperties(obj);
+        }
         template<typename ReturnType>
         static inline const QMetaObject *attachedPropertiesMetaObject(ReturnType *(*)(QObject *)) {
             return &ReturnType::staticMetaObject;
         }
     public:
         static inline QQmlAttachedPropertiesFunc func() {
-            return QQmlAttachedPropertiesFunc(&T::qmlAttachedProperties);
+            return &attachedProperties;
         }
         static inline const QMetaObject *metaObject() {
             return attachedPropertiesMetaObject(&T::qmlAttachedProperties);
@@ -297,8 +284,8 @@ namespace QQmlPrivate
 
     struct CachedQmlUnit {
         const QV4::CompiledData::Unit *qmlData;
-        void *unused1;
-        void *unused2;
+        QV4::CompilationUnitFactoryFunction createCompilationUnit;
+        QmlIR::IRLoaderFunction loadIR;
     };
 
     typedef const CachedQmlUnit *(*QmlUnitCacheLookupFunction)(const QUrl &url);
@@ -318,7 +305,6 @@ namespace QQmlPrivate
     };
 
     int Q_QML_EXPORT qmlregister(RegistrationType, void *);
-    void Q_QML_EXPORT qmlunregister(RegistrationType, quintptr);
 }
 
 QT_END_NAMESPACE

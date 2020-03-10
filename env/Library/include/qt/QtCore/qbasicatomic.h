@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2011 Thiago Macieira <thiago@kde.org>
-** Copyright (C) 2018 Intel Corporation.
+** Copyright (C) 2016 Intel Corporation.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the QtCore module of the Qt Toolkit.
@@ -38,7 +38,7 @@
 **
 ****************************************************************************/
 
-#include <QtCore/qglobal.h>
+#include <QtCore/qatomic.h>
 
 #ifndef QBASICATOMIC_H
 #define QBASICATOMIC_H
@@ -90,7 +90,6 @@ template <typename T>
 class QBasicAtomicInteger
 {
 public:
-    typedef T Type;
     typedef QAtomicOps<T> Ops;
     // static check that this is a valid integer
     Q_STATIC_ASSERT_X(QTypeInfo<T>::isIntegral, "template parameter is not an integral type");

@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 PrintSupport module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5PrintSupport_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5PrintSupport_VERSION instead.
-set(Qt5PrintSupport_VERSION_STRING 5.12.5)
+set(Qt5PrintSupport_VERSION_STRING 5.9.7)
 
 set(Qt5PrintSupport_LIBRARIES Qt5::PrintSupport)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::PrintSupport)
 
     set(_Qt5PrintSupport_OWN_INCLUDE_DIRS "${_qt5PrintSupport_install_prefix}/include/qt/" "${_qt5PrintSupport_install_prefix}/include/qt/QtPrintSupport")
     set(Qt5PrintSupport_PRIVATE_INCLUDE_DIRS
-        "${_qt5PrintSupport_install_prefix}/include/qt/QtPrintSupport/5.12.5"
-        "${_qt5PrintSupport_install_prefix}/include/qt/QtPrintSupport/5.12.5/QtPrintSupport"
+        "${_qt5PrintSupport_install_prefix}/include/qt/QtPrintSupport/5.9.7"
+        "${_qt5PrintSupport_install_prefix}/include/qt/QtPrintSupport/5.9.7/QtPrintSupport"
     )
 
     foreach(_dir ${_Qt5PrintSupport_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::PrintSupport)
     foreach(_module_dep ${_Qt5PrintSupport_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5PrintSupport_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5PrintSupport_FIND_VERSION_EXACT}
                 ${_Qt5PrintSupport_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5PrintSupport_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::PrintSupport)
     set_property(TARGET Qt5::PrintSupport PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_PRINTSUPPORT_LIB)
 
-    set_property(TARGET Qt5::PrintSupport PROPERTY INTERFACE_QT_ENABLED_FEATURES printer;printdialog;printpreviewwidget;printpreviewdialog)
-    set_property(TARGET Qt5::PrintSupport PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5PrintSupport_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5PrintSupport_PRIVATE_DIR ${Qt5PrintSupport_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5PrintSupport_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::PrintSupport)
         endif()
     endforeach()
 
-    if (_Qt5PrintSupport_PRIVATE_DIRS_EXIST)
+    if (_Qt5PrintSupport_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::PrintSupportPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::PrintSupportPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5PrintSupport_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::PrintSupport)
         )
     endif()
 
-    _populate_PrintSupport_target_properties(RELEASE "Qt5PrintSupport_conda.dll" "Qt5PrintSupport_conda.lib" )
+    _populate_PrintSupport_target_properties(RELEASE "Qt5PrintSupport.dll" "Qt5PrintSupport.lib" )
 
     if (EXISTS
-        "${_qt5PrintSupport_install_prefix}/bin/Qt5PrintSupport_condad.dll"
+        "${_qt5PrintSupport_install_prefix}/bin/Qt5PrintSupportd.dll"
       AND EXISTS
-        "${_qt5PrintSupport_install_prefix}/lib/Qt5PrintSupport_condad.lib" )
-        _populate_PrintSupport_target_properties(DEBUG "Qt5PrintSupport_condad.dll" "Qt5PrintSupport_condad.lib" )
+        "${_qt5PrintSupport_install_prefix}/lib/Qt5PrintSupportd.lib" )
+        _populate_PrintSupport_target_properties(DEBUG "Qt5PrintSupportd.dll" "Qt5PrintSupportd.lib" )
     endif()
 
 

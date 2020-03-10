@@ -66,10 +66,27 @@ set(Qt5_POSITION_INDEPENDENT_CODE True)
 # Applications now need to be compiled with the -fPIC option if the Qt option
 # "reduce relocations" is active. For backward compatibility only, Qt accepts
 # the use of -fPIE for GCC 4.x versions.
-set_property(TARGET Qt5::Core APPEND PROPERTY INTERFACE_COMPILE_OPTIONS )
+if (CMAKE_VERSION VERSION_LESS 2.8.12
+        AND (NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+        OR CMAKE_CXX_COMPILER_VERSION VERSION_LESS 5.0))
+    set_property(TARGET Qt5::Core APPEND PROPERTY INTERFACE_POSITION_INDEPENDENT_CODE "ON")
+else()
+    set_property(TARGET Qt5::Core APPEND PROPERTY INTERFACE_COMPILE_OPTIONS )
+endif()
 
-# TODO Qt6: Remove
+# Applications using qmake or cmake >= 2.8.12 as their build system will
+# adapt automatically. Applications using an older release of cmake in
+# combination with GCC 5.x need to change their CMakeLists.txt to add
+# Qt5Core_EXECUTABLE_COMPILE_FLAGS to CMAKE_CXX_FLAGS. In particular,
+# applications using cmake >= 2.8.9 and < 2.8.11 will continue to build
+# with the -fPIE option and invoke the special compatibility mode if using
+# GCC 4.x.
 set(Qt5Core_EXECUTABLE_COMPILE_FLAGS "")
+if (CMAKE_VERSION VERSION_LESS 2.8.12
+        AND (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+        AND NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 5.0))
+    set(Qt5Core_EXECUTABLE_COMPILE_FLAGS "-fPIC")
+endif()
 
 
 
@@ -78,7 +95,6 @@ set_property(TARGET Qt5::Core APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS $<$<
 set_property(TARGET Qt5::Core PROPERTY INTERFACE_COMPILE_FEATURES cxx_decltype)
 
 
-set(QT_LIBINFIX "_conda")
 
 set(Qt5Core_QTMAIN_LIBRARIES Qt5::WinMain)
 
@@ -86,14 +102,14 @@ if (NOT TARGET Qt5::WinMain)
     add_library(Qt5::WinMain STATIC IMPORTED)
 
     set_property(TARGET Qt5::WinMain APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-    set(imported_location "${_qt5Core_install_prefix}/lib/qtmain_conda.lib")
+    set(imported_location "${_qt5Core_install_prefix}/lib/qtmain.lib")
 
     set_target_properties(Qt5::WinMain PROPERTIES
         IMPORTED_LOCATION_RELEASE ${imported_location}
     )
 
 
-    if (NOT Qt5_NO_LINK_QTMAIN)
+    if (NOT CMAKE_VERSION VERSION_LESS 2.8.11 AND NOT Qt5_NO_LINK_QTMAIN)
         set(_isExe $<STREQUAL:$<TARGET_PROPERTY:TYPE>,EXECUTABLE>)
         set(_isWin32 $<BOOL:$<TARGET_PROPERTY:WIN32_EXECUTABLE>>)
         set(_isNotExcluded $<NOT:$<BOOL:$<TARGET_PROPERTY:Qt5_NO_LINK_QTMAIN>>>)
