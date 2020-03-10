@@ -28,30 +28,37 @@ id_list = data_compile.get_id()
 # print(coord_2d)
 
 
-index = id_list[3]
-[coord_test, bond_test] = data_compile.get_df('./database_chemspider/' +
-                                              str(index) + '_2d.txt', dim=2)
-print(index)
-print(coord_test)
-print(bond_test)
-
-index = id_list[3]
-[coord_test, bond_test] = data_compile.get_df('./database_chemspider/' +
-                                              str(index) + '_3d.txt', dim=3)
-print(index)
-print(coord_test)
-print(bond_test)
+# index = id_list[3]
+# [coord_test, bond_test] = data_compile.get_df('./database_chemspider/' +
+#                                               str(index) + '_2d.txt', dim=2)
+# print(index)
+# print(coord_test)
+# print(bond_test)
+#
+# index = id_list[3]
+# [coord_test, bond_test] = data_compile.get_df('./database_chemspider/' +
+#                                               str(index) + '_3d.txt', dim=3)
+# print(index)
+# print(coord_test)
+# print(bond_test)
+#
+# index = id_list[50]
+# [coord_test, bond_test] = data_compile.get_df('./database_chemspider/' +
+#                                               str(index) + '_2d.txt', dim=2)
+# print(index)
+# print(coord_test)
+# print(bond_test)
+#
+# index = id_list[50]
+# [coord_test, bond_test] = data_compile.get_df('./database_chemspider/' +
+#                                               str(index) + '_3d.txt', dim=3)
+# print(index)
+# print(coord_test)
+# print(bond_test)
 
 index = id_list[50]
-[coord_test, bond_test] = data_compile.get_df('./database_chemspider/' +
-                                              str(index) + '_2d.txt', dim=2)
-print(index)
-print(coord_test)
-print(bond_test)
-
-index = id_list[50]
-[coord_test, bond_test] = data_compile.get_df('./database_chemspider/' +
-                                              str(index) + '_3d.txt', dim=3)
-print(index)
-print(coord_test)
-print(bond_test)
+[coord_2d, bond_2d, coord_3d, bond_3d] = data_compile.get_df_database(index)
+print(coord_2d)
+print(bond_2d)
+print(coord_3d)
+print(bond_3d)
