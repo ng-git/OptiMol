@@ -5,6 +5,7 @@ import numpy as np
 import shutil
 import csv
 import pandas as pd
+from chemspipy import ChemSpider
 
 ROOT = os.getcwd()
 
@@ -102,3 +103,42 @@ def get_id():
         id_result = list(set(id_result))
 
     return id_result
+
+
+def database_setup():
+    """ Download 2D and 3D molecule structure from ChemSpider sever to create a database"""
+
+    # compile id list for calling molecules
+    id_list = get_id()
+
+    directory = './database_chemspider/'
+    # make directory database_chemspider/ if needed
+    if not os.path.isdir(directory):
+        os.mkdir(directory)
+
+    print('downloading..')
+    os.chdir(directory)  # change dir to database_chemspider/
+
+    # access API key
+    cs = ChemSpider('d0xQqfSr9KAwCQDMb10uAmp46dAADGqh')
+
+    # go through each id
+    for id_chemspider in id_list:
+        if os.path.exists(str(id_chemspider) + '_2d.txt'):
+            # pass if id already exist
+            print('ID ' + str(id_chemspider) + ' already existed')
+            continue
+
+        # access molecule data
+        c = cs.get_compound(id_chemspider)
+        # write 2d coord and bond data
+        f = open(str(id_chemspider) + '_2d.txt', 'w')
+        f.write(c.mol_2d)
+        f.close()
+
+        # write 3d coord and bond data
+        f = open(str(id_chemspider) + '_3d.txt', 'w')
+        f.write(c.mol_3d)
+        f.close()
+
+    os.chdir('../')
