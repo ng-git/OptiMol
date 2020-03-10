@@ -5,7 +5,6 @@ import numpy as np
 import shutil
 import csv
 import pandas as pd
-from chemspipy import ChemSpider
 
 ROOT = os.getcwd()
 DATABASE = ROOT + '/database_chemspider'
@@ -25,8 +24,12 @@ def get_df_database(id_num):
     # check input type
     if not isinstance(id_num, (int, str)):
         raise TypeError()
-    # cast to int
-    elif isinstance(id_num, str):
+
+    if isinstance(id_num, str):
+        if not id_num.isdigit():
+            raise ValueError('Invalid ID number')
+    else:
+        # cast to int
         id_num = int(id_num)
 
     # check valid id
@@ -119,6 +122,9 @@ def df_cleaner(df, new_df):
                  isinstance(new_df, pd.DataFrame)]:
         raise TypeError()
 
+    if df.shape[1] is not 1:
+        raise ValueError('Input dataframe should be a column')
+
     # go through each row
     for index in range(df.shape[0]):
         line = df.iloc[index, 0]
@@ -202,14 +208,20 @@ def sample_subset(directory=DATABASE, size=50):
 
 
 def database_setup():
+
     """ Download 2D and 3D molecule structure from ChemSpider sever to create a database"""
+
+    from chemspipy import ChemSpider
 
     # compile id list for calling molecules
     id_list = get_id()
 
     directory = DATABASE
     # make directory database_chemspider/ if needed
-    if not os.path.isdir(directory):
+    if os.path.isdir(directory):
+        print('Database folder already existed! Aborting... \n Please remove the folder and rerun')
+        exit()
+    else:
         os.mkdir(directory)
 
     print('downloading..')
