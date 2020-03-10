@@ -133,7 +133,7 @@ def get_id():
     return id_result
 
 
-def sample_dir(directory, size=50):
+def sample_subset(directory, size=50):
     """ Create a smaller database folder inside the main database folder for testing
         :param directory: directory of the database from root
         :param size: the size of the folder
