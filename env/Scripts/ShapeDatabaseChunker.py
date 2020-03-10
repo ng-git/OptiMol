@@ -16,9 +16,9 @@
 # liable for any damages or liability in connection with the Sample Code
 # or its use.
 
-# Split a multi-conformer database into N chunks keeping molecules
+# Split a multi-conformer database_COD into N chunks keeping molecules
 # with the same number of atoms in each chunk. Also caches other
-# useful information onto the molecule to improve database load time.
+# useful information onto the molecule to improve database_COD load time.
 
 import sys
 import os
@@ -32,7 +32,7 @@ sys.path.insert(0, os.path.realpath(oepy))
 
 def main(argv=[__name__]):
     if len(argv) != 4:
-        oechem.OEThrow.Usage("%s <database> <prefix> <n_servers>" % argv[0])
+        oechem.OEThrow.Usage("%s <database_COD> <prefix> <n_servers>" % argv[0])
 
     # input - preserve rotor-offset-compression
     ifs = oechem.oemolistream()

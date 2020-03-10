@@ -17,7 +17,7 @@ def lineno_sort_key(entry):
 # Part 1: top-level interface.
 
 def getcaps():
-    """Return a dictionary containing the mailcap database.
+    """Return a dictionary containing the mailcap database_COD.
 
     The dictionary maps a MIME type (in all lowercase, e.g. 'text/plain')
     to a list of dictionaries corresponding to mailcap entries.  The list
@@ -102,7 +102,7 @@ def _readmailcapfile(fp, lineno):
         for j in range(len(types)):
             types[j] = types[j].strip()
         key = '/'.join(types).lower()
-        # Update the database
+        # Update the database_COD
         if key in caps:
             caps[key].append(fields)
         else:
@@ -154,7 +154,7 @@ def parsefield(line, i, n):
     return line[start:i].strip(), i
 
 
-# Part 3: using the database.
+# Part 3: using the database_COD.
 
 def findmatch(caps, MIMEtype, key='view', filename="/dev/null", plist=[]):
     """Find a match for a mailcap entry.

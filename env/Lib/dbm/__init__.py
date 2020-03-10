@@ -6,7 +6,7 @@ Use
         d = dbm.open(file, 'w', 0o666)
 
 The returned object is a dbm.gnu, dbm.ndbm or dbm.dumb object, dependent on the
-type of database being opened (determined by the whichdb function) in the case
+type of database_COD being opened (determined by the whichdb function) in the case
 of an existing dbm. If the dbm does not exist and the create or new flag ('c'
 or 'n') was specified, the dbm type will be determined by the availability of
 the modules (tested in the above order).
@@ -51,15 +51,15 @@ except ImportError:
 
 
 def open(file, flag='r', mode=0o666):
-    """Open or create database at path given by *file*.
+    """Open or create database_COD at path given by *file*.
 
     Optional argument *flag* can be 'r' (default) for read-only access, 'w'
-    for read-write access of an existing database, 'c' for read-write access
-    to a new or existing database, and 'n' for read-write access to a new
-    database.
+    for read-write access of an existing database_COD, 'c' for read-write access
+    to a new or existing database_COD, and 'n' for read-write access to a new
+    database_COD.
 
-    Note: 'r' and 'w' fail if the database doesn't exist; 'c' creates it
-    only if it doesn't exist; and 'n' always creates a new database.
+    Note: 'r' and 'w' fail if the database_COD doesn't exist; 'c' creates it
+    only if it doesn't exist; and 'n' always creates a new database_COD.
     """
     global _defaultmod
     if _defaultmod is None:
@@ -74,7 +74,7 @@ def open(file, flag='r', mode=0o666):
         if not _defaultmod:
             raise ImportError("no dbm clone found; tried %s" % _names)
 
-    # guess the type of an existing database, if not creating a new one
+    # guess the type of an existing database_COD, if not creating a new one
     result = whichdb(file) if 'n' not in flag else None
     if result is None:
         # db doesn't exist or 'n' flag was specified to create a new db
@@ -99,12 +99,12 @@ def whichdb(filename):
 
     Return values:
 
-    - None if the database file can't be read;
+    - None if the database_COD file can't be read;
     - empty string if the file can be read but can't be recognized
     - the name of the dbm submodule (e.g. "ndbm" or "gnu") if recognized.
 
     Importing the given module may still fail, and opening the
-    database using that module may still fail.
+    database_COD using that module may still fail.
     """
 
     # Check for ndbm first -- this has a .pag and a .dir file

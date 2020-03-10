@@ -17,7 +17,7 @@
 # or its use.
 
 #############################################################################
-# Generates database for fast substructure search.
+# Generates database_COD for fast substructure search.
 #############################################################################
 import sys
 from openeye import oechem
@@ -52,12 +52,12 @@ def main(argv=[__name__]):
     opts.SetNumProcessors(nrthreads)
 
     screenstr = screentype.GetName()
-    infomsg = "Using %d processor(s) to generate database with '%s'"
+    infomsg = "Using %d processor(s) to generate database_COD with '%s'"
     oechem.OEThrow.Info(infomsg % (opts.GetNumProcessors(), screenstr))
 
     tracer = oechem.OEConsoleProgressTracer()
     if not oechem.OECreateSubSearchDatabaseFile(ofname, ifname, opts, tracer):
-        oechem.OEThrow.Fatal("Substructure search database can not be generated!")
+        oechem.OEThrow.Fatal("Substructure search database_COD can not be generated!")
 
     return 0
 
@@ -82,7 +82,7 @@ InterfaceData = """\
     !TYPE string
     !REQUIRED true
     !VISIBILITY simple
-    !BRIEF Output substructure database filename
+    !BRIEF Output substructure database_COD filename
   !END
 
 !END

@@ -1,7 +1,7 @@
 """ListViewer class.
 
 This class implements an input/output view on the color model.  It lists every
-unique color (e.g. unique r/g/b value) found in the color database.  Each
+unique color (e.g. unique r/g/b value) found in the color database_COD.  Each
 color is shown by small swatch and primary color name.  Some colors have
 aliases -- more than one name for the same r/g/b value.  These aliases are
 displayed in the small listbox at the bottom of the screen.

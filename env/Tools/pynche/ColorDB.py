@@ -2,7 +2,7 @@
 
 This file contains one class, called ColorDB, and several utility functions.
 The class must be instantiated by the get_colordb() function in this file,
-passing it a filename to read a database out of.
+passing it a filename to read a database_COD out of.
 
 The get_colordb() function will try to examine the file to figure out what the
 format of the file is.  If it can't figure out the file format, or it has
@@ -38,7 +38,7 @@ class ColorDB:
     def __init__(self, fp):
         lineno = 2
         self.__name = fp.name
-        # Maintain several dictionaries for indexing into the color database.
+        # Maintain several dictionaries for indexing into the color database_COD.
         # Note that while Tk supports RGB intensities of 4, 8, 12, or 16 bits,
         # for now we only support 8 bit intensities.  At least on OpenWindows,
         # all intensities in the /usr/openwin/lib/rgb.txt file are 8-bit
@@ -246,7 +246,7 @@ def triplet_to_brightness(rgbtuple):
 if __name__ == '__main__':
     colordb = get_colordb('/usr/openwin/lib/rgb.txt')
     if not colordb:
-        print('No parseable color database found')
+        print('No parseable color database_COD found')
         sys.exit(1)
     # on my system, this color matches exactly
     target = 'navy'
@@ -263,7 +263,7 @@ if __name__ == '__main__':
     nearest = colordb.nearest(r, g, b)
     t1 = time.time()
     print('found nearest color', nearest, 'in', t1-t0, 'seconds')
-    # dump the database
+    # dump the database_COD
     for n in colordb.unique_names():
         r, g, b = colordb.find_byname(n)
         aliases = colordb.aliases_of(r, g, b)

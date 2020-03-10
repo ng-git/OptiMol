@@ -1,3 +1,4 @@
 # OptiMol
-predicting Optimal Molecular configuration with machine learning   
-that's started.
+Optimal Molecular configuration prediction from machine learning
+
+The project predicts the 3D structure 

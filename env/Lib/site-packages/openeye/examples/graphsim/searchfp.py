@@ -17,7 +17,7 @@
 # or its use.
 
 #############################################################################
-# Searching fingerprint database
+# Searching fingerprint database_COD
 #############################################################################
 import sys
 from openeye import oechem
@@ -55,7 +55,7 @@ def main(argv=[__name__]):
 
     moldb = oechem.OEMolDatabase()
     if not moldb.Open(mfname):
-        oechem.OEThrow.Fatal("Cannot open molecule database!")
+        oechem.OEThrow.Fatal("Cannot open molecule database_COD!")
 
     ofs = oechem.oemolostream()
     if not ofs.open(ofname):
@@ -83,7 +83,7 @@ def main(argv=[__name__]):
     opts = oegraphsim.OEFPDatabaseOptions()
     oegraphsim.OESetupFPDatabaseOptions(opts, itf)
 
-    # search fingerprint database
+    # search fingerprint database_COD
 
     timer.Start()
     scores = fpdb.GetSortedScores(query, opts)

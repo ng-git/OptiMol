@@ -17,7 +17,7 @@
 # or its use.
 
 #############################################################################
-# Searching fast fingerprint database
+# Searching fast fingerprint database_COD
 #############################################################################
 import sys
 from openeye import oechem
@@ -56,13 +56,13 @@ def main(argv=[__name__]):
 
     moldb = oechem.OEMolDatabase()
     if not moldb.Open(mfname):
-        oechem.OEThrow.Fatal("Cannot open molecule database!")
+        oechem.OEThrow.Fatal("Cannot open molecule database_COD!")
 
     memtype = oegraphsim.OEGetFPDatabaseMemoryType(itf)
 
     fpdb = oegraphsim.OEFastFPDatabase(ffname, memtype)
     if not fpdb.IsValid():
-        oechem.OEThrow.Fatal("Cannot open fingerprint database!")
+        oechem.OEThrow.Fatal("Cannot open fingerprint database_COD!")
     nrfps = fpdb.NumFingerPrints()
     memtypestr = fpdb.GetMemoryTypeString()
 
@@ -81,7 +81,7 @@ def main(argv=[__name__]):
     opts = oegraphsim.OEFPDatabaseOptions()
     oegraphsim.OESetupFPDatabaseOptions(opts, itf)
 
-    # search fingerprint database
+    # search fingerprint database_COD
 
     timer.Start()
     scores = fpdb.GetSortedScores(query, opts)
@@ -130,7 +130,7 @@ InterfaceData = """
     !REQUIRED true
     !KEYLESS 3
     !VISIBILITY simple
-    !BRIEF Input fast fingerprint database filename
+    !BRIEF Input fast fingerprint database_COD filename
   !END
 
   !PARAMETER -out

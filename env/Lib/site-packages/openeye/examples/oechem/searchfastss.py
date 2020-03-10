@@ -17,7 +17,7 @@
 # or its use.
 
 #############################################################################
-# Performs SMARTS search on substructure database file
+# Performs SMARTS search on substructure database_COD file
 #############################################################################
 import sys
 from openeye import oechem
@@ -56,23 +56,23 @@ def main(argv=[__name__]):
     if not oechem.OEParseSmarts(qmol, smarts):
         oechem.OEThrow.Fatal("Unable to parse SMARTS pattern: %s" % smarts)
 
-    # initialize substructure search database
+    # initialize substructure search database_COD
 
     screentype = oechem.OEGetSubSearchScreenType(oechem.OESubSearchScreenType_SMARTS)
 
     if not oechem.OEIsValidSubSearchDatabase(dbfname, screentype):
-        oechem.OEThrow.Fatal("Invalid SMARTS substructure search database file!")
+        oechem.OEThrow.Fatal("Invalid SMARTS substructure search database_COD file!")
 
     ssdb = oechem.OESubSearchDatabase(oechem.OESubSearchDatabaseType_Default, nrthreads)
     tracer = oechem.OEConsoleProgressTracer()
     if not ssdb.Open(dbfname, tracer):
-        oechem.OEThrow.Fatal("Substructure search database can not be initialized!")
+        oechem.OEThrow.Fatal("Substructure search database_COD can not be initialized!")
 
     screenstr = screentype.GetName()
-    infomsg = "Using %d processor(s) to search database with '%s'"
+    infomsg = "Using %d processor(s) to search database_COD with '%s'"
     oechem.OEThrow.Info(infomsg % (ssdb.NumProcessors(), screenstr))
 
-    # search database
+    # search database_COD
 
     if itf.GetBool("-count"):
         oechem.OEThrow.Info("Number of hits: %d" % ssdb.NumMatches(qmol))
@@ -106,16 +106,16 @@ def main(argv=[__name__]):
 
 
 InterfaceData = """\
-!BRIEF [options] -db <database> -s <smarts> -nrthreads <unsigned int>
+!BRIEF [options] -db <database_COD> -s <smarts> -nrthreads <unsigned int>
 
 !CATEGORY "input/output options"
 
-  !PARAMETER -database 1
+  !PARAMETER -database_COD 1
     !ALIAS -db
     !TYPE string
     !REQUIRED true
     !VISIBILITY simple
-    !BRIEF Input substructure search database filename
+    !BRIEF Input substructure search database_COD filename
   !END
 
   !PARAMETER -smarts 2

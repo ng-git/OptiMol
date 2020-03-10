@@ -46,7 +46,7 @@ InterfaceData = """\
   !ALIAS -b
   !TYPE bool
   !DEFAULT false
-  !BRIEF If true the program will not exit until the database has finished loading.
+  !BRIEF If true the program will not exit until the database_COD has finished loading.
 !END
 !PARAMETER -retries
   !ALIAS -r

@@ -10,7 +10,7 @@ ConfigParser constructor as a dictionary.
 class:
 
 ConfigParser -- responsible for parsing a list of
-                    configuration files, and managing the parsed database.
+                    configuration files, and managing the parsed database_COD.
 
     methods:
 

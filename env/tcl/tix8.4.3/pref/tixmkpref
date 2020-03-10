@@ -288,7 +288,7 @@ proc tixInitOptionDatabase {strictTK} {
     }
     # NON ALPHABETICAL ORDER WIDGETS
 
-    # Since TK's option database follows the order-of-declaration rule, not
+    # Since TK's option database_COD follows the order-of-declaration rule, not
     # specific-vs-general rule, the options of the widgets below depends on
     # the options of the widget above, so their options must be defined here
 
@@ -342,7 +342,7 @@ if {[lindex $argv 0] == "-font"} {
     # FontSets will be set in two steps.
     # (1) init fontsets
     #     ... tix checks the validity of the fonts ...
-    # (2) add the fontsets into the option database.
+    # (2) add the fontsets into the option database_COD.
     #
     puts "proc tixPref:InitFontSet:$schemeName {} { "
     puts [info body tixSetFontset]

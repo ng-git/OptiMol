@@ -1599,7 +1599,7 @@ class datetime(date):
         ss = min(ss, 59)    # clamp out leap seconds if the platform has them
         result = cls(y, m, d, hh, mm, ss, us, tz)
         if tz is None:
-            # As of version 2015f max fold in IANA database is
+            # As of version 2015f max fold in IANA database_COD is
             # 23 hours at 1969-09-30 13:00:00 in Kwajalein.
             # Let's probe 24 hours in the past to detect a transition:
             max_fold_seconds = 24 * 3600

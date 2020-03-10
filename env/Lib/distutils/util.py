@@ -162,7 +162,7 @@ def check_environ ():
             os.environ['HOME'] = pwd.getpwuid(os.getuid())[5]
         except (ImportError, KeyError):
             # bpo-10496: if the current user identifier doesn't exist in the
-            # password database, do nothing
+            # password database_COD, do nothing
             pass
 
     if 'PLAT' not in os.environ:

@@ -1271,7 +1271,7 @@ Type.__doc__ = \
       U = TypeVar('U', bound=User)
       def new_user(user_class: Type[U]) -> U:
           user = user_class()
-          # (Here we could write the user object to a database)
+          # (Here we could write the user object to a database_COD)
           return user
 
       joe = new_user(BasicUser)

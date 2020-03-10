@@ -39,7 +39,7 @@ class ShapeCluster:
     def __init__(self, dbname, cutoff, shapeOnly):
         self.cutoff = cutoff
 
-        # set up and options and database based upon shapeOnly
+        # set up and options and database_COD based upon shapeOnly
         self.defaultOptions = oefastrocs.OEShapeDatabaseOptions()
         dbtype = oefastrocs.OEShapeDatabaseType_Default
         if shapeOnly:
@@ -50,7 +50,7 @@ class ShapeCluster:
         self.dbmols = []
         volumes = []
 
-        # read in database
+        # read in database_COD
         ifs = oechem.oemolistream()
         if not ifs.open(dbname):
             oechem.OEThrow.Fatal("Unable to open '%s'" % dbname)
@@ -133,11 +133,11 @@ class ShapeCluster:
 
 
 InterfaceData = """\
-!BRIEF [-shapeOnly] [-cutoff 0.75] [-dbase] <database> [-clusters] <clusters.oeb>
+!BRIEF [-shapeOnly] [-cutoff 0.75] [-dbase] <database_COD> [-clusters] <clusters.oeb>
 !PARAMETER -dbase
   !TYPE string
   !REQUIRED true
-  !BRIEF Input database to select from
+  !BRIEF Input database_COD to select from
   !KEYLESS 1
 !END
 !PARAMETER -clusters

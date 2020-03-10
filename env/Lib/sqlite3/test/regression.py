@@ -74,7 +74,7 @@ class RegressionTests(unittest.TestCase):
 
     def CheckStatementFinalizationOnCloseDb(self):
         # pysqlite versions <= 2.3.3 only finalized statements in the statement
-        # cache when closing the database. statements that were still
+        # cache when closing the database_COD. statements that were still
         # referenced in cursors weren't closed and could provoke "
         # "OperationalError: Unable to close due to unfinalised statements".
         con = sqlite.connect(":memory:")

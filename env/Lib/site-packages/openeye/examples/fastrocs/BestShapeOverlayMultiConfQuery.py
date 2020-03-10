@@ -33,14 +33,14 @@ def main(argv=[__name__]):
     parser = argparse.ArgumentParser()
 
     # positional arguments retaining backward compatibility
-    parser.add_argument('database',
-                        help='File containing the database molecules to be search \
+    parser.add_argument('database_COD',
+                        help='File containing the database_COD molecules to be search \
                               (format not restricted to *.oeb).')
     parser.add_argument('query', default=[], nargs='+',
                         help='File containing the query molecule(s) to be search \
                               (format not restricted to *.oeb).')
     parser.add_argument('--nHits', dest='nHits', type=int, default=100,
-                        help='Number of hits to return (default = number of database mols).')
+                        help='Number of hits to return (default = number of database_COD mols).')
     parser.add_argument('--cutoff',  dest='cutoff', type=float, default=argparse.SUPPRESS,
                         help='Specify a cutoff criteria for scores.')
     parser.add_argument('--tversky', dest='tversky', action='store_true', default=argparse.SUPPRESS,
@@ -65,12 +65,12 @@ def main(argv=[__name__]):
         opts.SetSimFunc(args.tversky)
         print("Tversky similarity scoring set.")
 
-    # read in database
+    # read in database_COD
     ifs = oechem.oemolistream()
     if not ifs.open(dbname):
         oechem.OEThrow.Fatal("Unable to open '%s'" % dbname)
 
-    print("\nOpening database file %s ..." % dbname)
+    print("\nOpening database_COD file %s ..." % dbname)
     timer = oechem.OEWallTimer()
     dbase = oefastrocs.OEShapeDatabase()
     moldb = oechem.OEMolDatabase()
@@ -82,7 +82,7 @@ def main(argv=[__name__]):
         oechem.OEThrow.Fatal("Unable to initialize OEShapeDatabase on '%s'" % dbname)
 
     dots.Total()
-    print("%f seconds to load database\n" % timer.Elapsed())
+    print("%f seconds to load database_COD\n" % timer.Elapsed())
 
     for qfname in args.query:
 
@@ -120,7 +120,7 @@ def main(argv=[__name__]):
                     dbmol = oechem.OEMol()
                     dbmolidx = score.GetMolIdx()
                     if not moldb.GetMolecule(dbmol, dbmolidx):
-                        print("Unable to retrieve molecule '%u' from the database" % dbmolidx)
+                        print("Unable to retrieve molecule '%u' from the database_COD" % dbmolidx)
                         continue
 
                     mol = oechem.OEGraphMol(dbmol.GetConf(oechem.OEHasConfIdx(score.GetConfIdx())))

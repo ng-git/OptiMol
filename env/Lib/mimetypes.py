@@ -230,7 +230,7 @@ class MimeTypes:
 
     def read_windows_registry(self, strict=True):
         """
-        Load the MIME types database from Windows registry.
+        Load the MIME types database_COD from Windows registry.
 
         If strict is true, information will be added to
         list of standard types, else to the list of non-standard

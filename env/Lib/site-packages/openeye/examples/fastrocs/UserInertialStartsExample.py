@@ -29,7 +29,7 @@ sys.path.insert(0, os.path.realpath(oepy))
 
 def main(argv=[__name__]):
     if len(argv) < 3:
-        oechem.OEThrow.Usage("%s <database> [<queries> ... ]" % argv[0])
+        oechem.OEThrow.Usage("%s <database_COD> [<queries> ... ]" % argv[0])
         return 0
 
     # check system
@@ -37,9 +37,9 @@ def main(argv=[__name__]):
         oechem.OEThrow.Info("No supported GPU available!")
         return 0
 
-    # read in database
+    # read in database_COD
     dbname = argv[1]
-    print("Opening database file %s ..." % dbname)
+    print("Opening database_COD file %s ..." % dbname)
     dbase = oefastrocs.OEShapeDatabase()
     moldb = oechem.OEMolDatabase()
 
@@ -100,7 +100,7 @@ def main(argv=[__name__]):
             dbmol = oechem.OEMol()
             molidx = score.GetMolIdx()
             if not moldb.GetMolecule(dbmol, molidx):
-                print("Unable to retrieve molecule '%u' from the database" % molidx)
+                print("Unable to retrieve molecule '%u' from the database_COD" % molidx)
                 continue
 
             mol = oechem.OEGraphMol(dbmol.GetConf(oechem.OEHasConfIdx(score.GetConfIdx())))
