@@ -29,7 +29,6 @@
 #define QT_FEATURE_movie 1
 #define QT_FEATURE_opengles3 -1
 #define QT_FEATURE_opengles31 -1
-#define QT_FEATURE_opengles32 -1
 #define QT_FEATURE_openvg -1
 #define QT_FEATURE_pdf 1
 #define QT_FEATURE_picture 1
@@ -42,6 +41,5 @@
 #define QT_FEATURE_texthtmlparser 1
 #define QT_FEATURE_textodfwriter 1
 #define QT_FEATURE_validator 1
-#define QT_FEATURE_vulkan -1
 #define QT_FEATURE_whatsthis 1
 #define QT_FEATURE_wheelevent 1

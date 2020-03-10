@@ -47,19 +47,19 @@
 QT_BEGIN_NAMESPACE
 
 
-#if !defined(QT_NO_SHORTCUT) || defined(Q_CLANG_QDOC)
+#ifndef QT_NO_SHORTCUT
 
 class QKeySequence;
 
 /*****************************************************************************
   QKeySequence stream functions
  *****************************************************************************/
-#if !defined(QT_NO_DATASTREAM) || defined(Q_CLANG_QDOC)
+#ifndef QT_NO_DATASTREAM
 Q_GUI_EXPORT QDataStream &operator<<(QDataStream &in, const QKeySequence &ks);
 Q_GUI_EXPORT QDataStream &operator>>(QDataStream &out, QKeySequence &ks);
 #endif
 
-#if defined(Q_CLANG_QDOC)
+#ifdef Q_QDOC
 void qt_set_sequence_auto_mnemonic(bool b);
 #endif
 
@@ -225,7 +225,7 @@ public:
 
 Q_DECLARE_SHARED(QKeySequence)
 
-#if !defined(QT_NO_DEBUG_STREAM) || defined(Q_CLANG_QDOC)
+#ifndef QT_NO_DEBUG_STREAM
 Q_GUI_EXPORT QDebug operator<<(QDebug, const QKeySequence &);
 #endif
 

@@ -89,7 +89,7 @@ public:
     QCollator &operator=(const QCollator &);
 #ifdef Q_COMPILER_RVALUE_REFS
     QCollator(QCollator &&other) Q_DECL_NOTHROW
-        : d(other.d) { other.d = nullptr; }
+        : d(other.d) { other.d = Q_NULLPTR; }
     QCollator &operator=(QCollator &&other) Q_DECL_NOTHROW
     { swap(other); return *this; }
 #endif

@@ -114,7 +114,7 @@ Q_SIGNALS:
     void cameraAspectRatioModeChanged(CameraAspectRatioMode mode);
 
 protected:
-    void showEvent(QShowEvent *e) override;
+    void showEvent(QShowEvent *e) Q_DECL_OVERRIDE;
 
 private:
     void onSceneCreated(QObject *rootObject);

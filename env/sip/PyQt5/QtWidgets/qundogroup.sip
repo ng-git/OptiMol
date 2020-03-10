@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -54,4 +54,7 @@ signals:
     void indexChanged(int idx);
     void redoTextChanged(const QString &redoText);
     void undoTextChanged(const QString &undoText);
+
+private:
+    QUndoGroup(const QUndoGroup &);
 };

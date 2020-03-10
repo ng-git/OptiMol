@@ -1,6 +1,6 @@
-QT.3dquick.VERSION = 5.12.5
+QT.3dquick.VERSION = 5.9.7
 QT.3dquick.name = Qt3DQuick
-QT.3dquick.module = Qt53DQuick_conda
+QT.3dquick.module = Qt53DQuick
 QT.3dquick.libs = $$QT_MODULE_LIB_BASE
 QT.3dquick.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/Qt3DQuick
 QT.3dquick.frameworks =

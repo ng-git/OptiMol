@@ -48,6 +48,9 @@
 
 QT_BEGIN_NAMESPACE
 
+
+#ifndef QT_NO_SSL
+
 class QSslCertificateExtensionPrivate;
 
 class Q_NETWORK_EXPORT QSslCertificateExtension
@@ -76,6 +79,8 @@ private:
 };
 
 Q_DECLARE_SHARED(QSslCertificateExtension)
+
+#endif // QT_NO_SSL
 
 QT_END_NAMESPACE
 

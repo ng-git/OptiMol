@@ -1,6 +1,6 @@
-QT.charts.VERSION = 5.12.5
+QT.charts.VERSION = 5.9.7
 QT.charts.name = QtCharts
-QT.charts.module = Qt5Charts_conda
+QT.charts.module = Qt5Charts
 QT.charts.libs = $$QT_MODULE_LIB_BASE
 QT.charts.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtCharts
 QT.charts.frameworks =

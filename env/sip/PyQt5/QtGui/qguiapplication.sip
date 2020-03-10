@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -221,16 +221,14 @@ signals:
 %If (Qt_5_2_0 -)
     void applicationStateChanged(Qt::ApplicationState state);
 %End
+
+public:
 %If (Qt_5_8_0 -)
     void applicationDisplayNameChanged();
 %End
-
-public:
     static void setApplicationDisplayName(const QString &name);
     static QString applicationDisplayName();
     static QWindow *modalWindow();
-    static QStyleHints *styleHints();
-    static QInputMethod *inputMethod();
     qreal devicePixelRatio() const;
 %If (PyQt_SessionManager)
     bool isSessionRestored() const;
@@ -295,14 +293,9 @@ public:
 %If (Qt_5_7_0 -)
     static QString desktopFileName();
 %End
-%If (Qt_5_10_0 -)
-    static QScreen *screenAt(const QPoint &point);
-%End
 
-signals:
-%If (Qt_5_11_0 -)
-    void fontChanged(const QFont &font);
-%End
+private:
+    QGuiApplication(const QGuiApplication &);
 };
 
 %ModuleHeaderCode

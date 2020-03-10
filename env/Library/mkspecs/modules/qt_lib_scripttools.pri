@@ -1,6 +1,6 @@
-QT.scripttools.VERSION = 5.12.5
+QT.scripttools.VERSION = 5.9.7
 QT.scripttools.name = QtScriptTools
-QT.scripttools.module = Qt5ScriptTools_conda
+QT.scripttools.module = Qt5ScriptTools
 QT.scripttools.libs = $$QT_MODULE_LIB_BASE
 QT.scripttools.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtScriptTools
 QT.scripttools.frameworks =

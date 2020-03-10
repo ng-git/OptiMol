@@ -1,6 +1,6 @@
-QT.qmltest.VERSION = 5.12.5
+QT.qmltest.VERSION = 5.9.7
 QT.qmltest.name = QtQuickTest
-QT.qmltest.module = Qt5QuickTest_conda
+QT.qmltest.module = Qt5QuickTest
 QT.qmltest.libs = $$QT_MODULE_LIB_BASE
 QT.qmltest.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtQuickTest
 QT.qmltest.frameworks =

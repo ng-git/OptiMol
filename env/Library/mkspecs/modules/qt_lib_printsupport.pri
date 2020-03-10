@@ -1,6 +1,6 @@
-QT.printsupport.VERSION = 5.12.5
+QT.printsupport.VERSION = 5.9.7
 QT.printsupport.name = QtPrintSupport
-QT.printsupport.module = Qt5PrintSupport_conda
+QT.printsupport.module = Qt5PrintSupport
 QT.printsupport.libs = $$QT_MODULE_LIB_BASE
 QT.printsupport.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtPrintSupport
 QT.printsupport.frameworks =

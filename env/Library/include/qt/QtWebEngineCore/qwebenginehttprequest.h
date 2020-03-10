@@ -52,7 +52,7 @@ QT_BEGIN_NAMESPACE
 
 class QWebEngineHttpRequestPrivate;
 
-class QWEBENGINECORE_EXPORT QWebEngineHttpRequest
+class QWEBENGINE_EXPORT QWebEngineHttpRequest
 {
 public:
     enum Method {

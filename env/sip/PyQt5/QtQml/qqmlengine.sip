@@ -2,7 +2,7 @@
 //
 // This file is part of the QtQml Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -164,30 +164,6 @@ public:
     QString offlineStorageDatabaseFilePath(const QString &databaseName) const;
 %End
 
-public slots:
-%If (Qt_5_10_0 -)
-    void retranslate();
-%End
-
-public:
-%If (Qt_5_12_0 -)
-    SIP_PYOBJECT singletonInstance(int qmlTypeId) /TypeHint="QObject"/;
-%MethodCode
-        QJSValue instance = sipCpp->singletonInstance<QJSValue>(a0);
-        
-        if (instance.isQObject())
-        {
-            sipRes = sipConvertFromType(instance.toQObject(), sipType_QObject, NULL);
-                
-            if (!sipRes)
-                sipError = sipErrorFail;
-        }
-        else
-        {
-            sipRes = Py_None;
-            Py_INCREF(sipRes);
-        }
-%End
-
-%End
+private:
+    QQmlEngine(const QQmlEngine &);
 };

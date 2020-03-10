@@ -2,7 +2,7 @@
 //
 // This file is part of the QtDBus Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -70,11 +70,5 @@ public:
 %End
 %If (Qt_5_6_0 -)
     static QDBusMessage createTargetedSignal(const QString &service, const QString &path, const QString &interface, const QString &name);
-%End
-%If (Qt_5_12_0 -)
-    void setInteractiveAuthorizationAllowed(bool enable);
-%End
-%If (Qt_5_12_0 -)
-    bool isInteractiveAuthorizationAllowed() const;
 %End
 };

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -62,7 +62,6 @@ public:
     bool makeCurrent(QSurface *surface);
     void doneCurrent();
     void swapBuffers(QSurface *surface);
-    QFunctionPointer getProcAddress(const QByteArray &procName) const;
     QSurface *surface() const;
     static QOpenGLContext *currentContext();
     static bool areSharing(QOpenGLContext *first, QOpenGLContext *second);

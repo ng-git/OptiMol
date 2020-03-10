@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -144,4 +144,7 @@ protected:
     virtual void onEntry(QEvent *event);
     virtual void onExit(QEvent *event);
     virtual bool event(QEvent *e);
+
+private:
+    QStateMachine(const QStateMachine &);
 };

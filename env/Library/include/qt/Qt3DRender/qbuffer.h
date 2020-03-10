@@ -95,12 +95,11 @@ public:
     };
     Q_ENUM(AccessType) // LCOV_EXCL_LINE
 
-    explicit QBuffer(Qt3DCore::QNode *parent = nullptr);
-    QT_DEPRECATED explicit QBuffer(BufferType ty, Qt3DCore::QNode *parent = nullptr);
+    explicit QBuffer(BufferType ty = QBuffer::VertexBuffer, Qt3DCore::QNode *parent = nullptr);
     ~QBuffer();
 
     UsageType usage() const;
-    QT_DEPRECATED BufferType type() const;
+    BufferType type() const;
     bool isSyncData() const;
     AccessType accessType() const;
 
@@ -113,13 +112,13 @@ public:
     Q_INVOKABLE void updateData(int offset, const QByteArray &bytes);
 
 public Q_SLOTS:
-    QT_DEPRECATED void setType(BufferType type);
+    void setType(BufferType type);
     void setUsage(UsageType usage);
     void setSyncData(bool syncData);
     void setAccessType(AccessType access);
 
 protected:
-    void sceneChangeEvent(const Qt3DCore::QSceneChangePtr &change) override;
+    void sceneChangeEvent(const Qt3DCore::QSceneChangePtr &change) Q_DECL_OVERRIDE;
 
 Q_SIGNALS:
     void dataChanged(const QByteArray &bytes);
@@ -131,7 +130,7 @@ Q_SIGNALS:
 
 private:
     Q_DECLARE_PRIVATE(QBuffer)
-    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const override;
+    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const Q_DECL_OVERRIDE;
 };
 
 } // namespace Qt3DRender

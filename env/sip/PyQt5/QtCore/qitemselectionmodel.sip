@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -137,6 +137,9 @@ signals:
 %If (Qt_5_5_0 -)
     void modelChanged(QAbstractItemModel *model);
 %End
+
+private:
+    QItemSelectionModel(const QItemSelectionModel &);
 };
 
 QFlags<QItemSelectionModel::SelectionFlag> operator|(QItemSelectionModel::SelectionFlag f1, QFlags<QItemSelectionModel::SelectionFlag> f2);
@@ -175,12 +178,16 @@ public:
 
     void __setitem__(SIP_PYSLICE slice, const QItemSelection &list);
 %MethodCode
-        Py_ssize_t start, stop, step, slicelength;
+        Py_ssize_t len, start, stop, step, slicelength, i;
         
-        if (sipConvertFromSliceObject(a0, sipCpp->count(), &start, &stop, &step, &slicelength) < 0)
-        {
+        len = sipCpp->count();
+        
+        #if PY_VERSION_HEX >= 0x03020000
+        if (PySlice_GetIndicesEx(a0, len, &start, &stop, &step, &slicelength) < 0)
+        #else
+        if (PySlice_GetIndicesEx((PySliceObject *)a0, len, &start, &stop, &step, &slicelength) < 0)
+        #endif
             sipIsErr = 1;
-        }
         else
         {
             int vlen = a1->count();
@@ -194,7 +201,7 @@ public:
             {
                 QItemSelection::const_iterator it = a1->begin();
         
-                for (Py_ssize_t i = 0; i < slicelength; ++i)
+                for (i = 0; i < slicelength; ++i)
                 {
                     (*sipCpp)[start] = *it;
                     start += step;
@@ -206,7 +213,11 @@ public:
 
     void __delitem__(int i);
 %MethodCode
-        if ((a0 = (int)sipConvertFromSequenceIndex(a0, sipCpp->count())) < 0)
+        int len;
+        
+        len = sipCpp->count();
+        
+        if ((a0 = (int)sipConvertFromSequenceIndex(a0, len)) < 0)
             sipIsErr = 1;
         else
             sipCpp->removeAt(a0);
@@ -214,20 +225,22 @@ public:
 
     void __delitem__(SIP_PYSLICE slice);
 %MethodCode
-        Py_ssize_t start, stop, step, slicelength;
+        Py_ssize_t len, start, stop, step, slicelength, i;
         
-        if (sipConvertFromSliceObject(a0, sipCpp->count(), &start, &stop, &step, &slicelength) < 0)
-        {
+        len = sipCpp->count();
+        
+        #if PY_VERSION_HEX >= 0x03020000
+        if (PySlice_GetIndicesEx(a0, len, &start, &stop, &step, &slicelength) < 0)
+        #else
+        if (PySlice_GetIndicesEx((PySliceObject *)a0, len, &start, &stop, &step, &slicelength) < 0)
+        #endif
             sipIsErr = 1;
-        }
         else
-        {
-            for (Py_ssize_t i = 0; i < slicelength; ++i)
+            for (i = 0; i < slicelength; ++i)
             {
                 sipCpp->removeAt(start);
                 start += step - 1;
             }
-        }
 %End
 
     QItemSelectionRange operator[](int i);
@@ -242,17 +255,21 @@ public:
 
     QItemSelection operator[](SIP_PYSLICE slice);
 %MethodCode
-        Py_ssize_t start, stop, step, slicelength;
+        Py_ssize_t len, start, stop, step, slicelength, i;
         
-        if (sipConvertFromSliceObject(a0, sipCpp->count(), &start, &stop, &step, &slicelength) < 0)
-        {
+        len = sipCpp->count();
+        
+        #if PY_VERSION_HEX >= 0x03020000
+        if (PySlice_GetIndicesEx(a0, len, &start, &stop, &step, &slicelength) < 0)
+        #else
+        if (PySlice_GetIndicesEx((PySliceObject *)a0, len, &start, &stop, &step, &slicelength) < 0)
+        #endif
             sipIsErr = 1;
-        }
         else
         {
             sipRes = new QItemSelection();
         
-            for (Py_ssize_t i = 0; i < slicelength; ++i)
+            for (i = 0; i < slicelength; ++i)
             {
                 (*sipRes) += (*sipCpp)[start];
                 start += step;

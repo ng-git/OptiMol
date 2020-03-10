@@ -61,9 +61,8 @@ public:
         ClearStencilBuffer  = 0x0004
     };
     Q_DECLARE_FLAGS(ClearMode, ClearModeBit)
-    Q_FLAG(ClearMode)
 
-    ~QSGAbstractRenderer() override;
+    virtual ~QSGAbstractRenderer();
 
     void setRootNode(QSGRootNode *node);
     QSGRootNode *rootNode() const;
@@ -91,7 +90,7 @@ Q_SIGNALS:
     void sceneGraphChanged();
 
 protected:
-    explicit QSGAbstractRenderer(QObject *parent = nullptr);
+    explicit QSGAbstractRenderer(QObject *parent = Q_NULLPTR);
     virtual void nodeChanged(QSGNode *node, QSGNode::DirtyState state) = 0;
 
 private:

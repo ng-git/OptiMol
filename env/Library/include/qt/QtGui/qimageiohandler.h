@@ -140,7 +140,7 @@ class Q_GUI_EXPORT QImageIOPlugin : public QObject
 {
     Q_OBJECT
 public:
-    explicit QImageIOPlugin(QObject *parent = nullptr);
+    explicit QImageIOPlugin(QObject *parent = Q_NULLPTR);
     virtual ~QImageIOPlugin();
 
     enum Capability {

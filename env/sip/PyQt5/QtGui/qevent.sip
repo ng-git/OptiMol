@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -263,9 +263,6 @@ public:
 %End
 %If (Qt_5_7_0 -)
     QWheelEvent(const QPointF &pos, const QPointF &globalPos, QPoint pixelDelta, QPoint angleDelta, int qt4Delta, Qt::Orientation qt4Orientation, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, Qt::ScrollPhase phase, Qt::MouseEventSource source, bool inverted);
-%End
-%If (Qt_5_12_0 -)
-    QWheelEvent(QPointF pos, QPointF globalPos, QPoint pixelDelta, QPoint angleDelta, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, Qt::ScrollPhase phase, bool inverted, Qt::MouseEventSource source = Qt::MouseEventNotSynthesized);
 %End
     virtual ~QWheelEvent();
     QPoint pos() const;
@@ -767,7 +764,7 @@ public:
 %End
     };
 
-    QTouchEvent(QEvent::Type eventType, QTouchDevice *device = 0, Qt::KeyboardModifiers modifiers = Qt::NoModifier, Qt::TouchPointStates touchPointStates = Qt::TouchPointStates(), const QList<QTouchEvent::TouchPoint> &touchPoints = QList<QTouchEvent::TouchPoint>());
+    QTouchEvent(QEvent::Type eventType, QTouchDevice *device = 0, Qt::KeyboardModifiers modifiers = Qt::NoModifier, Qt::TouchPointStates touchPointStates = 0, const QList<QTouchEvent::TouchPoint> &touchPoints = QList<QTouchEvent::TouchPoint>());
     virtual ~QTouchEvent();
     QObject *target() const;
     Qt::TouchPointStates touchPointStates() const;
@@ -865,12 +862,6 @@ class QNativeGestureEvent : QInputEvent
 
 public:
     QNativeGestureEvent(Qt::NativeGestureType type, const QPointF &localPos, const QPointF &windowPos, const QPointF &screenPos, qreal value, ulong sequenceId, quint64 intArgument);
-%If (Qt_5_10_0 -)
-    QNativeGestureEvent(Qt::NativeGestureType type, const QTouchDevice *dev, const QPointF &localPos, const QPointF &windowPos, const QPointF &screenPos, qreal value, ulong sequenceId, quint64 intArgument);
-%End
-%If (Qt_5_10_0 -)
-    virtual ~QNativeGestureEvent();
-%End
     Qt::NativeGestureType gestureType() const;
     qreal value() const;
     const QPoint pos() const;
@@ -878,9 +869,6 @@ public:
     const QPointF &localPos() const;
     const QPointF &windowPos() const;
     const QPointF &screenPos() const;
-%If (Qt_5_10_0 -)
-    const QTouchDevice *device() const;
-%End
 };
 
 %End

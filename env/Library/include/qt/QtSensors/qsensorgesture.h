@@ -76,8 +76,8 @@ private:
 
 private:
     // Pretend to be a Q_OBJECT
-    const QMetaObject *metaObject() const override;
-    int qt_metacall(QMetaObject::Call, int, void **) override;
+    const QMetaObject *metaObject() const;
+    int qt_metacall(QMetaObject::Call, int, void **);
 
 #ifdef Q_QDOC
 Q_SIGNALS:

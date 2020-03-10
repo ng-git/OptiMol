@@ -42,7 +42,6 @@
 
 #include <Qt3DCore/qnodecreatedchange.h>
 #include <Qt3DCore/qnodeid.h>
-#include <Qt3DCore/qnodecommand.h>
 #include <Qt3DCore/qscenechange.h>
 #include <Qt3DCore/qt3dcore_global.h>
 
@@ -91,9 +90,6 @@ protected:
     Q_DECLARE_PRIVATE(QBackendNode)
     explicit QBackendNode(QBackendNodePrivate &dd);
     void notifyObservers(const QSceneChangePtr &e);
-    QNodeCommand::CommandId sendCommand(const QString &name, const QVariant &data,
-                                        QNodeCommand::CommandId replyTo = QNodeCommand::CommandId());
-    void sendReply(const QNodeCommandPtr &command);
     virtual void sceneChangeEvent(const QSceneChangePtr &e);
 
     QBackendNodePrivate *d_ptr;

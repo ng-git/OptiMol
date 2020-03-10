@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -76,4 +76,7 @@ public:
     QString fileName(const QModelIndex &index) const;
     QIcon fileIcon(const QModelIndex &index) const;
     QFileInfo fileInfo(const QModelIndex &index) const;
+
+private:
+    QDirModel(const QDirModel &);
 };

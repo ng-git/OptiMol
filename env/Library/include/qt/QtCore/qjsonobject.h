@@ -74,25 +74,6 @@ public:
     QJsonObject(const QJsonObject &other);
     QJsonObject &operator =(const QJsonObject &other);
 
-    QJsonObject(QJsonObject &&other) Q_DECL_NOTHROW
-        : d(other.d), o(other.o)
-    {
-        other.d = nullptr;
-        other.o = nullptr;
-    }
-
-    QJsonObject &operator =(QJsonObject &&other) Q_DECL_NOTHROW
-    {
-        swap(other);
-        return *this;
-    }
-
-    void swap(QJsonObject &other) Q_DECL_NOTHROW
-    {
-        qSwap(d, other.d);
-        qSwap(o, other.o);
-    }
-
     static QJsonObject fromVariantMap(const QVariantMap &map);
     QVariantMap toVariantMap() const;
     static QJsonObject fromVariantHash(const QVariantHash &map);
@@ -135,7 +116,7 @@ public:
         typedef QJsonValueRef reference;
         typedef QJsonValuePtr pointer;
 
-        Q_DECL_CONSTEXPR inline iterator() : o(nullptr), i(0) {}
+        Q_DECL_CONSTEXPR inline iterator() : o(Q_NULLPTR), i(0) {}
         Q_DECL_CONSTEXPR inline iterator(QJsonObject *obj, int index) : o(obj), i(index) {}
 
         inline QString key() const { return o->keyAt(i); }
@@ -178,7 +159,7 @@ public:
         typedef QJsonValue reference;
         typedef QJsonValuePtr pointer;
 
-        Q_DECL_CONSTEXPR inline const_iterator() : o(nullptr), i(0) {}
+        Q_DECL_CONSTEXPR inline const_iterator() : o(Q_NULLPTR), i(0) {}
         Q_DECL_CONSTEXPR inline const_iterator(const QJsonObject *obj, int index)
             : o(obj), i(index) {}
         inline const_iterator(const iterator &other)
@@ -259,10 +240,6 @@ private:
     QJsonPrivate::Data *d;
     QJsonPrivate::Object *o;
 };
-
-Q_DECLARE_SHARED_NOT_MOVABLE_UNTIL_QT6(QJsonObject)
-
-Q_CORE_EXPORT uint qHash(const QJsonObject &object, uint seed = 0);
 
 #if !defined(QT_NO_DEBUG_STREAM) && !defined(QT_JSON_READONLY)
 Q_CORE_EXPORT QDebug operator<<(QDebug, const QJsonObject &);

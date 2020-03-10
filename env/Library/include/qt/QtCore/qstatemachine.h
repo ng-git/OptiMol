@@ -60,7 +60,7 @@ class Q_CORE_EXPORT QStateMachine : public QState
     Q_PROPERTY(QString errorString READ errorString)
     Q_PROPERTY(QState::RestorePolicy globalRestorePolicy READ globalRestorePolicy WRITE setGlobalRestorePolicy)
     Q_PROPERTY(bool running READ isRunning WRITE setRunning NOTIFY runningChanged)
-#if QT_CONFIG(animation)
+#ifndef QT_NO_ANIMATION
     Q_PROPERTY(bool animated READ isAnimated WRITE setAnimated)
 #endif
 public:
@@ -109,8 +109,8 @@ public:
         NoCommonAncestorForTransitionError
     };
 
-    explicit QStateMachine(QObject *parent = nullptr);
-    explicit QStateMachine(QState::ChildMode childMode, QObject *parent = nullptr);
+    explicit QStateMachine(QObject *parent = Q_NULLPTR);
+    explicit QStateMachine(QState::ChildMode childMode, QObject *parent = Q_NULLPTR);
     ~QStateMachine();
 
     void addState(QAbstractState *state);
@@ -122,14 +122,14 @@ public:
 
     bool isRunning() const;
 
-#if QT_CONFIG(animation)
+#ifndef QT_NO_ANIMATION
     bool isAnimated() const;
     void setAnimated(bool enabled);
 
     void addDefaultAnimation(QAbstractAnimation *animation);
     QList<QAbstractAnimation *> defaultAnimations() const;
     void removeDefaultAnimation(QAbstractAnimation *animation);
-#endif // animation
+#endif // QT_NO_ANIMATION
 
     QState::RestorePolicy globalRestorePolicy() const;
     void setGlobalRestorePolicy(QState::RestorePolicy restorePolicy);
@@ -141,7 +141,7 @@ public:
     QSet<QAbstractState*> configuration() const;
 
 #if QT_CONFIG(qeventtransition)
-    bool eventFilter(QObject *watched, QEvent *event) override;
+    bool eventFilter(QObject *watched, QEvent *event) Q_DECL_OVERRIDE;
 #endif
 
 public Q_SLOTS:
@@ -156,8 +156,8 @@ Q_SIGNALS:
 
 
 protected:
-    void onEntry(QEvent *event) override;
-    void onExit(QEvent *event) override;
+    void onEntry(QEvent *event) Q_DECL_OVERRIDE;
+    void onExit(QEvent *event) Q_DECL_OVERRIDE;
 
     virtual void beginSelectTransitions(QEvent *event);
     virtual void endSelectTransitions(QEvent *event);
@@ -165,7 +165,7 @@ protected:
     virtual void beginMicrostep(QEvent *event);
     virtual void endMicrostep(QEvent *event);
 
-    bool event(QEvent *e) override;
+    bool event(QEvent *e) Q_DECL_OVERRIDE;
 
 protected:
     QStateMachine(QStateMachinePrivate &dd, QObject *parent);
@@ -175,7 +175,7 @@ private:
     Q_DECLARE_PRIVATE(QStateMachine)
     Q_PRIVATE_SLOT(d_func(), void _q_start())
     Q_PRIVATE_SLOT(d_func(), void _q_process())
-#if QT_CONFIG(animation)
+#ifndef QT_NO_ANIMATION
     Q_PRIVATE_SLOT(d_func(), void _q_animationFinished())
 #endif
     Q_PRIVATE_SLOT(d_func(), void _q_startDelayedEventTimer(int, int))

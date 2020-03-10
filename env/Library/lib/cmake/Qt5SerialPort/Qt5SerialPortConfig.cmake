@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 SerialPort module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5SerialPort_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5SerialPort_VERSION instead.
-set(Qt5SerialPort_VERSION_STRING 5.12.5)
+set(Qt5SerialPort_VERSION_STRING 5.9.7)
 
 set(Qt5SerialPort_LIBRARIES Qt5::SerialPort)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::SerialPort)
 
     set(_Qt5SerialPort_OWN_INCLUDE_DIRS "${_qt5SerialPort_install_prefix}/include/qt/" "${_qt5SerialPort_install_prefix}/include/qt/QtSerialPort")
     set(Qt5SerialPort_PRIVATE_INCLUDE_DIRS
-        "${_qt5SerialPort_install_prefix}/include/qt/QtSerialPort/5.12.5"
-        "${_qt5SerialPort_install_prefix}/include/qt/QtSerialPort/5.12.5/QtSerialPort"
+        "${_qt5SerialPort_install_prefix}/include/qt/QtSerialPort/5.9.7"
+        "${_qt5SerialPort_install_prefix}/include/qt/QtSerialPort/5.9.7/QtSerialPort"
     )
 
     foreach(_dir ${_Qt5SerialPort_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::SerialPort)
     foreach(_module_dep ${_Qt5SerialPort_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5SerialPort_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5SerialPort_FIND_VERSION_EXACT}
                 ${_Qt5SerialPort_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5SerialPort_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::SerialPort)
     set_property(TARGET Qt5::SerialPort PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_SERIALPORT_LIB)
 
-    set_property(TARGET Qt5::SerialPort PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::SerialPort PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5SerialPort_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5SerialPort_PRIVATE_DIR ${Qt5SerialPort_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5SerialPort_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::SerialPort)
         endif()
     endforeach()
 
-    if (_Qt5SerialPort_PRIVATE_DIRS_EXIST)
+    if (_Qt5SerialPort_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::SerialPortPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::SerialPortPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5SerialPort_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::SerialPort)
         )
     endif()
 
-    _populate_SerialPort_target_properties(RELEASE "Qt5SerialPort_conda.dll" "Qt5SerialPort_conda.lib" )
+    _populate_SerialPort_target_properties(RELEASE "Qt5SerialPort.dll" "Qt5SerialPort.lib" )
 
     if (EXISTS
-        "${_qt5SerialPort_install_prefix}/bin/Qt5SerialPort_condad.dll"
+        "${_qt5SerialPort_install_prefix}/bin/Qt5SerialPortd.dll"
       AND EXISTS
-        "${_qt5SerialPort_install_prefix}/lib/Qt5SerialPort_condad.lib" )
-        _populate_SerialPort_target_properties(DEBUG "Qt5SerialPort_condad.dll" "Qt5SerialPort_condad.lib" )
+        "${_qt5SerialPort_install_prefix}/lib/Qt5SerialPortd.lib" )
+        _populate_SerialPort_target_properties(DEBUG "Qt5SerialPortd.dll" "Qt5SerialPortd.lib" )
     endif()
 
 

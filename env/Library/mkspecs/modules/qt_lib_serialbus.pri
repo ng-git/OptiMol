@@ -1,6 +1,6 @@
-QT.serialbus.VERSION = 5.12.5
+QT.serialbus.VERSION = 5.9.7
 QT.serialbus.name = QtSerialBus
-QT.serialbus.module = Qt5SerialBus_conda
+QT.serialbus.module = Qt5SerialBus
 QT.serialbus.libs = $$QT_MODULE_LIB_BASE
 QT.serialbus.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtSerialBus
 QT.serialbus.frameworks =

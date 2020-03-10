@@ -65,13 +65,12 @@ class QAxAggregated
 {
     friend class QAxServerBase;
     friend class QAxClientSite;
-    Q_DISABLE_COPY(QAxAggregated)
 public:
     virtual long queryInterface(const QUuid &iid, void **iface) = 0;
 
 protected:
-    QAxAggregated() = default;
-    virtual ~QAxAggregated() = default;
+    virtual ~QAxAggregated()
+    {}
 
     inline IUnknown *controllingUnknown() const
     { return controlling_unknown; }
@@ -79,15 +78,15 @@ protected:
     inline QObject *object() const { return the_object; }
 
 private:
-    IUnknown *controlling_unknown = nullptr;
-    QObject *the_object = nullptr;
+    IUnknown *controlling_unknown;
+    QObject *the_object;
 };
 
 #define QAXAGG_IUNKNOWN \
-    HRESULT WINAPI QueryInterface(REFIID iid, LPVOID *iface) override \
+    HRESULT WINAPI QueryInterface(REFIID iid, LPVOID *iface) Q_DECL_OVERRIDE \
         { return controllingUnknown()->QueryInterface(iid, iface); } \
-    ULONG WINAPI AddRef() override { return controllingUnknown()->AddRef(); } \
-    ULONG WINAPI Release() override { return controllingUnknown()->Release(); } \
+    ULONG WINAPI AddRef() Q_DECL_OVERRIDE { return controllingUnknown()->AddRef(); } \
+    ULONG WINAPI Release() Q_DECL_OVERRIDE { return controllingUnknown()->Release(); } \
 
 QT_END_NAMESPACE
 

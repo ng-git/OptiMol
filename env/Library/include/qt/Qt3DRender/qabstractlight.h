@@ -86,7 +86,7 @@ Q_SIGNALS:
 
 private:
     Q_DECLARE_PRIVATE(QAbstractLight)
-    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const override;
+    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const Q_DECL_OVERRIDE;
 };
 
 } // namespace Qt3DRender

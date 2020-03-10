@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -85,11 +85,6 @@ public slots:
     void setPaused(bool paused);
     void stop();
 
-public:
-%If (Qt_5_10_0 -)
-    QImageReader::ImageReaderError lastError() const;
-%End
-%If (Qt_5_10_0 -)
-    QString lastErrorString() const;
-%End
+private:
+    QMovie(const QMovie &);
 };

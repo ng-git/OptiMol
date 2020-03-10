@@ -58,7 +58,7 @@ public:
 class Q_QML_EXPORT QQmlExtensionInterface : public QQmlTypesExtensionInterface
 {
 public:
-    ~QQmlExtensionInterface() override {}
+    virtual ~QQmlExtensionInterface() {}
     virtual void initializeEngine(QQmlEngine *engine, const char *uri) = 0;
 };
 

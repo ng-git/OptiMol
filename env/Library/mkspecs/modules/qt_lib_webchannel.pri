@@ -1,6 +1,6 @@
-QT.webchannel.VERSION = 5.12.5
+QT.webchannel.VERSION = 5.9.7
 QT.webchannel.name = QtWebChannel
-QT.webchannel.module = Qt5WebChannel_conda
+QT.webchannel.module = Qt5WebChannel
 QT.webchannel.libs = $$QT_MODULE_LIB_BASE
 QT.webchannel.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtWebChannel
 QT.webchannel.frameworks =

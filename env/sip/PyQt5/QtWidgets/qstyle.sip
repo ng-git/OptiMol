@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -620,21 +620,6 @@ public:
 %If (Qt_5_7_0 -)
         SH_ItemView_ScrollMode,
 %End
-%If (Qt_5_10_0 -)
-        SH_TitleBar_ShowToolTipsOnButtons,
-%End
-%If (Qt_5_10_0 -)
-        SH_Widget_Animation_Duration,
-%End
-%If (Qt_5_11_0 -)
-        SH_ComboBox_AllowWheelScrolling,
-%End
-%If (Qt_5_11_0 -)
-        SH_SpinBox_ButtonsInsideFrame,
-%End
-%If (Qt_5_12_0 -)
-        SH_SpinBox_StepModifier,
-%End
         SH_CustomBase,
     };
 
@@ -737,6 +722,9 @@ public:
     };
 
     const QStyle *proxy() const;
+
+private:
+    QStyle(const QStyle &);
 };
 
 QFlags<QStyle::StateFlag> operator|(QStyle::StateFlag f1, QFlags<QStyle::StateFlag> f2);

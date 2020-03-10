@@ -2,7 +2,7 @@
 //
 // This file is part of the QtDBus Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -51,6 +51,9 @@ signals:
     void serviceRegistered(const QString &service);
     void serviceUnregistered(const QString &service);
     void serviceOwnerChanged(const QString &service, const QString &oldOwner, const QString &newOwner);
+
+private:
+    QDBusServiceWatcher(const QDBusServiceWatcher &);
 };
 
 QFlags<QDBusServiceWatcher::WatchModeFlag> operator|(QDBusServiceWatcher::WatchModeFlag f1, QFlags<QDBusServiceWatcher::WatchModeFlag> f2);

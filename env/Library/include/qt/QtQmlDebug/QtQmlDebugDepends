@@ -3,4 +3,5 @@
 #include <QtCore/QtCore>
 #include <QtNetwork/QtNetwork>
 #include <QtPacketProtocol/QtPacketProtocol>
+#include <QtQml/QtQml>
 #endif

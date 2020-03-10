@@ -1,6 +1,6 @@
-QT.help.VERSION = 5.12.5
+QT.help.VERSION = 5.9.7
 QT.help.name = QtHelp
-QT.help.module = Qt5Help_conda
+QT.help.module = Qt5Help
 QT.help.libs = $$QT_MODULE_LIB_BASE
 QT.help.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtHelp
 QT.help.frameworks =

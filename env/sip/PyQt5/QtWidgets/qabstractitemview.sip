@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -273,9 +273,6 @@ protected:
 %If (Qt_5_2_0 -)
     virtual QSize viewportSizeHint() const;
 %End
-%If (Qt_5_11_0 -)
-    virtual bool eventFilter(QObject *object, QEvent *event);
-%End
 
 public:
     void setDefaultDropAction(Qt::DropAction dropAction);
@@ -286,9 +283,9 @@ public:
 %If (Qt_5_7_0 -)
     void resetHorizontalScrollMode();
 %End
-%If (Qt_5_10_0 -)
-    bool isPersistentEditorOpen(const QModelIndex &index) const;
-%End
+
+private:
+    QAbstractItemView(const QAbstractItemView &);
 };
 
 QFlags<QAbstractItemView::EditTrigger> operator|(QAbstractItemView::EditTrigger f1, QFlags<QAbstractItemView::EditTrigger> f2);

@@ -1,6 +1,6 @@
-QT.axcontainer.VERSION = 5.12.5
+QT.axcontainer.VERSION = 5.9.7
 QT.axcontainer.name = QtAxContainer
-QT.axcontainer.module = Qt5AxContainer_conda
+QT.axcontainer.module = Qt5AxContainer
 QT.axcontainer.libs = $$QT_MODULE_LIB_BASE
 QT.axcontainer.master_header = ActiveQt
 QT.axcontainer.includes = 

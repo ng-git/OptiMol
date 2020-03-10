@@ -5,15 +5,15 @@ import numpy as np
 import shutil
 import csv
 import pandas as pd
-from chemspipy import ChemSpider
 
 ROOT = os.getcwd()
+DATABASE = ROOT + '/database_chemspider'
 
 
 def get_df_database(id_num):
     """ Access the database folder using the id number to get a list of dataframes contain 2D and 3D data
         :param id_num: id number of the molecule
-        :type id_num: int
+        :type id_num: int, str
 
         :return coord_2d: atom 2D coordinates
         :return bond_2d: atom 2D bonding types and arrangement
@@ -22,15 +22,22 @@ def get_df_database(id_num):
         :rtype coord_2d, bond_2d, coord_3d, bond_3d: pandas.DataFrame"""
 
     # check input type
-    if not isinstance(id_num, int):
+    if not isinstance(id_num, (int, str)):
         raise TypeError()
 
+    if isinstance(id_num, str):
+        if not id_num.isdigit():
+            raise ValueError('Invalid ID number')
+    else:
+        # cast to int
+        id_num = int(id_num)
+
     # check valid id
-    id_list = get_id()
-    if id_num not in id_list:
+    if id_num not in get_id():
         raise ValueError()
 
-    os.chdir(ROOT + '/database_chemspider')
+    # access database
+    os.chdir(DATABASE)
 
     # get dataframe of 2d coord and bonding
     filename_2d = str(id_num) + '_2d.txt'
@@ -64,21 +71,36 @@ def get_df(filename, dim=2):
 
     # check dimension input value
     if dim not in [2, 3]:
-        raise ValueError()
+        raise ValueError('Invalid dimension!')
 
     # get the number of atoms to cut off the text rows
-    atom = int(pd.read_csv(filename, skiprows=1).iloc[0, 0][1:3])
-    # get the dataframe for coord
-    raw_coord = pd.read_csv(filename, skiprows=2, nrows=atom)
-    # get the bonding
-    raw_bond = pd.read_csv(filename, skiprows=3 + atom, nrows=atom)
+    check = False
+    i = 0
+    atom = None
+    bond_amount = None
+    # go through each row
+    while check is False:
+        values = pd.read_csv(filename).iloc[i, 0].split()
+        i = i + 1
+        # check the first value to be int, which is number of atoms
+        if values[0].isdigit():
+            atom = int(values[0])
+            bond_amount = int(values[1])
+            check = True
+
+    # crop the dataframe according to number of atoms
+    raw_coord = pd.read_csv(filename, skiprows=i+1, nrows=atom)
+
+    # adjust crop point according to dimension type due to data format
+    if dim is 2:
+        i = i + 1
+
+    # crop the dataframe of bonding
+    raw_bond = pd.read_csv(filename, skiprows=atom + i + 1, nrows=bond_amount)
 
     # prepare returning dataframes to fit with input dimension
     bond = pd.DataFrame(columns=['atom_1', 'atom_2', 'bond_type'])
-    if dim == 2:
-        coord = pd.DataFrame(columns=['2d_x', '2d_y', '2d_z', 'atom'])
-    else:
-        coord = pd.DataFrame(columns=['3d_x', '3d_y', '3d_z', 'atom'])
+    coord = pd.DataFrame(columns=[str(dim) + 'd_x', str(dim) + 'd_y', str(dim) + 'd_z', 'atom'])
 
     # fix dataframe format
     coord = df_cleaner(raw_coord, coord)
@@ -96,9 +118,12 @@ def df_cleaner(df, new_df):
         :type new_df: pandas.DataFrame"""
 
     # check input types
-    if False in [isinstance(df, type(pd.DataFrame)),
-                 isinstance(new_df, type(pd.DataFrame))]:
+    if False in [isinstance(df, pd.DataFrame),
+                 isinstance(new_df, pd.DataFrame)]:
         raise TypeError()
+
+    if df.shape[1] is not 1:
+        raise ValueError('Input dataframe should be a column')
 
     # go through each row
     for index in range(df.shape[0]):
@@ -133,7 +158,7 @@ def get_id():
     return id_result
 
 
-def sample_subset(directory, size=50):
+def sample_subset(directory=DATABASE, size=50):
     """ Create a smaller database folder inside the main database folder for testing
         :param directory: directory of the database from root
         :param size: the size of the folder
@@ -183,14 +208,20 @@ def sample_subset(directory, size=50):
 
 
 def database_setup():
+
     """ Download 2D and 3D molecule structure from ChemSpider sever to create a database"""
+
+    from chemspipy import ChemSpider
 
     # compile id list for calling molecules
     id_list = get_id()
 
-    directory = './database_chemspider/'
+    directory = DATABASE
     # make directory database_chemspider/ if needed
-    if not os.path.isdir(directory):
+    if os.path.isdir(directory):
+        print('Database folder already existed! Aborting... \n Please remove the folder and rerun')
+        exit()
+    else:
         os.mkdir(directory)
 
     print('downloading..')

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -29,8 +29,8 @@ int PYQT_VERSION;
 const char *PYQT_VERSION_STR;
 
 %ModuleCode
-static int PYQT_VERSION = 0x050c03;
-static const char *PYQT_VERSION_STR = "5.12.3";
+static int PYQT_VERSION = 0x050902;
+static const char *PYQT_VERSION_STR = "5.9.2";
 %End
 const int QT_VERSION;
 const char *QT_VERSION_STR;
@@ -61,7 +61,7 @@ const char *qVersion();
 bool qSharedBuild();
 // Template definition for QFlags.
 template<ENUM>
-class QFlags /NoDefaultCtors, PyQtFlagsEnums="ENUM", TypeHintIn="Union[QFlags, ENUM]"/
+class QFlags /NoDefaultCtors, PyQtFlags=0x1, TypeHintIn="Union[QFlags, ENUM]"/
 {
 public:
     // QFlags is supposed to be a more type safe version of an int (even though
@@ -224,10 +224,4 @@ SIP_PYOBJECT pyqtPickleProtocol() /TypeHint="Optional[int]"/;
         sipRes = Py_None;
     
     Py_INCREF(sipRes);
-%End
-%If (Qt_5_10_0 -)
-QString qEnvironmentVariable(const char *varName);
-%End
-%If (Qt_5_10_0 -)
-QString qEnvironmentVariable(const char *varName, const QString &defaultValue);
 %End

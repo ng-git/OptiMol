@@ -46,13 +46,6 @@
 
 QT_BEGIN_NAMESPACE
 
-#if defined(Q_CLANG_QDOC)
-typedef int GLXContext;
-typedef void Display;
-typedef int Window;
-typedef int VisualID;
-#endif
-
 struct QGLXNativeContext
 {
     QGLXNativeContext()

@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 3DAnimation module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt53DAnimation_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt53DAnimation_VERSION instead.
-set(Qt53DAnimation_VERSION_STRING 5.12.5)
+set(Qt53DAnimation_VERSION_STRING 5.9.7)
 
 set(Qt53DAnimation_LIBRARIES Qt5::3DAnimation)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::3DAnimation)
 
     set(_Qt53DAnimation_OWN_INCLUDE_DIRS "${_qt53DAnimation_install_prefix}/include/qt/" "${_qt53DAnimation_install_prefix}/include/qt/Qt3DAnimation")
     set(Qt53DAnimation_PRIVATE_INCLUDE_DIRS
-        "${_qt53DAnimation_install_prefix}/include/qt/Qt3DAnimation/5.12.5"
-        "${_qt53DAnimation_install_prefix}/include/qt/Qt3DAnimation/5.12.5/Qt3DAnimation"
+        "${_qt53DAnimation_install_prefix}/include/qt/Qt3DAnimation/5.9.7"
+        "${_qt53DAnimation_install_prefix}/include/qt/Qt3DAnimation/5.9.7/Qt3DAnimation"
     )
 
     foreach(_dir ${_Qt53DAnimation_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::3DAnimation)
     foreach(_module_dep ${_Qt53DAnimation_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt53DAnimation_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt53DAnimation_FIND_VERSION_EXACT}
                 ${_Qt53DAnimation_DEPENDENCIES_FIND_QUIET}
                 ${_Qt53DAnimation_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::3DAnimation)
     set_property(TARGET Qt5::3DAnimation PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_3DANIMATION_LIB)
 
-    set_property(TARGET Qt5::3DAnimation PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::3DAnimation PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt53DAnimation_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt53DAnimation_PRIVATE_DIR ${Qt53DAnimation_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt53DAnimation_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::3DAnimation)
         endif()
     endforeach()
 
-    if (_Qt53DAnimation_PRIVATE_DIRS_EXIST)
+    if (_Qt53DAnimation_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::3DAnimationPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::3DAnimationPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt53DAnimation_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::3DAnimation)
         )
     endif()
 
-    _populate_3DAnimation_target_properties(RELEASE "Qt53DAnimation_conda.dll" "Qt53DAnimation_conda.lib" )
+    _populate_3DAnimation_target_properties(RELEASE "Qt53DAnimation.dll" "Qt53DAnimation.lib" )
 
     if (EXISTS
-        "${_qt53DAnimation_install_prefix}/bin/Qt53DAnimation_condad.dll"
+        "${_qt53DAnimation_install_prefix}/bin/Qt53DAnimationd.dll"
       AND EXISTS
-        "${_qt53DAnimation_install_prefix}/lib/Qt53DAnimation_condad.lib" )
-        _populate_3DAnimation_target_properties(DEBUG "Qt53DAnimation_condad.dll" "Qt53DAnimation_condad.lib" )
+        "${_qt53DAnimation_install_prefix}/lib/Qt53DAnimationd.lib" )
+        _populate_3DAnimation_target_properties(DEBUG "Qt53DAnimationd.dll" "Qt53DAnimationd.lib" )
     endif()
 
 

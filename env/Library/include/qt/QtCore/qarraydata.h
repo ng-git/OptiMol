@@ -139,7 +139,7 @@ struct QTypedArrayData
         typedef T *pointer;
         typedef T &reference;
 
-        inline iterator() : i(nullptr) {}
+        inline iterator() : i(Q_NULLPTR) {}
         inline iterator(T *n) : i(n) {}
         inline iterator(const iterator &o): i(o.i){} // #### Qt 6: remove, the implicit version is fine
         inline T &operator*() const { return *i; }
@@ -159,7 +159,6 @@ struct QTypedArrayData
         inline iterator &operator-=(int j) { i-=j; return *this; }
         inline iterator operator+(int j) const { return iterator(i+j); }
         inline iterator operator-(int j) const { return iterator(i-j); }
-        friend inline iterator operator+(int j, iterator k) { return k + j; }
         inline int operator-(iterator j) const { return i - j.i; }
         inline operator T*() const { return i; }
     };
@@ -174,7 +173,7 @@ struct QTypedArrayData
         typedef const T *pointer;
         typedef const T &reference;
 
-        inline const_iterator() : i(nullptr) {}
+        inline const_iterator() : i(Q_NULLPTR) {}
         inline const_iterator(const T *n) : i(n) {}
         inline const_iterator(const const_iterator &o): i(o.i) {} // #### Qt 6: remove, the default version is fine
         inline explicit const_iterator(const iterator &o): i(o.i) {}
@@ -195,7 +194,6 @@ struct QTypedArrayData
         inline const_iterator &operator-=(int j) { i-=j; return *this; }
         inline const_iterator operator+(int j) const { return const_iterator(i+j); }
         inline const_iterator operator-(int j) const { return const_iterator(i-j); }
-        friend inline const_iterator operator+(int j, const_iterator k) { return k + j; }
         inline int operator-(const_iterator j) const { return i - j.i; }
         inline operator const T*() const { return i; }
     };

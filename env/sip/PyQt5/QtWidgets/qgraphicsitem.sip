@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -54,9 +54,9 @@ class QGraphicsItem /Supertype=sip.wrapper/
         break;
     
     case 8:
-        // Switch to the QObject convertor.
+        // We need to explicitly cast because of the multiple inheritance.
         *sipCppRet = static_cast<QGraphicsTextItem *>(sipCpp);
-        sipType = sipType_QObject;
+        sipType = sipType_QGraphicsTextItem;
         break;
     
     case 9:
@@ -68,15 +68,15 @@ class QGraphicsItem /Supertype=sip.wrapper/
         break;
     
     case 11:
-        // Switch to the QObject convertor.
+        // We need to explicitly cast because of the multiple inheritance.
         *sipCppRet = static_cast<QGraphicsWidget *>(sipCpp);
-        sipType = sipType_QObject;
+        sipType = sipType_QGraphicsWidget;
         break;
     
     case 12:
-        // Switch to the QObject convertor.
+        // We need to explicitly cast because of the multiple inheritance.
         *sipCppRet = static_cast<QGraphicsProxyWidget *>(sipCpp);
-        sipType = sipType_QObject;
+        sipType = sipType_QGraphicsProxyWidget;
         break;
     
     default:
@@ -393,6 +393,9 @@ public:
     void setBrush(const QBrush &brush);
     virtual bool isObscuredBy(const QGraphicsItem *item) const;
     virtual QPainterPath opaqueArea() const;
+
+private:
+    QAbstractGraphicsShapeItem(const QAbstractGraphicsShapeItem &);
 };
 
 class QGraphicsPathItem : QAbstractGraphicsShapeItem
@@ -414,6 +417,9 @@ public:
     virtual bool isObscuredBy(const QGraphicsItem *item) const;
     virtual QPainterPath opaqueArea() const;
     virtual int type() const;
+
+private:
+    QGraphicsPathItem(const QGraphicsPathItem &);
 };
 
 class QGraphicsRectItem : QAbstractGraphicsShapeItem
@@ -437,6 +443,9 @@ public:
     virtual bool isObscuredBy(const QGraphicsItem *item) const;
     virtual QPainterPath opaqueArea() const;
     virtual int type() const;
+
+private:
+    QGraphicsRectItem(const QGraphicsRectItem &);
 };
 
 class QGraphicsEllipseItem : QAbstractGraphicsShapeItem
@@ -464,6 +473,9 @@ public:
     virtual bool isObscuredBy(const QGraphicsItem *item) const;
     virtual QPainterPath opaqueArea() const;
     virtual int type() const;
+
+private:
+    QGraphicsEllipseItem(const QGraphicsEllipseItem &);
 };
 
 class QGraphicsPolygonItem : QAbstractGraphicsShapeItem
@@ -487,6 +499,9 @@ public:
     virtual bool isObscuredBy(const QGraphicsItem *item) const;
     virtual QPainterPath opaqueArea() const;
     virtual int type() const;
+
+private:
+    QGraphicsPolygonItem(const QGraphicsPolygonItem &);
 };
 
 class QGraphicsLineItem : QGraphicsItem
@@ -512,6 +527,9 @@ public:
     virtual bool isObscuredBy(const QGraphicsItem *item) const;
     virtual QPainterPath opaqueArea() const;
     virtual int type() const;
+
+private:
+    QGraphicsLineItem(const QGraphicsLineItem &);
 };
 
 class QGraphicsPixmapItem : QGraphicsItem
@@ -547,6 +565,9 @@ public:
     virtual int type() const;
     QGraphicsPixmapItem::ShapeMode shapeMode() const;
     void setShapeMode(QGraphicsPixmapItem::ShapeMode mode);
+
+private:
+    QGraphicsPixmapItem(const QGraphicsPixmapItem &);
 };
 
 class QGraphicsSimpleTextItem : QAbstractGraphicsShapeItem
@@ -570,6 +591,9 @@ public:
     virtual bool isObscuredBy(const QGraphicsItem *item) const;
     virtual QPainterPath opaqueArea() const;
     virtual int type() const;
+
+private:
+    QGraphicsSimpleTextItem(const QGraphicsSimpleTextItem &);
 };
 
 class QGraphicsItemGroup : QGraphicsItem
@@ -599,6 +623,9 @@ public:
     virtual bool isObscuredBy(const QGraphicsItem *item) const;
     virtual QPainterPath opaqueArea() const;
     virtual int type() const;
+
+private:
+    QGraphicsItemGroup(const QGraphicsItemGroup &);
 };
 
 class QGraphicsObject : QObject, QGraphicsItem
@@ -694,6 +721,9 @@ protected:
     virtual void hoverMoveEvent(QGraphicsSceneHoverEvent *event);
     virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
     virtual QVariant inputMethodQuery(Qt::InputMethodQuery query) const;
+
+private:
+    QGraphicsTextItem(const QGraphicsTextItem &);
 };
 
 %ModuleCode

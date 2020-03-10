@@ -98,7 +98,7 @@ public:
     explicit QTextStream(const QByteArray &array, QIODevice::OpenMode openMode = QIODevice::ReadOnly);
     virtual ~QTextStream();
 
-#if QT_CONFIG(textcodec)
+#ifndef QT_NO_TEXTCODEC
     void setCodec(QTextCodec *codec);
     void setCodec(const char *codecName);
     QTextCodec *codec() const;
@@ -184,7 +184,6 @@ public:
     QTextStream &operator<<(float f);
     QTextStream &operator<<(double f);
     QTextStream &operator<<(const QString &s);
-    QTextStream &operator<<(QStringView s);
     QTextStream &operator<<(QLatin1String s);
     QTextStream &operator<<(const QStringRef &s);
     QTextStream &operator<<(const QByteArray &array);
@@ -213,8 +212,8 @@ typedef void (QTextStream::*QTSMFC)(QChar); // manipulator w/QChar argument
 class Q_CORE_EXPORT QTextStreamManipulator
 {
 public:
-    Q_DECL_CONSTEXPR QTextStreamManipulator(QTSMFI m, int a) Q_DECL_NOTHROW : mf(m), mc(nullptr), arg(a), ch() {}
-    Q_DECL_CONSTEXPR QTextStreamManipulator(QTSMFC m, QChar c) Q_DECL_NOTHROW : mf(nullptr), mc(m), arg(-1), ch(c) {}
+    Q_DECL_CONSTEXPR QTextStreamManipulator(QTSMFI m, int a) Q_DECL_NOTHROW : mf(m), mc(Q_NULLPTR), arg(a), ch() {}
+    Q_DECL_CONSTEXPR QTextStreamManipulator(QTSMFC m, QChar c) Q_DECL_NOTHROW : mf(Q_NULLPTR), mc(m), arg(-1), ch(c) {}
     void exec(QTextStream &s) { if (mf) { (s.*mf)(arg); } else { (s.*mc)(ch); } }
 
 private:

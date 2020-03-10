@@ -2,7 +2,7 @@
 //
 // This file is part of the QtQuick Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -45,7 +45,7 @@ class QQuickImageProvider : QQmlImageProviderBase
 %End
 
 public:
-    QQuickImageProvider(QQmlImageProviderBase::ImageType type, QQmlImageProviderBase::Flags flags = QQmlImageProviderBase::Flags());
+    QQuickImageProvider(QQmlImageProviderBase::ImageType type, QQmlImageProviderBase::Flags flags = 0);
     virtual ~QQuickImageProvider();
     virtual QQmlImageProviderBase::ImageType imageType() const;
     virtual QQmlImageProviderBase::Flags flags() const;

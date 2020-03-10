@@ -2,7 +2,7 @@
 //
 // This file is part of the QtXmlPatterns Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -30,4 +30,7 @@ public:
     QAbstractUriResolver(QObject *parent /TransferThis/ = 0);
     virtual ~QAbstractUriResolver();
     virtual QUrl resolve(const QUrl &relative, const QUrl &baseURI) const = 0;
+
+private:
+    QAbstractUriResolver(const QAbstractUriResolver &);
 };

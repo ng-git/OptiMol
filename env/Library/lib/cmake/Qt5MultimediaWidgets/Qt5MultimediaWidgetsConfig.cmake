@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 MultimediaWidgets module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5MultimediaWidgets_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5MultimediaWidgets_VERSION instead.
-set(Qt5MultimediaWidgets_VERSION_STRING 5.12.5)
+set(Qt5MultimediaWidgets_VERSION_STRING 5.9.7)
 
 set(Qt5MultimediaWidgets_LIBRARIES Qt5::MultimediaWidgets)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::MultimediaWidgets)
 
     set(_Qt5MultimediaWidgets_OWN_INCLUDE_DIRS "${_qt5MultimediaWidgets_install_prefix}/include/qt/" "${_qt5MultimediaWidgets_install_prefix}/include/qt/QtMultimediaWidgets")
     set(Qt5MultimediaWidgets_PRIVATE_INCLUDE_DIRS
-        "${_qt5MultimediaWidgets_install_prefix}/include/qt/QtMultimediaWidgets/5.12.5"
-        "${_qt5MultimediaWidgets_install_prefix}/include/qt/QtMultimediaWidgets/5.12.5/QtMultimediaWidgets"
+        "${_qt5MultimediaWidgets_install_prefix}/include/qt/QtMultimediaWidgets/5.9.7"
+        "${_qt5MultimediaWidgets_install_prefix}/include/qt/QtMultimediaWidgets/5.9.7/QtMultimediaWidgets"
     )
 
     foreach(_dir ${_Qt5MultimediaWidgets_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::MultimediaWidgets)
     foreach(_module_dep ${_Qt5MultimediaWidgets_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5MultimediaWidgets_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5MultimediaWidgets_FIND_VERSION_EXACT}
                 ${_Qt5MultimediaWidgets_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5MultimediaWidgets_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::MultimediaWidgets)
     set_property(TARGET Qt5::MultimediaWidgets PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_MULTIMEDIAWIDGETS_LIB)
 
-    set_property(TARGET Qt5::MultimediaWidgets PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::MultimediaWidgets PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5MultimediaWidgets_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5MultimediaWidgets_PRIVATE_DIR ${Qt5MultimediaWidgets_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5MultimediaWidgets_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::MultimediaWidgets)
         endif()
     endforeach()
 
-    if (_Qt5MultimediaWidgets_PRIVATE_DIRS_EXIST)
+    if (_Qt5MultimediaWidgets_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::MultimediaWidgetsPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::MultimediaWidgetsPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5MultimediaWidgets_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::MultimediaWidgets)
         )
     endif()
 
-    _populate_MultimediaWidgets_target_properties(RELEASE "Qt5MultimediaWidgets_conda.dll" "Qt5MultimediaWidgets_conda.lib" )
+    _populate_MultimediaWidgets_target_properties(RELEASE "Qt5MultimediaWidgets.dll" "Qt5MultimediaWidgets.lib" )
 
     if (EXISTS
-        "${_qt5MultimediaWidgets_install_prefix}/bin/Qt5MultimediaWidgets_condad.dll"
+        "${_qt5MultimediaWidgets_install_prefix}/bin/Qt5MultimediaWidgetsd.dll"
       AND EXISTS
-        "${_qt5MultimediaWidgets_install_prefix}/lib/Qt5MultimediaWidgets_condad.lib" )
-        _populate_MultimediaWidgets_target_properties(DEBUG "Qt5MultimediaWidgets_condad.dll" "Qt5MultimediaWidgets_condad.lib" )
+        "${_qt5MultimediaWidgets_install_prefix}/lib/Qt5MultimediaWidgetsd.lib" )
+        _populate_MultimediaWidgets_target_properties(DEBUG "Qt5MultimediaWidgetsd.dll" "Qt5MultimediaWidgetsd.lib" )
     endif()
 
 

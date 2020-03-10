@@ -61,7 +61,6 @@ class QT3DRENDERSHARED_EXPORT QGeometryRenderer : public Qt3DCore::QComponent
     Q_PROPERTY(int indexOffset READ indexOffset WRITE setIndexOffset NOTIFY indexOffsetChanged)
     Q_PROPERTY(int firstInstance READ firstInstance WRITE setFirstInstance NOTIFY firstInstanceChanged)
     Q_PROPERTY(int firstVertex READ firstVertex WRITE setFirstVertex NOTIFY firstVertexChanged)
-    Q_PROPERTY(int indexBufferByteOffset READ indexBufferByteOffset WRITE setIndexBufferByteOffset NOTIFY indexBufferByteOffsetChanged)
     Q_PROPERTY(int restartIndexValue READ restartIndexValue WRITE setRestartIndexValue NOTIFY restartIndexValueChanged)
     Q_PROPERTY(int verticesPerPatch READ verticesPerPatch WRITE setVerticesPerPatch NOTIFY verticesPerPatchChanged)
     Q_PROPERTY(bool primitiveRestartEnabled READ primitiveRestartEnabled WRITE setPrimitiveRestartEnabled NOTIFY primitiveRestartEnabledChanged)
@@ -96,7 +95,6 @@ public:
     int indexOffset() const;
     int firstInstance() const;
     int firstVertex() const;
-    int indexBufferByteOffset() const;
     int restartIndexValue() const;
     int verticesPerPatch() const;
     bool primitiveRestartEnabled() const;
@@ -112,7 +110,6 @@ public Q_SLOTS:
     void setIndexOffset(int indexOffset);
     void setFirstInstance(int firstInstance);
     void setFirstVertex(int firstVertex);
-    void setIndexBufferByteOffset(int offset);
     void setRestartIndexValue(int index);
     void setVerticesPerPatch(int verticesPerPatch);
     void setPrimitiveRestartEnabled(bool enabled);
@@ -125,7 +122,6 @@ Q_SIGNALS:
     void indexOffsetChanged(int indexOffset);
     void firstInstanceChanged(int firstInstance);
     void firstVertexChanged(int firstVertex);
-    void indexBufferByteOffsetChanged(int offset);
     void restartIndexValueChanged(int restartIndexValue);
     void verticesPerPatchChanged(int verticesPerPatch);
     void primitiveRestartEnabledChanged(bool primitiveRestartEnabled);
@@ -134,11 +130,11 @@ Q_SIGNALS:
 
 protected:
     explicit QGeometryRenderer(QGeometryRendererPrivate &dd, Qt3DCore::QNode *parent = nullptr);
-    void sceneChangeEvent(const Qt3DCore::QSceneChangePtr &change) override;
+    void sceneChangeEvent(const Qt3DCore::QSceneChangePtr &change) Q_DECL_OVERRIDE;
 
 private:
     Q_DECLARE_PRIVATE(QGeometryRenderer)
-    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const override;
+    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const Q_DECL_OVERRIDE;
 };
 
 } // namespace Qt3DRender

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtSensors Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -57,6 +57,9 @@ public:
     void setTimestamp(quint64 timestamp);
     int valueCount() const;
     QVariant value(int index) const;
+
+private:
+    QSensorReading(const QSensorReading &);
 };
 
 %End
@@ -254,12 +257,15 @@ signals:
     void alwaysOnChanged();
     void dataRateChanged();
     void skipDuplicatesChanged(bool skipDuplicates);
-    void axesOrientationModeChanged(QSensor::AxesOrientationMode axesOrientationMode /ScopesStripped=1/);
+    void axesOrientationModeChanged(QSensor::AxesOrientationMode axesOrientationMode);
     void currentOrientationChanged(int currentOrientation);
     void userOrientationChanged(int userOrientation);
     void maxBufferSizeChanged(int maxBufferSize);
     void efficientBufferSizeChanged(int efficientBufferSize);
     void bufferSizeChanged(int bufferSize);
+
+private:
+    QSensor(const QSensor &);
 };
 
 %End

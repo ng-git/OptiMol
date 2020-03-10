@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 3DInput module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt53DInput_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt53DInput_VERSION instead.
-set(Qt53DInput_VERSION_STRING 5.12.5)
+set(Qt53DInput_VERSION_STRING 5.9.7)
 
 set(Qt53DInput_LIBRARIES Qt5::3DInput)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::3DInput)
 
     set(_Qt53DInput_OWN_INCLUDE_DIRS "${_qt53DInput_install_prefix}/include/qt/" "${_qt53DInput_install_prefix}/include/qt/Qt3DInput")
     set(Qt53DInput_PRIVATE_INCLUDE_DIRS
-        "${_qt53DInput_install_prefix}/include/qt/Qt3DInput/5.12.5"
-        "${_qt53DInput_install_prefix}/include/qt/Qt3DInput/5.12.5/Qt3DInput"
+        "${_qt53DInput_install_prefix}/include/qt/Qt3DInput/5.9.7"
+        "${_qt53DInput_install_prefix}/include/qt/Qt3DInput/5.9.7/Qt3DInput"
     )
 
     foreach(_dir ${_Qt53DInput_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::3DInput)
     foreach(_module_dep ${_Qt53DInput_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt53DInput_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt53DInput_FIND_VERSION_EXACT}
                 ${_Qt53DInput_DEPENDENCIES_FIND_QUIET}
                 ${_Qt53DInput_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::3DInput)
     set_property(TARGET Qt5::3DInput PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_3DINPUT_LIB)
 
-    set_property(TARGET Qt5::3DInput PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::3DInput PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt53DInput_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt53DInput_PRIVATE_DIR ${Qt53DInput_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt53DInput_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::3DInput)
         endif()
     endforeach()
 
-    if (_Qt53DInput_PRIVATE_DIRS_EXIST)
+    if (_Qt53DInput_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::3DInputPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::3DInputPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt53DInput_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::3DInput)
         )
     endif()
 
-    _populate_3DInput_target_properties(RELEASE "Qt53DInput_conda.dll" "Qt53DInput_conda.lib" )
+    _populate_3DInput_target_properties(RELEASE "Qt53DInput.dll" "Qt53DInput.lib" )
 
     if (EXISTS
-        "${_qt53DInput_install_prefix}/bin/Qt53DInput_condad.dll"
+        "${_qt53DInput_install_prefix}/bin/Qt53DInputd.dll"
       AND EXISTS
-        "${_qt53DInput_install_prefix}/lib/Qt53DInput_condad.lib" )
-        _populate_3DInput_target_properties(DEBUG "Qt53DInput_condad.dll" "Qt53DInput_condad.lib" )
+        "${_qt53DInput_install_prefix}/lib/Qt53DInputd.lib" )
+        _populate_3DInput_target_properties(DEBUG "Qt53DInputd.dll" "Qt53DInputd.lib" )
     endif()
 
 

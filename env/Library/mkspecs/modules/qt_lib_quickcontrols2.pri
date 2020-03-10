@@ -1,6 +1,6 @@
-QT.quickcontrols2.VERSION = 5.12.5
+QT.quickcontrols2.VERSION = 5.9.7
 QT.quickcontrols2.name = QtQuickControls2
-QT.quickcontrols2.module = Qt5QuickControls2_conda
+QT.quickcontrols2.module = Qt5QuickControls2
 QT.quickcontrols2.libs = $$QT_MODULE_LIB_BASE
 QT.quickcontrols2.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtQuickControls2
 QT.quickcontrols2.frameworks =

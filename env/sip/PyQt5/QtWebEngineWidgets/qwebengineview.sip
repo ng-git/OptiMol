@@ -2,9 +2,9 @@
 //
 // This file is part of the QtWebEngineWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
-// This file is part of PyQtWebEngine.
+// This file is part of PyQt5.
 // 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
@@ -19,6 +19,8 @@
 // This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+
+%If (Qt_5_4_0 -)
 
 class QWebEngineView : QWidget
 {
@@ -71,7 +73,7 @@ public:
     QWebEnginePage *page() const;
     void setPage(QWebEnginePage *page);
     void load(const QUrl &url);
-%If (QtWebEngine_5_9_0 -)
+%If (Qt_5_9_0 -)
     void load(const QWebEngineHttpRequest &request);
 %End
     void setHtml(const QString &html, const QUrl &baseUrl = QUrl());
@@ -87,7 +89,7 @@ public:
     void triggerPageAction(QWebEnginePage::WebAction action, bool checked = false);
     qreal zoomFactor() const;
     void setZoomFactor(qreal factor);
-    void findText(const QString &subString, QWebEnginePage::FindFlags options = QWebEnginePage::FindFlags(), SIP_PYCALLABLE resultCallback /AllowNone,TypeHint="Callable[[bool], None]"/ = 0);
+    void findText(const QString &subString, QFlags<QWebEnginePage::FindFlag> options = 0, SIP_PYCALLABLE resultCallback /AllowNone/ = 0);
 %MethodCode
         // Make sure any callable doesn't get garbage collected.
         Py_XINCREF(a2);
@@ -134,7 +136,7 @@ signals:
     void selectionChanged();
     void urlChanged(const QUrl &);
     void iconUrlChanged(const QUrl &);
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     void renderProcessTerminated(QWebEnginePage::RenderProcessTerminationStatus terminationStatus, int exitCode);
 %End
 
@@ -142,37 +144,44 @@ protected:
     virtual QWebEngineView *createWindow(QWebEnginePage::WebWindowType type);
     virtual void contextMenuEvent(QContextMenuEvent *);
     virtual bool event(QEvent *);
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     virtual void showEvent(QShowEvent *);
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     virtual void hideEvent(QHideEvent *);
 %End
 
 public:
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     QIcon icon() const;
 %End
 
 signals:
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void iconChanged(const QIcon &);
 %End
 
 protected:
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     virtual void dragEnterEvent(QDragEnterEvent *e);
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     virtual void dragLeaveEvent(QDragLeaveEvent *e);
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     virtual void dragMoveEvent(QDragMoveEvent *e);
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     virtual void dropEvent(QDropEvent *e);
 %End
+
+private:
+%If (Qt_5_6_0 -)
+    QWebEngineView(const QWebEngineView &);
+%End
 };
+
+%End
 
 %ModuleHeaderCode
 // Imports from QtCore.

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -22,7 +22,7 @@
 
 %Module(name=PyQt5.QtCore, call_super_init=True, default_VirtualErrorHandler=PyQt5, keyword_arguments="Optional", use_limited_api=True)
 
-%Timeline {Qt_5_0_0 Qt_5_0_1 Qt_5_0_2 Qt_5_1_0 Qt_5_1_1 Qt_5_2_0 Qt_5_2_1 Qt_5_3_0 Qt_5_3_1 Qt_5_3_2 Qt_5_4_0 Qt_5_4_1 Qt_5_4_2 Qt_5_5_0 Qt_5_5_1 Qt_5_6_0 Qt_5_6_1 Qt_5_6_2 Qt_5_6_3 Qt_5_6_4 Qt_5_6_5 Qt_5_6_6 Qt_5_6_7 Qt_5_6_8 Qt_5_6_9 Qt_5_7_0 Qt_5_7_1 Qt_5_8_0 Qt_5_8_1 Qt_5_9_0 Qt_5_9_1 Qt_5_9_2 Qt_5_9_3 Qt_5_9_4 Qt_5_9_5 Qt_5_9_6 Qt_5_9_7 Qt_5_9_8 Qt_5_9_9 Qt_5_10_0 Qt_5_10_1 Qt_5_11_0 Qt_5_11_1 Qt_5_11_2 Qt_5_11_3 Qt_5_12_0 Qt_5_12_1 Qt_5_12_2 Qt_5_12_3 Qt_5_12_4}
+%Timeline {Qt_5_0_0 Qt_5_0_1 Qt_5_0_2 Qt_5_1_0 Qt_5_1_1 Qt_5_2_0 Qt_5_2_1 Qt_5_3_0 Qt_5_3_1 Qt_5_3_2 Qt_5_4_0 Qt_5_4_1 Qt_5_4_2 Qt_5_5_0 Qt_5_5_1 Qt_5_6_0 Qt_5_6_1 Qt_5_6_2 Qt_5_6_3 Qt_5_6_4 Qt_5_6_5 Qt_5_6_6 Qt_5_6_7 Qt_5_6_8 Qt_5_6_9 Qt_5_7_0 Qt_5_7_1 Qt_5_8_0 Qt_5_8_1 Qt_5_9_0 Qt_5_9_1 Qt_5_9_2 Qt_5_9_3}
 
 %Platforms {WS_X11 WS_WIN WS_MACX}
 
@@ -43,7 +43,7 @@
 %Feature PyQt_MacOSXOnly
 
 %Copying
-Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 
 This file is part of PyQt5.
 
@@ -111,8 +111,6 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qbuffer.sip
 %Include qbytearray.sip
 %Include qbytearraymatcher.sip
-%Include qcborcommon.sip
-%Include qcborstream.sip
 %Include qchar.sip
 %Include qcollator.sip
 %Include qcommandlineoption.sip
@@ -147,7 +145,6 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qlocale.sip
 %Include qlockfile.sip
 %Include qlogging.sip
-%Include qloggingcategory.sip
 %Include qmargins.sip
 %Include qmessageauthenticationcode.sip
 %Include qmetaobject.sip
@@ -167,7 +164,6 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qpluginloader.sip
 %Include qpoint.sip
 %Include qprocess.sip
-%Include qrandom.sip
 %Include qreadwritelock.sip
 %Include qrect.sip
 %Include qregexp.sip
@@ -210,16 +206,15 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qversionnumber.sip
 %Include qwaitcondition.sip
 %Include qxmlstream.sip
-%Include qsysinfo.sip
-%Include qjsonobject.sip
-%Include qpycore_qset.sip
-%Include qpycore_qlist.sip
-%Include qwineventnotifier.sip
-%Include qstringlist.sip
 %Include qjsonarray.sip
-%Include qpycore_virtual_error_handler.sip
-%Include qpycore_qvariantmap.sip
-%Include qpycore_qpair.sip
-%Include qpycore_qmap.sip
+%Include qjsonobject.sip
 %Include qpycore_qhash.sip
+%Include qpycore_qlist.sip
+%Include qpycore_qmap.sip
+%Include qpycore_qpair.sip
+%Include qpycore_qset.sip
 %Include qpycore_qvector.sip
+%Include qpycore_virtual_error_handler.sip
+%Include qstringlist.sip
+%Include qsysinfo.sip
+%Include qwineventnotifier.sip

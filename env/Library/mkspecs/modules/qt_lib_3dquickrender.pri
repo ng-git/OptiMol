@@ -1,6 +1,6 @@
-QT.3dquickrender.VERSION = 5.12.5
+QT.3dquickrender.VERSION = 5.9.7
 QT.3dquickrender.name = Qt3DQuickRender
-QT.3dquickrender.module = Qt53DQuickRender_conda
+QT.3dquickrender.module = Qt53DQuickRender
 QT.3dquickrender.libs = $$QT_MODULE_LIB_BASE
 QT.3dquickrender.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/Qt3DQuickRender
 QT.3dquickrender.frameworks =

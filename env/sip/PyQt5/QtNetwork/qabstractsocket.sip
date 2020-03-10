@@ -2,7 +2,7 @@
 //
 // This file is part of the QtNetwork Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -272,9 +272,6 @@ public:
 %If (Qt_5_3_0 -)
         ReceiveBufferSizeSocketOption,
 %End
-%If (Qt_5_11_0 -)
-        PathMtuSocketOption,
-%End
     };
 
     virtual void setSocketOption(QAbstractSocket::SocketOption option, const QVariant &value);
@@ -302,6 +299,9 @@ public:
     void setPauseMode(QAbstractSocket::PauseModes pauseMode);
     bool bind(const QHostAddress &address, quint16 port = 0, QAbstractSocket::BindMode mode = QAbstractSocket::DefaultForPlatform);
     bool bind(quint16 port = 0, QAbstractSocket::BindMode mode = QAbstractSocket::DefaultForPlatform);
+
+private:
+    QAbstractSocket(const QAbstractSocket &);
 };
 
 QFlags<QAbstractSocket::BindFlag> operator|(QAbstractSocket::BindFlag f1, QFlags<QAbstractSocket::BindFlag> f2);

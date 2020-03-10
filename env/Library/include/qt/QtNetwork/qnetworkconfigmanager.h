@@ -66,7 +66,7 @@ public:
 
     Q_DECLARE_FLAGS(Capabilities, Capability)
 
-    explicit QNetworkConfigurationManager(QObject *parent = nullptr);
+    explicit QNetworkConfigurationManager(QObject *parent = Q_NULLPTR);
     virtual ~QNetworkConfigurationManager();
 
     QNetworkConfigurationManager::Capabilities capabilities() const;

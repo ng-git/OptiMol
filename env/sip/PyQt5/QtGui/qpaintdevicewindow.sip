@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -40,6 +40,9 @@ protected:
     virtual int metric(QPaintDevice::PaintDeviceMetric metric) const;
     virtual void exposeEvent(QExposeEvent *);
     virtual bool event(QEvent *event);
+
+private:
+    QPaintDeviceWindow(const QPaintDeviceWindow &);
 };
 
 %End

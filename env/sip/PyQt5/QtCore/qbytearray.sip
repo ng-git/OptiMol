@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -211,82 +211,14 @@ public:
     float toFloat(bool *ok = 0) const;
     double toDouble(bool *ok = 0) const;
     QByteArray toBase64() const;
+    QByteArray &setNum(int n /Constrained/, int base = 10);
     QByteArray &setNum(double n /Constrained/, char format = 'g', int precision = 6);
-    QByteArray &setNum(SIP_PYOBJECT n /TypeHint="int"/, int base = 10);
-%MethodCode
-        #if PY_MAJOR_VERSION < 3
-        if (PyInt_Check(a0))
-        {
-            qlonglong val = PyInt_AsLong(a0);
-        
-            sipRes = &sipCpp->setNum(val, a1);
-        }
-        else
-        #endif
-        {
-            qlonglong val = sipLong_AsLongLong(a0);
-        
-            if (!PyErr_Occurred())
-            {
-                sipRes = &sipCpp->setNum(val, a1);
-            }
-            else
-            {
-                // If it is positive then it might fit an unsigned long long.
-        
-                qulonglong uval = sipLong_AsUnsignedLongLong(a0);
-        
-                if (!PyErr_Occurred())
-                {
-                    sipRes = &sipCpp->setNum(uval, a1);
-                }
-                else
-                {
-                    sipError = (PyErr_ExceptionMatches(PyExc_OverflowError)
-                            ? sipErrorFail : sipErrorContinue);
-                }
-            }
-        }
-%End
-
+    QByteArray &setNum(qlonglong n, int base = 10);
+    QByteArray &setNum(qulonglong n, int base = 10);
+    static QByteArray number(int n /Constrained/, int base = 10);
     static QByteArray number(double n /Constrained/, char format = 'g', int precision = 6);
-    static QByteArray number(SIP_PYOBJECT n /TypeHint="int"/, int base = 10);
-%MethodCode
-        #if PY_MAJOR_VERSION < 3
-        if (PyInt_Check(a0))
-        {
-            qlonglong val = PyInt_AsLong(a0);
-        
-            sipRes = new QByteArray(QByteArray::number(val, a1));
-        }
-        else
-        #endif
-        {
-            qlonglong val = sipLong_AsLongLong(a0);
-        
-            if (!PyErr_Occurred())
-            {
-                sipRes = new QByteArray(QByteArray::number(val, a1));
-            }
-            else
-            {
-                // If it is positive then it might fit an unsigned long long.
-        
-                qulonglong uval = sipLong_AsUnsignedLongLong(a0);
-        
-                if (!PyErr_Occurred())
-                {
-                    sipRes = new QByteArray(QByteArray::number(uval, a1));
-                }
-                else
-                {
-                    sipError = (PyErr_ExceptionMatches(PyExc_OverflowError)
-                            ? sipErrorFail : sipErrorContinue);
-                }
-            }
-        }
-%End
-
+    static QByteArray number(qlonglong n, int base = 10);
+    static QByteArray number(qulonglong n, int base = 10);
     static QByteArray fromBase64(const QByteArray &base64);
     static QByteArray fromRawData(const char * /Array/, int size /ArraySize/);
     static QByteArray fromHex(const QByteArray &hexEncoded);
@@ -294,8 +226,8 @@ public:
     int length() const;
     bool isNull() const;
     int size() const;
-    char at(int i) const /Encoding="None"/;
-    char operator[](int i) const /Encoding="None"/;
+    char at(int i) const;
+    char operator[](int i) const;
 %MethodCode
         Py_ssize_t idx = sipConvertFromSequenceIndex(a0, sipCpp->count());
         
@@ -307,17 +239,21 @@ public:
 
     QByteArray operator[](SIP_PYSLICE slice) const;
 %MethodCode
-        Py_ssize_t start, stop, step, slicelength;
+        Py_ssize_t len, start, stop, step, slicelength, i;
         
-        if (sipConvertFromSliceObject(a0, sipCpp->length(), &start, &stop, &step, &slicelength) < 0)
-        {
+        len = sipCpp->length();
+        
+        #if PY_VERSION_HEX >= 0x03020000
+        if (PySlice_GetIndicesEx(a0, len, &start, &stop, &step, &slicelength) < 0)
+        #else
+        if (PySlice_GetIndicesEx((PySliceObject *)a0, len, &start, &stop, &step, &slicelength) < 0)
+        #endif
             sipIsErr = 1;
-        }
         else
         {
             sipRes = new QByteArray();
         
-            for (Py_ssize_t i = 0; i < slicelength; ++i)
+            for (i = 0; i < slicelength; ++i)
             {
                 sipRes -> append(sipCpp->at(start));
                 start += step;
@@ -460,18 +396,6 @@ public:
 %End
 %If (Qt_5_9_0 -)
     QByteArray toHex(char separator) const;
-%End
-%If (Qt_5_10_0 -)
-    QByteArray chopped(int len) const;
-%End
-%If (Qt_5_12_0 -)
-    int compare(const QByteArray &a, Qt::CaseSensitivity cs = Qt::CaseSensitive) const;
-%End
-%If (Qt_5_12_0 -)
-    bool isUpper() const;
-%End
-%If (Qt_5_12_0 -)
-    bool isLower() const;
 %End
 };
 

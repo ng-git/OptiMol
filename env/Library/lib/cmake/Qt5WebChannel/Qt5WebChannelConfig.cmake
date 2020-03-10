@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 WebChannel module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5WebChannel_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5WebChannel_VERSION instead.
-set(Qt5WebChannel_VERSION_STRING 5.12.5)
+set(Qt5WebChannel_VERSION_STRING 5.9.7)
 
 set(Qt5WebChannel_LIBRARIES Qt5::WebChannel)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::WebChannel)
 
     set(_Qt5WebChannel_OWN_INCLUDE_DIRS "${_qt5WebChannel_install_prefix}/include/qt/" "${_qt5WebChannel_install_prefix}/include/qt/QtWebChannel")
     set(Qt5WebChannel_PRIVATE_INCLUDE_DIRS
-        "${_qt5WebChannel_install_prefix}/include/qt/QtWebChannel/5.12.5"
-        "${_qt5WebChannel_install_prefix}/include/qt/QtWebChannel/5.12.5/QtWebChannel"
+        "${_qt5WebChannel_install_prefix}/include/qt/QtWebChannel/5.9.7"
+        "${_qt5WebChannel_install_prefix}/include/qt/QtWebChannel/5.9.7/QtWebChannel"
     )
 
     foreach(_dir ${_Qt5WebChannel_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::WebChannel)
     foreach(_module_dep ${_Qt5WebChannel_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5WebChannel_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5WebChannel_FIND_VERSION_EXACT}
                 ${_Qt5WebChannel_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5WebChannel_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::WebChannel)
     set_property(TARGET Qt5::WebChannel PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_WEBCHANNEL_LIB)
 
-    set_property(TARGET Qt5::WebChannel PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::WebChannel PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5WebChannel_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5WebChannel_PRIVATE_DIR ${Qt5WebChannel_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5WebChannel_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::WebChannel)
         endif()
     endforeach()
 
-    if (_Qt5WebChannel_PRIVATE_DIRS_EXIST)
+    if (_Qt5WebChannel_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::WebChannelPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::WebChannelPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5WebChannel_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::WebChannel)
         )
     endif()
 
-    _populate_WebChannel_target_properties(RELEASE "Qt5WebChannel_conda.dll" "Qt5WebChannel_conda.lib" )
+    _populate_WebChannel_target_properties(RELEASE "Qt5WebChannel.dll" "Qt5WebChannel.lib" )
 
     if (EXISTS
-        "${_qt5WebChannel_install_prefix}/bin/Qt5WebChannel_condad.dll"
+        "${_qt5WebChannel_install_prefix}/bin/Qt5WebChanneld.dll"
       AND EXISTS
-        "${_qt5WebChannel_install_prefix}/lib/Qt5WebChannel_condad.lib" )
-        _populate_WebChannel_target_properties(DEBUG "Qt5WebChannel_condad.dll" "Qt5WebChannel_condad.lib" )
+        "${_qt5WebChannel_install_prefix}/lib/Qt5WebChanneld.lib" )
+        _populate_WebChannel_target_properties(DEBUG "Qt5WebChanneld.dll" "Qt5WebChanneld.lib" )
     endif()
 
 

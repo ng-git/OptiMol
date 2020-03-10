@@ -40,7 +40,7 @@
 #ifndef QTESTEVENTLOOP_H
 #define QTESTEVENTLOOP_H
 
-#include <QtTest/qttestglobal.h>
+#include <QtTest/qtest_global.h>
 
 #include <QtCore/qcoreapplication.h>
 #include <QtCore/qeventloop.h>
@@ -56,8 +56,8 @@ class Q_TESTLIB_EXPORT QTestEventLoop : public QObject
     Q_OBJECT
 
 public:
-    inline QTestEventLoop(QObject *aParent = nullptr)
-        : QObject(aParent), inLoop(false), _timeout(false), timerId(-1), loop(nullptr) {}
+    inline QTestEventLoop(QObject *aParent = Q_NULLPTR)
+        : QObject(aParent), inLoop(false), _timeout(false), timerId(-1), loop(Q_NULLPTR) {}
 
     inline void enterLoopMSecs(int ms);
     inline void enterLoop(int secs) { enterLoopMSecs(secs * 1000); }
@@ -83,7 +83,7 @@ protected:
     inline void timerEvent(QTimerEvent *e) override;
 
 private:
-    Q_DECL_UNUSED_MEMBER bool inLoop; // ### Qt 6: remove
+    bool inLoop;
     bool _timeout;
     int timerId;
 
@@ -96,13 +96,14 @@ inline void QTestEventLoop::enterLoopMSecs(int ms)
 
     QEventLoop l;
 
+    inLoop = true;
     _timeout = false;
 
     timerId = startTimer(ms);
 
     loop = &l;
     l.exec();
-    loop = nullptr;
+    loop = Q_NULLPTR;
 }
 
 inline void QTestEventLoop::exitLoop()
@@ -119,6 +120,8 @@ inline void QTestEventLoop::exitLoop()
 
     if (loop)
         loop->exit();
+
+    inLoop = false;
 }
 
 inline void QTestEventLoop::timerEvent(QTimerEvent *e)

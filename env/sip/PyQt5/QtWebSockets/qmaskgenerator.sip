@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWebSockets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -33,6 +33,9 @@ public:
     virtual ~QMaskGenerator();
     virtual bool seed() = 0;
     virtual quint32 nextMask() = 0;
+
+private:
+    QMaskGenerator(const QMaskGenerator &);
 };
 
 %End

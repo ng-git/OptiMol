@@ -59,7 +59,6 @@ class QSharedPointer
 public:
     // basic accessor functions
     T *data() const;
-    T *get() const;
     bool isNull() const;
     operator bool() const;
     bool operator!() const;
@@ -97,8 +96,8 @@ public:
     template <class X> QSharedPointer<X> constCast() const;
     template <class X> QSharedPointer<X> objectCast() const;
 
-    template <typename... Args>
-    static inline QSharedPointer<T> create(Args &&... args);
+    static inline QSharedPointer<T> create();
+    static inline QSharedPointer<T> create(...);
 };
 
 template <class T>

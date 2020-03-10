@@ -2,7 +2,7 @@
 //
 // This file is part of the QtSql Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -68,9 +68,6 @@ public:
     bool last() /ReleaseGIL/;
     void clear() /ReleaseGIL/;
     bool exec() /PyName=exec_,ReleaseGIL/;
-%If (Py_v3)
-    bool exec() /ReleaseGIL/;
-%End
     bool execBatch(QSqlQuery::BatchExecutionMode mode = QSqlQuery::ValuesAsRows);
     bool prepare(const QString &query) /ReleaseGIL/;
     void bindValue(const QString &placeholder, const QVariant &val, QSql::ParamType type = QSql::In);

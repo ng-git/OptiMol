@@ -2,9 +2,9 @@
 //
 // This file is part of the QtWebEngineWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
-// This file is part of PyQtWebEngine.
+// This file is part of PyQt5.
 // 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
@@ -20,9 +20,9 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-%If (QtWebEngine_5_5_0 -)
+%If (Qt_5_5_0 -)
 
-class QWebEngineDownloadItem : QObject /NoDefaultCtors/
+class QWebEngineDownloadItem : QObject
 {
 %TypeHeaderCode
 #include <qwebenginedownloaditem.h>
@@ -59,10 +59,10 @@ signals:
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
 public:
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
     QString mimeType() const;
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
 
     enum SavePageFormat
     {
@@ -73,13 +73,13 @@ public:
     };
 
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     QWebEngineDownloadItem::SavePageFormat savePageFormat() const;
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
     void setSavePageFormat(QWebEngineDownloadItem::SavePageFormat format);
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
 
     enum DownloadType
     {
@@ -90,10 +90,10 @@ public:
     };
 
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     QWebEngineDownloadItem::DownloadType type() const;
 %End
-%If (QtWebEngine_5_9_0 -)
+%If (Qt_5_9_0 -)
 
     enum DownloadInterruptReason
     {
@@ -124,36 +124,15 @@ public:
     };
 
 %End
-%If (QtWebEngine_5_9_0 -)
+%If (Qt_5_9_0 -)
     QWebEngineDownloadItem::DownloadInterruptReason interruptReason() const;
 %End
-%If (QtWebEngine_5_9_0 -)
+%If (Qt_5_9_0 -)
     QString interruptReasonString() const;
 %End
-%If (QtWebEngine_5_10_0 -)
-    bool isPaused() const;
-%End
 
-public slots:
-%If (QtWebEngine_5_10_0 -)
-    void pause();
-%End
-%If (QtWebEngine_5_10_0 -)
-    void resume();
-%End
-
-signals:
-%If (QtWebEngine_5_10_0 -)
-    void isPausedChanged(bool isPaused);
-%End
-
-public:
-%If (QtWebEngine_5_11_0 -)
-    bool isSavePageDownload() const;
-%End
-%If (QtWebEngine_5_12_0 -)
-    QWebEnginePage *page() const;
-%End
+private:
+    QWebEngineDownloadItem(const QWebEngineDownloadItem &);
 };
 
 %End

@@ -1,6 +1,6 @@
-QT.bluetooth.VERSION = 5.12.5
+QT.bluetooth.VERSION = 5.9.7
 QT.bluetooth.name = QtBluetooth
-QT.bluetooth.module = Qt5Bluetooth_conda
+QT.bluetooth.module = Qt5Bluetooth
 QT.bluetooth.libs = $$QT_MODULE_LIB_BASE
 QT.bluetooth.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtBluetooth
 QT.bluetooth.frameworks =

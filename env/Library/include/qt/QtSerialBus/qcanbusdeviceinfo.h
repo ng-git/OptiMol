@@ -65,9 +65,6 @@ public:
     }
 
     QString name() const;
-    QString description() const;
-    QString serialNumber() const;
-    int channel() const;
 
     bool hasFlexibleDataRate() const;
     bool isVirtual() const;

@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Charts module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Charts_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Charts_VERSION instead.
-set(Qt5Charts_VERSION_STRING 5.12.5)
+set(Qt5Charts_VERSION_STRING 5.9.7)
 
 set(Qt5Charts_LIBRARIES Qt5::Charts)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::Charts)
 
     set(_Qt5Charts_OWN_INCLUDE_DIRS "${_qt5Charts_install_prefix}/include/qt/" "${_qt5Charts_install_prefix}/include/qt/QtCharts")
     set(Qt5Charts_PRIVATE_INCLUDE_DIRS
-        "${_qt5Charts_install_prefix}/include/qt/QtCharts/5.12.5"
-        "${_qt5Charts_install_prefix}/include/qt/QtCharts/5.12.5/QtCharts"
+        "${_qt5Charts_install_prefix}/include/qt/QtCharts/5.9.7"
+        "${_qt5Charts_install_prefix}/include/qt/QtCharts/5.9.7/QtCharts"
     )
 
     foreach(_dir ${_Qt5Charts_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::Charts)
     foreach(_module_dep ${_Qt5Charts_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Charts_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Charts_FIND_VERSION_EXACT}
                 ${_Qt5Charts_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Charts_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::Charts)
     set_property(TARGET Qt5::Charts PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_CHARTS_LIB)
 
-    set_property(TARGET Qt5::Charts PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::Charts PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5Charts_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Charts_PRIVATE_DIR ${Qt5Charts_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Charts_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::Charts)
         endif()
     endforeach()
 
-    if (_Qt5Charts_PRIVATE_DIRS_EXIST)
+    if (_Qt5Charts_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::ChartsPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::ChartsPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Charts_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::Charts)
         )
     endif()
 
-    _populate_Charts_target_properties(RELEASE "Qt5Charts_conda.dll" "Qt5Charts_conda.lib" )
+    _populate_Charts_target_properties(RELEASE "Qt5Charts.dll" "Qt5Charts.lib" )
 
     if (EXISTS
-        "${_qt5Charts_install_prefix}/bin/Qt5Charts_condad.dll"
+        "${_qt5Charts_install_prefix}/bin/Qt5Chartsd.dll"
       AND EXISTS
-        "${_qt5Charts_install_prefix}/lib/Qt5Charts_condad.lib" )
-        _populate_Charts_target_properties(DEBUG "Qt5Charts_condad.dll" "Qt5Charts_condad.lib" )
+        "${_qt5Charts_install_prefix}/lib/Qt5Chartsd.lib" )
+        _populate_Charts_target_properties(DEBUG "Qt5Chartsd.dll" "Qt5Chartsd.lib" )
     endif()
 
 

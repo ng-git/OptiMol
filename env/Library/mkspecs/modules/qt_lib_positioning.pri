@@ -1,6 +1,6 @@
-QT.positioning.VERSION = 5.12.5
+QT.positioning.VERSION = 5.9.7
 QT.positioning.name = QtPositioning
-QT.positioning.module = Qt5Positioning_conda
+QT.positioning.module = Qt5Positioning
 QT.positioning.libs = $$QT_MODULE_LIB_BASE
 QT.positioning.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtPositioning
 QT.positioning.frameworks =

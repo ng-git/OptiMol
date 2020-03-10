@@ -48,7 +48,6 @@ QT_BEGIN_NAMESPACE
 QTEST_ADD_GPU_BLACKLIST_SUPPORT_DEFS
 
 Q_QUICK_TEST_EXPORT int quick_test_main(int argc, char **argv, const char *name, const char *sourceDir);
-Q_QUICK_TEST_EXPORT int quick_test_main_with_setup(int argc, char **argv, const char *name, const char *sourceDir, QObject *setup);
 
 #ifdef QUICK_TEST_SOURCE_DIR
 
@@ -68,15 +67,6 @@ Q_QUICK_TEST_EXPORT int quick_test_main_with_setup(int argc, char **argv, const 
         return quick_test_main(argc, argv, #name, QUICK_TEST_SOURCE_DIR); \
     }
 
-#define QUICK_TEST_MAIN_WITH_SETUP(name, QuickTestSetupClass) \
-    int main(int argc, char **argv) \
-    { \
-        QTEST_ADD_GPU_BLACKLIST_SUPPORT \
-        QTEST_SET_MAIN_SOURCE_PATH \
-        QuickTestSetupClass setup; \
-        return quick_test_main_with_setup(argc, argv, #name, QUICK_TEST_SOURCE_DIR, &setup); \
-    }
-
 #else
 
 #define QUICK_TEST_MAIN(name) \
@@ -84,7 +74,7 @@ Q_QUICK_TEST_EXPORT int quick_test_main_with_setup(int argc, char **argv, const 
     { \
         QTEST_ADD_GPU_BLACKLIST_SUPPORT \
         QTEST_SET_MAIN_SOURCE_PATH \
-        return quick_test_main(argc, argv, #name, nullptr); \
+        return quick_test_main(argc, argv, #name, 0); \
     }
 
 #define QUICK_TEST_OPENGL_MAIN(name) \
@@ -92,16 +82,7 @@ Q_QUICK_TEST_EXPORT int quick_test_main_with_setup(int argc, char **argv, const 
     { \
         QTEST_ADD_GPU_BLACKLIST_SUPPORT \
         QTEST_SET_MAIN_SOURCE_PATH \
-        return quick_test_main(argc, argv, #name, nullptr); \
-    }
-
-#define QUICK_TEST_MAIN_WITH_SETUP(name, QuickTestSetupClass) \
-    int main(int argc, char **argv) \
-    { \
-        QTEST_ADD_GPU_BLACKLIST_SUPPORT \
-        QTEST_SET_MAIN_SOURCE_PATH \
-        QuickTestSetupClass setup; \
-        return quick_test_main_with_setup(argc, argv, #name, nullptr, &setup); \
+        return quick_test_main(argc, argv, #name, 0); \
     }
 
 #endif

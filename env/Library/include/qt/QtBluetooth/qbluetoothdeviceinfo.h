@@ -40,12 +40,10 @@
 #ifndef QBLUETOOTHDEVICEINFO_H
 #define QBLUETOOTHDEVICEINFO_H
 
-#include <QtBluetooth/qtbluetoothglobal.h>
+#include <QtBluetooth/qbluetoothglobal.h>
 
 #include <QtCore/qstring.h>
 #include <QtCore/qmetatype.h>
-#include <QtCore/qbytearray.h>
-#include <QtCore/qvector.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -191,20 +189,11 @@ public:
     };
     Q_DECLARE_FLAGS(ServiceClasses, ServiceClass)
 
-    //TODO Qt6 Remove DataCompleteness -> it serves no purpose
     enum DataCompleteness {
         DataComplete,
         DataIncomplete,
         DataUnavailable
     };
-
-    enum class Field {
-        None = 0x0000,
-        RSSI = 0x0001,
-        ManufacturerData = 0x0002,
-        All = 0x7fff
-    };
-    Q_DECLARE_FLAGS(Fields, Field)
 
     enum CoreConfiguration {
         UnknownCoreConfiguration = 0x0,
@@ -242,13 +231,8 @@ public:
     void setRssi(qint16 signal);
 
     void setServiceUuids(const QList<QBluetoothUuid> &uuids, DataCompleteness completeness);
-    QList<QBluetoothUuid> serviceUuids(DataCompleteness *completeness = nullptr) const;
+    QList<QBluetoothUuid> serviceUuids(DataCompleteness *completeness = Q_NULLPTR) const;
     DataCompleteness serviceUuidsCompleteness() const;
-
-    QVector<quint16> manufacturerIds() const;
-    QByteArray manufacturerData(quint16 manufacturerId) const;
-    bool setManufacturerData(quint16 manufacturerId, const QByteArray &data);
-    QHash<quint16, QByteArray> manufacturerData() const;
 
     void setCoreConfigurations(QBluetoothDeviceInfo::CoreConfigurations coreConfigs);
     QBluetoothDeviceInfo::CoreConfigurations coreConfigurations() const;

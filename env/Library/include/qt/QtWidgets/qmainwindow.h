@@ -74,7 +74,7 @@ class Q_WIDGETS_EXPORT QMainWindow : public QWidget
     Q_PROPERTY(bool dockNestingEnabled READ isDockNestingEnabled WRITE setDockNestingEnabled)
 #endif // QT_CONFIG(dockwidget)
     Q_PROPERTY(DockOptions dockOptions READ dockOptions WRITE setDockOptions)
-#if QT_CONFIG(toolbar)
+#ifndef QT_NO_TOOLBAR
     Q_PROPERTY(bool unifiedTitleAndToolBarOnMac READ unifiedTitleAndToolBarOnMac WRITE setUnifiedTitleAndToolBarOnMac)
 #endif
 
@@ -91,7 +91,7 @@ public:
     Q_DECLARE_FLAGS(DockOptions, DockOption)
     Q_FLAG(DockOptions)
 
-    explicit QMainWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
+    explicit QMainWindow(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags());
     ~QMainWindow();
 
     QSize iconSize() const;
@@ -145,7 +145,7 @@ public:
     Qt::DockWidgetArea corner(Qt::Corner corner) const;
 #endif
 
-#if QT_CONFIG(toolbar)
+#ifndef QT_NO_TOOLBAR
     void addToolBarBreak(Qt::ToolBarArea area = Qt::TopToolBarArea);
     void insertToolBarBreak(QToolBar *before);
 
@@ -190,7 +190,7 @@ public Q_SLOTS:
     void setAnimated(bool enabled);
     void setDockNestingEnabled(bool enabled);
 #endif
-#if QT_CONFIG(toolbar)
+#ifndef QT_NO_TOOLBAR
     void setUnifiedTitleAndToolBarOnMac(bool set);
 #endif
 
@@ -203,9 +203,9 @@ Q_SIGNALS:
 
 protected:
 #ifndef QT_NO_CONTEXTMENU
-    void contextMenuEvent(QContextMenuEvent *event) override;
+    void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 #endif
-    bool event(QEvent *event) override;
+    bool event(QEvent *event) Q_DECL_OVERRIDE;
 
 private:
     Q_DECLARE_PRIVATE(QMainWindow)

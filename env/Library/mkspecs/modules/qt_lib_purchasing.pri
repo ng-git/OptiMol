@@ -1,6 +1,6 @@
-QT.purchasing.VERSION = 5.12.5
+QT.purchasing.VERSION = 5.9.7
 QT.purchasing.name = QtPurchasing
-QT.purchasing.module = Qt5Purchasing_conda
+QT.purchasing.module = Qt5Purchasing
 QT.purchasing.libs = $$QT_MODULE_LIB_BASE
 QT.purchasing.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtPurchasing
 QT.purchasing.frameworks =

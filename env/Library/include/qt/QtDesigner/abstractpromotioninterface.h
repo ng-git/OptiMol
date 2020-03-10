@@ -31,9 +31,9 @@
 
 #include <QtDesigner/sdk_global.h>
 
-#include <QtCore/qpair.h>
-#include <QtCore/qlist.h>
-#include <QtCore/qset.h>
+#include <QtCore/QPair>
+#include <QtCore/QList>
+#include <QtCore/QSet>
 
 QT_BEGIN_NAMESPACE
 

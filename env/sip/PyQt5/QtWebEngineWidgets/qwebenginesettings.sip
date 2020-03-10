@@ -2,9 +2,9 @@
 //
 // This file is part of the QtWebEngineWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
-// This file is part of PyQtWebEngine.
+// This file is part of PyQt5.
 // 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
@@ -19,6 +19,8 @@
 // This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+
+%If (Qt_5_4_0 -)
 
 class QWebEngineSettings
 {
@@ -35,7 +37,7 @@ public:
         SansSerifFont,
         CursiveFont,
         FantasyFont,
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
         PictographFont,
 %End
     };
@@ -55,56 +57,38 @@ public:
         HyperlinkAuditingEnabled,
         ScrollAnimatorEnabled,
         ErrorPageEnabled,
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         PluginsEnabled,
 %End
-%If (QtWebEngine_5_6_0 -)
+%If (Qt_5_6_0 -)
         FullScreenSupportEnabled,
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
         ScreenCaptureEnabled,
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
         WebGLEnabled,
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
         Accelerated2dCanvasEnabled,
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
         AutoLoadIconsForPage,
 %End
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
         TouchIconsEnabled,
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
         FocusOnNavigationEnabled,
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
         PrintElementBackgrounds,
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
         AllowRunningInsecureContent,
 %End
-%If (QtWebEngine_5_9_0 -)
+%If (Qt_5_9_0 -)
         AllowGeolocationOnInsecureOrigins,
-%End
-%If (QtWebEngine_5_10_0 -)
-        AllowWindowActivationFromJavaScript,
-%End
-%If (QtWebEngine_5_10_0 -)
-        ShowScrollBars,
-%End
-%If (QtWebEngine_5_11_0 -)
-        PlaybackRequiresUserGesture,
-%End
-%If (QtWebEngine_5_11_0 -)
-        WebRTCPublicInterfacesOnly,
-%End
-%If (QtWebEngine_5_11_0 -)
-        JavascriptCanPaste,
-%End
-%If (QtWebEngine_5_12_0 -)
-        DnsPrefetchEnabled,
 %End
     };
 
@@ -116,7 +100,7 @@ public:
         DefaultFixedFontSize,
     };
 
-%If (QtWebEngine_5_5_0 -)
+%If (Qt_5_5_0 -)
     static QWebEngineSettings *defaultSettings();
 %End
     static QWebEngineSettings *globalSettings();
@@ -131,27 +115,10 @@ public:
     void resetAttribute(QWebEngineSettings::WebAttribute attr);
     void setDefaultTextEncoding(const QString &encoding);
     QString defaultTextEncoding() const;
-%If (QtWebEngine_5_11_0 -)
-
-    enum UnknownUrlSchemePolicy
-    {
-        DisallowUnknownUrlSchemes,
-        AllowUnknownUrlSchemesFromUserInteraction,
-        AllowAllUnknownUrlSchemes,
-    };
-
-%End
-%If (QtWebEngine_5_11_0 -)
-    QWebEngineSettings::UnknownUrlSchemePolicy unknownUrlSchemePolicy() const;
-%End
-%If (QtWebEngine_5_11_0 -)
-    void setUnknownUrlSchemePolicy(QWebEngineSettings::UnknownUrlSchemePolicy policy);
-%End
-%If (QtWebEngine_5_11_0 -)
-    void resetUnknownUrlSchemePolicy();
-%End
 
 private:
     QWebEngineSettings(const QWebEngineSettings &);
     ~QWebEngineSettings();
 };
+
+%End

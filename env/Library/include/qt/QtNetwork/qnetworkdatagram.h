@@ -63,7 +63,7 @@ public:
 
     QNetworkDatagram(QNetworkDatagram &&other) Q_DECL_NOTHROW
         : d(other.d)
-    { other.d = nullptr; }
+    { other.d = Q_NULLPTR; }
     QNetworkDatagram &operator=(QNetworkDatagram &&other) Q_DECL_NOTHROW
     { swap(other); return *this; }
 
@@ -91,7 +91,7 @@ public:
     QByteArray data() const;
     void setData(const QByteArray &data);
 
-#if defined(Q_COMPILER_REF_QUALIFIERS) || defined(Q_CLANG_QDOC)
+#ifdef Q_COMPILER_REF_QUALIFIERS
     QNetworkDatagram makeReply(const QByteArray &payload) const &
     { return makeReply_helper(payload); }
     QNetworkDatagram makeReply(const QByteArray &payload) &&

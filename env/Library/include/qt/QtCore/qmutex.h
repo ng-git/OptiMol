@@ -54,7 +54,7 @@ class tst_QMutex;
 QT_BEGIN_NAMESPACE
 
 
-#if QT_CONFIG(thread) || defined(Q_CLANG_QDOC)
+#if !defined(QT_NO_THREAD) || defined(Q_CLANG_QDOC)
 
 #ifdef Q_OS_LINUX
 # define QT_MUTEX_LOCK_NOEXCEPT Q_DECL_NOTHROW
@@ -67,12 +67,6 @@ class QMutexData;
 class Q_CORE_EXPORT QBasicMutex
 {
 public:
-#ifdef Q_COMPILER_CONSTEXPR
-    constexpr QBasicMutex()
-        : d_ptr(nullptr)
-    {}
-#endif
-
     // BasicLockable concept
     inline void lock() QT_MUTEX_LOCK_NOEXCEPT {
         if (!fastTryLock())
@@ -98,16 +92,16 @@ public:
 
 private:
     inline bool fastTryLock() Q_DECL_NOTHROW {
-        return d_ptr.testAndSetAcquire(nullptr, dummyLocked());
+        return d_ptr.testAndSetAcquire(Q_NULLPTR, dummyLocked());
     }
     inline bool fastTryUnlock() Q_DECL_NOTHROW {
-        return d_ptr.testAndSetRelease(dummyLocked(), nullptr);
+        return d_ptr.testAndSetRelease(dummyLocked(), Q_NULLPTR);
     }
     inline bool fastTryLock(QMutexData *&current) Q_DECL_NOTHROW {
-        return d_ptr.testAndSetAcquire(nullptr, dummyLocked(), current);
+        return d_ptr.testAndSetAcquire(Q_NULLPTR, dummyLocked(), current);
     }
     inline bool fastTryUnlock(QMutexData *&current) Q_DECL_NOTHROW {
-        return d_ptr.testAndSetRelease(dummyLocked(), nullptr, current);
+        return d_ptr.testAndSetRelease(dummyLocked(), Q_NULLPTR, current);
     }
 
     void lockInternal() QT_MUTEX_LOCK_NOEXCEPT;
@@ -139,7 +133,7 @@ public:
     // Lockable concept
     bool try_lock() QT_MUTEX_LOCK_NOEXCEPT { return tryLock(); }
 
-#if QT_HAS_INCLUDE(<chrono>) || defined(Q_CLANG_QDOC)
+#if QT_HAS_INCLUDE(<chrono>)
     // TimedLockable concept
     template <class Rep, class Period>
     bool try_lock_for(std::chrono::duration<Rep, Period> duration)
@@ -250,14 +244,14 @@ private:
     quintptr val;
 };
 
-#else // !QT_CONFIG(thread) && !Q_CLANG_QDOC
+#else // QT_NO_THREAD && !Q_CLANG_QDOC
 
 class Q_CORE_EXPORT QMutex
 {
 public:
     enum RecursionMode { NonRecursive, Recursive };
 
-    inline Q_DECL_CONSTEXPR explicit QMutex(RecursionMode = NonRecursive) Q_DECL_NOTHROW { }
+    inline explicit QMutex(RecursionMode mode = NonRecursive) Q_DECL_NOTHROW { Q_UNUSED(mode); }
 
     inline void lock() Q_DECL_NOTHROW {}
     inline bool tryLock(int timeout = 0) Q_DECL_NOTHROW { Q_UNUSED(timeout); return true; }
@@ -293,7 +287,7 @@ public:
 
     inline void unlock() Q_DECL_NOTHROW {}
     void relock() Q_DECL_NOTHROW {}
-    inline QMutex *mutex() const Q_DECL_NOTHROW { return nullptr; }
+    inline QMutex *mutex() const Q_DECL_NOTHROW { return Q_NULLPTR; }
 
 private:
     Q_DISABLE_COPY(QMutexLocker)
@@ -301,7 +295,7 @@ private:
 
 typedef QMutex QBasicMutex;
 
-#endif // !QT_CONFIG(thread) && !Q_CLANG_QDOC
+#endif // QT_NO_THREAD && !Q_CLANG_QDOC
 
 QT_END_NAMESPACE
 

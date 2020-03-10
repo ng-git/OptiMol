@@ -66,10 +66,9 @@ public:
         TextureIsOpaque         = 0x0010
     };
     Q_DECLARE_FLAGS(CreateTextureOptions, CreateTextureOption)
-    Q_FLAG(CreateTextureOptions)
 
-    explicit QSGEngine(QObject *parent = nullptr);
-    ~QSGEngine() override;
+    explicit QSGEngine(QObject *parent = Q_NULLPTR);
+    ~QSGEngine();
 
     void initialize(QOpenGLContext *context);
     void invalidate();

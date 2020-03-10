@@ -43,21 +43,13 @@
 #include <QtWinExtras/qwinextrasglobal.h>
 
 #include <QtCore/qt_windows.h>
-#include <QtCore/qvector.h>
-#include <QtCore/qlist.h>
-#include <QtCore/qvariant.h>
+#include <QtCore/QVector>
+#include <QtCore/QList>
+#include <QtCore/QVariant>
 
 QT_BEGIN_NAMESPACE
 
 class QMimeData;
-
-#ifdef Q_CLANG_QDOC
-typedef struct _FORMATETC {} FORMATETC;
-typedef struct _STGMEDIUM {} STGMEDIUM;
-typedef void *HBITMAP;
-typedef void *HICON;
-typedef void *HRGN;
-#endif
 
 class Q_WINEXTRAS_EXPORT QWinMime // Keep in sync with QWindowsMime in the Windows platform plugin.
 {

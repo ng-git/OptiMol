@@ -2,7 +2,7 @@
 //
 // This file is part of the QtSensors Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -69,6 +69,9 @@ public:
     explicit QAmbientLightSensor(QObject *parent /TransferThis/ = 0);
     virtual ~QAmbientLightSensor();
     QAmbientLightReading *reading() const;
+
+private:
+    QAmbientLightSensor(const QAmbientLightSensor &);
 };
 
 %End

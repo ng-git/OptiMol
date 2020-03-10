@@ -1,6 +1,6 @@
-QT.concurrent.VERSION = 5.12.5
+QT.concurrent.VERSION = 5.9.7
 QT.concurrent.name = QtConcurrent
-QT.concurrent.module = Qt5Concurrent_conda
+QT.concurrent.module = Qt5Concurrent
 QT.concurrent.libs = $$QT_MODULE_LIB_BASE
 QT.concurrent.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtConcurrent
 QT.concurrent.frameworks =

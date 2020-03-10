@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Svg module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Svg_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Svg_VERSION instead.
-set(Qt5Svg_VERSION_STRING 5.12.5)
+set(Qt5Svg_VERSION_STRING 5.9.7)
 
 set(Qt5Svg_LIBRARIES Qt5::Svg)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::Svg)
 
     set(_Qt5Svg_OWN_INCLUDE_DIRS "${_qt5Svg_install_prefix}/include/qt/" "${_qt5Svg_install_prefix}/include/qt/QtSvg")
     set(Qt5Svg_PRIVATE_INCLUDE_DIRS
-        "${_qt5Svg_install_prefix}/include/qt/QtSvg/5.12.5"
-        "${_qt5Svg_install_prefix}/include/qt/QtSvg/5.12.5/QtSvg"
+        "${_qt5Svg_install_prefix}/include/qt/QtSvg/5.9.7"
+        "${_qt5Svg_install_prefix}/include/qt/QtSvg/5.9.7/QtSvg"
     )
 
     foreach(_dir ${_Qt5Svg_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::Svg)
     foreach(_module_dep ${_Qt5Svg_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Svg_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Svg_FIND_VERSION_EXACT}
                 ${_Qt5Svg_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Svg_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::Svg)
     set_property(TARGET Qt5::Svg PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_SVG_LIB)
 
-    set_property(TARGET Qt5::Svg PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::Svg PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5Svg_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Svg_PRIVATE_DIR ${Qt5Svg_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Svg_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::Svg)
         endif()
     endforeach()
 
-    if (_Qt5Svg_PRIVATE_DIRS_EXIST)
+    if (_Qt5Svg_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::SvgPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::SvgPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Svg_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::Svg)
         )
     endif()
 
-    _populate_Svg_target_properties(RELEASE "Qt5Svg_conda.dll" "Qt5Svg_conda.lib" )
+    _populate_Svg_target_properties(RELEASE "Qt5Svg.dll" "Qt5Svg.lib" )
 
     if (EXISTS
-        "${_qt5Svg_install_prefix}/bin/Qt5Svg_condad.dll"
+        "${_qt5Svg_install_prefix}/bin/Qt5Svgd.dll"
       AND EXISTS
-        "${_qt5Svg_install_prefix}/lib/Qt5Svg_condad.lib" )
-        _populate_Svg_target_properties(DEBUG "Qt5Svg_condad.dll" "Qt5Svg_condad.lib" )
+        "${_qt5Svg_install_prefix}/lib/Qt5Svgd.lib" )
+        _populate_Svg_target_properties(DEBUG "Qt5Svgd.dll" "Qt5Svgd.lib" )
     endif()
 
 

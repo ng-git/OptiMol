@@ -1,6 +1,6 @@
-QT.remoteobjects.VERSION = 5.12.5
+QT.remoteobjects.VERSION = 5.9.7
 QT.remoteobjects.name = QtRemoteObjects
-QT.remoteobjects.module = Qt5RemoteObjects_conda
+QT.remoteobjects.module = Qt5RemoteObjects
 QT.remoteobjects.libs = $$QT_MODULE_LIB_BASE
 QT.remoteobjects.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtRemoteObjects
 QT.remoteobjects.frameworks =

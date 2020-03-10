@@ -1,6 +1,6 @@
-QT.websockets.VERSION = 5.12.5
+QT.websockets.VERSION = 5.9.7
 QT.websockets.name = QtWebSockets
-QT.websockets.module = Qt5WebSockets_conda
+QT.websockets.module = Qt5WebSockets
 QT.websockets.libs = $$QT_MODULE_LIB_BASE
 QT.websockets.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtWebSockets
 QT.websockets.frameworks =

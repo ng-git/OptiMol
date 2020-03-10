@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -34,9 +34,9 @@ public:
         Forever,
     };
 
-    QDeadlineTimer(Qt::TimerType type = Qt::CoarseTimer);
-    QDeadlineTimer(QDeadlineTimer::ForeverConstant, Qt::TimerType type = Qt::CoarseTimer);
-    QDeadlineTimer(qint64 msecs, Qt::TimerType type = Qt::CoarseTimer);
+    QDeadlineTimer(Qt::TimerType type = Qt::TimerType::CoarseTimer);
+    QDeadlineTimer(QDeadlineTimer::ForeverConstant, Qt::TimerType type = Qt::TimerType::CoarseTimer);
+    QDeadlineTimer(qint64 msecs, Qt::TimerType type = Qt::TimerType::CoarseTimer);
     void swap(QDeadlineTimer &other /Constrained/);
     bool isForever() const;
     bool hasExpired() const;
@@ -44,14 +44,14 @@ public:
     void setTimerType(Qt::TimerType type);
     qint64 remainingTime() const;
     qint64 remainingTimeNSecs() const;
-    void setRemainingTime(qint64 msecs, Qt::TimerType type = Qt::CoarseTimer);
-    void setPreciseRemainingTime(qint64 secs, qint64 nsecs = 0, Qt::TimerType type = Qt::CoarseTimer);
+    void setRemainingTime(qint64 msecs, Qt::TimerType type = Qt::TimerType::CoarseTimer);
+    void setPreciseRemainingTime(qint64 secs, qint64 nsecs = 0, Qt::TimerType type = Qt::TimerType::CoarseTimer);
     qint64 deadline() const;
     qint64 deadlineNSecs() const;
-    void setDeadline(qint64 msecs, Qt::TimerType type = Qt::CoarseTimer);
-    void setPreciseDeadline(qint64 secs, qint64 nsecs = 0, Qt::TimerType type = Qt::CoarseTimer);
+    void setDeadline(qint64 msecs, Qt::TimerType type = Qt::TimerType::CoarseTimer);
+    void setPreciseDeadline(qint64 secs, qint64 nsecs = 0, Qt::TimerType type = Qt::TimerType::CoarseTimer);
     static QDeadlineTimer addNSecs(QDeadlineTimer dt, qint64 nsecs);
-    static QDeadlineTimer current(Qt::TimerType type = Qt::CoarseTimer);
+    static QDeadlineTimer current(Qt::TimerType type = Qt::TimerType::CoarseTimer);
     QDeadlineTimer &operator+=(qint64 msecs);
     QDeadlineTimer &operator-=(qint64 msecs);
 };

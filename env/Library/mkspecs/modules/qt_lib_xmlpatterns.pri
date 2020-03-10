@@ -1,6 +1,6 @@
-QT.xmlpatterns.VERSION = 5.12.5
+QT.xmlpatterns.VERSION = 5.9.7
 QT.xmlpatterns.name = QtXmlPatterns
-QT.xmlpatterns.module = Qt5XmlPatterns_conda
+QT.xmlpatterns.module = Qt5XmlPatterns
 QT.xmlpatterns.libs = $$QT_MODULE_LIB_BASE
 QT.xmlpatterns.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtXmlPatterns
 QT.xmlpatterns.frameworks =

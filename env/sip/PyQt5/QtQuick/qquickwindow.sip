@@ -2,7 +2,7 @@
 //
 // This file is part of the QtQuick Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -20,7 +20,7 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-class QQuickWindow : QWindow /ExportDerived/
+class QQuickWindow : QWindow
 {
 %TypeHeaderCode
 #include <qquickwindow.h>
@@ -134,7 +134,7 @@ public:
 %If (Qt_5_2_0 -)
     QSGTexture *createTextureFromImage(const QImage &image, QQuickWindow::CreateTextureOptions options) const /Factory/;
 %End
-    QSGTexture *createTextureFromId(uint id, const QSize &size, QQuickWindow::CreateTextureOptions options = QQuickWindow::CreateTextureOption()) const;
+    QSGTexture *createTextureFromId(uint id, const QSize &size, QQuickWindow::CreateTextureOptions options = QQuickWindow::CreateTextureOption(0)) const /Factory/;
     void setClearBeforeRendering(bool enabled);
     bool clearBeforeRendering() const;
     void setColor(const QColor &color);
@@ -263,21 +263,9 @@ public:
 %If (Qt_5_9_0 -)
     static QString sceneGraphBackend();
 %End
-%If (Qt_5_10_0 -)
 
-    enum TextRenderType
-    {
-        QtTextRendering,
-        NativeTextRendering,
-    };
-
-%End
-%If (Qt_5_10_0 -)
-    static QQuickWindow::TextRenderType textRenderType();
-%End
-%If (Qt_5_10_0 -)
-    static void setTextRenderType(QQuickWindow::TextRenderType renderType);
-%End
+private:
+    QQuickWindow(const QQuickWindow &);
 };
 
 %If (Qt_5_1_0 -)

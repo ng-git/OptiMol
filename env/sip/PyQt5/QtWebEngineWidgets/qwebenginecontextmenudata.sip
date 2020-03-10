@@ -2,9 +2,9 @@
 //
 // This file is part of the QtWebEngineWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
-// This file is part of PyQtWebEngine.
+// This file is part of PyQt5.
 // 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
@@ -20,7 +20,7 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-%If (QtWebEngine_5_7_0 -)
+%If (Qt_5_7_0 -)
 
 class QWebEngineContextMenuData
 {
@@ -52,63 +52,12 @@ public:
     QUrl mediaUrl() const;
     QWebEngineContextMenuData::MediaType mediaType() const;
     bool isContentEditable() const;
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     QString misspelledWord() const;
 %End
-%If (QtWebEngine_5_8_0 -)
+%If (Qt_5_8_0 -)
     QStringList spellCheckerSuggestions() const;
-%End
-%If (QtWebEngine_5_11_0 -)
-
-    enum MediaFlag
-    {
-        MediaInError,
-        MediaPaused,
-        MediaMuted,
-        MediaLoop,
-        MediaCanSave,
-        MediaHasAudio,
-        MediaCanToggleControls,
-        MediaControls,
-        MediaCanPrint,
-        MediaCanRotate,
-    };
-
-%End
-%If (QtWebEngine_5_11_0 -)
-    typedef QFlags<QWebEngineContextMenuData::MediaFlag> MediaFlags;
-%End
-%If (QtWebEngine_5_11_0 -)
-
-    enum EditFlag
-    {
-        CanUndo,
-        CanRedo,
-        CanCut,
-        CanCopy,
-        CanPaste,
-        CanDelete,
-        CanSelectAll,
-        CanTranslate,
-        CanEditRichly,
-    };
-
-%End
-%If (QtWebEngine_5_11_0 -)
-    typedef QFlags<QWebEngineContextMenuData::EditFlag> EditFlags;
-%End
-%If (QtWebEngine_5_11_0 -)
-    QWebEngineContextMenuData::MediaFlags mediaFlags() const;
-%End
-%If (QtWebEngine_5_11_0 -)
-    QWebEngineContextMenuData::EditFlags editFlags() const;
 %End
 };
 
-%End
-%If (QtWebEngine_5_11_0 -)
-QFlags<QWebEngineContextMenuData::MediaFlag> operator|(QWebEngineContextMenuData::MediaFlag f1, QFlags<QWebEngineContextMenuData::MediaFlag> f2);
-%End
-%If (QtWebEngine_5_11_0 -)
-QFlags<QWebEngineContextMenuData::EditFlag> operator|(QWebEngineContextMenuData::EditFlag f1, QFlags<QWebEngineContextMenuData::EditFlag> f2);
 %End

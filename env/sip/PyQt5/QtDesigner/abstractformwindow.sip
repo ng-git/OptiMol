@@ -2,7 +2,7 @@
 //
 // This file is part of the QtDesigner Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -86,7 +86,7 @@ public slots:
 signals:
     void mainContainerChanged(QWidget *mainContainer);
     void fileNameChanged(const QString &fileName);
-    void featureChanged(QDesignerFormWindowInterface::Feature f /ScopesStripped=1/);
+    void featureChanged(QDesignerFormWindowInterface::Feature f);
     void selectionChanged();
     void geometryChanged();
     void resourceFilesChanged();

@@ -42,7 +42,7 @@
 
 #include <QtCore/qglobal.h>
 
-#ifdef Q_CC_MSVC
+#if defined(Q_CC_MSVC) && _MSC_VER > 1500
 #include <intrin.h>
 #endif
 
@@ -651,7 +651,6 @@ Q_ALWAYS_INLINE uint qt_builtin_clzs(quint16 v) Q_DECL_NOTHROW
 // So it's an acceptable compromise.
 #if defined(__AVX__) || defined(__SSE4_2__) || defined(__POPCNT__)
 #define QALGORITHMS_USE_BUILTIN_POPCOUNT
-#define QALGORITHMS_USE_BUILTIN_POPCOUNTLL
 Q_ALWAYS_INLINE uint qt_builtin_popcount(quint32 v) Q_DECL_NOTHROW
 {
     return __popcnt(v);
@@ -664,15 +663,13 @@ Q_ALWAYS_INLINE uint qt_builtin_popcount(quint16 v) Q_DECL_NOTHROW
 {
     return __popcnt16(v);
 }
+#if Q_PROCESSOR_WORDSIZE == 8
+#define QALGORITHMS_USE_BUILTIN_POPCOUNTLL
 Q_ALWAYS_INLINE uint qt_builtin_popcountll(quint64 v) Q_DECL_NOTHROW
 {
-#if Q_PROCESSOR_WORDSIZE == 8
     return __popcnt64(v);
-#else
-    return __popcnt(quint32(v)) + __popcnt(quint32(v >> 32));
-#endif // MSVC 64bit
 }
-
+#endif // MSVC 64bit
 #endif // __AVX__ || __SSE4_2__ || __POPCNT__
 
 #endif // MSVC

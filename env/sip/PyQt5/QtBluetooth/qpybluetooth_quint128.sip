@@ -1,6 +1,6 @@
 // This is the SIP interface definition for the quint128 mapped type.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -18,7 +18,7 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-%MappedType quint128 /TypeHint="Tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int]"/
+%MappedType quint128 /TypeHint="Tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int"/
 {
 %TypeHeaderCode
 #include <qbluetoothuuid.h>

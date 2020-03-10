@@ -2,7 +2,7 @@
 //
 // This file is part of the QtPositioning Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -51,12 +51,6 @@ public:
     void removeCoordinate(const QGeoCoordinate &coordinate);
     void removeCoordinate(int index);
     QString toString() const;
-%If (Qt_5_10_0 -)
-    int size() const;
-%End
-%If (Qt_5_12_0 -)
-    void clearPath();
-%End
 };
 
 %End

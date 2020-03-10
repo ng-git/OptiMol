@@ -2,7 +2,7 @@
 //
 // This file is part of the QtLocation Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -50,31 +50,6 @@ public:
     QGeoRouteRequest::TravelMode travelMode() const;
     void setPath(const QList<QGeoCoordinate> &path);
     QList<QGeoCoordinate> path() const;
-%If (Qt_5_12_0 -)
-    void setRouteLegs(const QList<QGeoRouteLeg> &legs);
-%End
-%If (Qt_5_12_0 -)
-    QList<QGeoRouteLeg> routeLegs() const;
-%End
-};
-
-%End
-%If (Qt_5_12_0 -)
-
-class QGeoRouteLeg : QGeoRoute
-{
-%TypeHeaderCode
-#include <qgeoroute.h>
-%End
-
-public:
-    QGeoRouteLeg();
-    QGeoRouteLeg(const QGeoRouteLeg &other);
-    ~QGeoRouteLeg();
-    void setLegIndex(int idx);
-    int legIndex() const;
-    void setOverallRoute(const QGeoRoute &route);
-    QGeoRoute overallRoute() const;
 };
 
 %End

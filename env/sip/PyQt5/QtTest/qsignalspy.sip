@@ -2,7 +2,7 @@
 //
 // This file is part of the QtTest Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -28,11 +28,6 @@ class QSignalSpy : QObject
 
 %ConvertToSubClassCode
     sipType = (sipCpp->inherits("QSignalSpy") ? sipType_QSignalSpy : 0);
-    
-    #if QT_VERSION >= 0x050b00
-    if (!sipType && sipCpp->inherits("QAbstractItemModelTester"))
-        sipType = sipType_QAbstractItemModelTester;
-    #endif
 %End
 
 public:
@@ -77,7 +72,11 @@ public:
 
     void __delitem__(int i);
 %MethodCode
-        if ((a0 = (int)sipConvertFromSequenceIndex(a0, sipCpp->count())) < 0)
+        int len;
+        
+        len = sipCpp->count();
+        
+        if ((a0 = (int)sipConvertFromSequenceIndex(a0, len)) < 0)
             sipIsErr = 1;
         else
             sipCpp->removeAt(a0);

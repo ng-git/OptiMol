@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -45,17 +45,7 @@ public:
     QIcon(const QPixmap &pixmap);
     QIcon(const QIcon &other);
     explicit QIcon(const QString &fileName);
-    explicit QIcon(QIconEngine *engine /GetWrapper/);
-%MethodCode
-        sipCpp = new QIcon(a0);
-        
-        // The QIconEngine is implicitly shared by copies of the QIcon and is destroyed
-        // by C++ when the last copy is destroyed.  Therefore we need to transfer
-        // ownership but not to associate it with this QIcon.  The Python object will
-        // get tidied up when the virtual dtor gets called.
-        sipTransferTo(a0Wrapper, Py_None);
-%End
-
+    explicit QIcon(QIconEngine *engine /Transfer/);
     QIcon(const QVariant &variant /GetWrapper/) /NoDerived/;
 %MethodCode
         if (a0->canConvert<QIcon>())
@@ -104,18 +94,6 @@ public:
 %End
 %If (Qt_5_6_0 -)
     bool isMask() const;
-%End
-%If (Qt_5_11_0 -)
-    static QStringList fallbackSearchPaths();
-%End
-%If (Qt_5_11_0 -)
-    static void setFallbackSearchPaths(const QStringList &paths);
-%End
-%If (Qt_5_12_0 -)
-    static QString fallbackThemeName();
-%End
-%If (Qt_5_12_0 -)
-    static void setFallbackThemeName(const QString &name);
 %End
 };
 

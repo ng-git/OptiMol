@@ -58,7 +58,7 @@ class Q_WIDGETS_EXPORT QGraphicsItemAnimation : public QObject
 {
     Q_OBJECT
 public:
-    QGraphicsItemAnimation(QObject *parent = nullptr);
+    QGraphicsItemAnimation(QObject *parent = Q_NULLPTR);
     virtual ~QGraphicsItemAnimation();
 
     QGraphicsItem *item() const;

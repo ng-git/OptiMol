@@ -68,8 +68,8 @@ class Q_WEBSOCKETS_EXPORT QWebSocket : public QObject
 public:
     explicit QWebSocket(const QString &origin = QString(),
                         QWebSocketProtocol::Version version = QWebSocketProtocol::VersionLatest,
-                        QObject *parent = nullptr);
-    ~QWebSocket() override;
+                        QObject *parent = Q_NULLPTR);
+    virtual ~QWebSocket();
 
     void abort();
     QAbstractSocket::SocketError error() const;
@@ -113,8 +113,6 @@ public:
     QSslConfiguration sslConfiguration() const;
 #endif
 
-    qint64 bytesToWrite() const;
-
 public Q_SLOTS:
     void close(QWebSocketProtocol::CloseCode closeCode = QWebSocketProtocol::CloseCodeNormal,
                const QString &reason = QString());
@@ -149,7 +147,7 @@ Q_SIGNALS:
 
 private:
     QWebSocket(QTcpSocket *pTcpSocket, QWebSocketProtocol::Version version,
-               QObject *parent = nullptr);
+               QObject *parent = Q_NULLPTR);
 };
 
 QT_END_NAMESPACE

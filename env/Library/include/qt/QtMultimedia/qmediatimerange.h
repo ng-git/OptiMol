@@ -55,7 +55,6 @@ public:
     QMediaTimeInterval();
     QMediaTimeInterval(qint64 start, qint64 end);
     QMediaTimeInterval(const QMediaTimeInterval&);
-    QMediaTimeInterval &operator=(const QMediaTimeInterval&) = default;
 
     qint64 start() const;
     qint64 end() const;

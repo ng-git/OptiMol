@@ -31,10 +31,10 @@
 
 #include <QtDesigner/sdk_global.h>
 
-#include <QtCore/qobject.h>
-#include <QtCore/qscopedpointer.h>
-#include <QtCore/qstringlist.h>
-#include <QtCore/qflags.h>
+#include <QtCore/QObject>
+#include <QtCore/QScopedPointer>
+#include <QtCore/QStringList>
+#include <QtCore/QFlags>
 
 QT_BEGIN_NAMESPACE
 

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -68,6 +68,9 @@ protected:
     virtual void closeEvent(QCloseEvent *event);
     virtual void paintEvent(QPaintEvent *event);
     virtual bool event(QEvent *event);
+
+private:
+    QDockWidget(const QDockWidget &);
 };
 
 QFlags<QDockWidget::DockWidgetFeature> operator|(QDockWidget::DockWidgetFeature f1, QFlags<QDockWidget::DockWidgetFeature> f2);

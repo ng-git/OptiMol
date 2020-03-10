@@ -1,6 +1,6 @@
-QT.gamepad.VERSION = 5.12.5
+QT.gamepad.VERSION = 5.9.7
 QT.gamepad.name = QtGamepad
-QT.gamepad.module = Qt5Gamepad_conda
+QT.gamepad.module = Qt5Gamepad
 QT.gamepad.libs = $$QT_MODULE_LIB_BASE
 QT.gamepad.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtGamepad
 QT.gamepad.frameworks =

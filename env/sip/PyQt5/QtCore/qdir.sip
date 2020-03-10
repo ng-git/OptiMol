@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -103,17 +103,21 @@ public:
 
     QStringList operator[](SIP_PYSLICE) const;
 %MethodCode
-        Py_ssize_t start, stop, step, slicelength;
+        Py_ssize_t len, start, stop, step, slicelength, i;
         
-        if (sipConvertFromSliceObject(a0, sipCpp->count(), &start, &stop, &step, &slicelength) < 0)
-        {
+        len = sipCpp->count();
+        
+        #if PY_VERSION_HEX >= 0x03020000
+        if (PySlice_GetIndicesEx(a0, len, &start, &stop, &step, &slicelength) < 0)
+        #else
+        if (PySlice_GetIndicesEx((PySliceObject *)a0, len, &start, &stop, &step, &slicelength) < 0)
+        #endif
             sipIsErr = 1;
-        }
         else
         {
             sipRes = new QStringList();
         
-            for (Py_ssize_t i = 0; i < slicelength; ++i)
+            for (i = 0; i < slicelength; ++i)
             {
                 (*sipRes) += (*sipCpp)[start];
                 start += step;

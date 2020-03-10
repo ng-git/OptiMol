@@ -1,6 +1,6 @@
-QT.3dquickanimation.VERSION = 5.12.5
+QT.3dquickanimation.VERSION = 5.9.7
 QT.3dquickanimation.name = Qt3DQuickAnimation
-QT.3dquickanimation.module = Qt53DQuickAnimation_conda
+QT.3dquickanimation.module = Qt53DQuickAnimation
 QT.3dquickanimation.libs = $$QT_MODULE_LIB_BASE
 QT.3dquickanimation.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/Qt3DQuickAnimation
 QT.3dquickanimation.frameworks =

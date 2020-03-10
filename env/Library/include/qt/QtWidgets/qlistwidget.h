@@ -61,10 +61,10 @@ class Q_WIDGETS_EXPORT QListWidgetItem
     friend class QListWidget;
 public:
     enum ItemType { Type = 0, UserType = 1000 };
-    explicit QListWidgetItem(QListWidget *view = nullptr, int type = Type);
-    explicit QListWidgetItem(const QString &text, QListWidget *view = nullptr, int type = Type);
+    explicit QListWidgetItem(QListWidget *view = Q_NULLPTR, int type = Type);
+    explicit QListWidgetItem(const QString &text, QListWidget *view = Q_NULLPTR, int type = Type);
     explicit QListWidgetItem(const QIcon &icon, const QString &text,
-                             QListWidget *view = nullptr, int type = Type);
+                             QListWidget *view = Q_NULLPTR, int type = Type);
     QListWidgetItem(const QListWidgetItem &other);
     virtual ~QListWidgetItem();
 
@@ -204,10 +204,10 @@ class Q_WIDGETS_EXPORT QListWidget : public QListView
     friend class QListWidgetItem;
     friend class QListModel;
 public:
-    explicit QListWidget(QWidget *parent = nullptr);
+    explicit QListWidget(QWidget *parent = Q_NULLPTR);
     ~QListWidget();
 
-    void setSelectionModel(QItemSelectionModel *selectionModel) override;
+    void setSelectionModel(QItemSelectionModel *selectionModel) Q_DECL_OVERRIDE;
 
     QListWidgetItem *item(int row) const;
     int row(const QListWidgetItem *item) const;
@@ -239,8 +239,6 @@ public:
     void editItem(QListWidgetItem *item);
     void openPersistentEditor(QListWidgetItem *item);
     void closePersistentEditor(QListWidgetItem *item);
-    using QAbstractItemView::isPersistentEditorOpen;
-    bool isPersistentEditorOpen(QListWidgetItem *item) const;
 
     QWidget *itemWidget(QListWidgetItem *item) const;
     void setItemWidget(QListWidgetItem *item, QWidget *widget);
@@ -253,11 +251,8 @@ public:
 
     bool isItemHidden(const QListWidgetItem *item) const;
     void setItemHidden(const QListWidgetItem *item, bool hide);
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-protected:
-#endif
 #if QT_CONFIG(draganddrop)
-    void dropEvent(QDropEvent *event) override;
+    void dropEvent(QDropEvent *event) Q_DECL_OVERRIDE;
 #endif
 public Q_SLOTS:
     void scrollToItem(const QListWidgetItem *item, QAbstractItemView::ScrollHint hint = EnsureVisible);
@@ -269,7 +264,6 @@ Q_SIGNALS:
     void itemDoubleClicked(QListWidgetItem *item);
     void itemActivated(QListWidgetItem *item);
     void itemEntered(QListWidgetItem *item);
-    // ### Qt 6: add changed roles
     void itemChanged(QListWidgetItem *item);
 
     void currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
@@ -279,33 +273,24 @@ Q_SIGNALS:
     void itemSelectionChanged();
 
 protected:
-    bool event(QEvent *e) override;
+    bool event(QEvent *e) Q_DECL_OVERRIDE;
     virtual QStringList mimeTypes() const;
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
     virtual QMimeData *mimeData(const QList<QListWidgetItem *> &items) const;
 #else
     virtual QMimeData *mimeData(const QList<QListWidgetItem*> items) const;
 #endif
-#if QT_CONFIG(draganddrop)
+#ifndef QT_NO_DRAGANDDROP
     virtual bool dropMimeData(int index, const QMimeData *data, Qt::DropAction action);
     virtual Qt::DropActions supportedDropActions() const;
 #endif
-
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-public:
-#else
-protected:
-#endif
     QList<QListWidgetItem*> items(const QMimeData *data) const;
 
-    QModelIndex indexFromItem(const QListWidgetItem *item) const;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QModelIndex indexFromItem(QListWidgetItem *item) const; // ### Qt 6: remove
-#endif
+    QModelIndex indexFromItem(QListWidgetItem *item) const;
     QListWidgetItem *itemFromIndex(const QModelIndex &index) const;
 
 private:
-    void setModel(QAbstractItemModel *model) override;
+    void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE;
     Qt::SortOrder sortOrder() const;
 
     Q_DECLARE_PRIVATE(QListWidget)
@@ -323,7 +308,7 @@ private:
 };
 
 inline void QListWidget::removeItemWidget(QListWidgetItem *aItem)
-{ setItemWidget(aItem, nullptr); }
+{ setItemWidget(aItem, Q_NULLPTR); }
 
 inline void QListWidget::addItem(QListWidgetItem *aitem)
 { insertItem(count(), aitem); }

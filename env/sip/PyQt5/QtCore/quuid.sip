@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -47,16 +47,6 @@ public:
         Sha1,
     };
 
-%If (Qt_5_11_0 -)
-
-    enum StringFormat
-    {
-        WithBraces,
-        WithoutBraces,
-        Id128,
-    };
-
-%End
     QUuid();
     QUuid(uint l, ushort w1, ushort w2, uchar b1 /PyInt/, uchar b2 /PyInt/, uchar b3 /PyInt/, uchar b4 /PyInt/, uchar b5 /PyInt/, uchar b6 /PyInt/, uchar b7 /PyInt/, uchar b8 /PyInt/);
     QUuid(const QString &);
@@ -85,9 +75,6 @@ public:
 %End
 
     QString toString() const;
-%If (Qt_5_11_0 -)
-    QString toString(QUuid::StringFormat mode) const;
-%End
     bool isNull() const;
     bool operator==(const QUuid &orig) const;
     bool operator!=(const QUuid &orig) const;
@@ -101,9 +88,6 @@ public:
     QUuid::Variant variant() const;
     QUuid::Version version() const;
     QByteArray toByteArray() const;
-%If (Qt_5_11_0 -)
-    QByteArray toByteArray(QUuid::StringFormat mode) const;
-%End
     QByteArray toRfc4122() const;
     static QUuid fromRfc4122(const QByteArray &);
 };

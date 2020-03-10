@@ -70,7 +70,7 @@ public:
 #endif
     ~QFile();
 
-    QString fileName() const override;
+    QString fileName() const Q_DECL_OVERRIDE;
     void setFileName(const QString &name);
 
 #if defined(Q_OS_DARWIN)
@@ -81,7 +81,6 @@ public:
     }
     static QString decodeName(const QByteArray &localFileName)
     {
-        // note: duplicated in qglobal.cpp (qEnvironmentVariable)
         return QString::fromUtf8(localFileName).normalized(QString::NormalizationForm_C);
     }
 #else
@@ -124,25 +123,25 @@ public:
     bool copy(const QString &newName);
     static bool copy(const QString &fileName, const QString &newName);
 
-    bool open(OpenMode flags) override;
+    bool open(OpenMode flags) Q_DECL_OVERRIDE;
     bool open(FILE *f, OpenMode ioFlags, FileHandleFlags handleFlags=DontCloseHandle);
     bool open(int fd, OpenMode ioFlags, FileHandleFlags handleFlags=DontCloseHandle);
 
-    qint64 size() const override;
+    qint64 size() const Q_DECL_OVERRIDE;
 
-    bool resize(qint64 sz) override;
+    bool resize(qint64 sz) Q_DECL_OVERRIDE;
     static bool resize(const QString &filename, qint64 sz);
 
-    Permissions permissions() const override;
+    Permissions permissions() const Q_DECL_OVERRIDE;
     static Permissions permissions(const QString &filename);
-    bool setPermissions(Permissions permissionSpec) override;
+    bool setPermissions(Permissions permissionSpec) Q_DECL_OVERRIDE;
     static bool setPermissions(const QString &filename, Permissions permissionSpec);
 
 protected:
 #ifdef QT_NO_QOBJECT
     QFile(QFilePrivate &dd);
 #else
-    QFile(QFilePrivate &dd, QObject *parent = nullptr);
+    QFile(QFilePrivate &dd, QObject *parent = Q_NULLPTR);
 #endif
 
 private:

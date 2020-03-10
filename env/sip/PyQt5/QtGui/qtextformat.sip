@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -172,12 +172,6 @@ public:
         ListNumberSuffix,
         FontStretch,
         FontLetterSpacingType,
-%If (Qt_5_12_0 -)
-        HeadingLevel,
-%End
-%If (Qt_5_12_0 -)
-        ImageQuality,
-%End
         UserProperty,
     };
 
@@ -392,15 +386,9 @@ public:
     };
 
     void setLineHeight(qreal height, int heightType);
+    qreal lineHeight(qreal scriptLineHeight, qreal scaling) const [qreal (qreal scriptLineHeight, qreal scaling = 1.0e+0)];
     qreal lineHeight() const;
-    qreal lineHeight(qreal scriptLineHeight, qreal scaling = 1.) const;
     int lineHeightType() const;
-%If (Qt_5_12_0 -)
-    void setHeadingLevel(int alevel);
-%End
-%If (Qt_5_12_0 -)
-    int headingLevel() const;
-%End
 };
 
 class QTextListFormat : QTextFormat
@@ -447,15 +435,9 @@ public:
     QString name() const;
     qreal width() const;
     qreal height() const;
-%If (Qt_5_12_0 -)
-    int quality() const;
-%End
     void setName(const QString &aname);
     void setWidth(qreal awidth);
     void setHeight(qreal aheight);
-%If (Qt_5_12_0 -)
-    void setQuality(int quality = 100);
-%End
 };
 
 class QTextFrameFormat : QTextFormat

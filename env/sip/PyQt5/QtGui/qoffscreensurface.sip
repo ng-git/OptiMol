@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -30,9 +30,6 @@ class QOffscreenSurface : QObject, QSurface
 
 public:
     explicit QOffscreenSurface(QScreen *screen = 0);
-%If (Qt_5_10_0 -)
-    QOffscreenSurface(QScreen *screen, QObject *parent /TransferThis/);
-%End
     virtual ~QOffscreenSurface();
     virtual QSurface::SurfaceType surfaceType() const;
     void create();
@@ -55,6 +52,9 @@ public:
 %If (Qt_5_9_0 -)
     void setNativeHandle(void *handle);
 %End
+
+private:
+    QOffscreenSurface(const QOffscreenSurface &);
 };
 
 %End

@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Test module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Test_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Test_VERSION instead.
-set(Qt5Test_VERSION_STRING 5.12.5)
+set(Qt5Test_VERSION_STRING 5.9.7)
 
 set(Qt5Test_LIBRARIES Qt5::Test)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::Test)
 
     set(_Qt5Test_OWN_INCLUDE_DIRS "${_qt5Test_install_prefix}/include/qt/" "${_qt5Test_install_prefix}/include/qt/QtTest")
     set(Qt5Test_PRIVATE_INCLUDE_DIRS
-        "${_qt5Test_install_prefix}/include/qt/QtTest/5.12.5"
-        "${_qt5Test_install_prefix}/include/qt/QtTest/5.12.5/QtTest"
+        "${_qt5Test_install_prefix}/include/qt/QtTest/5.9.7"
+        "${_qt5Test_install_prefix}/include/qt/QtTest/5.9.7/QtTest"
     )
 
     foreach(_dir ${_Qt5Test_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::Test)
     foreach(_module_dep ${_Qt5Test_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Test_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Test_FIND_VERSION_EXACT}
                 ${_Qt5Test_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Test_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::Test)
     set_property(TARGET Qt5::Test PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_TESTLIB_LIB)
 
-    set_property(TARGET Qt5::Test PROPERTY INTERFACE_QT_ENABLED_FEATURES itemmodeltester)
-    set_property(TARGET Qt5::Test PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5Test_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Test_PRIVATE_DIR ${Qt5Test_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Test_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::Test)
         endif()
     endforeach()
 
-    if (_Qt5Test_PRIVATE_DIRS_EXIST)
+    if (_Qt5Test_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::TestPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::TestPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Test_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::Test)
         )
     endif()
 
-    _populate_Test_target_properties(RELEASE "Qt5Test_conda.dll" "Qt5Test_conda.lib" )
+    _populate_Test_target_properties(RELEASE "Qt5Test.dll" "Qt5Test.lib" )
 
     if (EXISTS
-        "${_qt5Test_install_prefix}/bin/Qt5Test_condad.dll"
+        "${_qt5Test_install_prefix}/bin/Qt5Testd.dll"
       AND EXISTS
-        "${_qt5Test_install_prefix}/lib/Qt5Test_condad.lib" )
-        _populate_Test_target_properties(DEBUG "Qt5Test_condad.dll" "Qt5Test_condad.lib" )
+        "${_qt5Test_install_prefix}/lib/Qt5Testd.lib" )
+        _populate_Test_target_properties(DEBUG "Qt5Testd.dll" "Qt5Testd.lib" )
     endif()
 
 

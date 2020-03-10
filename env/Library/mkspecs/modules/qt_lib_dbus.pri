@@ -1,6 +1,6 @@
-QT.dbus.VERSION = 5.12.5
+QT.dbus.VERSION = 5.9.7
 QT.dbus.name = QtDBus
-QT.dbus.module = Qt5DBus_conda
+QT.dbus.module = Qt5DBus
 QT.dbus.libs = $$QT_MODULE_LIB_BASE
 QT.dbus.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtDBus
 QT.dbus.frameworks =

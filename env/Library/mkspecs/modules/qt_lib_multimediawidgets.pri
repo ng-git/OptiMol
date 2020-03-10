@@ -1,6 +1,6 @@
-QT.multimediawidgets.VERSION = 5.12.5
+QT.multimediawidgets.VERSION = 5.9.7
 QT.multimediawidgets.name = QtMultimediaWidgets
-QT.multimediawidgets.module = Qt5MultimediaWidgets_conda
+QT.multimediawidgets.module = Qt5MultimediaWidgets
 QT.multimediawidgets.libs = $$QT_MODULE_LIB_BASE
 QT.multimediawidgets.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtMultimediaWidgets
 QT.multimediawidgets.frameworks =

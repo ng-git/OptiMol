@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 Sensors module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5Sensors_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5Sensors_VERSION instead.
-set(Qt5Sensors_VERSION_STRING 5.12.5)
+set(Qt5Sensors_VERSION_STRING 5.9.7)
 
 set(Qt5Sensors_LIBRARIES Qt5::Sensors)
 
@@ -49,8 +49,8 @@ if (NOT TARGET Qt5::Sensors)
 
     set(_Qt5Sensors_OWN_INCLUDE_DIRS "${_qt5Sensors_install_prefix}/include/qt/" "${_qt5Sensors_install_prefix}/include/qt/QtSensors")
     set(Qt5Sensors_PRIVATE_INCLUDE_DIRS
-        "${_qt5Sensors_install_prefix}/include/qt/QtSensors/5.12.5"
-        "${_qt5Sensors_install_prefix}/include/qt/QtSensors/5.12.5/QtSensors"
+        "${_qt5Sensors_install_prefix}/include/qt/QtSensors/5.9.7"
+        "${_qt5Sensors_install_prefix}/include/qt/QtSensors/5.9.7/QtSensors"
     )
 
     foreach(_dir ${_Qt5Sensors_OWN_INCLUDE_DIRS})
@@ -93,7 +93,7 @@ if (NOT TARGET Qt5::Sensors)
     foreach(_module_dep ${_Qt5Sensors_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5Sensors_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5Sensors_FIND_VERSION_EXACT}
                 ${_Qt5Sensors_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5Sensors_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -127,9 +127,6 @@ if (NOT TARGET Qt5::Sensors)
     set_property(TARGET Qt5::Sensors PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_SENSORS_LIB)
 
-    set_property(TARGET Qt5::Sensors PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::Sensors PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5Sensors_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5Sensors_PRIVATE_DIR ${Qt5Sensors_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5Sensors_PRIVATE_DIR})
@@ -137,7 +134,8 @@ if (NOT TARGET Qt5::Sensors)
         endif()
     endforeach()
 
-    if (_Qt5Sensors_PRIVATE_DIRS_EXIST)
+    if (_Qt5Sensors_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::SensorsPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::SensorsPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5Sensors_OWN_PRIVATE_INCLUDE_DIRS}
@@ -153,13 +151,13 @@ if (NOT TARGET Qt5::Sensors)
         )
     endif()
 
-    _populate_Sensors_target_properties(RELEASE "Qt5Sensors_conda.dll" "Qt5Sensors_conda.lib" )
+    _populate_Sensors_target_properties(RELEASE "Qt5Sensors.dll" "Qt5Sensors.lib" )
 
     if (EXISTS
-        "${_qt5Sensors_install_prefix}/bin/Qt5Sensors_condad.dll"
+        "${_qt5Sensors_install_prefix}/bin/Qt5Sensorsd.dll"
       AND EXISTS
-        "${_qt5Sensors_install_prefix}/lib/Qt5Sensors_condad.lib" )
-        _populate_Sensors_target_properties(DEBUG "Qt5Sensors_condad.dll" "Qt5Sensors_condad.lib" )
+        "${_qt5Sensors_install_prefix}/lib/Qt5Sensorsd.lib" )
+        _populate_Sensors_target_properties(DEBUG "Qt5Sensorsd.dll" "Qt5Sensorsd.lib" )
     endif()
 
 

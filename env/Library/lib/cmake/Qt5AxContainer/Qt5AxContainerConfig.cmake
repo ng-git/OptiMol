@@ -1,12 +1,12 @@
 
-if (CMAKE_VERSION VERSION_LESS 3.1.0)
-    message(FATAL_ERROR "Qt 5 AxContainer module requires at least CMake version 3.1.0")
+if (CMAKE_VERSION VERSION_LESS 2.8.3)
+    message(FATAL_ERROR "Qt 5 requires at least CMake version 2.8.3")
 endif()
 
 get_filename_component(_qt5AxContainer_install_prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)
 
 # For backwards compatibility only. Use Qt5AxContainer_VERSION instead.
-set(Qt5AxContainer_VERSION_STRING 5.12.5)
+set(Qt5AxContainer_VERSION_STRING 5.9.7)
 
 set(Qt5AxContainer_LIBRARIES Qt5::AxContainer)
 
@@ -90,7 +90,7 @@ if (NOT TARGET Qt5::AxContainer)
     foreach(_module_dep ${_Qt5AxContainer_MODULE_DEPENDENCIES})
         if (NOT Qt5${_module_dep}_FOUND)
             find_package(Qt5${_module_dep}
-                5.12.5 ${_Qt5AxContainer_FIND_VERSION_EXACT}
+                5.9.7 ${_Qt5AxContainer_FIND_VERSION_EXACT}
                 ${_Qt5AxContainer_DEPENDENCIES_FIND_QUIET}
                 ${_Qt5AxContainer_FIND_DEPENDENCIES_REQUIRED}
                 PATHS "${CMAKE_CURRENT_LIST_DIR}/.." NO_DEFAULT_PATH
@@ -125,9 +125,6 @@ if (NOT TARGET Qt5::AxContainer)
     set_property(TARGET Qt5::AxContainer PROPERTY
       INTERFACE_COMPILE_DEFINITIONS QT_AXCONTAINER_LIB)
 
-    set_property(TARGET Qt5::AxContainer PROPERTY INTERFACE_QT_ENABLED_FEATURES )
-    set_property(TARGET Qt5::AxContainer PROPERTY INTERFACE_QT_DISABLED_FEATURES )
-
     set(_Qt5AxContainer_PRIVATE_DIRS_EXIST TRUE)
     foreach (_Qt5AxContainer_PRIVATE_DIR ${Qt5AxContainer_OWN_PRIVATE_INCLUDE_DIRS})
         if (NOT EXISTS ${_Qt5AxContainer_PRIVATE_DIR})
@@ -135,7 +132,8 @@ if (NOT TARGET Qt5::AxContainer)
         endif()
     endforeach()
 
-    if (_Qt5AxContainer_PRIVATE_DIRS_EXIST)
+    if (_Qt5AxContainer_PRIVATE_DIRS_EXIST
+        AND NOT CMAKE_VERSION VERSION_LESS 3.0.0 )
         add_library(Qt5::AxContainerPrivate INTERFACE IMPORTED)
         set_property(TARGET Qt5::AxContainerPrivate PROPERTY
             INTERFACE_INCLUDE_DIRECTORIES ${Qt5AxContainer_OWN_PRIVATE_INCLUDE_DIRS}
@@ -151,10 +149,10 @@ if (NOT TARGET Qt5::AxContainer)
         )
     endif()
 
-    _populate_AxContainer_target_properties(RELEASE "Qt5AxContainer_conda.lib" "" )
+    _populate_AxContainer_target_properties(RELEASE "Qt5AxContainer.lib" "" )
 
-    if (EXISTS "${_qt5AxContainer_install_prefix}/lib/Qt5AxContainer_condad.lib" )
-        _populate_AxContainer_target_properties(DEBUG "Qt5AxContainer_condad.lib" "" )
+    if (EXISTS "${_qt5AxContainer_install_prefix}/lib/Qt5AxContainerd.lib" )
+        _populate_AxContainer_target_properties(DEBUG "Qt5AxContainerd.lib" "" )
     endif()
 
 

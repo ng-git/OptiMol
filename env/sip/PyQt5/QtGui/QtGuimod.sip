@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -25,7 +25,7 @@
 %Import QtCore/QtCoremod.sip
 
 %Copying
-Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 
 This file is part of PyQt5.
 
@@ -137,7 +137,7 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qvector4d.sip
 %Include qwindow.sip
 %Include qwindowdefs.sip
-%Include qpygui_qpair.sip
-%Include qpygui_qlist.sip
 %Include opengl_types.sip
+%Include qpygui_qlist.sip
+%Include qpygui_qpair.sip
 %Include qpygui_qvector.sip

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -44,6 +44,9 @@ public:
 
 signals:
     void changed();
+
+private:
+    QValidator(const QValidator &);
 };
 
 class QIntValidator : QValidator
@@ -63,6 +66,9 @@ public:
     virtual void setRange(int bottom, int top);
     int bottom() const;
     int top() const;
+
+private:
+    QIntValidator(const QIntValidator &);
 };
 
 class QDoubleValidator : QValidator
@@ -92,6 +98,9 @@ public:
 
     void setNotation(QDoubleValidator::Notation);
     QDoubleValidator::Notation notation() const;
+
+private:
+    QDoubleValidator(const QDoubleValidator &);
 };
 
 class QRegExpValidator : QValidator
@@ -107,6 +116,9 @@ public:
     virtual QValidator::State validate(QString &input /In,Out/, int &pos /In,Out/) const;
     void setRegExp(const QRegExp &rx);
     const QRegExp &regExp() const;
+
+private:
+    QRegExpValidator(const QRegExpValidator &);
 };
 
 %If (Qt_5_1_0 -)
@@ -124,6 +136,9 @@ public:
     virtual QValidator::State validate(QString &input /In,Out/, int &pos /In,Out/) const;
     QRegularExpression regularExpression() const;
     void setRegularExpression(const QRegularExpression &re);
+
+private:
+    QRegularExpressionValidator(const QRegularExpressionValidator &);
 };
 
 %End

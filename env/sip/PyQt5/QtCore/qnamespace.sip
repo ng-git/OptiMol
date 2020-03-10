@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -358,12 +358,6 @@ namespace Qt
 %End
 %If (Qt_5_9_0 -)
         WA_TabletTracking,
-%End
-%If (Qt_5_11_0 -)
-        WA_ContentsMarginsRespectsSafeArea,
-%End
-%If (Qt_5_12_0 -)
-        WA_StyleSheetTarget,
 %End
     };
 
@@ -870,96 +864,6 @@ namespace Qt
 %If (Qt_5_4_0 -)
         Key_Redo,
 %End
-%If (Qt_5_11_0 -)
-        Key_Dead_Stroke,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Abovecomma,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Abovereversedcomma,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Doublegrave,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Belowring,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Belowmacron,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Belowcircumflex,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Belowtilde,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Belowbreve,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Belowdiaeresis,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Invertedbreve,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Belowcomma,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Currency,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_a,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_A,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_e,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_E,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_i,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_I,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_o,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_O,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_u,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_U,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Small_Schwa,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Capital_Schwa,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Greek,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Lowline,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Aboveverticalline,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Belowverticalline,
-%End
-%If (Qt_5_11_0 -)
-        Key_Dead_Longsolidusoverlay,
-%End
     };
 
     enum ArrowType
@@ -1433,15 +1337,6 @@ namespace Qt
 %If (Qt_5_9_0 -)
         AA_DisableShaderDiskCache,
 %End
-%If (Qt_5_10_0 -)
-        AA_DontShowShortcutsInContextMenus,
-%End
-%If (Qt_5_10_0 -)
-        AA_CompressTabletEvents,
-%End
-%If (Qt_5_10_0 -)
-        AA_DisableWindowContextHelpButton,
-%End
     };
 
     enum ItemSelectionMode
@@ -1545,12 +1440,6 @@ namespace Qt
         ImhLatinOnly,
 %If (Qt_5_1_0 -)
         ImhMultiLine,
-%End
-%If (Qt_5_11_0 -)
-        ImhNoEditMenu,
-%End
-%If (Qt_5_11_0 -)
-        ImhNoTextHandles,
 %End
     };
 
@@ -1705,9 +1594,6 @@ namespace Qt
         ScrollEnd,
 %If (Qt_5_7_0 -)
         NoScrollPhase,
-%End
-%If (Qt_5_12_0 -)
-        ScrollMomentum,
 %End
     };
 

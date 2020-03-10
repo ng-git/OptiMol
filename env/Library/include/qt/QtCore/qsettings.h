@@ -45,7 +45,10 @@
 #include <QtCore/qstring.h>
 #include <QtCore/qscopedpointer.h>
 
-QT_REQUIRE_CONFIG(settings);
+QT_BEGIN_NAMESPACE
+QT_END_NAMESPACE
+
+#ifndef QT_NO_SETTINGS
 
 #include <ctype.h>
 
@@ -85,7 +88,7 @@ public:
         NativeFormat,
         IniFormat,
 
-#if defined(Q_OS_WIN) || defined(Q_CLANG_QDOC)
+#ifdef Q_OS_WIN
         Registry32Format,
         Registry64Format,
 #endif
@@ -122,13 +125,13 @@ public:
 
 #ifndef QT_NO_QOBJECT
     explicit QSettings(const QString &organization,
-                       const QString &application = QString(), QObject *parent = nullptr);
+                       const QString &application = QString(), QObject *parent = Q_NULLPTR);
     QSettings(Scope scope, const QString &organization,
-              const QString &application = QString(), QObject *parent = nullptr);
+              const QString &application = QString(), QObject *parent = Q_NULLPTR);
     QSettings(Format format, Scope scope, const QString &organization,
-              const QString &application = QString(), QObject *parent = nullptr);
-    QSettings(const QString &fileName, Format format, QObject *parent = nullptr);
-    explicit QSettings(QObject *parent = nullptr);
+              const QString &application = QString(), QObject *parent = Q_NULLPTR);
+    QSettings(const QString &fileName, Format format, QObject *parent = Q_NULLPTR);
+    explicit QSettings(QObject *parent = Q_NULLPTR);
 #else
     explicit QSettings(const QString &organization,
                        const QString &application = QString());
@@ -143,8 +146,6 @@ public:
     void clear();
     void sync();
     Status status() const;
-    bool isAtomicSyncRequired() const;
-    void setAtomicSyncRequired(bool enable);
 
     void beginGroup(const QString &prefix);
     void endGroup();
@@ -175,7 +176,7 @@ public:
     QString organizationName() const;
     QString applicationName() const;
 
-#if QT_CONFIG(textcodec)
+#ifndef QT_NO_TEXTCODEC
     void setIniCodec(QTextCodec *codec);
     void setIniCodec(const char *codecName);
     QTextCodec *iniCodec() const;
@@ -196,7 +197,7 @@ public:
 
 protected:
 #ifndef QT_NO_QOBJECT
-    bool event(QEvent *event) override;
+    bool event(QEvent *event) Q_DECL_OVERRIDE;
 #endif
 
 private:
@@ -204,5 +205,7 @@ private:
 };
 
 QT_END_NAMESPACE
+
+#endif // QT_NO_SETTINGS
 
 #endif // QSETTINGS_H

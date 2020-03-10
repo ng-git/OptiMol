@@ -75,15 +75,12 @@ public:
                        QueryType queryType = TcpSocket);
     explicit QNetworkProxyQuery(quint16 bindPort, const QString &protocolTag = QString(),
                        QueryType queryType = TcpServer);
-#if !defined(QT_NO_BEARERMANAGEMENT) && QT_DEPRECATED_SINCE(5, 10)
-    Q_DECL_DEPRECATED_X("QNetworkConfiguration support in QNetworkProxy is deprecated")
+#ifndef QT_NO_BEARERMANAGEMENT
     QNetworkProxyQuery(const QNetworkConfiguration &networkConfiguration,
                        const QUrl &requestUrl, QueryType queryType = UrlRequest);
-    Q_DECL_DEPRECATED_X("QNetworkConfiguration support in QNetworkProxy is deprecated")
     QNetworkProxyQuery(const QNetworkConfiguration &networkConfiguration,
                        const QString &hostname, int port, const QString &protocolTag = QString(),
                        QueryType queryType = TcpSocket);
-    Q_DECL_DEPRECATED_X("QNetworkConfiguration support in QNetworkProxy is deprecated")
     QNetworkProxyQuery(const QNetworkConfiguration &networkConfiguration,
                        quint16 bindPort, const QString &protocolTag = QString(),
                        QueryType queryType = TcpServer);
@@ -119,10 +116,8 @@ public:
     QUrl url() const;
     void setUrl(const QUrl &url);
 
-#if !defined(QT_NO_BEARERMANAGEMENT) && QT_DEPRECATED_SINCE(5, 10)
-    Q_DECL_DEPRECATED_X("QNetworkConfiguration support in QNetworkProxy is deprecated")
+#ifndef QT_NO_BEARERMANAGEMENT
     QNetworkConfiguration networkConfiguration() const;
-    Q_DECL_DEPRECATED_X("QNetworkConfiguration support in QNetworkProxy is deprecated")
     void setNetworkConfiguration(const QNetworkConfiguration &networkConfiguration);
 #endif
 

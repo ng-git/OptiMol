@@ -57,7 +57,7 @@ public:
     ~QAnimationAspect();
 
 private:
-    QVector<Qt3DCore::QAspectJobPtr> jobsToExecute(qint64 time) override;
+    QVector<Qt3DCore::QAspectJobPtr> jobsToExecute(qint64 time) Q_DECL_OVERRIDE;
 
     Q_DECLARE_PRIVATE(QAnimationAspect)
     explicit QAnimationAspect(QAnimationAspectPrivate &dd, QObject *parent);

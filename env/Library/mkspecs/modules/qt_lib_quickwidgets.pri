@@ -1,6 +1,6 @@
-QT.quickwidgets.VERSION = 5.12.5
+QT.quickwidgets.VERSION = 5.9.7
 QT.quickwidgets.name = QtQuickWidgets
-QT.quickwidgets.module = Qt5QuickWidgets_conda
+QT.quickwidgets.module = Qt5QuickWidgets
 QT.quickwidgets.libs = $$QT_MODULE_LIB_BASE
 QT.quickwidgets.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtQuickWidgets
 QT.quickwidgets.frameworks =

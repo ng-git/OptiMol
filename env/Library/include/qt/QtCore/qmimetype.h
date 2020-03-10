@@ -43,9 +43,8 @@
 
 #include <QtCore/qglobal.h>
 
-QT_REQUIRE_CONFIG(mimetype);
+#ifndef QT_NO_MIMETYPE
 
-#include <QtCore/qobjectdefs.h>
 #include <QtCore/qshareddata.h>
 #include <QtCore/qstring.h>
 
@@ -59,21 +58,6 @@ Q_CORE_EXPORT uint qHash(const QMimeType &key, uint seed = 0) Q_DECL_NOTHROW;
 
 class Q_CORE_EXPORT QMimeType
 {
-    Q_GADGET
-    Q_PROPERTY(bool valid READ isValid CONSTANT)
-    Q_PROPERTY(bool isDefault READ isDefault CONSTANT)
-    Q_PROPERTY(QString name READ name CONSTANT)
-    Q_PROPERTY(QString comment READ comment CONSTANT)
-    Q_PROPERTY(QString genericIconName READ genericIconName CONSTANT)
-    Q_PROPERTY(QString iconName READ iconName CONSTANT)
-    Q_PROPERTY(QStringList globPatterns READ globPatterns CONSTANT)
-    Q_PROPERTY(QStringList parentMimeTypes READ parentMimeTypes CONSTANT)
-    Q_PROPERTY(QStringList allAncestors READ allAncestors CONSTANT)
-    Q_PROPERTY(QStringList aliases READ aliases CONSTANT)
-    Q_PROPERTY(QStringList suffixes READ suffixes CONSTANT)
-    Q_PROPERTY(QString preferredSuffix READ preferredSuffix CONSTANT)
-    Q_PROPERTY(QString filterString READ filterString CONSTANT)
-
 public:
     QMimeType();
     QMimeType(const QMimeType &other);
@@ -110,7 +94,7 @@ public:
     QStringList suffixes() const;
     QString preferredSuffix() const;
 
-    Q_INVOKABLE bool inherits(const QString &mimeTypeName) const;
+    bool inherits(const QString &mimeTypeName) const;
 
     QString filterString() const;
 
@@ -135,4 +119,5 @@ Q_CORE_EXPORT QDebug operator<<(QDebug debug, const QMimeType &mime);
 
 QT_END_NAMESPACE
 
+#endif // QT_NO_MIMETYPE
 #endif // QMIMETYPE_H

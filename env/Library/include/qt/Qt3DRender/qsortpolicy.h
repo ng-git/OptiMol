@@ -59,8 +59,7 @@ public:
     enum SortType {
         StateChangeCost = (1 << 0),
         BackToFront = (1 << 1),
-        Material = (1 << 2),
-        FrontToBack = (1 << 3)
+        Material = (1 << 2)
     };
     Q_ENUM(SortType) // LCOV_EXCL_LINE
 
@@ -80,7 +79,7 @@ protected:
 
 private:
     Q_DECLARE_PRIVATE(QSortPolicy)
-    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const override;
+    Qt3DCore::QNodeCreatedChangeBasePtr createNodeCreationChange() const Q_DECL_OVERRIDE;
 };
 
 } // namespace Qt3DRender
