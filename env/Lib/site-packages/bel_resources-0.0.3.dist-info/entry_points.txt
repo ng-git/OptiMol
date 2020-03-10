@@ -1,0 +1,3 @@
+[console_scripts]
+bel-resources = bel_resources.cli:main
+
