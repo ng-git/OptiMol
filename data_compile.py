@@ -74,6 +74,7 @@ def get_df(filename, dim=2):
     check = False
     i = 0
     atom = None
+    bond_amount = None
     # go through each row
     while check is False:
         values = pd.read_csv(filename).iloc[i, 0].split()
@@ -81,24 +82,18 @@ def get_df(filename, dim=2):
         # check the first value to be int, which is number of atoms
         if values[0].isdigit():
             atom = int(values[0])
+            bond_amount = int(values[1])
             check = True
 
     # crop the dataframe according to number of atoms
     raw_coord = pd.read_csv(filename, skiprows=i+1, nrows=atom)
 
-    # go through each row after the crop point of coord dataframe above
-    init = atom + i + 2
-    i = i + atom
-    check = False
-    while check is False:
-        values = pd.read_csv(filename).iloc[i, 0].split()
+    # adjust crop point according to dimension type due to data format
+    if dim is 2:
         i = i + 1
-        # identify the rows that has int at beginning, which is bond info
-        if not values[0].isdigit():
-            check = True
 
-    # get the bonding according to the identify rows
-    raw_bond = pd.read_csv(filename, skiprows=init, nrows=i - init + 1)
+    # crop the dataframe of bonding
+    raw_bond = pd.read_csv(filename, skiprows=atom + i + 1, nrows=bond_amount)
 
     # prepare returning dataframes to fit with input dimension
     bond = pd.DataFrame(columns=['atom_1', 'atom_2', 'bond_type'])
