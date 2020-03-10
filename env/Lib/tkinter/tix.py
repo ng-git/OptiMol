@@ -186,7 +186,7 @@ class tixCommand:
         The optional parameter newScmPrio can be given to reset the
         priority level of the Tk options set by the Tix schemes.
 
-        Because of the way Tk handles the X option database, after Tix has
+        Because of the way Tk handles the X option database_COD, after Tix has
         been has imported and inited, it is not possible to reset the color
         schemes and font sets using the tix config command.  Instead, the
         tix_resetoptions command must be used.
@@ -1770,7 +1770,7 @@ class CObjView(TixWidget):
 class Grid(TixWidget, XView, YView):
     '''The Tix Grid command creates a new window  and makes it into a
     tixGrid widget. Additional options, may be specified on the command
-    line or in the option database to configure aspects such as its cursor
+    line or in the option database_COD to configure aspects such as its cursor
     and relief.
 
     A Grid widget displays its contents in a two dimensional grid of cells.

@@ -50,7 +50,7 @@ def MCSFragQuery(itf):
     watch.Start()
     mcsdb = oemedchem.OEMCSFragDatabase()
     if not oemedchem.OEReadMCSFragDatabase(indb, mcsdb):
-        oechem.OEThrow.Fatal("Error deserializing MCS fragment database: "
+        oechem.OEThrow.Fatal("Error deserializing MCS fragment database_COD: "
                              + indb)
     loadtime = watch.Elapsed()
 
@@ -188,7 +188,7 @@ InterfaceData = """
         !PARAMETER -timer 5
            !TYPE bool
            !DEFAULT 0
-           !BRIEF report database loading time
+           !BRIEF report database_COD loading time
         !END
     !END
 !END

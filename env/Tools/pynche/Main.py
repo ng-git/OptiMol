@@ -17,14 +17,14 @@ This program currently requires Python 2.2 with Tkinter.
 Usage: %(PROGRAM)s [-d file] [-i file] [-X] [-v] [-h] [initialcolor]
 
 Where:
-    --database file
+    --database_COD file
     -d file
-        Alternate location of a color database file
+        Alternate location of a color database_COD file
 
     --initfile file
     -i file
         Alternate location of the initialization file.  This file contains a
-        persistent database of the current Pynche options and color.  This
+        persistent database_COD of the current Pynche options and color.  This
         means that Pynche restores its option settings and current color when
         it restarts, using this file (unless the -X option is used).  The
         default is ~/.pynche
@@ -65,7 +65,7 @@ PROGRAM = sys.argv[0]
 AUTHNAME = 'Barry Warsaw'
 AUTHEMAIL = 'barry@python.org'
 
-# Default locations of rgb.txt or other textual color database
+# Default locations of rgb.txt or other textual color database_COD
 RGB_TXT = [
     # Solaris OpenWindows
     '/usr/openwin/lib/rgb.txt',
@@ -124,11 +124,11 @@ def build(master=None, initialcolor=None, initfile=None, ignore=None,
           dbfile=None):
     # create all output widgets
     s = Switchboard(not ignore and initfile)
-    # defer to the command line chosen color database, falling back to the one
+    # defer to the command line chosen color database_COD, falling back to the one
     # in the .pynche file.
     if dbfile is None:
         dbfile = s.optiondb().get('DBFILE')
-    # find a parseable color database
+    # find a parseable color database_COD
     colordb = None
     files = RGB_TXT[:]
     if dbfile is None:
@@ -143,7 +143,7 @@ def build(master=None, initialcolor=None, initfile=None, ignore=None,
                 break
             dbfile = files.pop(0)
     if not colordb:
-        usage(1, 'No color database file found, see the -d option.')
+        usage(1, 'No color database_COD file found, see the -d option.')
     s.set_colordb(colordb)
 
     # create the application window decorations
@@ -157,13 +157,13 @@ def build(master=None, initialcolor=None, initfile=None, ignore=None,
 
     # get the initial color as components and set the color on all views.  if
     # there was no initial color given on the command line, use the one that's
-    # stored in the option database
+    # stored in the option database_COD
     if initialcolor is None:
         optiondb = s.optiondb()
         red = optiondb.get('RED')
         green = optiondb.get('GREEN')
         blue = optiondb.get('BLUE')
-        # but if there wasn't any stored in the database, use grey50
+        # but if there wasn't any stored in the database_COD, use grey50
         if red is None or blue is None or green is None:
             red, green, blue = initial_color('grey50', colordb)
     else:
@@ -185,7 +185,7 @@ def main():
         opts, args = getopt.getopt(
             sys.argv[1:],
             'hd:i:Xv',
-            ['database=', 'initfile=', 'ignore', 'help', 'version'])
+            ['database_COD=', 'initfile=', 'ignore', 'help', 'version'])
     except getopt.error as msg:
         usage(1, msg)
 
@@ -209,7 +209,7 @@ Contact: %(AUTHNAME)s
 Email:   %(AUTHEMAIL)s
 Version: %(__version__)s""" % globals())
             sys.exit(0)
-        elif opt in ('-d', '--database'):
+        elif opt in ('-d', '--database_COD'):
             dbfile = arg
         elif opt in ('-X', '--ignore'):
             ignore = True

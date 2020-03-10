@@ -112,8 +112,8 @@ BaseServer:
 - split generic "request" functionality out into BaseServer class.
   Copyright (C) 2000  Luke Kenneth Casson Leighton <lkcl@samba.org>
 
-  example: read entries from a SQL database (requires overriding
-  get_request() to return a table entry from the database).
+  example: read entries from a SQL database_COD (requires overriding
+  get_request() to return a table entry from the database_COD).
   entry is processed by a RequestHandlerClass.
 
 """

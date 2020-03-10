@@ -26,7 +26,7 @@ class Chooser:
         # scan for options that can override the ctor options
         self.__wantspec = options.get('wantspec', self.__wantspec)
         dbfile = options.get('databasefile', self.__databasefile)
-        # load the database file
+        # load the database_COD file
         colordb = None
         if dbfile != self.__databasefile:
             colordb = ColorDB.get_colordb(dbfile)
@@ -56,7 +56,7 @@ class Chooser:
         # check to see if the cancel button was pushed
         if self.__sb.canceled_p():
             return None, None
-        # Try to return the color name from the database if there is an exact
+        # Try to return the color name from the database_COD if there is an exact
         # match, otherwise use the "#rrggbb" spec.  BAW: Forget about color
         # aliases for now, maybe later we should return these too.
         name = None

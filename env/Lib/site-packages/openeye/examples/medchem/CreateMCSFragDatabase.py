@@ -44,7 +44,7 @@ def MCSFragIndex(itf):
     mcsopt = oemedchem.OEMCSFragDatabaseOptions()
     # set up options from command line
     if not oemedchem.OESetupMCSFragDatabaseOptions(mcsopt, itf):
-        oechem.OEThrow.Fatal("Error setting MCS fragment database options")
+        oechem.OEThrow.Fatal("Error setting MCS fragment database_COD options")
 
     # input structures to index
     ifsindex = oechem.oemolistream()
@@ -119,7 +119,7 @@ def MCSFragIndex(itf):
                                         float(mcsdb.NumFragments())/float(indextime)))
 
     if not oemedchem.OEWriteMCSFragDatabase(mcsindexfile, mcsdb):
-        oechem.OEThrow.Fatal("Error serializing MCS fragment database: {}"
+        oechem.OEThrow.Fatal("Error serializing MCS fragment database_COD: {}"
                              .format(mcsindexfile))
 
     # return some status information

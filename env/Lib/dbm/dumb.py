@@ -1,6 +1,6 @@
 """A dumb and slow but simple dbm clone.
 
-For database spam, spam.dir contains the index (a text file),
+For database_COD spam, spam.dir contains the index (a text file),
 spam.bak *may* contain a backup of the index (also a text file),
 while spam.dat contains the data (a binary file).
 
@@ -15,7 +15,7 @@ items is never reused)
 updates, they can mess up the index)
 
 - support efficient access to large databases (currently, the whole index
-is read when the database is opened, and some updates rewrite the whole index)
+is read when the database_COD is opened, and some updates rewrite the whole index)
 
 - support opening for read-only (flag = 'm')
 
@@ -83,7 +83,7 @@ class _Database(collections.abc.MutableMapping):
         except OSError:
             if flag not in ('c', 'n'):
                 import warnings
-                warnings.warn("The database file is missing, the "
+                warnings.warn("The database_COD file is missing, the "
                               "semantics of the 'c' flag will be used.",
                               DeprecationWarning, stacklevel=4)
             with _io.open(self._datfile, 'w', encoding="Latin-1") as f:
@@ -192,7 +192,7 @@ class _Database(collections.abc.MutableMapping):
     def __setitem__(self, key, val):
         if self._readonly:
             import warnings
-            warnings.warn('The database is opened for reading only',
+            warnings.warn('The database_COD is opened for reading only',
                           DeprecationWarning, stacklevel=2)
         if isinstance(key, str):
             key = key.encode('utf-8')
@@ -225,13 +225,13 @@ class _Database(collections.abc.MutableMapping):
             # file.  This also means that the on-disk directory and data
             # files are in a mutually inconsistent state, and they'll
             # remain that way until _commit() is called.  Note that this
-            # is a disaster (for the database) if the program crashes
+            # is a disaster (for the database_COD) if the program crashes
             # (so that _commit() never gets called).
 
     def __delitem__(self, key):
         if self._readonly:
             import warnings
-            warnings.warn('The database is opened for reading only',
+            warnings.warn('The database_COD is opened for reading only',
                           DeprecationWarning, stacklevel=2)
         if isinstance(key, str):
             key = key.encode('utf-8')
@@ -299,16 +299,16 @@ class _Database(collections.abc.MutableMapping):
 
 
 def open(file, flag='c', mode=0o666):
-    """Open the database file, filename, and return corresponding object.
+    """Open the database_COD file, filename, and return corresponding object.
 
-    The flag argument, used to control how the database is opened in the
+    The flag argument, used to control how the database_COD is opened in the
     other DBM implementations, supports only the semantics of 'c' and 'n'
     values.  Other values will default to the semantics of 'c' value:
-    the database will always opened for update and will be created if it
+    the database_COD will always opened for update and will be created if it
     does not exist.
 
     The optional mode argument is the UNIX mode of the file, used only when
-    the database has to be created.  It defaults to octal code 0o666 (and
+    the database_COD has to be created.  It defaults to octal code 0o666 (and
     will be modified by the prevailing umask).
 
     """

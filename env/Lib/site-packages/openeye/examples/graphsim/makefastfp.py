@@ -39,7 +39,7 @@ def main(argv=[__name__]):
     ffname = itf.GetString("-fpdb")
 
     if oechem.OEGetFileExtension(ffname) != "fpbin":
-        oechem.OEThrow.Fatal("Fingerprint database file should have '.fpbin' file extension!")
+        oechem.OEThrow.Fatal("Fingerprint database_COD file should have '.fpbin' file extension!")
 
     idxfname = oechem.OEGetMolDatabaseIdxFileName(ifname)
 
@@ -51,7 +51,7 @@ def main(argv=[__name__]):
 
     moldb = oechem.OEMolDatabase()
     if not moldb.Open(ifname):
-        oechem.OEThrow.Fatal("Cannot open molecule database file!")
+        oechem.OEThrow.Fatal("Cannot open molecule database_COD file!")
 
     nrmols = moldb.GetMaxMolIdx()
 
@@ -64,7 +64,7 @@ def main(argv=[__name__]):
 
     timer = oechem.OEWallTimer()
     if not oegraphsim.OECreateFastFPDatabaseFile(ffname, ifname, opts):
-        oechem.OEThrow.Fatal("Cannot create fingerprint database file!")
+        oechem.OEThrow.Fatal("Cannot create fingerprint database_COD file!")
 
     oechem.OEThrow.Info("%5.2f secs to generate %d fingerprints" % (timer.Elapsed(), nrmols))
 
@@ -91,7 +91,7 @@ InterfaceData = """
     !REQUIRED true
     !KEYLESS 2
     !VISIBILITY simple
-    !BRIEF Output fingerprint database filename
+    !BRIEF Output fingerprint database_COD filename
   !END
 
 !END

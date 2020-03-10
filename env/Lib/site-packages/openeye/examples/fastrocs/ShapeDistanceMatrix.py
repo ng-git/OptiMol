@@ -17,7 +17,7 @@
 # or its use.
 
 # Write out a csv file of the similarity matrix of a multi-conformer
-# database. Note, all conformers will be compared to each other,
+# database_COD. Note, all conformers will be compared to each other,
 # however, only the best match will be reported between two molecules.
 
 import sys
@@ -31,11 +31,11 @@ oepy = os.path.join(os.path.dirname(__file__), "openeye", "python")
 sys.path.insert(0, os.path.realpath(oepy))
 
 InterfaceData = """\
-!BRIEF [-shapeOnly] [-dbase] <database> [-matrix] <clusters.csv>
+!BRIEF [-shapeOnly] [-dbase] <database_COD> [-matrix] <clusters.csv>
 !PARAMETER -dbase
   !TYPE string
   !REQUIRED true
-  !BRIEF Input database to select from
+  !BRIEF Input database_COD to select from
   !KEYLESS 1
 !END
 !PARAMETER -matrix

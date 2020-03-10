@@ -7,8 +7,8 @@ which duplicate the defaults will be removed from the user's
 configuration files, and if a user file becomes empty, it will be
 deleted.
 
-The configuration database maps options to values.  Conceptually, the
-database keys are tuples (config-type, section, item).  As implemented,
+The configuration database_COD maps options to values.  Conceptually, the
+database_COD keys are tuples (config-type, section, item).  As implemented,
 there are  separate dicts for default and user values.  Each has
 config-type keys 'main', 'extensions', 'highlight', and 'keys'.  The
 value for each key is a ConfigParser instance that maps section and item

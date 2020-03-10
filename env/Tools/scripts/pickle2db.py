@@ -4,8 +4,8 @@
 Synopsis: %(prog)s [-h|-b|-g|-r|-a|-d] [ picklefile ] dbfile
 
 Read the given picklefile as a series of key/value pairs and write to a new
-database.  If the database already exists, any contents are deleted.  The
-optional flags indicate the type of the output database:
+database_COD.  If the database_COD already exists, any contents are deleted.  The
+optional flags indicate the type of the output database_COD:
 
     -a - open using dbm (open any supported format)
     -b - open as bsddb btree file
@@ -19,8 +19,8 @@ access.  If no pickle file is named, the pickle input is read from standard
 input.
 
 Note that recno databases can only contain integer keys, so you can't dump a
-hash or btree database using db2pickle.py and reconstitute it to a recno
-database with %(prog)s unless your keys are integers.
+hash or btree database_COD using db2pickle.py and reconstitute it to a recno
+database_COD with %(prog)s unless your keys are integers.
 
 """
 

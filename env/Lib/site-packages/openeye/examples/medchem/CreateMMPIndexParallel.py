@@ -202,7 +202,7 @@ def mmp_index_mols(args):
 
     moldb = oechem.OEMolDatabase()
     if not moldb.Open(mol_db_fname):
-        oechem.OEThrow.Error("Unable to open molecule database: {0}".format(mol_db_fname))
+        oechem.OEThrow.Error("Unable to open molecule database_COD: {0}".format(mol_db_fname))
         return False
 
     # interpret floating point data if requested
@@ -313,7 +313,7 @@ def MMPIndex(itf):
 
     # create the moldatabase index on the input structures so the slaves can access it
     if not oechem.OECreateMolDatabaseIdx(MOL_DB_IDX):
-        oechem.OEThrow.Fatal("Unable to generate molecule database for {}"
+        oechem.OEThrow.Fatal("Unable to generate molecule database_COD for {}"
                              .format(itf.GetString("-input")))
 
     # output index file
@@ -325,7 +325,7 @@ def MMPIndex(itf):
 
     moldb = oechem.OEMolDatabase()
     if not moldb.Open(MOL_DB_IDX):
-        oechem.OEThrow.Fatal("Unable to open molecule database: {}"
+        oechem.OEThrow.Fatal("Unable to open molecule database_COD: {}"
                              .format(MOL_DB_IDX))
 
     # create options class with defaults

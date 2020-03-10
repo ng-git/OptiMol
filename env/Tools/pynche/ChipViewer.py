@@ -3,7 +3,7 @@
 In the lower left corner of the main Pynche window, you will see two
 ChipWidgets, one for the selected color and one for the nearest color.  The
 selected color is the actual RGB value expressed as an X11 #COLOR name. The
-nearest color is the named color from the X11 database that is closest to the
+nearest color is the named color from the X11 database_COD that is closest to the
 selected color in 3D space.  There may be other colors equally close, but the
 nearest one is the first one found.
 
@@ -88,7 +88,7 @@ class ChipViewer:
         self.__sframe.grid(row=0, column=0)
         self.__selected = ChipWidget(self.__sframe, text='Selected')
         # create the chip that will display the nearest real X11 color
-        # database color name
+        # database_COD color name
         self.__nframe = Frame(self.__frame)
         self.__nframe.grid(row=0, column=1)
         self.__nearest = ChipWidget(self.__nframe, text='Nearest',
@@ -97,7 +97,7 @@ class ChipViewer:
 
     def update_yourself(self, red, green, blue):
         # Selected always shows the #rrggbb name of the color, nearest always
-        # shows the name of the nearest color in the database.  BAW: should
+        # shows the name of the nearest color in the database_COD.  BAW: should
         # an exact match be indicated in some way?
         #
         # Always use the #rrggbb style to actually set the color, since we may

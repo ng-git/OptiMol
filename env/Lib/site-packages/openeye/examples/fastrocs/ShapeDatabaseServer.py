@@ -55,7 +55,7 @@ oechem.OESetMemPoolMode(oechem.OEMemPoolMode_System)
 
 class ReadWriteLock(object):
     """ Basic locking primitive that allows multiple readers but only
-    a single writer at a time. Useful for synchronizing database
+    a single writer at a time. Useful for synchronizing database_COD
     updates. Priority is given to pending writers. """
     def __init__(self):
         self.cond = Condition()
@@ -102,12 +102,12 @@ class ReadWriteLock(object):
 
 
 class ShapeQueryThread(Thread):
-    """ A thread to run a query against a shape database """
+    """ A thread to run a query against a shape database_COD """
 
     def __init__(self, shapedb, querymolstr, nhits, iformat, oformat, errorLevel, **kwargs):
         """ Create a new thread to perform a query. The query doesn't
         execute until start is called.
-        shapedb - database to run the query against
+        shapedb - database_COD to run the query against
 
         See MCMolShapeDatabase.GetBestOverlays for a description of
         the querymolstr and nhits arguments.
@@ -298,7 +298,7 @@ class ShapeQueryThreadPool:
 
 
 class DatabaseLoaderThread(Thread):
-    """ A thread to read a database into memory. Special note, OEChem
+    """ A thread to read a database_COD into memory. Special note, OEChem
     must be placed in system allocation mode using
     oechem.OESetMemPoolMode(oechem.OEMemPoolMode_System). This is because the
     default OEChem memory caching scheme uses thread local storage,
@@ -318,9 +318,9 @@ class DatabaseLoaderThread(Thread):
         self.loadedEvent = loadedEvent
 
     def run(self):
-        """ Open the database file and load it into the OEShapeDatabase """
+        """ Open the database_COD file and load it into the OEShapeDatabase """
         timer = oechem.OEWallTimer()
-        sys.stderr.write("Opening database file %s ...\n" % self.dbname)
+        sys.stderr.write("Opening database_COD file %s ...\n" % self.dbname)
         if not self.moldb.Open(self.dbname):
             oechem.OEThrow.Fatal("Unable to open '%s'" % self.dbname)
 
@@ -329,7 +329,7 @@ class DatabaseLoaderThread(Thread):
             oechem.OEThrow.Fatal("Unable to initialize OEShapeDatabase on '%s'" % self.dbname)
 
         dots.Total()
-        sys.stderr.write("%s seconds to load database\n" % timer.Elapsed())
+        sys.stderr.write("%s seconds to load database_COD\n" % timer.Elapsed())
         self.loadedEvent.set()
 
 
@@ -416,7 +416,7 @@ def ReadShapeQuery(querymolstr):
 
 
 class MCMolShapeDatabase:
-    """ Maintains a database of MCMols that can be queried by shape
+    """ Maintains a database_COD of MCMols that can be queried by shape
     similarity."""
     def __init__(self, itf):
         """ Create a MCMolShapeDatabase from the parameters specified by the OEInterface. """
@@ -565,7 +565,7 @@ class MCMolShapeDatabase:
 class ShapeQueryServer:
     """ This object's methods are exposed via XMLRPC. """
     def __init__(self, itf):
-        """ Initialize the server to serve queries on the database
+        """ Initialize the server to serve queries on the database_COD
         named by dbname."""
         self.shapedb = MCMolShapeDatabase(itf)
         self.thdpool = ShapeQueryThreadPool(self.shapedb)
@@ -616,11 +616,11 @@ class ShapeQueryServer:
         return self.thdpool.SetLevel(level)
 
     def GetName(self):
-        """ The name of this database. By default this is the file name of the database used. """
+        """ The name of this database_COD. By default this is the file name of the database_COD used. """
         return self.shapedb.GetName()
 
     def SetName(self, name):
-        """ Set a custom database name for this server. """
+        """ Set a custom database_COD name for this server. """
         self.shapedb.SetName(name)
         return True
 
@@ -637,11 +637,11 @@ class AsyncXMLRPCServer(ThreadingMixIn, SimpleXMLRPCServer):
 
 
 InterfaceData = """\
-!BRIEF [-shapeOnly | -chemff <color forcefield>] [-hostname] [-dbase] database [[-port] 8080]
+!BRIEF [-shapeOnly | -chemff <color forcefield>] [-hostname] [-dbase] database_COD [[-port] 8080]
 !PARAMETER -dbase
   !TYPE string
   !REQUIRED true
-  !BRIEF Input database to serve
+  !BRIEF Input database_COD to serve
   !KEYLESS 1
 !END
 !PARAMETER -port

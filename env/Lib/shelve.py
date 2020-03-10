@@ -178,7 +178,7 @@ class BsdDbShelf(Shelf):
     This adds methods first(), next(), previous(), last() and
     set_location() that have no counterpart in [g]dbm databases.
 
-    The actual database must be opened using one of the "bsddb"
+    The actual database_COD must be opened using one of the "bsddb"
     modules "open" routines (i.e. bsddb.hashopen, bsddb.btopen or
     bsddb.rnopen) and passed to the constructor.
 
@@ -218,7 +218,7 @@ class BsdDbShelf(Shelf):
 class DbfilenameShelf(Shelf):
     """Shelf implementation using the "dbm" generic dbm interface.
 
-    This is initialized with the filename for the dbm database.
+    This is initialized with the filename for the dbm database_COD.
     See the module's __doc__ string for an overview of the interface.
     """
 
@@ -231,7 +231,7 @@ def open(filename, flag='c', protocol=None, writeback=False):
     """Open a persistent dictionary for reading and writing.
 
     The filename parameter is the base filename for the underlying
-    database.  As a side-effect, an extension may be added to the
+    database_COD.  As a side-effect, an extension may be added to the
     filename and more than one file may be created.  The optional flag
     parameter has the same interpretation as the flag parameter of
     dbm.open(). The optional protocol parameter specifies the

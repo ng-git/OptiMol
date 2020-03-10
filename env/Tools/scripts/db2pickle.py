@@ -3,8 +3,8 @@
 """
 Synopsis: %(prog)s [-h|-g|-b|-r|-a] dbfile [ picklefile ]
 
-Convert the database file given on the command line to a pickle
-representation.  The optional flags indicate the type of the database:
+Convert the database_COD file given on the command line to a pickle
+representation.  The optional flags indicate the type of the database_COD:
 
     -a - open using dbm (any supported format)
     -b - open as bsddb btree file

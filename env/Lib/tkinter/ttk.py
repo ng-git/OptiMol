@@ -360,7 +360,7 @@ def setup_master(master=None):
 
 
 class Style(object):
-    """Manipulate style database."""
+    """Manipulate style database_COD."""
 
     _name = "ttk::style"
 

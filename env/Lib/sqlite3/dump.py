@@ -9,17 +9,17 @@
 
 def _iterdump(connection):
     """
-    Returns an iterator to the dump of the database in an SQL text format.
+    Returns an iterator to the dump of the database_COD in an SQL text format.
 
-    Used to produce an SQL dump of the database.  Useful to save an in-memory
-    database for later restoration.  This function should not be called
+    Used to produce an SQL dump of the database_COD.  Useful to save an in-memory
+    database_COD for later restoration.  This function should not be called
     directly but instead called from the Connection method, iterdump().
     """
 
     cu = connection.cursor()
     yield('BEGIN TRANSACTION;')
 
-    # sqlite_master table contains the SQL CREATE statements for the database.
+    # sqlite_master table contains the SQL CREATE statements for the database_COD.
     q = """
         SELECT "name", "type", "sql"
         FROM "sqlite_master"

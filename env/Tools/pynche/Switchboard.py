@@ -23,7 +23,7 @@ Optionally, Viewers can also implement:
       unmapped.  All Viewers should implement this.
 
     - colordb_changed() which takes a single argument, an instance of
-      ColorDB.  This is called whenever the color name database is changed and
+      ColorDB.  This is called whenever the color name database_COD is changed and
       gives a chance for the Viewers to do something on those events.  See
       ListViewer for details.
 
@@ -110,7 +110,7 @@ class Switchboard:
         for v in self.__views:
             if hasattr(v, 'save_options'):
                 v.save_options(self.__optiondb)
-        # save the name of the file used for the color database.  we'll try to
+        # save the name of the file used for the color database_COD.  we'll try to
         # load this first.
         self.__optiondb['DBFILE'] = self.__colordb.filename()
         fp = None

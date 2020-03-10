@@ -23,7 +23,7 @@ class PyDialog(Dialog):
     then a list of buttons: back, next, cancel. Optionally a bitmap at the
     left."""
     def __init__(self, *args, **kw):
-        """Dialog(database, name, x, y, w, h, attributes, title, first,
+        """Dialog(database_COD, name, x, y, w, h, attributes, title, first,
         default, cancel, bitmap=true)"""
         Dialog.__init__(self, *args)
         ruler = self.h - 36

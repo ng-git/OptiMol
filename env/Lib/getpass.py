@@ -1,7 +1,7 @@
 """Utilities to get a password and/or the current user name.
 
 getpass(prompt[, stream]) - Prompt for a password, with echo turned off.
-getuser() - Get the user name from the environment or password database.
+getuser() - Get the user name from the environment or password database_COD.
 
 GetPassWarning - This UserWarning is issued when getpass() cannot prevent
                  echoing of the password contents while reading.
@@ -152,10 +152,10 @@ def _raw_input(prompt="", stream=None, input=None):
 
 
 def getuser():
-    """Get the username from the environment or password database.
+    """Get the username from the environment or password database_COD.
 
     First try various environment variables, then the password
-    database.  This works on Windows as long as USERNAME is set.
+    database_COD.  This works on Windows as long as USERNAME is set.
 
     """
 

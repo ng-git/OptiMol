@@ -251,7 +251,7 @@ def main(argv=[__name__]):
 
     # positional arguments retaining backward compatibility
     parser.add_argument('server:port', help='Server name and port number \
-                        of database to search i.e. localhost:8080.')
+                        of database_COD to search i.e. localhost:8080.')
     parser.add_argument('query', help='File containing the query molecule to search \
                         (format not restricted to *.oeb).')
     parser.add_argument('results', help='Output file to store results \

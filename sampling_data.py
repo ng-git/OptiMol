@@ -6,7 +6,7 @@ import shutil
 
 
 # access data directory
-os.chdir('./database')
+os.chdir('./database_COD')
 
 # make 100 samples folder to run smaller test first
 if not os.path.isdir('./sample100'):

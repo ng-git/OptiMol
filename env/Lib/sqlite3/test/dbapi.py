@@ -99,7 +99,7 @@ class ConnectionTests(unittest.TestCase):
 
     def CheckCommitAfterNoChanges(self):
         """
-        A commit should also work when no changes were made to the database.
+        A commit should also work when no changes were made to the database_COD.
         """
         self.cx.commit()
         self.cx.commit()
@@ -109,7 +109,7 @@ class ConnectionTests(unittest.TestCase):
 
     def CheckRollbackAfterNoChanges(self):
         """
-        A rollback should also work when no changes were made to the database.
+        A rollback should also work when no changes were made to the database_COD.
         """
         self.cx.rollback()
         self.cx.rollback()
@@ -161,7 +161,7 @@ class ConnectionTests(unittest.TestCase):
             self.cx.in_transaction = True
 
     def CheckOpenWithPathLikeObject(self):
-        """ Checks that we can successfully connect to a database using an object that
+        """ Checks that we can successfully connect to a database_COD using an object that
             is PathLike, i.e. has __fspath__(). """
         self.addCleanup(unlink, TESTFN)
         class Path:

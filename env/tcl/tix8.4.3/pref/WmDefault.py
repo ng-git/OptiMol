@@ -15,7 +15,7 @@ from the prevailing CDE/KDE/GNOME/Windows window manager scheme.
 The WmDefault package is for making Tk/Tkinter applications use the 
 prevailing CDE/KDE/GNOME/Windows scheme. It tries to find the files
 and/or settings that the current window manager is using, and then
-sets the Tk options database accordingly.
+sets the Tk options database_COD accordingly.
 
 Download the latest version of wm_default from http://tix.sourceforge.net
 either as a part of the standard Tix distribution, or as a part of the
@@ -52,7 +52,7 @@ def setup(root, wm=''):
     return root.tk.call('::wm_default::setup', wm)
 
 def addoptions(root, cnf=None, **kw):
-    """2) Setting the Tk options database (::wm_default::addoptions).
+    """2) Setting the Tk options database_COD (::wm_default::addoptions).
     You can override the settings in 1) by adding your values to the
     call to addoptions().
     """

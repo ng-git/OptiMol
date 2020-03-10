@@ -138,7 +138,7 @@ def init_database(name, schema,
     except OSError:
         pass
     ProductCode = ProductCode.upper()
-    # Create the database
+    # Create the database_COD
     db = OpenDatabase(name, MSIDBOPEN_CREATE)
     # Create the tables
     for t in schema.tables:
@@ -350,7 +350,7 @@ class Directory:
         full = "%s|%s" % (short, file)
         filesize = os.stat(absolute).st_size
         # constants.msidbFileAttributesVital
-        # Compressed omitted, since it is the database default
+        # Compressed omitted, since it is the database_COD default
         # could add r/o, system, hidden
         attributes = 512
         add_data(self.db, "File",

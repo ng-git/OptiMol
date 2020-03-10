@@ -45,7 +45,7 @@ def main(argv=[__name__]):
     evol = oeshape.OEExactShapeFunc()
     evol.SetupRef(emol)
 
-    # open database and output streams
+    # open database_COD and output streams
     ifs = oechem.oemolistream()
     if not ifs.open(itf.GetString("-d")):
         oechem.OEThrow.Fatal("Unable to open %s" % itf.GetString("-d"))
@@ -82,7 +82,7 @@ def main(argv=[__name__]):
 #############################################################################
 InterfaceData = """\
 !CATEGORY %(prog)s
-  !BRIEF %(prog)s [-q] <query> [-e] <exclusion> [-d] <database> [-o] <output>
+  !BRIEF %(prog)s [-q] <query> [-e] <exclusion> [-d] <database_COD> [-o] <output>
   !PARAMETER -q 1
     !TYPE string
     !REQUIRED true

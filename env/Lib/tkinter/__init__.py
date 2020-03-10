@@ -859,7 +859,7 @@ class Misc:
         (defaults to 80)."""
         self.tk.call('option', 'add', pattern, value, priority)
     def option_clear(self):
-        """Clear the option database.
+        """Clear the option database_COD.
 
         It will be reloaded if option_add is called."""
         self.tk.call('option', 'clear')
@@ -870,7 +870,7 @@ class Misc:
         Values with higher priority override lower values."""
         return self.tk.call('option', 'get', self._w, name, className)
     def option_readfile(self, fileName, priority = None):
-        """Read file FILENAME into the option database.
+        """Read file FILENAME into the option database_COD.
 
         An optional second parameter gives the numeric
         priority."""

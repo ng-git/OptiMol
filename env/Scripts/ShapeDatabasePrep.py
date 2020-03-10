@@ -30,17 +30,17 @@ oepy = os.path.join(os.path.dirname(__file__), "..", "python")
 sys.path.insert(0, os.path.realpath(oepy))
 
 InterfaceData = """\
-!BRIEF [-maxConfs 10] [-storeFloat] [-in] <database.oeb> [-out] <database.oeb>
+!BRIEF [-maxConfs 10] [-storeFloat] [-in] <database_COD.oeb> [-out] <database_COD.oeb>
 !PARAMETER -in
   !TYPE string
   !REQUIRED true
-  !BRIEF Input database to prep
+  !BRIEF Input database_COD to prep
   !KEYLESS 1
 !END
 !PARAMETER -out
   !TYPE string
   !REQUIRED true
-  !BRIEF Output prepared database
+  !BRIEF Output prepared database_COD
   !KEYLESS 2
 !END
 !PARAMETER -maxConfs
