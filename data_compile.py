@@ -68,31 +68,36 @@ def get_df(filename, dim=2):
 
     # check dimension input value
     if dim not in [2, 3]:
-        raise ValueError()
+        raise ValueError('Invalid dimension!')
 
     # get the number of atoms to cut off the text rows
-    # atom = (pd.read_csv(filename, skiprows=1).iloc[0, 0][1:3])
     check = False
     i = 0
+    atom = None
+    # go through each row
     while check is False:
         values = pd.read_csv(filename).iloc[i, 0].split()
         i = i + 1
+        # check the first value to be int, which is number of atoms
         if values[0].isdigit():
             atom = int(values[0])
             check = True
 
+    # crop the dataframe according to number of atoms
     raw_coord = pd.read_csv(filename, skiprows=i+1, nrows=atom)
 
+    # go through each row after the crop point of coord dataframe above
     init = atom + i + 2
     i = i + atom
     check = False
     while check is False:
         values = pd.read_csv(filename).iloc[i, 0].split()
         i = i + 1
+        # identify the rows that has int at beginning, which is bond info
         if not values[0].isdigit():
             check = True
 
-    # get the bonding
+    # get the bonding according to the identify rows
     raw_bond = pd.read_csv(filename, skiprows=init, nrows=i - init + 1)
 
     # prepare returning dataframes to fit with input dimension
