@@ -7,7 +7,7 @@ Opt = dict(name = 'OptMol',
            version = '1.0',
            description = 'useful module for predicting molecular conformation',
            license = "MIT",
-           author = "Minh", "Vivian","Mike","Guanning","Weishi",
+           author = "Minh", "Vivian", "Mike", "Guanning", "Weishi",
            url = "https://github.com/ShadyMikey/OptiMol",
            package = "ChemSpider","os","numpy","shutil","pandas",
            install_requires = REQUIRES
@@ -15,7 +15,7 @@ Opt = dict(name = 'OptMol',
            setup_requires = SETUP_REQUIRES)
 
 if __name__ == '__main__':
-    setup(**Opt)
+    setup(**Opt, install_requires=['pandas', 'numpy'])
     
 
 

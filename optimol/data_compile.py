@@ -25,12 +25,14 @@ def get_df_database(id_num):
     if not isinstance(id_num, (int, str)):
         raise TypeError()
 
+    # in case id is string type
     if isinstance(id_num, str):
+        # check for numeric input
         if not id_num.isdigit():
             raise ValueError('Invalid ID number')
-    else:
-        # cast to int
-        id_num = int(id_num)
+        else:
+            # cast to int if numeric
+            id_num = int(id_num)
 
     # check valid id
     if id_num not in get_id():

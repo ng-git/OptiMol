@@ -1,6 +1,6 @@
 """ Test file for data_compile.py"""
 
-import data_compile
+from optimol import data_compile
 import pandas as pd
 
 
