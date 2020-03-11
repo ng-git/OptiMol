@@ -10,12 +10,11 @@ Opt = dict(name='optimol',
            author=["Minh", "Vivian", "Mike", "Guanning", "Weishi"],
            url="https://github.com/ShadyMikey/OptiMol",
            package=["optimol"],
-           install_requires=["ChemSpider", "os", "numpy", "shutil", "pandas", "sklearn", "pkg_resources",
+           install_requires=["chemspipy", "os", "numpy", "shutil", "pandas", "scikit-learn", "pkg_resources",
                              "csv", "xgboost"],
            python_requires=">=3.0",
            # setup_requires = SETUP_REQUIRES
            )
 
 if __name__ == '__main__':
-    setup(**Opt, install_requires=["ChemSpider", "os", "numpy", "shutil", "pandas", "sklearn", "pkg_resources",
-                                   "csv", "xgboost"])
+    setup(**Opt, install_requires=["chemspipy", "numpy", "pandas", "scikit-learn", "xgboost"])
