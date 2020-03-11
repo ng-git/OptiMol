@@ -13,31 +13,33 @@ Our ultimate goal is to use a machine learning algorism to predict the molecular
 
 The project has the following structure:
 
-    shablona/
+   OptiMol/
       |- README.md
-      |- shablona/
+      |- requirement.txt
+      |- OptiMol/
          |- __init__.py
-         |- shablona.py
-         |- due.py
-         |- data/
+         |- corpus.py
+         |- database_chemspider/
+            |- ...
+	 |- sample_data/
             |- ...
          |- tests/
             |- ...
+	 |- data_compile.py
+	 |- data_csv_compile.py
+	 |- id.csv
       |- doc/
-         |- Makefile
-         |- conf.py
-         |- sphinxext/
-            |- ...
-         |- _static/
-            |- ...
+         |- component_specifications.ipynb
+         |- functional_specifications.ipynb
+      |- xgboost/
+         |- demo.ipymn
+	 |- demo_MN.py
+	 |- technology review.pdf
       |- setup.py
-      |- .travis.yml
-      |- .mailmap
-      |- appveyor.yml
+      |- setuptool.py
+      |- OptiMol.yml
       |- LICENSE
-      |- Makefile
-      |- ipynb/
-         |- ...
+
 
 
 In the following sections we will examine these elements one by one. First,
