@@ -5,8 +5,9 @@ import numpy as np
 import shutil
 import csv
 import pandas as pd
+import pkg_resources
 
-ROOT = os.getcwd()
+ROOT = pkg_resources.resource_filename('optimol', '')
 DATABASE = ROOT + '/database_chemspider'
 
 
