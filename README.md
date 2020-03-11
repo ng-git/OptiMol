@@ -13,32 +13,32 @@ Our ultimate goal is to use a machine learning algorism to predict the molecular
 
 The project has the following structure:
 
-   OptiMol/
-      |- README.md
-      |- requirement.txt
-      |- OptiMol/
-         |- __init__.py
-         |- corpus.py
-         |- database_chemspider/
-            |- ...
-	 |- sample_data/
-            |- ...
-         |- tests/
-            |- ...
-	 |- data_compile.py
-	 |- data_csv_compile.py
-	 |- id.csv
-      |- doc/
-         |- component_specifications.ipynb
-         |- functional_specifications.ipynb
-      |- xgboost/
-         |- demo.ipymn
-	 |- demo_MN.py
-	 |- technology review.pdf
-      |- setup.py
-      |- setuptool.py
-      |- OptiMol.yml
-      |- LICENSE
+   OptiMol/<br>
+      |- README.md<br>
+      |- requirement.txt<br>
+      |- OptiMol/<br>
+         |- __init__.py<br>
+         |- corpus.py<br>
+         |- database_chemspider/<br>
+            |- ...<br>
+	 |- sample_data/<br>
+            |- ...<br>
+         |- tests/<br>
+            |- ...<br>
+	 |- data_compile.py<br>
+	 |- data_csv_compile.py<br>
+	 |- id.csv<br>
+      |- doc/<br>
+         |- component_specifications.ipynb<br>
+         |- functional_specifications.ipynb<br>
+      |- xgboost/<br>
+         |- demo.ipymn<br>
+	 |- demo_MN.py<br>
+	 |- technology review.pdf<br>
+      |- setup.py<br>
+      |- setuptool.py<br>
+      |- OptiMol.yml<br>
+      |- LICENSE<br>
 
 
 
