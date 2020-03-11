@@ -5,6 +5,8 @@ OptiMol is a package for predicting molecular conformations.  There are four maj
 
 Our ultimate goal is to use a machine learning algorism to predict the molecular conformation from an chemical formula input.  To achieve this, we have segmented it into a step-by-step float chart, as shown below, and we are currently working on predicting the bond type based on the information of two atoms -- their 3D coordinates and their atom numbers.  
 
+![]([https://github.com/ShadyMikey/OptiMol/blob/master/Presentation%20and%20image/Picture1.png](https://github.com/ShadyMikey/OptiMol/blob/master/Presentation and image/Picture1.png))
+
 
 
 ### Organization of the  project
