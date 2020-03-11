@@ -40,6 +40,34 @@ The project has the following structure:
       |- OptiMol.yml<br>
       |- LICENSE<br>
 
+The project has the following structure:
+
+    shablona/
+      |- README.md
+      |- shablona/
+         |- __init__.py
+         |- shablona.py
+         |- due.py
+         |- data/
+            |- ...
+         |- tests/
+            |- ...
+      |- doc/
+         |- Makefile
+         |- conf.py
+         |- sphinxext/
+            |- ...
+         |- _static/
+            |- ...
+      |- setup.py
+      |- .travis.yml
+      |- .mailmap
+      |- appveyor.yml
+      |- LICENSE
+      |- Makefile
+      |- ipynb/
+         |- ...
+
 
 
 In the following sections we will examine these elements one by one. First,
