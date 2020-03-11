@@ -19,7 +19,3 @@ Opt = dict(name='optimol',
 if __name__ == '__main__':
     setup(**Opt, install_requires=["ChemSpider", "os", "numpy", "shutil", "pandas", "sklearn", "pkg_resources",
                                    "csv", "xgboost"])
-    
-
-
- 
