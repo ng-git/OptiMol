@@ -42,9 +42,9 @@ The project has the following structure:
 
 The project has the following structure:
 
-    shablona/
+    OptiMol/
       |- README.md
-      |- shablona/
+      |- OptiMol/
          |- __init__.py
          |- shablona.py
          |- due.py
