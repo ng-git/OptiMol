@@ -44,29 +44,27 @@ The project has the following structure:
 
     OptiMol/
       |- README.md
+      |- requirement.txt
       |- OptiMol/
          |- __init__.py
-         |- shablona.py
-         |- due.py
-         |- data/
+         |- corpus.py
+         |- database_chemspider/
+            |- ...
+	 |- sample_data/
             |- ...
          |- tests/
             |- ...
       |- doc/
-         |- Makefile
-         |- conf.py
-         |- sphinxext/
-            |- ...
-         |- _static/
-            |- ...
+         |- component_specifications.ipynb
+         |- functional_specifications.ipynb
+      |- xgboost/
+         |- demo.ipymn
+	 |- demo_MN.py
+	 |- technology review.pdf
       |- setup.py
-      |- .travis.yml
-      |- .mailmap
-      |- appveyor.yml
+      |- setuptool.py
+      |- OptiMol.yml
       |- LICENSE
-      |- Makefile
-      |- ipynb/
-         |- ...
 
 
 
