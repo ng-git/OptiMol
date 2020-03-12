@@ -11,10 +11,14 @@ ROOT = pkg_resources.resource_filename('optimol', '')
 DATABASE = ROOT + '/database_chemspider'
 
 
-def get_df_database(id_num):
+def get_df_database(id_num, raw=False, hydrogen=False):
     """ Access the database folder using the id number to get a list of dataframes contain 2D and 3D data
         :param id_num: id number of the molecule
+        :param raw: return dataframes in raw form from web server without processing
+        :param hydrogen: return dataframes in without trimming Hydrogen
         :type id_num: int, str
+        :type raw: bool
+        :type hydrogen: bool
 
         :return coord_2d: atom 2D coordinates
         :return bond_2d: atom 2D bonding types and arrangement
@@ -23,7 +27,8 @@ def get_df_database(id_num):
         :rtype coord_2d, bond_2d, coord_3d, bond_3d: pandas.DataFrame"""
 
     # check input type
-    if not isinstance(id_num, (int, str)):
+    if False in [isinstance(id_num, (int, str)),
+                 isinstance(raw, bool)]:
         raise TypeError()
 
     # in case id is string type
@@ -52,7 +57,122 @@ def get_df_database(id_num):
 
     os.chdir(ROOT)
 
+    # trim hydrogen
+    if False is hydrogen:
+        [coord_2d, bond_2d] = trim_hydrogen(coord_2d, bond_2d)
+        [coord_3d, bond_3d] = trim_hydrogen(coord_3d, bond_3d)
+
+    # process the data in if raw is not requested
+    if False is raw:
+        coord_2d = atom_periodic_number_convert(coord_2d)
+        coord_3d = atom_periodic_number_convert(coord_3d)
+
+        coord_2d = atom_connect(coord_2d, bond_2d)
+        coord_3d = atom_connect(coord_3d, bond_3d)
+
     return [coord_2d, bond_2d, coord_3d, bond_3d]
+
+
+def trim_hydrogen(coord_input, bond_input):
+    """ Return a copy of the same dataframe after removing Hydorgen atom
+        :param coord_input: coordinate dataframe
+        :param bond_input: bond dataframe
+        :type coord_input: pandas.DataFrame
+
+        :return coord: same as input but without H
+        :rtype coord: pandas.DataFrame"""
+
+    # check input type
+    if False in [isinstance(coord_input, pd.DataFrame),
+                 isinstance(bond_input, pd.DataFrame)]:
+        raise TypeError()
+
+    coord = coord_input.copy()
+    bond = bond_input.copy()
+
+    if 'periodic_#' not in coord_input:
+        coord = atom_periodic_number_convert(coord)
+
+    # trim row with periodic number of 1 (H)
+    coord = coord[coord['periodic_#'] != 1]
+    coord = coord.reset_index(drop=True)  # reset index
+
+    # trim row with connection to H
+    size = coord.count()[0]
+    bond = bond[bond['atom_2'] <= size]
+    bond = bond[bond['atom_1'] <= size]
+    bond = bond.reset_index(drop=True)  # reset index
+
+    if 'periodic_#' not in coord_input:
+        del coord['periodic_#']
+
+    return [coord, bond]
+
+
+def atom_periodic_number_convert(coord_input):
+    """ Add a new column contain periodic number of the corresponding atom
+        :param coord_input: coordinate dataframe of 2D or 3D data
+        :type: pandas.DataFrame
+
+        :return coord: same dataframe with added column of periodic number"""
+
+    # check input type
+    if False in [isinstance(coord_input, pd.DataFrame)]:
+        raise TypeError()
+
+    # check if result column already exist
+    if 'periodic_#' in coord_input.columns:
+        raise ValueError('periodic_# column already existed')
+
+    element = dict({'C': 6, 'O': 8, 'H': 1, 'N': 7})  # periodic info
+    coord = coord_input.copy()
+    coord['periodic_#'] = None
+
+    # find atom symbol and arrange the number
+    for i in range(coord.shape[0]):
+        for elem in element.keys():
+            if elem in coord['atom'][i]:
+                coord['periodic_#'][i] = element[elem]
+
+    return coord
+
+
+def atom_connect(coord_input, bond_input):
+    """ Create array contains connection info to the atom and put it into a new dataframe column
+        :param coord_input: dataframe to be updated with new column of connection
+        :param bond_input: dataframe contain atom pairs and the connections
+        :type coord_input: pandas.DataFrame
+        :type bond_input: pandas.DataFrame
+
+        :return coord same dataframe as coord_input with added column of connection"""
+
+    # check input type
+    if False in [isinstance(coord_input, pd.DataFrame),
+                 isinstance(bond_input, pd.DataFrame)]:
+        raise TypeError()
+
+    # check if result column already exist
+    if 'connect_to' in coord_input.columns:
+        raise ValueError('connect_to column already existed')
+
+    coord = coord_input.copy()
+    bond = bond_input.copy()
+    coord['connect_to'] = np.empty((len(coord), 0)).tolist()
+
+    # create a list of other atoms that the each atom connect to
+    for i in range(len(coord)):
+        atom_1 = bond['atom_1'][i]
+        atom_2 = bond['atom_2'][i]
+        for j in range(int(bond['bond_type'][i])):  # duplication is for double and triple bond
+            coord['connect_to'][atom_1 - 1].append(atom_2 - 1)  # subtract 1 to shift values to zero-based
+            coord['connect_to'][atom_2 - 1].append(atom_1 - 1)
+
+    # convert to array and pad zero
+    for i in range(len(coord)):
+        coord['connect_to'][i] = np.pad(np.array(coord['connect_to'][i]),
+                                        (0, 4 - len(coord['connect_to'][i])), 'constant')
+
+    return coord
 
 
 def get_df(filename, dim=2):
@@ -108,6 +228,11 @@ def get_df(filename, dim=2):
     # fix dataframe format
     coord = df_cleaner(raw_coord, coord)
     bond = df_cleaner(raw_bond, bond)
+
+    # reformat the data
+    bond['atom_1'] = bond['atom_1'].astype(str).astype('int32')
+    bond['atom_2'] = bond['atom_2'].astype(str).astype('int32')
+    bond['bond_type'] = bond['bond_type'].astype(str).astype('int32')
 
     return [coord, bond]
 
