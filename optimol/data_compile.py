@@ -12,6 +12,31 @@ ROOT = pkg_resources.resource_filename('optimol', '')
 DATABASE = ROOT + '/database_chemspider'
 
 
+def get_all_dataset():
+
+    id_list = get_id()
+    all_dataset = pd.DataFrame()
+    i = 0
+    for item in id_list:
+        i = i + 1
+        print(str(i) + ': ' + str(item))
+        [coord_2d, bond_2d, coord_3d, bond_3d] = get_df_database(item)
+
+        # remove unwanted data
+        del coord_2d['atom']
+        del coord_2d['connect_to_2d']
+        del coord_2d['2d_z']
+        del coord_3d['atom']
+        del coord_3d['connect_to_3d']
+
+        # combine dataframes into one
+        coord = pd.concat([coord_2d, coord_3d], axis=1)
+        coord.insert(0, column='id', value=item)  # add id value
+        pd.concat([all_dataset, coord], ignore_index=True)
+
+    return all_dataset
+
+
 def get_df_database(id_num, raw=False, hydrogen=False):
     """ Access the database folder using the id number to get a list of dataframes contain 2D and 3D data
         :param id_num: id number of the molecule
@@ -63,7 +88,7 @@ def get_df_database(id_num, raw=False, hydrogen=False):
         [coord_2d, bond_2d] = trim_hydrogen(coord_2d, bond_2d)
         [coord_3d, bond_3d] = trim_hydrogen(coord_3d, bond_3d)
 
-    # process the data in if raw is not requested
+    # process the data if raw is not requested
     if False is raw:
         coord_2d = atom_periodic_number_convert(coord_2d)
         coord_3d = atom_periodic_number_convert(coord_3d)
@@ -91,11 +116,13 @@ def trim_hydrogen(coord_input, bond_input):
     coord = coord_input.copy()
     bond = bond_input.copy()
 
-    if 'periodic_#' not in coord_input:
+    dim = '_' + coord.columns.values[0][0:2]
+    period_name = 'periodic_#' + dim
+    if period_name not in coord_input:
         coord = atom_periodic_number_convert(coord)
 
     # trim row with periodic number of 1 (H)
-    coord = coord[coord['periodic_#'] != 1]
+    coord = coord[coord[period_name] != 1]
     coord = coord.reset_index(drop=True)  # reset index
 
     # trim row with connection to H
@@ -104,8 +131,8 @@ def trim_hydrogen(coord_input, bond_input):
     bond = bond[bond['atom_1'] <= size]
     bond = bond.reset_index(drop=True)  # reset index
 
-    if 'periodic_#' not in coord_input:
-        del coord['periodic_#']
+    if period_name not in coord_input:
+        del coord[period_name]
 
     return [coord, bond]
 
@@ -129,33 +156,41 @@ def atom_connect(coord_input, bond_input):
         raise ValueError('connect_to column already existed')
 
     coord = coord_input.copy()
-    bond = bond_input.copy()
-    coord['connect_to'] = np.empty((len(coord), 0)).tolist()
-    coord['bond_1'] = np.zeros(len(coord))
-    coord['bond_2'] = np.zeros(len(coord))
-    coord['bond_3'] = np.zeros(len(coord))
+    bond = bond_input
+    dim = '_' + coord.columns.values[0][0:2]
+
+    # set up empty columns
+    connect_col = 'connect_to' + dim
+    coord[connect_col] = np.empty((len(coord), 0)).tolist()
+    coord['bond_1' + dim] = np.zeros(len(coord))
+    coord['bond_2' + dim] = np.zeros(len(coord))
+    coord['bond_3' + dim] = np.zeros(len(coord))
+    coord['bond_4' + dim] = np.zeros(len(coord))
 
     # create a list of other atoms that the each atom connect to
-    for i in range(len(coord)):
+    for i in range(len(bond_input)):
         atom_1 = bond['atom_1'][i]
         atom_2 = bond['atom_2'][i]
         bond_type = bond['bond_type'][i]
-        coord['bond_' + str(bond_type)][atom_1 - 1] = coord['bond_' + str(bond_type)][atom_1 - 1] + 1
-        coord['bond_' + str(bond_type)][atom_2 - 1] = coord['bond_' + str(bond_type)][atom_2 - 1] + 1
+        coord['bond_' + str(bond_type) + dim][atom_1 - 1] = coord['bond_' + str(bond_type) + dim][atom_1 - 1] + 1
+        coord['bond_' + str(bond_type) + dim][atom_2 - 1] = coord['bond_' + str(bond_type) + dim][atom_2 - 1] + 1
         for j in range(int(bond['bond_type'][i])):  # duplication is for double and triple bond
-            coord['connect_to'][atom_1 - 1].append(atom_2 - 1)  # subtract 1 to shift values to zero-based
-            coord['connect_to'][atom_2 - 1].append(atom_1 - 1)
+            coord[connect_col][atom_1 - 1].append(atom_2 - 1)  # subtract 1 to shift values to zero-based
+            coord[connect_col][atom_2 - 1].append(atom_1 - 1)
 
     # convert to array and pad -1
+    max_bond_amount = 8  # based on sulfur
     for i in range(len(coord)):
-        coord['connect_to'][i] = np.pad(np.array(coord['connect_to'][i]),
-                                        (0, 4 - len(coord['connect_to'][i])),
-                                        'constant', constant_values=-1)
+        if max_bond_amount - len(coord[connect_col][i]) > 0:
+            coord[connect_col][i] = np.pad(np.array(coord[connect_col][i]),
+                                           (0, max_bond_amount - len(coord[connect_col][i])),
+                                           'constant', constant_values=-1)
 
     # reformatting
-    coord['bond_1'] = coord['bond_1'].astype('int32')
-    coord['bond_2'] = coord['bond_2'].astype('int32')
-    coord['bond_3'] = coord['bond_3'].astype('int32')
+    coord['bond_1' + dim] = coord['bond_1' + dim].astype('int32')
+    coord['bond_2' + dim] = coord['bond_2' + dim].astype('int32')
+    coord['bond_3' + dim] = coord['bond_3' + dim].astype('int32')
+    coord['bond_4' + dim] = coord['bond_4' + dim].astype('int32')
 
     return coord
 
@@ -175,17 +210,26 @@ def atom_periodic_number_convert(coord_input):
     if 'periodic_#' in coord_input.columns:
         raise ValueError('periodic_# column already existed')
 
-    element = dict({'C': 6, 'O': 8, 'H': 1, 'N': 7})  # periodic info
+    # element = dict({'C': 6, 'O': 8, 'H': 1, 'N': 7})  # periodic info
+    element = dict({'C': 6, 'O': 8, 'H': 1, 'N': 7,
+                    'Br': 37, 'S': 16, 'I': 53, 'F': 9, 'B': 5})  # periodic info
     coord = coord_input.copy()
-    coord['periodic_#'] = None
+    dim = '_' + coord.columns.values[0][0:2]
+    col_name = 'periodic_#' + dim
+    coord[col_name] = None
 
     # find atom symbol and arrange the number
     for i in range(coord.shape[0]):
         for elem in element.keys():
             if elem in coord['atom'][i]:
-                coord['periodic_#'][i] = element[elem]
+                coord[col_name][i] = element[elem]
 
-    coord['periodic_#'] = coord['periodic_#'].astype('int32')  # reformatting
+        if None is coord[col_name][i]:
+            unk_atom = coord['atom'][i]
+            err_msg = unk_atom + ' element not in the dict, need to be added.'
+            raise ValueError(err_msg)
+
+    coord[col_name] = coord[col_name].astype('int32')  # reformatting
 
     return coord
 
@@ -211,6 +255,7 @@ def get_df(filename, dim=2):
     if dim not in [2, 3]:
         raise ValueError('Invalid dimension!')
 
+    raw = pd.read_csv(filename)
     # get the number of atoms to cut off the text rows
     check = False
     i = 0
@@ -218,7 +263,7 @@ def get_df(filename, dim=2):
     bond_amount = None
     # go through each row
     while check is False:
-        values = pd.read_csv(filename).iloc[i, 0].split()
+        values = raw.iloc[i, 0].split()
         i = i + 1
         # check the first value to be int, which is number of atoms
         if values[0].isdigit():
@@ -226,19 +271,17 @@ def get_df(filename, dim=2):
             bond_amount = int(values[1])
             check = True
 
-    # crop the dataframe according to number of atoms
-    raw_coord = pd.read_csv(filename, skiprows=i+1, nrows=atom)
-
-    # adjust crop point according to dimension type due to data format
-    if dim is 2:
-        i = i + 1
-
-    # crop the dataframe of bonding
-    raw_bond = pd.read_csv(filename, skiprows=atom + i + 1, nrows=bond_amount)
+    # crop the dataframe according to number of atoms and number of bonds
+    raw_coord = pd.DataFrame(raw.iloc[i:i+atom, 0])
+    raw_bond = pd.DataFrame(raw.iloc[i+atom:i+atom+bond_amount])
 
     # prepare returning dataframes to fit with input dimension
     bond = pd.DataFrame(columns=['atom_1', 'atom_2', 'bond_type'])
     coord = pd.DataFrame(columns=[str(dim) + 'd_x', str(dim) + 'd_y', str(dim) + 'd_z', 'atom'])
+
+    # fix datafrme to single column
+    raw_coord = pd.DataFrame(raw_coord.iloc[0, :])
+    raw_bond = pd.DataFrame(raw_bond.iloc[0, :])
 
     # fix dataframe format
     coord = df_cleaner(raw_coord, coord)

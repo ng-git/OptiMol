@@ -7,19 +7,13 @@ import numpy as np
 
 
 id_list = data_compile.get_id()
-[coord_2d, bond_2d, coord_3d, bond_3d] = data_compile.get_df_database(id_list[35])
+# print(id_list[223])
+# all = data_compile.get_all_dataset()
+# print(all)
 
-# print(coord_3d)
-# print(coord_2d.dtypes)
-del coord_2d['atom']
-del coord_2d['connect_to']
-del coord_2d['2d_z']
+bug_case = id_list[255]
+filename = './database_chemspider/' + str(bug_case) + '_3d.txt'
+print(bug_case)
+data = data_compile.get_df_database(bug_case)
 
-
-del coord_3d['atom']
-del coord_3d['connect_to']
-
-coord = pd.concat([coord_2d,coord_3d], axis=1)
-print(coord)
-print(coord.columns.values)
-
+# print(data)
