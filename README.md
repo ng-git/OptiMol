@@ -71,7 +71,13 @@ data_compile.get_df_database(18)[2]
 
 ![](https://github.com/ShadyMikey/OptiMol/blob/master/Presentation%20and%20image/image-20200313153002994.png)
 
+The columns '3d_x', '3d_y' and '3d_z' are the x, y ,z coordinates of atoms
 
+'atom' stands for the atom type, while 'periodic_#' stands for their periodic numbers
+
+'connect_to' stands for what other atoms -- labelled in row numbers and as always in python the first row is labelled as 0 -- the current atom is connected to.
+
+'bond_1', 'bond_2' and 'bond_3' stands for the numbers of single, double and triple bonds that the atom has respectively.
 
 
 
