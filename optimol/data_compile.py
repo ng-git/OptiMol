@@ -12,15 +12,39 @@ ROOT = pkg_resources.resource_filename('optimol', '')
 DATABASE = ROOT + '/database_chemspider'
 
 
-def get_all_dataset():
+def get_all_dataset(set1=None, set2=0):
+    """
+    Get all dataset from the database and combine them to one dataframe, and the samples are randomly selected.
+    When two return sets are requested, the samples are randomly picked from the same list, matching values
+    between two sets can happen.
+
+    :param set1: amount of samples wanted for the first set
+    :param set2: amount of samples wanted for the second set
+    :type set1: int
+    :type set2: int
+
+    :return dataframes contain all of the datasets
+    """
+
+    if False in [isinstance(set1, int),
+                 isinstance(set2, int)]:
+        raise TypeError()
 
     id_list = get_id()
-    all_dataset = pd.DataFrame()
-    i = 0
-    for item in id_list:
-        i = i + 1
-        print(str(i) + ': ' + str(item))
-        [coord_2d, bond_2d, coord_3d, bond_3d] = get_df_database(item)
+    max_length = len(id_list)
+    if True in [set1 < 0, set2 < 0,
+                set1 == 0,
+                set1 + set2 > max_length]:
+        raise ValueError()
+
+    set1_items = np.random.randint(0, max_length, set1)
+    set2_items = np.random.randint(0, max_length, set2)
+
+    train_set = pd.DataFrame()
+    # i = 0
+    for item in set1_items:
+        # print(str(i) + ': ' + str(item))  # for debugging
+        [coord_2d, _, coord_3d, _] = get_df_database(id_list[item])
 
         # remove unwanted data
         del coord_2d['atom']
@@ -32,25 +56,50 @@ def get_all_dataset():
         # combine dataframes into one
         coord = pd.concat([coord_2d, coord_3d], axis=1)
         coord.insert(0, column='id', value=item)  # add id value
-        pd.concat([all_dataset, coord], ignore_index=True)
+        # pd.concat([all_dataset, coord])
+        train_set = train_set.append(coord, ignore_index=True)
 
-    return all_dataset
+    test_set = pd.DataFrame()
+    if set2 >= 1:
+        for item in set2_items:
+            # print(str(i) + ': ' + str(item))  # for debugging
+            [coord_2d, _, coord_3d, _] = get_df_database(id_list[item])
+
+            # remove unwanted data
+            del coord_2d['atom']
+            del coord_2d['connect_to_2d']
+            del coord_2d['2d_z']
+            del coord_3d['atom']
+            del coord_3d['connect_to_3d']
+
+            # combine dataframes into one
+            coord = pd.concat([coord_2d, coord_3d], axis=1)
+            coord.insert(0, column='id', value=item)  # add id value
+            # pd.concat([all_dataset, coord])
+            test_set = test_set.append(coord, ignore_index=True)
+
+    if set2 >= 1:
+        return [train_set, test_set]
+    else:
+        return train_set
 
 
 def get_df_database(id_num, raw=False, hydrogen=False):
-    """ Access the database folder using the id number to get a list of dataframes contain 2D and 3D data
-        :param id_num: id number of the molecule
-        :param raw: return dataframes in raw form from web server without processing
-        :param hydrogen: return dataframes in without trimming Hydrogen
-        :type id_num: int, str
-        :type raw: bool
-        :type hydrogen: bool
+    """
+    Access the database folder using the id number to get a list of dataframes contain 2D and 3D data
+    :param id_num: id number of the molecule
+    :param raw: return dataframes in raw form from web server without processing
+    :param hydrogen: return dataframes in without trimming Hydrogen
+    :type id_num: int, str
+    :type raw: bool
+    :type hydrogen: bool
 
-        :return coord_2d: atom 2D coordinates
-        :return bond_2d: atom 2D bonding types and arrangement
-        :return coord_3d: atom 3D coordinates
-        :return bond_3d: atom 3D bonding types and arrangement
-        :rtype coord_2d, bond_2d, coord_3d, bond_3d: pandas.DataFrame"""
+    :return coord_2d: atom 2D coordinates
+    :return bond_2d: atom 2D bonding types and arrangement
+    :return coord_3d: atom 3D coordinates
+    :return bond_3d: atom 3D bonding types and arrangement
+    :rtype coord_2d, bond_2d, coord_3d, bond_3d: pandas.DataFrame
+    """
 
     # check input type
     if False in [isinstance(id_num, (int, str)),
@@ -100,13 +149,15 @@ def get_df_database(id_num, raw=False, hydrogen=False):
 
 
 def trim_hydrogen(coord_input, bond_input):
-    """ Return a copy of the same dataframe after removing Hydorgen atom
-        :param coord_input: coordinate dataframe
-        :param bond_input: bond dataframe
-        :type coord_input: pandas.DataFrame
+    """
+    Return a copy of the same dataframe after removing Hydorgen atom
+    :param coord_input: coordinate dataframe
+    :param bond_input: bond dataframe
+    :type coord_input: pandas.DataFrame
 
-        :return coord: same as input but without H
-        :rtype coord: pandas.DataFrame"""
+    :return coord: same as input but without H
+    :rtype coord: pandas.DataFrame
+    """
 
     # check input type
     if False in [isinstance(coord_input, pd.DataFrame),
@@ -138,13 +189,15 @@ def trim_hydrogen(coord_input, bond_input):
 
 
 def atom_connect(coord_input, bond_input):
-    """ Create array contains connection info to the atom and put it into a new dataframe column
-        :param coord_input: dataframe to be updated with new column of connection
-        :param bond_input: dataframe contain atom pairs and the connections
-        :type coord_input: pandas.DataFrame
-        :type bond_input: pandas.DataFrame
+    """
+    Create array contains connection info to the atom and put it into a new dataframe column
+    :param coord_input: dataframe to be updated with new column of connection
+    :param bond_input: dataframe contain atom pairs and the connections
+    :type coord_input: pandas.DataFrame
+    :type bond_input: pandas.DataFrame
 
-        :return coord same dataframe as coord_input with added column of connection"""
+    :return coord same dataframe as coord_input with added column of connection
+    """
 
     # check input type
     if False in [isinstance(coord_input, pd.DataFrame),
@@ -196,11 +249,13 @@ def atom_connect(coord_input, bond_input):
 
 
 def atom_periodic_number_convert(coord_input):
-    """ Add a new column contain periodic number of the corresponding atom
-        :param coord_input: coordinate dataframe of 2D or 3D data
-        :type: pandas.DataFrame
+    """
+    Add a new column contain periodic number of the corresponding atom
+    :param coord_input: coordinate dataframe of 2D or 3D data
+    :type: pandas.DataFrame
 
-        :return coord: same dataframe with added column of periodic number"""
+    :return coord: same dataframe with added column of periodic number
+    """
 
     # check input type
     if False in [isinstance(coord_input, pd.DataFrame)]:
@@ -235,15 +290,17 @@ def atom_periodic_number_convert(coord_input):
 
 
 def get_df(filename, dim=2):
-    """ Extract the atom coordinates and bonding data from txt file according to provided dimension
-        Can be used for both database and user input file
-        :param filename: text file name
-        :param dim: dimension of the molecule structure in the text file
-        :type filename: str
-        :type dim int
+    """
+    Extract the atom coordinates and bonding data from txt file according to provided dimension
+    Can be used for both database and user input file
+    :param filename: text file name
+    :param dim: dimension of the molecule structure in the text file
+    :type filename: str
+    :type dim int
 
-        :return coord, bond: coordinate and bonding data from the text file
-        :rtype coord, bond: pandas.DataFrame"""
+    :return coord, bond: coordinate and bonding data from the text file
+    :rtype coord, bond: pandas.DataFrame
+    """
 
     # check input type
     if False in [isinstance(filename, str),
@@ -301,12 +358,14 @@ def get_df(filename, dim=2):
 
 
 def df_cleaner(df, new_df):
-    """ Reformat input dataframe to be more usable
-        :param df: input dataframe from reading id.txt file, only has 1 column of white space separated values
-        :type df: pandas.DataFrame
+    """
+    Reformat input dataframe to be more usable
+    :param df: input dataframe from reading id.txt file, only has 1 column of white space separated values
+    :type df: pandas.DataFrame
 
-        :param new_df: output dataframe
-        :type new_df: pandas.DataFrame"""
+    :param new_df: output dataframe
+    :type new_df: pandas.DataFrame
+    """
 
     # check input types
     if False in [isinstance(df, pd.DataFrame),
@@ -327,8 +386,10 @@ def df_cleaner(df, new_df):
 
 
 def get_id():
-    """ Return a list of id of the whole database
-        :rtype id_results: list"""
+    """
+    Return a list of id of the whole database
+    :rtype id_results: list
+    """
 
     results = []
     # always open csv file in root dir
@@ -350,15 +411,17 @@ def get_id():
 
 
 def sample_subset(directory=DATABASE, size=50):
-    """ Create a smaller database folder inside the main database folder for testing
-        :param directory: directory of the database from root
-        :param size: the size of the folder
+    """
+    Create a smaller database folder inside the main database folder for testing
+    :param directory: directory of the database from root
+    :param size: the size of the folder
 
-        :type directory: str
-        :type size: int
+    :type directory: str
+    :type size: int
 
-        :return a list of sample id in the created folder
-        :rtype id_results: list"""
+    :return a list of sample id in the created folder
+    :rtype id_results: list
+    """
 
     # check for invalid input
     if not os.path.exists(directory):
@@ -399,8 +462,9 @@ def sample_subset(directory=DATABASE, size=50):
 
 
 def database_setup():
-
-    """ Download 2D and 3D molecule structure from ChemSpider sever to create a database"""
+    """
+    Download 2D and 3D molecule structure from ChemSpider sever to create a database
+    """
 
     from chemspipy import ChemSpider
 
