@@ -1,54 +1,45 @@
 ## OptiMol
 [![Build Status](https://travis-ci.org/uwescience/shablona.svg?branch=master)](https://travis-ci.org/uwescience/shablona)
 
-OptiMol is a package for predicting molecular conformations.  There are four major components in this package: a data scrapping module, a data cleaning module, a machine learning module and  a visualization module.
+OptiMol is a package for predicting molecular conformations of organic compounds, currently limited to 4 most common elements, C, H, N, O.  There are four major components in this package: a data scrapping module, a data cleaning module, a machine learning module and  a visualization module.
 
-Our ultimate goal is to use a machine learning algorism to predict the molecular conformation from an chemical formula input.  To achieve this, we have segmented it into a step-by-step float chart, as shown below, and we are currently working on predicting the bond type based on the information of two atoms -- their 3D coordinates and their atom numbers.  
-
-![Picture1.png](https://github.com/ShadyMikey/OptiMol/blob/master/Presentation%20and%20image/Picture1.png?raw=true)
-
-
+https://drive.google.com/open?id=17vfuY6pkMiZzqaDvUiW3Zl7S7d0hAw22
 
 ### Organization of the  project
 
 The project has the following structure:
 
     OptiMol/
+      |- optimol/
+      	|- __init__.py
+      	|- data_compile.py
+        |- tests/
+        	|- __init__.py
+            |- test_data_compile.py
+      |- doc/
+       	|- component_specifications.ipynb
+        |- functional_specifications.ipynb
+        |- technology review.pdf
+      |- xgboost/
+         |-
+      |- demo/
+     	|- demo.ipynb
       |- README.md
       |- requirement.txt
-      |- OptiMol/
-         |- __init__.py
-         |- corpus.py
-         |- database_chemspider/
-            |- ...
-	 |- sample_data/
-            |- ...
-         |- tests/
-            |- ...
-      |- doc/
-         |- component_specifications.ipynb
-         |- functional_specifications.ipynb
-      |- xgboost/
-         |- demo.ipymn
-	 |- demo_MN.py
-	 |- technology review.pdf
+      |- req.txt
       |- setup.py
       |- setuptool.py
       |- OptiMol.yml
       |- LICENSE
+      
+
+In the following sections we will examine these elements one by one. First, let's consider the core of the project. This is the code inside of `optimol/data_compile.py`. This file provides function that converts scrapped data (e.g. .mol or .txt ) into feedable dataframes for the machine learning model.
 
 
-In the following sections we will examine these elements one by one. First,
-let's consider the core of the project. This is the code inside of
-`shablona/shablona.py`. The code provided in this file is intentionally rather
-simple. It implements some simple curve-fitting to data from a psychophysical
-experiment. It's not too important to know what it does, but if you are really
-interested, you can read all about it
-[here](http://arokem.github.io/2014-08-12-learn-optimization.html).
 
 ### Module code
 
-We place the module code in a file called `shablona.py` in directory called
+We place the module code in a file called `.py` in directory called
 `shablona`. This structure is a bit confusing at first, but it is a simple way
 to create a structure where when we type `import shablona as sb` in an
 interactive Python session, the classes and functions defined inside of the
@@ -56,7 +47,7 @@ interactive Python session, the classes and functions defined inside of the
 need to also create a file in `__init__.py` which contains code that imports
 everything in that file into the namespace of the project:
 
-    from .shablona import *
+    from .optimol import *
 
 In the module code, we follow the convention that all functions are either
 imported from other places, or are defined in lines that precede the lines that
@@ -80,21 +71,9 @@ code and reports any violations of the PEP8 standard (and checks for other
 
 ### Project Data
 
-In this case, the project data is rather small, and recorded in csv
-files.  Thus, it can be stored alongside the module code.  Even if the
-data that you are analyzing is too large, and cannot be effectively
-tracked with github, you might still want to store some data for
-testing purposes.
+In this case, the project data is rather small, and recorded in txt files.  Thus, it can be stored alongside the module code.  This is the link of data we used to train the machine learning model. (data source: http://www.chemspider.com/) 
 
-Either way, you can create a `shablona/data` folder in which you can
-organize the data. As you can see in the test scripts, and in the
-analysis scripts, this provides a standard file-system location for
-the data at:
-
-    import os.path as op
-    import shablona as sb
-    data_path = op.join(sb.__path__[0], 'data')
-
+https://drive.google.com/open?id=17vfuY6pkMiZzqaDvUiW3Zl7S7d0hAw22
 
 ### Testing
 
@@ -203,32 +182,6 @@ following from the command line:
 
     make test
 
-### Styling
-
-It is a good idea to follow the PEP8 standard for code formatting. Common code
-formatting makes code more readable, and using tools such as `flake8` (which
-combines the tools `pep8` and `pyflakes`) can help make your code more readable,
-avoid extraneous imports and lines of code, and overall keep a clean project
-code-base.
-
-Some projects include `flake8` inside their automated tests, so that every pull
-request is examined for code cleanliness.
-
-In this project, we have run `flake8` most (but not all) files, on
-most (but not all) checks:
-
-```
-flake8 --ignore N802,N806 `find . -name *.py | grep -v setup.py | grep -v /doc/`
-```
-
-This means, check all .py files, but exclude setup.py and everything in
-directories named "doc". Do all checks except N802 and N806, which enforce
-lowercase-only names for variables and functions.
-
-The `Makefile` contains an instruction for running this command as well:
-
-    make flake8
-
 ### Documentation
 
 Documenting your software is a good idea. Not only as a way to communicate to
@@ -299,61 +252,6 @@ also makes it possible to install your software with using `pip` and
 Much more information on packaging Python software can be found in the
 [Hitchhiker's guide to
 packaging](https://the-hitchhikers-guide-to-packaging.readthedocs.org).
-
-
-### Continuous integration
-
-Travis-CI is a system that can be used to automatically test every revision of
-your code directly from github, including testing of github pull requests,
-before they are merged into the `master` branch. This provides you with
-information needed in order to evaluate contributions made by others. It also
-serves as a source of information for others interested in using or contributing
-to your project about the degree of test coverage of your project.
-
-You will need a .travis.yml file in your repo. This file contains the
-configuration of your testing environment. This includes the different
-environments in which you will test the source code (for example, we test
-`shablona` against Python 2.7, Python 3.3 and Python 3.4). It includes steps
-that need to be taken before installation of the software. For example,
-installation of the software dependencies. For `shablona`, we use the
-[`Miniconda`](http://conda.pydata.org/miniconda.html) software distribution (not
-to be confused with [`Anaconda`](https://store.continuum.io/cshop/anaconda/),
-though they are similar and both produced by Continuum).
-
-For details on setting up Travis-CI with github, see Travis-CI's
-[getting started
-page](https://docs.travis-ci.com/user/getting-started/#To-get-started-with-Travis-CI%3A). To
-summarize:
-
-First, go to the Travis-CI [website](https://travis-ci.org/) and get a
-Travis user account, linked to your github user account.
-
-You will need to set up your github repo to talk to Travis (More explanation +
-pictures will come here).
-
-You will need to go back to travis-ci, and flip on the switch on that side as
-well.
-
-The travis output will also report to you about test coverage, if you set it up
-that way.
-
-You will start getting emails telling you the state of the testing suite on
-every pull request for the software, and also when you break the test suite on
-the `master` branch. That way, you can be pretty sure that the `master` is
-working (or at least know when it isn't...).
-
-You can also continuously test your code on a Windows system. This is done on
-another CI system called [Appveyor](http://www.appveyor.com/). In prinicple, it
-does something that is very similar to what Travis does: downloads your code,
-installs it on a Windows machine, with various versions of python, and runs the
-tests. Appveyor is controlled through another configuration file: the
-`appveyor.yml`. In addition to committing this file into the repository, you
-will need to activate Appveyor for your project. This is done by signing into
-the Appveyor interface with your Github account, clicking on the "projects" tab
-at the top of the page, then clicking on the "+" sign for "New project" and
-selecting the project you would like to add from the menu that appears (you
-might need to give Appveyor the permission to see projects in your Github
-account).
 
 ### Distribution
 
