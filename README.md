@@ -3,8 +3,6 @@
 
 OptiMol is a package for predicting molecular conformations of organic compounds, currently limited to 4 most common elements, C, H, N, O.  There are four major components in this package: a data scrapping module, a data cleaning module, a machine learning module and  a visualization module.
 
-https://drive.google.com/open?id=17vfuY6pkMiZzqaDvUiW3Zl7S7d0hAw22
-
 ### Organization of the  project
 
 The project has the following structure:
@@ -33,47 +31,105 @@ The project has the following structure:
       |- LICENSE
       
 
-In the following sections we will examine these elements one by one. First, let's consider the core of the project. This is the code inside of `optimol/data_compile.py`. This file provides function that converts scrapped data (e.g. .mol or .txt ) into feedable dataframes for the machine learning model.
+In the following sections we will examine these elements one by one. First, let's consider the core of the project. This is the code inside of `optimol/data_compile.py`. This file provides function that converts scrapped data (e.g. .mol or .txt ) into feedable data frames for the machine learning model.
+
+XGBoost is the package we used to train the machine learning module. (need more stuff)
 
 
 
-### Module code
+### Software Dependencies
 
-We place the module code in a file called `.py` in directory called
-`shablona`. This structure is a bit confusing at first, but it is a simple way
-to create a structure where when we type `import shablona as sb` in an
-interactive Python session, the classes and functions defined inside of the
-`shablona.py` file are available in the `sb` namespace. For this to work, we
-need to also create a file in `__init__.py` which contains code that imports
-everything in that file into the namespace of the project:
+- Python3
+- For python packages see `requirements.txt` or use `OptiMol.yml` to create an environment for this package
 
-    from .optimol import *
 
-In the module code, we follow the convention that all functions are either
-imported from other places, or are defined in lines that precede the lines that
-use that function. This helps readability of the code, because you know that if
-you see some name, the definition of that name will appear earlier in the file,
-either as a function/variable definition, or as an import from some other module
-or package.
-
-In the case of the shablona module, the main classes defined at the bottom of
-the file make use of some of the functions defined in preceding lines.
-
-Remember that code will be probably be read more times than it will be written.
-Make it easy to read (for others, but also for yourself when you come back to
-it), by following a consistent formatting style. We strongly recommend
-following the
-[PEP8 code formatting standard](https://www.python.org/dev/peps/pep-0008/), and
-we enforce this by running a code-linter called
-[`flake8`](http://flake8.pycqa.org/en/latest/), which automatically checks the
-code and reports any violations of the PEP8 standard (and checks for other
-  general code hygiene issues), see below.
 
 ### Project Data
 
-In this case, the project data is rather small, and recorded in txt files.  Thus, it can be stored alongside the module code.  This is the link of data we used to train the machine learning model. (data source: http://www.chemspider.com/) 
+In this case, the project data is rather small, and recorded in txt files.  Thus, it can be stored alongside the module code.  This is the link of data we used to train the machine learning model. (data source: http://www.chemspider.com/)  
 
-https://drive.google.com/open?id=17vfuY6pkMiZzqaDvUiW3Zl7S7d0hAw22
+Data: https://drive.google.com/open?id=17vfuY6pkMiZzqaDvUiW3Zl7S7d0hAw22
+
+In this database, there are two structure files for each molecule, recording information of their 2d and 3d structure respectively. We strongly recommend name them in the form of `chemID_2d.txt` and `chemID_3d.txt` respectively to be better processed by this module.
+
+### Documentation
+
+`optimol/data_compile.py`
+
+This module contain functions to retrieve and process data from the database folder. Below shows how to use this module. 
+
+```
+from optimol import * 				# import module
+data_compile.get_df_database(18) 	# loading file according their chemID, 18 here
+```
+
+The outputs of this are 4 pandas data frames: 2d atom information, 2d bond information, 3d atom information and 3d bond information in order. Let look at the output of 3d bond information:
+
+```
+data_compile.get_df_database(18)[2]
+```
+
+| 3d_x |    3d_y |    3d_z |    atom | periodic_# | connect_to |           bond_1 | bond_2 | bond_3 |      |
+| ---: | ------: | ------: | ------: | ---------: | ---------: | ---------------: | -----: | -----: | ---- |
+|    0 |  1.4472 | -1.7071 | -0.0590 |          O |          8 |  [5, -1, -1, -1] |      1 |      0 | 0    |
+|    1 |  2.7285 |  0.6331 | -0.0618 |          O |          8 |  [6, -1, -1, -1] |      1 |      0 | 0    |
+|    2 | -2.4979 | -1.9721 |  0.4508 |          O |          8 | [10, -1, -1, -1] |      1 |      0 | 0    |
+|    3 | -0.9625 | -2.9028 | -0.5393 |          O |          8 | [10, 10, -1, -1] |      0 |      1 | 0    |
+|    4 | -0.6498 | -0.6762 | -0.0566 |          C |          6 |    [5, 5, 7, 10] |      2 |      1 | 0    |
+|    5 |  0.7735 | -0.6395 | -0.0670 |          C |          6 |     [0, 4, 4, 6] |      2 |      1 | 0    |
+|    6 |  1.4691 |  0.5934 | -0.0639 |          C |          6 |     [1, 5, 8, 8] |      2 |      1 | 0    |
+|    7 | -1.3390 |  0.5635 | -0.0516 |          C |          6 |    [4, 9, 9, -1] |      1 |      1 | 0    |
+|    8 |  0.7510 |  1.8034 | -0.0566 |          C |          6 |    [6, 6, 9, -1] |      1 |      1 | 0    |
+|    9 | -0.6530 |  1.7893 | -0.0521 |          C |          6 |    [7, 7, 8, -1] |      1 |      1 | 0    |
+|   10 | -1.3814 | -1.8647 | -0.0492 |          C |          6 |     [2, 3, 3, 4] |      2 |      1 | 0    |
+
+
+
+
+
+
+
+The first step in this direction is to document every function in your module
+code. We recommend following the [numpy docstring
+standard](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt),
+which specifies in detail the inputs/outputs of every function, and specifies
+how to document additional details, such as references to scientific articles,
+notes about the mathematics behind the implementation, etc.
+
+This standard also plays well with a system that allows you to create more
+comprehensive documentation of your project. Writing such documentation allows
+you to provide more elaborate explanations of the decisions you made when you
+were developing the software, as well as provide some examples of usage,
+explanations of the relevant scientific concepts, and references to the relevant
+literature.
+
+To document `shablona` we use the [sphinx documentation
+system](http://sphinx-doc.org/). You can follow the instructions on the sphinx
+website, and the example [here](http://matplotlib.org/sampledoc/) to set up the
+system, but we have also already initialized and commited a skeleton
+documentation system in the `docs` directory, that you can build upon.
+
+Sphinx uses a `Makefile` to build different outputs of your documentation. For
+example, if you want to generate the HTML rendering of the documentation (web
+pages that you can upload to a website to explain the software), you will type:
+
+	from optimol import *
+	data_compile.get_df_database(18)[0]
+
+This will generate a set of static webpages in the `doc/_build/html`, which you
+can then upload to a website of your choice.
+
+Alternatively, [readthedocs.org](https://readthedocs.org) (careful,
+*not* readthedocs.**com**) is a service that will run sphinx for you,
+and upload the documentation to their website. To use this service,
+you will need to register with RTD. After you have done that, you will
+need to "import your project" from your github account, through the
+RTD web interface. To make things run smoothly, you also will need to
+go to the "admin" panel of the project on RTD, and navigate into the
+"advanced settings" so that you can tell it that your Python
+configuration file is in `doc/conf.py`:
+
+![RTD conf](https://github.com/uwescience/shablona/blob/master/doc/_static/RTD-advanced-conf.png)
 
 ### Testing
 
