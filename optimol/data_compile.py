@@ -7,6 +7,7 @@ import csv
 import pandas as pd
 import pkg_resources
 
+pd.options.mode.chained_assignment = None  # default='warn'
 ROOT = pkg_resources.resource_filename('optimol', '')
 DATABASE = ROOT + '/database_chemspider'
 
@@ -109,6 +110,56 @@ def trim_hydrogen(coord_input, bond_input):
     return [coord, bond]
 
 
+def atom_connect(coord_input, bond_input):
+    """ Create array contains connection info to the atom and put it into a new dataframe column
+        :param coord_input: dataframe to be updated with new column of connection
+        :param bond_input: dataframe contain atom pairs and the connections
+        :type coord_input: pandas.DataFrame
+        :type bond_input: pandas.DataFrame
+
+        :return coord same dataframe as coord_input with added column of connection"""
+
+    # check input type
+    if False in [isinstance(coord_input, pd.DataFrame),
+                 isinstance(bond_input, pd.DataFrame)]:
+        raise TypeError()
+
+    # check if result column already exist
+    if 'connect_to' in coord_input.columns:
+        raise ValueError('connect_to column already existed')
+
+    coord = coord_input.copy()
+    bond = bond_input.copy()
+    coord['connect_to'] = np.empty((len(coord), 0)).tolist()
+    coord['bond_1'] = np.zeros(len(coord))
+    coord['bond_2'] = np.zeros(len(coord))
+    coord['bond_3'] = np.zeros(len(coord))
+
+    # create a list of other atoms that the each atom connect to
+    for i in range(len(coord)):
+        atom_1 = bond['atom_1'][i]
+        atom_2 = bond['atom_2'][i]
+        bond_type = bond['bond_type'][i]
+        coord['bond_' + str(bond_type)][atom_1 - 1] = coord['bond_' + str(bond_type)][atom_1 - 1] + 1
+        coord['bond_' + str(bond_type)][atom_2 - 1] = coord['bond_' + str(bond_type)][atom_2 - 1] + 1
+        for j in range(int(bond['bond_type'][i])):  # duplication is for double and triple bond
+            coord['connect_to'][atom_1 - 1].append(atom_2 - 1)  # subtract 1 to shift values to zero-based
+            coord['connect_to'][atom_2 - 1].append(atom_1 - 1)
+
+    # convert to array and pad -1
+    for i in range(len(coord)):
+        coord['connect_to'][i] = np.pad(np.array(coord['connect_to'][i]),
+                                        (0, 4 - len(coord['connect_to'][i])),
+                                        'constant', constant_values=-1)
+
+    # reformatting
+    coord['bond_1'] = coord['bond_1'].astype('int32')
+    coord['bond_2'] = coord['bond_2'].astype('int32')
+    coord['bond_3'] = coord['bond_3'].astype('int32')
+
+    return coord
+
+
 def atom_periodic_number_convert(coord_input):
     """ Add a new column contain periodic number of the corresponding atom
         :param coord_input: coordinate dataframe of 2D or 3D data
@@ -134,43 +185,7 @@ def atom_periodic_number_convert(coord_input):
             if elem in coord['atom'][i]:
                 coord['periodic_#'][i] = element[elem]
 
-    return coord
-
-
-def atom_connect(coord_input, bond_input):
-    """ Create array contains connection info to the atom and put it into a new dataframe column
-        :param coord_input: dataframe to be updated with new column of connection
-        :param bond_input: dataframe contain atom pairs and the connections
-        :type coord_input: pandas.DataFrame
-        :type bond_input: pandas.DataFrame
-
-        :return coord same dataframe as coord_input with added column of connection"""
-
-    # check input type
-    if False in [isinstance(coord_input, pd.DataFrame),
-                 isinstance(bond_input, pd.DataFrame)]:
-        raise TypeError()
-
-    # check if result column already exist
-    if 'connect_to' in coord_input.columns:
-        raise ValueError('connect_to column already existed')
-
-    coord = coord_input.copy()
-    bond = bond_input.copy()
-    coord['connect_to'] = np.empty((len(coord), 0)).tolist()
-
-    # create a list of other atoms that the each atom connect to
-    for i in range(len(coord)):
-        atom_1 = bond['atom_1'][i]
-        atom_2 = bond['atom_2'][i]
-        for j in range(int(bond['bond_type'][i])):  # duplication is for double and triple bond
-            coord['connect_to'][atom_1 - 1].append(atom_2 - 1)  # subtract 1 to shift values to zero-based
-            coord['connect_to'][atom_2 - 1].append(atom_1 - 1)
-
-    # convert to array and pad zero
-    for i in range(len(coord)):
-        coord['connect_to'][i] = np.pad(np.array(coord['connect_to'][i]),
-                                        (0, 4 - len(coord['connect_to'][i])), 'constant')
+    coord['periodic_#'] = coord['periodic_#'].astype('int32')  # reformatting
 
     return coord
 
@@ -230,6 +245,11 @@ def get_df(filename, dim=2):
     bond = df_cleaner(raw_bond, bond)
 
     # reformat the data
+    coord.iloc[:, 0] = coord.iloc[:, 0].astype(str).astype('float')
+    coord.iloc[:, 1] = coord.iloc[:, 1].astype(str).astype('float')
+    coord.iloc[:, 2] = coord.iloc[:, 2].astype(str).astype('float')
+    coord.iloc[:, 3] = coord.iloc[:, 3].astype(str)
+
     bond['atom_1'] = bond['atom_1'].astype(str).astype('int32')
     bond['atom_2'] = bond['atom_2'].astype(str).astype('int32')
     bond['bond_type'] = bond['bond_type'].astype(str).astype('int32')
