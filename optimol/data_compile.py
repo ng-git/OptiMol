@@ -280,8 +280,8 @@ def get_df(filename, dim=2):
     coord = pd.DataFrame(columns=[str(dim) + 'd_x', str(dim) + 'd_y', str(dim) + 'd_z', 'atom'])
 
     # fix datafrme to single column
-    raw_coord = pd.DataFrame(raw_coord.iloc[0, :])
-    raw_bond = pd.DataFrame(raw_bond.iloc[0, :])
+    raw_coord = pd.DataFrame(raw_coord.iloc[:, 0])
+    raw_bond = pd.DataFrame(raw_bond.iloc[:, 0])
 
     # fix dataframe format
     coord = df_cleaner(raw_coord, coord)

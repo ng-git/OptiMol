@@ -11,9 +11,11 @@ id_list = data_compile.get_id()
 # all = data_compile.get_all_dataset()
 # print(all)
 
-bug_case = id_list[255]
+# bug_case = id_list[255]
+# bug_case = id_list[1]
+
 filename = './database_chemspider/' + str(bug_case) + '_3d.txt'
 print(bug_case)
-data = data_compile.get_df_database(bug_case)
+[coord_2d, bond_2d, coord_3d, bond_3d] = data_compile.get_df_database(bug_case)
 
-# print(data)
+print(coord_2d)

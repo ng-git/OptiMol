@@ -1,4 +1,4 @@
-Benzaldehyde, 4-methoxy-, ID: C123115
+
  OpenBabel04210820133D
 
  18 18  0  0  0  0  0  0  0  0999 V2000
