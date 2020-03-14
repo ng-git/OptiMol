@@ -8,14 +8,13 @@ import numpy as np
 
 id_list = data_compile.get_id()
 # print(id_list[223])
-[train, test] = data_compile.get_all_dataset(train=10, test=5)
-print([train, test])
+# [train, test] = data_compile.get_all_dataset(set1=10, set2=5)
+# print([train, test])
 
-# bug_case = id_list[255]
-# bug_case = id_list[1]
-
-# filename = './database_chemspider/' + str(bug_case) + '_3d.txt'
-# print(bug_case)
-# [coord_2d, bond_2d, coord_3d, bond_3d] = data_compile.get_df_database(bug_case)
-#
-# print(coord_2d)
+# user = data_compile.get_df('./sample_data/user.txt')
+input_list = ['./sample_data/less_than_4.txt']
+# input_list = ['./sample_data/empty.txt']
+# input_list = ['./sample_data/user.txt']
+user = data_compile.get_df_user(input_list)
+print(user)
+print(user.columns)

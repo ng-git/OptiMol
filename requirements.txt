@@ -14,7 +14,6 @@ mkl-service==2.3.0
 multisplitby==0.0.1
 networkx==2.4
 numpy==1.18.1
-openbabel==3.0.0
 pandas==1.0.1
 pybind11==2.4.3
 pyparsing==2.4.6

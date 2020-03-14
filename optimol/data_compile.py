@@ -55,7 +55,7 @@ def get_all_dataset(set1=None, set2=0):
 
         # combine dataframes into one
         coord = pd.concat([coord_2d, coord_3d], axis=1)
-        coord.insert(0, column='id', value=item)  # add id value
+        coord.insert(0, column='id', value=id_list[item])  # add id value
         # pd.concat([all_dataset, coord])
         train_set = train_set.append(coord, ignore_index=True)
 
@@ -82,6 +82,53 @@ def get_all_dataset(set1=None, set2=0):
         return [train_set, test_set]
     else:
         return train_set
+
+
+def get_df_user(file_list):
+    """
+    Prepare user input to correct format to feed into the model
+    :param file_list: list of file directory from the user
+    :type file_list list
+
+    :return: dataframe of compiled user input in correct format
+    :rtype pandas.DataFrame
+    """
+
+    if False in [isinstance(file_list, list),
+                 all(isinstance(n, str) for n in file_list),
+                 all(n.endswith('.txt') for n in file_list)]:
+        raise TypeError('Input must be text files in a list.')
+
+    i = 0
+    user_set = pd.DataFrame()
+    for filename in file_list:
+        #  read user input text file to dateframe and clean up data
+        [coord, bond] = get_df(filename, dim=2)
+
+        # check for invalid 2D coord
+        if any(coord['2d_z'] != 0):
+            err_msg = 'check' + filename + '! Z coordinate in 2d must be all zero'
+            raise ValueError(err_msg)
+
+        [coord, bond] = trim_hydrogen(coord, bond)
+        print(len(coord))
+        
+        # check for more than 4 atoms
+        if len(coord) < 4:
+            raise ValueError('The amount of non H atoms must be more than 3.')
+
+        coord = atom_periodic_number_convert(coord)
+        coord = atom_connect(coord, bond)
+        coord.insert(0, column='id', value=i)  # add id value
+        i = i + 1
+
+        # trim unnecessary data
+        del coord['2d_z']
+        del coord['atom']
+
+        user_set = user_set.append(coord, ignore_index=True)
+
+    return user_set
 
 
 def get_df_database(id_num, raw=False, hydrogen=False):
@@ -308,11 +355,12 @@ def get_df(filename, dim=2):
                  isinstance(dim, int)]:
         raise TypeError()
 
-    # check dimension input value
+    # dimension input value
     if dim not in [2, 3]:
         raise ValueError('Invalid dimension!')
 
     raw = pd.read_csv(filename)
+
     # get the number of atoms to cut off the text rows
     check = False
     i = 0
@@ -339,6 +387,10 @@ def get_df(filename, dim=2):
     # fix datafrme to single column
     raw_coord = pd.DataFrame(raw_coord.iloc[:, 0])
     raw_bond = pd.DataFrame(raw_bond.iloc[:, 0])
+
+    # check empty dataframe as a result
+    if True in [raw_coord.empty, raw_bond.empty]:
+        raise ValueError('Empty dataframe')
 
     # fix dataframe format
     coord = df_cleaner(raw_coord, coord)
