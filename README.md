@@ -3,8 +3,6 @@
 
 OptiMol is a package for predicting molecular conformations of organic compounds, currently limited to 4 most common elements, C, H, N, O.  There are four major components in this package: a data scrapping module, a data cleaning module, a machine learning module and  a visualization module.
 
-https://drive.google.com/open?id=17vfuY6pkMiZzqaDvUiW3Zl7S7d0hAw22
-
 ### Organization of the  project
 
 The project has the following structure:
@@ -33,47 +31,59 @@ The project has the following structure:
       |- LICENSE
       
 
-In the following sections we will examine these elements one by one. First, let's consider the core of the project. This is the code inside of `optimol/data_compile.py`. This file provides function that converts scrapped data (e.g. .mol or .txt ) into feedable dataframes for the machine learning model.
+In the following sections we will examine these elements one by one. First, let's consider the core of the project. This is the code inside of `optimol/data_compile.py`. This file provides function that converts scrapped data (e.g. .mol or .txt ) into feedable data frames for the machine learning model.
+
+XGBoost is the package we used to train the machine learning module. (need more stuff)
 
 
 
-### Module code
+### Software Dependencies
 
-We place the module code in a file called `.py` in directory called
-`shablona`. This structure is a bit confusing at first, but it is a simple way
-to create a structure where when we type `import shablona as sb` in an
-interactive Python session, the classes and functions defined inside of the
-`shablona.py` file are available in the `sb` namespace. For this to work, we
-need to also create a file in `__init__.py` which contains code that imports
-everything in that file into the namespace of the project:
+- Python3
+- For python packages see `requirements.txt` or use `OptiMol.yml` to create an environment for this package
 
-    from .optimol import *
 
-In the module code, we follow the convention that all functions are either
-imported from other places, or are defined in lines that precede the lines that
-use that function. This helps readability of the code, because you know that if
-you see some name, the definition of that name will appear earlier in the file,
-either as a function/variable definition, or as an import from some other module
-or package.
-
-In the case of the shablona module, the main classes defined at the bottom of
-the file make use of some of the functions defined in preceding lines.
-
-Remember that code will be probably be read more times than it will be written.
-Make it easy to read (for others, but also for yourself when you come back to
-it), by following a consistent formatting style. We strongly recommend
-following the
-[PEP8 code formatting standard](https://www.python.org/dev/peps/pep-0008/), and
-we enforce this by running a code-linter called
-[`flake8`](http://flake8.pycqa.org/en/latest/), which automatically checks the
-code and reports any violations of the PEP8 standard (and checks for other
-  general code hygiene issues), see below.
 
 ### Project Data
 
-In this case, the project data is rather small, and recorded in txt files.  Thus, it can be stored alongside the module code.  This is the link of data we used to train the machine learning model. (data source: http://www.chemspider.com/) 
+In this case, the project data is rather small, and recorded in txt files.  Thus, it can be stored alongside the module code.  This is the link of data we used to train the machine learning model. (data source: http://www.chemspider.com/)  
 
-https://drive.google.com/open?id=17vfuY6pkMiZzqaDvUiW3Zl7S7d0hAw22
+Data: https://drive.google.com/open?id=17vfuY6pkMiZzqaDvUiW3Zl7S7d0hAw22
+
+In this database, there are two structure files for each molecule, recording information of their 2d and 3d structure respectively. We strongly recommend name them in the form of `chemID_2d.txt` and `chemID_3d.txt` respectively to be better processed by this module.
+
+### Documentation
+
+`optimol/data_compile.py`
+
+This module contain functions to retrieve and process data from the database folder. Below shows how to use this module. 
+
+```
+from optimol import * 				# import module
+data_compile.get_df_database(18) 	# loading file according their chemID, 18 here
+```
+
+The outputs of this are 4 pandas data frames: 2d atom information, 2d bond information, 3d atom information and 3d bond information in order. Let look at the output of 3d bond information:
+
+```
+data_compile.get_df_database(18)[2]
+```
+
+Output:
+
+![](https://github.com/ShadyMikey/OptiMol/blob/master/Presentation%20and%20image/image-20200313153002994.png)
+
+The columns `3d_x`, `3d_y` and `3d_z` are the x, y ,z coordinates of atoms
+
+`atom` stands for the atom type, while `periodic_#` stands for their periodic numbers
+
+`connect_to` stands for what other atoms -- labelled in row numbers and as always in python the first row is labelled as 0 -- the current atom is connected to.
+
+`bond_1`, `bond_2` and `bond_3` stands for the numbers of single, double and triple bonds that the atom has respectively.
+
+Atoms information of 2d molecules can be interpreted similarly as above.
+
+
 
 ### Testing
 
@@ -182,55 +192,7 @@ following from the command line:
 
     make test
 
-### Documentation
 
-Documenting your software is a good idea. Not only as a way to communicate to
-others about how to use the software, but also as a way of reminding yourself
-what the issues are that you faced, and how you dealt with them, in a few
-months/years, when you return to look at the code.
-
-The first step in this direction is to document every function in your module
-code. We recommend following the [numpy docstring
-standard](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt),
-which specifies in detail the inputs/outputs of every function, and specifies
-how to document additional details, such as references to scientific articles,
-notes about the mathematics behind the implementation, etc.
-
-This standard also plays well with a system that allows you to create more
-comprehensive documentation of your project. Writing such documentation allows
-you to provide more elaborate explanations of the decisions you made when you
-were developing the software, as well as provide some examples of usage,
-explanations of the relevant scientific concepts, and references to the relevant
-literature.
-
-To document `shablona` we use the [sphinx documentation
-system](http://sphinx-doc.org/). You can follow the instructions on the sphinx
-website, and the example [here](http://matplotlib.org/sampledoc/) to set up the
-system, but we have also already initialized and commited a skeleton
-documentation system in the `docs` directory, that you can build upon.
-
-Sphinx uses a `Makefile` to build different outputs of your documentation. For
-example, if you want to generate the HTML rendering of the documentation (web
-pages that you can upload to a website to explain the software), you will type:
-
-	make html
-
-This will generate a set of static webpages in the `doc/_build/html`, which you
-can then upload to a website of your choice.
-
-Alternatively, [readthedocs.org](https://readthedocs.org) (careful,
-*not* readthedocs.**com**) is a service that will run sphinx for you,
-and upload the documentation to their website. To use this service,
-you will need to register with RTD. After you have done that, you will
-need to "import your project" from your github account, through the
-RTD web interface. To make things run smoothly, you also will need to
-go to the "admin" panel of the project on RTD, and navigate into the
-"advanced settings" so that you can tell it that your Python
-configuration file is in `doc/conf.py`:
-
-![RTD conf](https://github.com/uwescience/shablona/blob/master/doc/_static/RTD-advanced-conf.png)
-
- http://shablona.readthedocs.org/en/latest/
 
 
 ### Installation
@@ -334,65 +296,3 @@ with this repository, and which you could extend further:
   `git shortlog --help`)
 
 
-### Using `shablona` as a template
-
-Let's assume that you want to create a small scientific Python project
-called `smallish`. Maybe you already have some code that you are
-interested in plugging into the module file, and some ideas about what
-the tests might look like.
-
-To use this repository as a template, click the green "use this template"
-button on the front page of the "shablona" repository.
-
-In "Repository name" enter the name of your project. For example, enter 
-`smallish` here. After that, you can hit the "Create repository from template" 
-button.
-
-You should then be able to clone the new repo into your machine. You will want
-to change the names of the files. For example, you will want to move
-`shablona/shablona.py` to be called `smallish/smallish.py`
-
-	git mv shablona smallish
-	git mv smallish/shablona.py smallish/smallish.py
-	git mv smallish/tests/test_shablona.py smallish/tests/test_smallish.py
-
-Make a commit recording these changes. Something like:
-
-	git commit -a -m"Moved names from `shablona` to `smallish`"
-
-You will probably want to remove all the example data:
-
-	git rm smallish/data/*
-	git commit -a -m"Removed example `shablona` data"
-
-Possibly, you will want to add some of your own data in there.
-
-You will want to edit a few more places that still have `shablona` in them. Type
-the following to see where all these files are:
-
-	git grep shablona
-
-You can replace `shablona` for `smallish` quickly with:
-
-	git grep -l 'shablona' | xargs sed -i 's/shablona/smallish/g'
-
-This very file (README.md) should be edited to reflect what your project is
-about.
-
-Other places that contain this name include the `doc/conf.py` file, which
-configures the sphinx documentation, as well as the `doc/Makefile` file (edit
-carefully!), and the `doc/index.rst` file.
-
-The `.coveragerc` file contains a few mentions of that name, as well as the
-`.travis.yml` file. This one will also have to be edited to reflect your PyPI
-credentials (see [above](### Distribution)).
-
-Edit all the mentions of `shablona` in the `shablona/__init__.py` file, and in
-the `shablona/version.py` file as well.
-
-Finally, you will probably want to change the copyright holder in the `LICENSE`
-file to be you. You can also replace the text of that file, if it doesn't match
-your needs.
-
-At this point, make another commit, and continue to develop your own code based
-on this template.
