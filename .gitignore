@@ -1,9 +1,11 @@
 # directories
 .idea
+__pychache__/
+.ipynb_checkpoints/
 
 # extensions
 *.ipynb_checkpoints
 *.DS_store
 *.DS_store?
 
-__pychache__/
+
