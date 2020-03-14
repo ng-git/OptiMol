@@ -7,12 +7,51 @@ import os
 path = os.path.dirname(os.path.realpath(__file__))
 
 
+def test_get_df_user_edge_cases():
+    """ Check for edge cases"""
+    edge_cases = [path + '/samples/empty.txt', path + '/samples/less_than_4.txt']
+
+    try:
+        data_compile.get_df_user([edge_cases[0]])
+        raise Exception()
+    except ValueError:
+        pass
+
+    try:
+        data_compile.get_df_user([edge_cases[1]])
+        raise Exception()
+    except ValueError:
+        pass
+
+
+def test_get_df_user_input():
+    """ Check for input type"""
+
+    try:
+        data_compile.get_df_user(1)
+        raise Exception()
+    except TypeError:
+        pass
+
+    try:
+        data_compile.get_df_user('text')
+        raise Exception()
+    except TypeError:
+        pass
+
+
 def test_get_all_dataset_input_combo():
     """ Check for invalid set combination"""
 
     id_list = data_compile.get_id()
     try:
         data_compile.get_all_dataset(1, -1)
+        raise Exception()
+    except ValueError:
+        pass
+
+    try:
+        data_compile.get_all_dataset(-1, 1)
         raise Exception()
     except ValueError:
         pass
@@ -47,6 +86,12 @@ def test_get_all_dataset_input():
 
     try:
         data_compile.get_all_dataset('text', 1)
+        raise Exception()
+    except TypeError:
+        pass
+
+    try:
+        data_compile.get_all_dataset(1, 'text')
         raise Exception()
     except TypeError:
         pass
