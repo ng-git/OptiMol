@@ -1,5 +1,5 @@
 ## OptiMol
-[![Build Status](https://travis-ci.org/uwescience/shablona.svg?branch=master)](https://travis-ci.org/uwescience/shablona)
+[![Build Status](https://travis-ci.org/ng-git/OptiMol.svg?branch=master)]
 
 OptiMol is a package for predicting molecular conformations of organic compounds, currently limited to 4 most common elements, C, H, N, O.  There are four major components in this package: a data scrapping module, a data cleaning module, a machine learning module and  a visualization module.
 
