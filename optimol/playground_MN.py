@@ -12,9 +12,10 @@ id_list = data_compile.get_id()
 # print([train, test])
 
 # user = data_compile.get_df('./sample_data/user.txt')
-input_list = ['./sample_data/less_than_4.txt']
+# input_list = ['./sample_data/less_than_4.txt']
 # input_list = ['./sample_data/empty.txt']
-# input_list = ['./sample_data/user.txt']
+input_list = ['./sample_data/user.txt']
 user = data_compile.get_df_user(input_list)
+user1 = data_compile.atom_periodic_number_convert(user)
 print(user)
 print(user.columns)

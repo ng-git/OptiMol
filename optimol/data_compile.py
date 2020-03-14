@@ -34,7 +34,8 @@ def get_all_dataset(set1=None, set2=0):
     max_length = len(id_list)
     if True in [set1 < 0, set2 < 0,
                 set1 == 0,
-                set1 + set2 > max_length]:
+                set1 > max_length,
+                set2 > max_length]:
         raise ValueError()
 
     set1_items = np.random.randint(0, max_length, set1)
@@ -112,7 +113,7 @@ def get_df_user(file_list):
 
         [coord, bond] = trim_hydrogen(coord, bond)
         print(len(coord))
-        
+
         # check for more than 4 atoms
         if len(coord) < 4:
             raise ValueError('The amount of non H atoms must be more than 3.')
@@ -252,7 +253,8 @@ def atom_connect(coord_input, bond_input):
         raise TypeError()
 
     # check if result column already exist
-    if 'connect_to' in coord_input.columns:
+    if True in ['connect_to_2d' in coord_input.columns,
+                'connect_to_3d' in coord_input.columns]:
         raise ValueError('connect_to column already existed')
 
     coord = coord_input.copy()
@@ -309,10 +311,10 @@ def atom_periodic_number_convert(coord_input):
         raise TypeError()
 
     # check if result column already exist
-    if 'periodic_#' in coord_input.columns:
+    if True in ['periodic_#_2d' in coord_input.columns,
+                'periodic_#_3d' in coord_input.columns]:
         raise ValueError('periodic_# column already existed')
 
-    # element = dict({'C': 6, 'O': 8, 'H': 1, 'N': 7})  # periodic info
     element = dict({'C': 6, 'O': 8, 'H': 1, 'N': 7,
                     'Br': 37, 'S': 16, 'I': 53, 'F': 9, 'B': 5})  # periodic info
     coord = coord_input.copy()
