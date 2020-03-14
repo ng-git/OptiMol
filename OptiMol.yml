@@ -3,20 +3,20 @@ channels:
   - anaconda
   - conda-forge
   - https://conda.anaconda.org/conda-forge/
-  - https://conda.anaconda.org/openeye
   - defaults
 dependencies:
-  - _py-xgboost-mutex=2.0=cpu_0
-  - libxgboost=0.90=1
-  - matplotlib=3.2.0=1
-  - matplotlib-base=3.2.0=py37h2981e6d_1
-  - numpy=1.18.1=py37hc71023c_0
-  - pandas=1.0.1=py37he350917_0
-  - pip=20.0.2=py_2
-  - py-xgboost=0.90=py37_1
-  - python=3.7.6=h60c2a47_2
-  - python-dateutil=2.8.1=py_0
-  - python_abi=3.7=1_cp37m
-  - scikit-learn=0.22.2.post1=py37h7208079_0
-  - pip:
+  pip:
+    - _py-xgboost-mutex=2.0=cpu_0
+    - libxgboost=0.90=1
+    - matplotlib=3.2.0=1
+    - matplotlib-base=3.2.0=py37h2981e6d_1
+    - numpy=1.18.1=py37hc71023c_0
+    - pandas=1.0.1=py37he350917_0
+    - pip=20.0.2=py_2
+    - py-xgboost=0.90=py37_1
+    - python=3.7.6=h60c2a47_2
+    - python-dateutil=2.8.1=py_0
+    - python_abi=3.7=1_cp37m
+    - scikit-learn=0.22.2.post1=py37h7208079_0
     - chemspipy==2.0.0
+    - setuptools=46.0.0=py37hc8dfbb8_1

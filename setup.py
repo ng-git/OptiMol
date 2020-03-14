@@ -9,7 +9,7 @@ Opt = dict(name='optimol',
            license="MIT",
            author=["Minh", "Vivian", "Mike", "Guanning", "Weishi"],
            url="https://github.com/ShadyMikey/OptiMol",
-           packages=["optimol"],
+           package=["optimol"],
            install_requires=["chemspipy", "os", "numpy", "shutil", "pandas", "scikit-learn", "pkg_resources",
                              "csv", "xgboost"],
            python_requires=">=3.0",
@@ -18,7 +18,4 @@ Opt = dict(name='optimol',
 
 if __name__ == '__main__':
     setup(**Opt,
-          install_requires=["chemspipy", "numpy", "pandas", "scikit-learn", "xgboost"],
-          include_package_data=True,
-          packages=['optimol'],
-          package_data={'optimol': ['sample_data/*.txt']})
+          install_requires=["chemspipy", "numpy", "pandas", "scikit-learn", "xgboost"])
