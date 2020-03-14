@@ -3,6 +3,19 @@
 
 OptiMol is a package for predicting molecular conformations of organic compounds, currently limited to 4 most common elements, C, H, N, O.  There are four major components in this package: a data scrapping module, a data cleaning module, a machine learning module and  a visualization module.
 
+### Table of Contents
+-[Organization of the  project](#Organization-of-the-project)
+-[Software Dependencies](#Software-Dependencies)
+-[Project Data](#Project-Data)
+-[Documentation](#Documentation)
+-[Testing](#Testing)
+-[Installation](#Installation)
+-[Distribution](#Distribution)
+-[Licensing](#Licensing)
+-[Getting cited](#Getting cited)
+-[Scripts](#Scripts)
+-[Git Configuration](#Git Configuration)
+
 ### Organization of the  project
 
 The project has the following structure:
