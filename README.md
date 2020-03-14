@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # OptiMol
 
 [![Build Status](https://travis-ci.org/ng-git/OptiMol.svg?branch=master)](https://travis-ci.org/github/ng-git/OptiMol)
@@ -36,8 +35,6 @@ The project has the following structure:
        	|- component_specifications.ipynb
         |- functional_specifications.ipynb
         |- technology review.pdf
-      |- xgboost/
-         |-
       |- demo/
      	|- demo.ipynb
       |- README.md
@@ -302,6 +299,3 @@ with this repository, and which you could extend further:
   specify the ultimate name/email(s) for each contributor, so such
   commands as `git shortlog -sn` could take them into account (see
   `git shortlog --help`)
-
-
-=======
