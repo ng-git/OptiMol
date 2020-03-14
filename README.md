@@ -32,7 +32,7 @@ The project has the following structure:
         	|- __init__.py
             |- test_data_compile.py
       |- doc/
-       	|- component_specifications.ipynb
+        |- component_specifications.ipynb
         |- functional_specifications.ipynb
         |- technology review.pdf
       |- demo/
