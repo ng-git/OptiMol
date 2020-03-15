@@ -170,18 +170,13 @@ def get_df_database(id_num, raw=False, hydrogen=False):
     if id_num not in get_id():
         raise ValueError()
 
-    # access database
-    os.chdir(DATABASE)
-
     # get dataframe of 2d coord and bonding
     filename_2d = str(id_num) + '_2d.txt'
-    [coord_2d, bond_2d] = get_df(filename_2d, dim=2)
+    [coord_2d, bond_2d] = get_df(DATABASE + '/' + filename_2d, dim=2)
 
     # get dataframe of 3d coord and bonding
     filename_3d = str(id_num) + '_3d.txt'
-    [coord_3d, bond_3d] = get_df(filename_3d, dim=3)
-
-    os.chdir(ROOT)
+    [coord_3d, bond_3d] = get_df(DATABASE + '/' +filename_3d, dim=3)
 
     # trim hydrogen
     if False is hydrogen:
