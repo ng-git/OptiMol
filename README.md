@@ -14,7 +14,7 @@ OptiMol is a package for predicting molecular conformations of organic compounds
 - [Testing](#Testing)
 - [Installation](#Installation)
 - [Distribution](#Distribution)
--[Licensing](#Licensing)
+- [Licensing](#Licensing)
 - [Getting cited](#Getting-cited)
 - [Scripts](#Scripts)
 - [Git Configuration](#Git-Configuration)
@@ -39,10 +39,10 @@ The project has the following structure:
      	|- demo.ipynb
       |- README.md
       |- requirement.txt
-      |- req.txt
       |- setup.py
       |- setuptool.py
       |- OptiMol.yml
+      |- travis.yml
       |- LICENSE
       
 
@@ -106,16 +106,6 @@ Automated code testing takes this informal practice, makes it formal, and
 automates it, so that you can make sure that your code does what it is supposed
 to do, even as you go about making changes around it.
 
-Most scientists writing code are not really in a position to write a complete
-[specification](http://www.wired.com/2013/01/code-bugs-programming-why-we-need-specs/)
-of their software, because when they start writing their code they don't quite
-know what they will discover in their data, and these chance discoveries might
-affect how the software evolves. Nor do most scientists have the inclination to
-write complete specs - scientific code often needs to be good enough to cover
-our use-case, and not any possible use-case. Testing the code serves as a way to
-provide a reader of the code with very rough specification, in the sense that it
-at least specifies certain input/output relationships that will certainly hold
-in your code.
 
 We recommend using the ['pytest'](http://pytest.org/latest/) library for
 testing. The `py.test` application traverses the directory tree in which it is
@@ -133,73 +123,7 @@ have one such test in `shablona/tests/test_shablona.py` called
 mine, telling you that you need to examine changes in your software
 dependencies, the platform on which you are running your software, etc.
 
-Test functions should contain assertion statements that check certain relations
-in the code. Most typically, they will test for equality between an explicit
-calculation of some kind and a return of some function. For example, in the
-`test_cumgauss` function, we test that our implmentation of the cumulative
-Gaussian function evaluates at the mean minus 1 standard deviation to
-approximately (1-0.68)/2, which is the theoretical value this calculation should
-have. We recommend using functions from the `numpy.testing` module (which we
-import as `npt`) to assert certain relations on arrays and floating point
-numbers. This is because `npt` contains functions that are specialized for
-handling `numpy` arrays, and they allow to specify the tolerance of the
-comparison through the `decimal` key-word argument.
 
-To run the tests on the command line, change your present working directory to
-the top-level directory of the repository (e.g. `/Users/arokem/code/shablona`),
-and type:
-
-    py.test shablona
-
-This will exercise all of the tests in your code directory. If a test fails, you
-will see a message such as:
-
-
-    shablona/tests/test_shablona.py .F...
-    
-    =================================== FAILURES ===================================
-    ________________________________ test_cum_gauss ________________________________
-    
-      def test_cum_gauss():
-          sigma = 1
-          mu = 0
-          x = np.linspace(-1, 1, 12)
-          y = sb.cumgauss(x, mu, sigma)
-          # A basic test that the input and output have the same shape:
-          npt.assert_equal(y.shape, x.shape)
-          # The function evaluated over items symmetrical about mu should be
-          # symmetrical relative to 0 and 1:
-          npt.assert_equal(y[0], 1 - y[-1])
-          # Approximately 68% of the Gaussian distribution is in mu +/- sigma, so
-          # the value of the cumulative Gaussian at mu - sigma should be
-          # approximately equal to (1 - 0.68/2). Note the low precision!
-    >       npt.assert_almost_equal(y[0], (1 - 0.68) / 2, decimal=3)
-    E       AssertionError:
-    E       Arrays are not almost equal to 3 decimals
-    E        ACTUAL: 0.15865525393145707
-    E        DESIRED: 0.15999999999999998
-    
-    shablona/tests/test_shablona.py:49: AssertionError
-    ====================== 1 failed, 4 passed in 0.82 seconds ======================
-
-This indicates to you that a test has failed. In this case, the calculation is
-accurate up to 2 decimal places, but not beyond, so the `decimal` key-word
-argument needs to be adjusted (or the calculation needs to be made more
-accurate).
-
-As your code grows and becomes more complicated, you might develop new features
-that interact with your old features in all kinds of unexpected and surprising
-ways. As you develop new features of your code, keep running the tests, to make
-sure that you haven't broken the old features.  Keep writing new tests for your
-new code, and recording these tests in your testing scripts. That way, you can
-be confident that even as the software grows, it still keeps doing correctly at
-least the few things that are codified in the tests.
-
-We have also provided a `Makefile` that allows you to run the tests with more
-verbose and informative output from the top-level directory, by issuing the
-following from the command line:
-
-    make test
 
 ## Installation
 
