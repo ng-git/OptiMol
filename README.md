@@ -106,7 +106,7 @@ We use the MIT license to maintains copyright to the authors.
 
 ## Scripts
 
-A detailed tutorial and example of how to use this module is stored in `demo` as ['jupyter notebook'](https://jupyter.org/).
+A detailed tutorial and example of how to use this module is stored in `demo` as [jupyter notebook](https://jupyter.org/).
 
 ## Git Configuration
 
