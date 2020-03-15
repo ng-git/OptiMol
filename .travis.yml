@@ -7,9 +7,11 @@ python:
 install:
   - pip install -r requirements.txt
   - pip install python-coveralls
+  - pip install coveralls
   
 script:
   - pytest
+  - coverage run --source=mypkg setup.py test
 
 after_success:
   - coverage report
