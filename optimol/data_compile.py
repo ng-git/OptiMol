@@ -1,4 +1,4 @@
-""" This module contain functions to retrieve and process data from the database folder"""
+""" Module contains functions to retrieve and process data from the database folder"""
 
 import os
 import numpy as np
@@ -9,6 +9,9 @@ import pkg_resources
 
 pd.options.mode.chained_assignment = None  # default='warn'
 ROOT = pkg_resources.resource_filename('optimol', '')
+
+# ROOT = pkg_resources.resource_filename('optimol', '/')
+# DATBASE = pkg_resources.resource_filename('optimol', None)
 DATABASE = ROOT + '/database_chemspider'
 
 

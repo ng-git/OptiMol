@@ -1,7 +1,8 @@
 from optimol import data_compile
 import pandas as pd
+import os
 
-
+print('testing')
 id_list = data_compile.get_id()
 
 # this give the dataframes from database using the id
@@ -14,6 +15,8 @@ data_set = data_compile.get_all_dataset(set1=3)
 # print(data_set)
 
 # this make the dataframe from user input
-user_set = data_compile.get_df_user(['./user.txt'])
+print(os.getcwd())
+
+user_set = data_compile.get_df_user(['user.txt'])
 print(user_set)
 
