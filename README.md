@@ -96,34 +96,7 @@ Atoms information of 2d molecules can be interpreted similarly as above.
 
 ## Testing
 
-Most scientists who write software constantly test their code. That is, if you
-are a scientist writing software, I am sure that you have tried to see how well
-your code works by running every new function you write, examining the inputs
-and the outputs of the function, to see if the code runs properly (without
-error), and to see whether the results make sense.
-
-Automated code testing takes this informal practice, makes it formal, and
-automates it, so that you can make sure that your code does what it is supposed
-to do, even as you go about making changes around it.
-
-
-We recommend using the ['pytest'](http://pytest.org/latest/) library for
-testing. The `py.test` application traverses the directory tree in which it is
-issued, looking for files with the names that match the pattern `test_*.py`
-(typically, something like our `shablona/tests/test_shablona.py`). Within each
-of these files, it looks for functions with names that match the pattern
-`test_*`. Typically each function in the module would have a corresponding test
-(e.g. `test_transform_data`). This is sometimes called 'unit testing', because
-it independently tests each atomic unit in the software. Other tests might run a
-more elaborate sequence of functions ('end-to-end testing' if you run through
-the entire analysis), and check that particular values in the code evaluate to
-the same values over time. This is sometimes called 'regression testing'. We
-have one such test in `shablona/tests/test_shablona.py` called
-`test_params_regression`. Regressions in the code are often canaries in the coal
-mine, telling you that you need to examine changes in your software
-dependencies, the platform on which you are running your software, etc.
-
-
+`optimol/tests` is where the local tests and sample data stored. We have built tests in `test_data_compile.py` for each function included in the software. We recommend runnning local tests byy ['nosetests'](nose.readthedocs.io/en/latest/).  The `nosetests` application traverses the directory tree in which it is issued, looking for functions with names that match the pattern `test_*`. Typically each function in the module would have a corresponding test (e.g. `test_get_df_user_edge_cases`). Typing `nosetests test_data_compile.py` into the command window will start the unit test on your computer. `travis.yml'`is also pakced for ['continuous integration'](https://docs.travis-ci.com/user/customizing-the-build). Automated code testing creates an virtual environment for software testing each time when updating the this remote repository.
 
 ## Installation
 
