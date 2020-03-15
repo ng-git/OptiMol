@@ -13,9 +13,7 @@ OptiMol is a package for predicting molecular conformations of organic compounds
 - [Documentation](#Documentation)
 - [Testing](#Testing)
 - [Installation](#Installation)
-- [Distribution](#Distribution)
 - [Licensing](#Licensing)
-- [Getting cited](#Getting-cited)
 - [Scripts](#Scripts)
 - [Git Configuration](#Git-Configuration)
 
