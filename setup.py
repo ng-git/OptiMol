@@ -8,16 +8,15 @@ Opt = dict(name='optimol',
            description='useful module for predicting molecular conformation',
            license="MIT",
            author=["Minh", "Vivian", "Mike", "Guanning", "Weishi"],
-           url="https://github.com/ShadyMikey/OptiMol",
+           url="https://github.com/ng-git/OptiMol",
            package=["optimol"],
-           install_requires=["chemspipy", "os", "numpy", "shutil", "pandas", "scikit-learn", "pkg_resources",
-                             "csv", "xgboost"],
-           python_requires=">=3.0",
-           package_data={'optimol': ['database_chemspider/*.txt']}
+           install_requires=["chemspipy", "numpy", "pandas", "scikit-learn", "xgboost"],
+           python_requires=">=3.0"
            )
 
 if __name__ == '__main__':
     setup(**Opt,
           install_requires=["chemspipy", "numpy", "pandas", "scikit-learn", "xgboost"],
           include_package_data=True,
-          package_data={'optimol': ['database_chemspider/*.txt']})
+          package_data={'database_chemspider': ['*.txt'],
+                        'sample_data': ['*.txt']})
