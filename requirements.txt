@@ -10,7 +10,6 @@ idna==2.9
 joblib==0.14.1
 kiwisolver==1.1.0
 matplotlib==3.2.0
-mkl-service==2.3.0
 multisplitby==0.0.1
 networkx==2.4
 numpy==1.18.1
