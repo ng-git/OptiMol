@@ -100,88 +100,15 @@ Atoms information of 2d molecules can be interpreted similarly as above.
 
 ## Installation
 
-For installation and distribution we will use the python standard
-library `distutils` module. This module uses a `setup.py` file to
-figure out how to install your software on a particular system. For a
-small project such as this one, managing installation of the software
-modules and the data is rather simple.
-
-A `shablona/version.py` contains all of the information needed for the
-installation and for setting up the [PyPI
-page](https://pypi.python.org/pypi/shablona) for the software. This
-also makes it possible to install your software with using `pip` and
-`easy_install`, which are package managers for Python software. The
-`setup.py` file reads this information from there and passes it to the
-`setup` function which takes care of the rest.
-
-Much more information on packaging Python software can be found in the
-[Hitchhiker's guide to
-packaging](https://the-hitchhikers-guide-to-packaging.readthedocs.org).
-
-## Distribution
-
-The main venue for distribution of Python software is the [Python
-Package Index](https://pypi.python.org/), or PyPI, also lovingly known
-as "the cheese-shop".
-
-To distribute your software on PyPI, you will need to create a user account on
-[PyPI](http://python-packaging-user-guide.readthedocs.org/en/latest/distributing/#register-your-project).
-It is recommended that you upload your software using
-[twine](http://python-packaging-user-guide.readthedocs.org/en/latest/distributing/#upload-your-distributions).
-
-Using Travis, you can automatically upload your software to PyPI,
-every time you push a tag of your software to github. The instructions
-on setting this up can be found
-[here](http://docs.travis-ci.com/user/deployment/pypi/). You will need
-to install the travis command-line interface
+For installation and distribution we will use the python standard library `distutils` module. This module uses a `setup.py` file to install OptiMol on a particular system and set up the [PyPI page](https://pypi.python.org/pypi/optimol) for the software. This also makes it possible to install software with using `pip` and`conda`, which are package managers for Python software. The `setup.py` file reads this information from there and passes it to the `setup` function which takes care of the rest.
 
 ## Licensing
 
-License your code! A repository like this without a license maintains
-copyright to the author, but does not provide others with any
-conditions under which they can use the software. In this case, we use
-the MIT license. You can read the conditions of the license in the
-`LICENSE` file. As you can see, this is not an Apple software license
-agreement (has anyone ever actually tried to read one of those?). It's
-actually all quite simple, and boils down to "You can do whatever you
-want with my software, but I take no responsibility for what you do
-with my software"
-
-For more details on what you need to think about when considering
-choosing a license, see this
-[article](http://www.astrobetter.com/blog/2014/03/10/the-whys-and-hows-of-licensing-scientific-code/)!
-
-## Getting cited
-
-When others use your code in their research, they should probably cite you. To
-make their life easier, we use [duecredit](http://www.duecredit.org). This is a software
-library that allows you to annotate your code with the correct way to cite it.
-To enable `duecredit`, we have added a file `due.py` into the main directory.
-This file does not need to change at all (though you might want to occasionally
-update it from duecredit itself. It's
-[here](https://github.com/duecredit/duecredit/blob/master/duecredit/stub.py),
-under the name `stub.py`).
-
-In addition, you will want to provide a digital object identifier (DOI) to the
-article you want people to cite.
-
-To get a DOI, use the instructions in [this page](https://guides.github.com/activities/citable-code/)
-
-Another way to get your software cited is by writing a paper. There are several
-[journals that publish papers about software](https://www.software.ac.uk/resources/guides/which-journals-should-i-publish-my-software).
+We use the MIT license to maintains copyright to the authors.
 
 ## Scripts
 
-A scripts directory can be used as a place to experiment with your
-module code, and as a place to produce scripts that contain a
-narrative structure, demonstrating the use of the code, or producing
-scientific results from your code and your data and telling a story
-with these elements.
-
-For example, this repository contains an [IPython notebook] that reads
-in some data, and creates a figure. Maybe this is *Figure 1* from some
-future article? You can see this notebook fully rendered
-[here](https://github.com/uwescience/shablona/blob/master/scripts/Figure1.ipynb).
+A detailed tutorial and example of how to use this module is stored in `demo` as ['jupyter notebook'](https://jupyter.org/).
 
 ## Git Configuration
 
