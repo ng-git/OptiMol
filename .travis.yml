@@ -7,10 +7,11 @@ python:
 install:
   - pip install -r requirements.txt
   - pip install python-coveralls
+  - pip install pytest-cov
   - pip install coveralls
   
 script:
-  - pytest 
+  - pytest --cov=optimol/
   
 after_success:
   - coverage report
