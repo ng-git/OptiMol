@@ -14,7 +14,7 @@ OptiMol is a package for predicting molecular conformations of organic compounds
 - [Testing](#Testing)
 - [Installation](#Installation)
 - [Licensing](#Licensing)
-- [Tutorial / Demo](#Tutorial / Demo)
+- [Demo](#Demo)
 - [Git Configuration](#Git-Configuration)
 
 
@@ -104,7 +104,7 @@ For installation and distribution we will use the python standard library `distu
 
 We use the MIT license to maintains copyright to the authors.
 
-## Tutorial / Demo
+## Demo
 
 A detailed tutorial and example of how to use this module is stored in `demo` as [jupyter notebook](https://jupyter.org/).
 
