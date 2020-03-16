@@ -173,7 +173,7 @@ def get_df_database(id_num, raw=False, hydrogen=False):
 
     # get dataframe of 3d coord and bonding
     filename_3d = str(id_num) + '_3d.txt'
-    [coord_3d, bond_3d] = get_df(DATABASE + '/' +filename_3d, dim=3)
+    [coord_3d, bond_3d] = get_df(DATABASE + '/' + filename_3d, dim=3)
 
     # trim hydrogen
     if False is hydrogen:
