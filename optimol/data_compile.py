@@ -9,9 +9,6 @@ import pkg_resources
 
 pd.options.mode.chained_assignment = None  # default='warn'
 ROOT = pkg_resources.resource_filename('optimol', '')
-
-# ROOT = pkg_resources.resource_filename('optimol', '/')
-# DATBASE = pkg_resources.resource_filename('optimol', None)
 DATABASE = ROOT + '/database_chemspider'
 
 
@@ -26,7 +23,7 @@ def get_all_dataset(set1=None, set2=0):
     :type set1: int
     :type set2: int
 
-    :return dataframes contain all of the datasets
+    :return dataframe contains all of the datasets
     """
 
     if False in [isinstance(set1, int),
@@ -201,8 +198,8 @@ def trim_hydrogen(coord_input, bond_input):
     :param bond_input: bond dataframe
     :type coord_input: pandas.DataFrame
 
-    :return coord: same as input but without H
-    :rtype coord: pandas.DataFrame
+    :return coord, bond: same as input but without H
+    :rtype coord, bond: pandas.DataFrame
     """
 
     # check input type
