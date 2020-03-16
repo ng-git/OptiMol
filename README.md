@@ -36,7 +36,7 @@ The project has the following structure:
       |- demo/
      	|- demo.ipynb
       |- README.md
-      |- requirement.txt
+      |- requirements.txt
       |- setup.py
       |- setuptool.py
       |- OptiMol.yml
