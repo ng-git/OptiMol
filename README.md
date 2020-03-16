@@ -17,7 +17,6 @@ OptiMol is a package for predicting molecular conformations of organic compounds
 - [Installation](#Installation)
 - [Demo](#Demo)
 - [Licensing](#Licensing)
-- [Git Configuration](#Git-Configuration)
 
 
 ## Organization of the  project
@@ -40,7 +39,6 @@ The project has the following structure:
       |- README.md
       |- requirements.txt
       |- setup.py
-      |- setuptool.py
       |- OptiMol.yml
       |- travis.yml
       |- LICENSE
@@ -109,17 +107,3 @@ A detailed tutorial and example of how to use this module is stored in `demo` as
 ## Licensing
 
 We use the MIT license to maintains copyright to the authors.
-
-## Git Configuration
-
-Currently there are two files in the repository which help working
-with this repository, and which you could extend further:
-
-- `.gitignore` -- specifies intentionally untracked files (such as
-  compiled `*.pyc` files), which should not typically be committed to
-  git (see `man gitignore`)
-- `.mailmap` -- if any of the contributors used multiple names/email
-  addresses or his git commit identity is just an alias, you could
-  specify the ultimate name/email(s) for each contributor, so such
-  commands as `git shortlog -sn` could take them into account (see
-  `git shortlog --help`)
