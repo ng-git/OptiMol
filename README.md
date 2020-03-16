@@ -34,7 +34,7 @@ The project has the following structure:
         |- functional_specifications.ipynb
         |- technology review.pdf
       |- demo/
-     	|- demo.ipynb
+        |- demo.ipynb
       |- README.md
       |- requirements.txt
       |- setup.py
