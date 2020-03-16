@@ -532,7 +532,7 @@ def database_setup():
     os.chdir(directory)  # change dir to database_chemspider/
 
     # access API key
-    cs = ChemSpider('d0xQqfSr9KAwCQDMb10uAmp46dAADGqh')
+    cs = ChemSpider('text')
 
     # go through each id
     for id_chemspider in id_list:
