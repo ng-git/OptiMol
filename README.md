@@ -13,8 +13,8 @@ OptiMol is a package for predicting molecular conformations of organic compounds
 - [Documentation](#Documentation)
 - [Testing](#Testing)
 - [Installation](#Installation)
-- [Licensing](#Licensing)
 - [Demo](#Demo)
+- [Licensing](#Licensing)
 - [Git Configuration](#Git-Configuration)
 
 
@@ -100,13 +100,13 @@ Atoms information of 2D molecules can be interpreted similarly as above.
 
 For installation and distribution we will use the python standard library `distutils` module. This module uses a `setup.py` file to install OptiMol on a particular system and set up the [PyPI page](https://pypi.python.org/pypi/optimol) for the software. This also makes it possible to install software with using `pip` and`conda`, which are package managers for Python software. The `setup.py` file reads this information from there and passes it to the `setup` function which takes care of the rest.
 
-## Licensing
-
-We use the MIT license to maintains copyright to the authors.
-
 ## Demo
 
 A detailed tutorial and example of how to use this module is stored in `demo` as [jupyter notebook](https://jupyter.org/).
+
+## Licensing
+
+We use the MIT license to maintains copyright to the authors.
 
 ## Git Configuration
 
