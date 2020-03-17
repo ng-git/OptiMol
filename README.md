@@ -27,8 +27,8 @@ The project has the following structure:
 
     OptiMol/
       |- optimol/
-      	|- __init__.py
-      	|- data_compile.py
+        |- __init__.py
+        |- data_compile.py
         |- model.py
         |- id.csv
         |- model.csv
@@ -47,6 +47,7 @@ The project has the following structure:
       |- setup.py
       |- OptiMol.yml
       |- .travis.yml
+      |- .gitignore
       |- LICENSE
       
 
