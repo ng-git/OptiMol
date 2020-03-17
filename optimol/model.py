@@ -1,3 +1,5 @@
+'''Predictive modeling for 3D crystal strucutre given 2D structure and bonding information'''
+
 import pandas as pd
 import numpy as np
 import xgboost as xgb
@@ -19,17 +21,36 @@ def get_csv():
     return pd.read_csv(ROOT + '/model.csv')
 
 def get_centroid(coord_matrix):
-    '''calculate centroid of 2d or 3d matrix'''
+    '''calculate centroid of 2d or 3d matrix
+    centroid is defined as center point of 
+    all atoms in either 2d or 3d structures
+    ::param
+    coord_matrix:2d or 3d matrix of coordinations
+    ::return
+    centroid: coordination of centroid
+    '''
     centroid = np.mean(coord_matrix)
     return centroid
 
 def translation_centroid(coord_matrix):
-    '''move 2d or 3d matrix centroid to origin'''
+    '''move 2d or 3d matrix centroid to origin
+    by matrix translation
+    ::param
+    coord_matrix:2d or 3d matrix of coordinations
+    ::return
+    translated_matrix: coordinations of the matrix
+    whose centroid is moved to the origin
+    '''
     translated_matrix = coord_matrix - get_centroid(coord_matrix)
     return translated_matrix
 
 def get_max_dist(coord_matrix):
-    '''get the index of the atom that have largest distance to centroid'''
+    '''get the index of the atom that have largest distance to centroid
+    ::param
+    coord_matrix: 2d or 3d matrix of coordinations
+    ::return
+    the index of atom is the furtherest from centroid
+    '''
     dist = (coord_matrix)**2
     dist = np.sum(dist, axis=1)
     dist = np.sqrt(dist)
@@ -37,11 +58,21 @@ def get_max_dist(coord_matrix):
     return dist_index
 
 def unit_vector(vector):
-    '''Returns the unit vector of the vector. '''  
+    '''Returns the unit vector of the vector. 
+    ::param
+    vector: a 2d or 3d vector
+    ::return
+    unit vector
+    '''  
     return vector / np.linalg.norm(vector)
 
 def angle_between(v1, v2):
-    '''Returns the angle in radians between vectors 'v1' and 'v2':: '''
+    '''returns the angle in radians between vectors 'v1' and 'v2':: 
+    ::param
+    v1,v2: two vectors
+    ::return
+    angle: radian angle of two vectors
+    '''
     v1_u = unit_vector(v1)
     v2_u = unit_vector(v2)
     angle = np.arccos(np.clip(np.dot(v1_u, v2_u), -1.0, 1.0))
@@ -50,15 +81,24 @@ def angle_between(v1, v2):
     return angle
 
 def rotation_matrix_2d(theta):
-    '''for 2d matrix, get the rotational matrix given the traget angle theta'''
+    '''for 2d matrix, get the rotational matrix given the target angle theta
+    ::param
+    theta: radian angle
+    ::return
+    r: rotational matrix to be applied for matrix rotation
+    '''
     r = np.array(((np.cos(theta), -np.sin(theta)),
                (np.sin(theta),  np.cos(theta))))
     return r
 
 def absmax_index(a, axis=None):
-    '''find the second atom index that is used
-    to align y axis for 3d matrix
-    due to the addition of DOF'''
+    '''find the second atom index that is used to align 
+    y axis for 3d matrix due to the addition of DOF in 3D
+    ::param
+    a: vector
+    ::return
+    result: the index of the target atom
+    '''
     amax = a.max(axis)
     max_index = a.idxmax()
     amin = a.min(axis)
@@ -70,32 +110,40 @@ def absmax_index(a, axis=None):
     return result
 
 def translate_rotate_2d(coord_2d):
-    '''Translate and rotate the 2d matrix
+    '''Wrapping function for 2d translation and rotation
+    Translate and rotate the 2d matrix
     so that the centroid is located at origin
     and the furtherest atom is located at x axis
-    Param 
+    ::param 
     coord_2d: input 2d structure of the atom
-    Return 
+    ::return 
     max_x_index: the index of the furtherest atom
     coord_2d_new: competed 2d matrix that has the
     translation and rotation
     '''
+    #centering the centriod
     trans_matrix = translation_centroid(coord_2d)
+    #get the furtherest atom index
     max_x_index = get_max_dist(trans_matrix)
+    #set x axis
     base = [1,0]
+    #get the angle to be rotated
     theta = angle_between(base,trans_matrix.iloc[max_x_index])
+    #get the rotational matrix
     r_matrix = rotation_matrix_2d(theta)
+    #get the new matrix 
     coord_2d_new = trans_matrix.dot(r_matrix).round(4)
     # get the y axis index to be aligned for the 3d matrix
     y_index = absmax_index(coord_2d_new[1])
     return max_x_index, y_index, coord_2d_new
 
 def rotation_matrix_from_vectors(vec1, vec2):
-    """ Find the rotation matrix that aligns vec1 to vec2
-    :param vec1: A 3d "source" vector
-    :param vec2: A 3d "destination" vector
-    :return mat: A transform matrix (3x3) which when applied to vec1, aligns it with vec2.
-    """
+    ''' Find the rotation matrix that aligns vec1 to vec2
+    ::param vec1: A 3d "source" vector
+    ::param vec2: A 3d "destination" vector
+    ::return mat: A transform matrix (3x3) which when applied to vec1, aligns it with vec2.
+    '''
+    #this function comes from stackoverflow.com
     a, b = (vec1 / np.linalg.norm(vec1)).reshape(3), (vec2 / np.linalg.norm(vec2)).reshape(3)
     v = np.cross(a, b)
     c = np.dot(a, b)
@@ -105,16 +153,24 @@ def rotation_matrix_from_vectors(vec1, vec2):
     return rotation_matrix
 
 def rotation_around_x(axis, theta):
-    """
-    Return the rotation matrix associated with counterclockwise rotation about
-    the given axis by theta radians.
-    """
+    '''
+    Return the rotation matrix associated with counterclockwise
+    rotation about the given axis by theta radians.
+    ::param 
+    axis: the axis that a certain matrix to be rotated around with
+    theta: the radian angle to rotate
+    ::return
+    rotated matrix
+    '''
+    #this function comes from stackoverflow.com
     axis = np.asarray(axis)
     axis = axis / math.sqrt(np.dot(axis, axis))
     a = math.cos(theta / 2.0)
     b, c, d = -axis * math.sin(theta / 2.0)
+    #set the assignment
     aa, bb, cc, dd = a * a, b * b, c * c, d * d
     bc, ad, ac, ab, bd, cd = b * c, a * d, a * c, a * b, b * d, c * d
+    #calculate the final matrix
     return np.array([[aa + bb - cc - dd, 2 * (bc + ad), 2 * (bd - ac)],
                      [2 * (bc - ad), aa + cc - bb - dd, 2 * (cd + ab)],
                      [2 * (bd + ac), 2 * (cd - ab), aa + dd - bb - cc]])
@@ -123,9 +179,9 @@ def translate_rotate_3d(x_index, y_index, coord_3d):
     '''Translate and rotate the 2d matrix
     so that the centroid is located at origin
     and the furtherest atom is located at x axis
-    Param 
+    ::param 
     coord_2d: input 2d structure of the atom
-    Return 
+    ::return 
     max_x_index: the index of the furtherest atom
     coord_2d_new: competed 2d matrix that has the
     translation and rotation
@@ -151,6 +207,9 @@ def translate_rotate_3d(x_index, y_index, coord_3d):
     return completed_y
 
 def build_model():
+    '''
+    This is the function to build the predictve model
+    '''
     id_list = data_compile.get_id()
     full = pd.DataFrame()
     for i in id_list:
@@ -168,6 +227,12 @@ def build_model():
     full.to_csv(r'model.csv')
     
 def get_model(data):
+    '''extract the model and parameters from training data
+    ::param
+    data: training data
+    ::return
+    mulyioutputregressor: the 3 output numbers
+    '''
     data_drop_na = data.astype(float).dropna()
     X_full = data_drop_na[['2d_x','2d_y','periodic_#_2d','bond_1_2d','bond_2_2d','bond_3_2d']].reset_index(drop=True)
     Y_full = data_drop_na[['3d_x','3d_y','3d_z']].reset_index(drop=True)
@@ -185,6 +250,14 @@ def get_model(data):
     return multioutputregressor
 
 def model_eval(model,data,n_fold=5):
+    '''evaluate the performance of the model built from exsiting database
+    ::param
+    model: predictive model-gradient boost tree
+    data: the data given for cross validation
+    n_fold: number of cross validation fold
+    ::return
+    the accuracy score with 95% confidence interval
+    '''
     data_drop_na = data.astype(float).dropna()
     X_full = data_drop_na[['2d_x','2d_y','periodic_#_2d','bond_1_2d','bond_2_2d','bond_3_2d']].reset_index(drop=True)
     Y_full = data_drop_na[['3d_x','3d_y','3d_z']].reset_index(drop=True)
@@ -194,6 +267,15 @@ def model_eval(model,data,n_fold=5):
     print("Accuracy: %.2f%% (%.2f%%)" % (score*100, results.std()*100))
     
 def predict_3d(user_input,model):
+    '''this function takes in the user input 2d information
+    and predictive model built from database to make the 
+    prediction of 3d strucutre
+    ::param
+    user_input: user input of the 2d information about molecule
+    model: predictive model built from database
+    ::return
+    user_output: 3d information about the molecule
+    '''
     user_output = model.predict(user_input)
     user_output = pd.DataFrame(user_output, columns = ['3d_x','3d_y','3d_z'])
     return user_output
