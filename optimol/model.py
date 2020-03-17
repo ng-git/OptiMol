@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import xgboost as xgb
 import math
+import pkg_resources
 
 from scipy import stats
 from sklearn.model_selection import train_test_split
@@ -10,6 +11,12 @@ from sklearn.model_selection import cross_val_score
 from sklearn.multioutput import MultiOutputRegressor
 
 from optimol import data_compile
+
+ROOT = pkg_resources.resource_filename('optimol', '')
+
+def get_csv():
+    '''return demo datafrme'''
+    return pd.read_csv(ROOT + '/model.csv')
 
 def get_centroid(coord_matrix):
     '''calculate centroid of 2d or 3d matrix'''
