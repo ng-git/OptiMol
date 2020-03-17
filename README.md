@@ -29,6 +29,10 @@ The project has the following structure:
       |- optimol/
       	|- __init__.py
       	|- data_compile.py
+        |- model.py
+        |- id.csv
+        |- model.csv
+        |- database_chemspider/
         |- tests/
         	|- __init__.py
             |- test_data_compile.py
@@ -42,7 +46,7 @@ The project has the following structure:
       |- requirements.txt
       |- setup.py
       |- OptiMol.yml
-      |- travis.yml
+      |- .travis.yml
       |- LICENSE
       
 
