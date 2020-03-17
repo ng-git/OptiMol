@@ -1,6 +1,4 @@
-# OptiMol
-
-<img align="right"  src="https://github.com/ng-git/OptiMol/blob/master/Presentation%20and%20image/img/logo.png">
+# <img align="right"  src="https://github.com/ng-git/OptiMol/blob/master/Presentation%20and%20image/img/logo.png">
 
 [![Build Status](https://travis-ci.org/ng-git/OptiMol.svg?branch=master)](https://travis-ci.org/github/ng-git/OptiMol)
 [![Coverage Status](https://coveralls.io/repos/github/ng-git/OptiMol/badge.svg?branch=master)](https://coveralls.io/github/ng-git/OptiMol?branch=master)
