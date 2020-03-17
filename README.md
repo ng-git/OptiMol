@@ -98,10 +98,44 @@ Atoms information of 2D molecules can be interpreted similarly as above.
 
 ## Installation
 
-For installation and distribution we will use the python standard library `distutils` module. This module uses a `setup.py` file to install OptiMol on a particular system and set up the [PyPI page](https://pypi.python.org/pypi/optimol) for the software. This also makes it possible to install software with using `pip` and`conda`, which are package managers for Python software. The `setup.py` file reads this information from there and passes it to the `setup` function which takes care of the rest.
+Below are the steps to install this package:
+
+1. Clone this repo to the computer: `git clone https://github.com/ng-git/OptiMol`
+
+2. In the repo directory install and the environment:
+```
+conda env create -f OptiMol
+conda activate OptiMol
+```
+Optional. `conda update conda` may be needed if packages were not found
 
 ## Demo
 
+Once the isntallation is completed, `optimol` package is ready to be used
+
+1. Load the package and model
+```
+import pandas as pd
+from optimol import data_compile
+from optimol import model
+    
+# create model
+model.buil_model()
+```
+2. Read the user input
+```    
+user_input = data_compile.get_df_user('./user.txt')
+```
+3. Train the model using the default data set
+```
+data = model.get_csv()
+estimator = model.get_model(data)
+```    
+4. Input user data to model and get the result 
+```
+result = model.predict_3d(user_input,estimator)
+``` 
+   
 A detailed tutorial and example of how to use this module is stored in `demo` as [jupyter notebook](https://jupyter.org/).
 
 ## Licensing
