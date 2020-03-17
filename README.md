@@ -1,13 +1,14 @@
 # OptiMol
 
+
+<img align="right"  src="https://github.com/ng-git/OptiMol/blob/master/Presentation%20and%20image/img/logo.png">
+
 [![Build Status](https://travis-ci.org/ng-git/OptiMol.svg?branch=master)](https://travis-ci.org/github/ng-git/OptiMol)
 [![Coverage Status](https://coveralls.io/repos/github/ng-git/OptiMol/badge.svg?branch=master)](https://coveralls.io/github/ng-git/OptiMol?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
  
-![OptiMol Logo](https://github.com/ng-git/OptiMol/blob/master/Presentation%20and%20image/img/logo.png)
-align="right" width="200" style="padding: 0 15px; float: right;"/>
 
-<img align="right" width="100" height="100" src="https://github.com/ng-git/OptiMol/blob/master/Presentation%20and%20image/img/logo.png">
+
 
 OptiMol is a package for predicting molecular conformations of organic compounds, currently limited to 4 most common elements, C, H, N, O.  There are four major components in this package: a data scrapping module, a data cleaning module, a machine learning module and  a visualization module.
 
