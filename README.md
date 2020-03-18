@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 OptiMol is a package for predicting molecular conformations of organic compounds, currently limited to 4 most common elements, C, H, N, O.  There are four major components in this package: a data scrapping module, a data cleaning module, a machine learning module and  a visualization module.
-<img align="center" src="images/optimol.png" width="50"> 
+<img align="center" src="img/optimol.png" width="50"> 
 
 ## Table of Contents
 
@@ -86,7 +86,7 @@ data_compile.get_df_database(18)[2]  # return the new dataframe from 3D
 
 Output:
 
-![](image/aspirin3d.png)
+![](img/aspirin3d.png)
 
 The columns `3d_x`, `3d_y` and `3d_z` are the x, y ,z coordinates of atoms
 
