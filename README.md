@@ -93,11 +93,13 @@ The columns `3d_x`, `3d_y` and `3d_z` are the x, y ,z coordinates of atoms
 
 `atom` stands for the atom type, while `periodic_#` stands for their periodic numbers
 
-`connect_to` stands for what other atoms -- labelled in row numbers and as always in python the first row is labelled as 0 -- the current atom is connected to, and -1 stands for any connection to Hydrogen
+`connect_to` stands for what other atoms -- labelled in row index-- the current atom is connected to, and -1 stands for any connection to hydrogen atom
 
-`bond_1`, `bond_2` and `bond_3` stands for the numbers of single, double and triple bonds that the atom has respectively.
+`bond_1`, `bond_2` and `bond_3` stands for the numbers of single, double and triple bonds that the atom has.
 
 Atoms information of 2D molecules can be interpreted similarly as above.
+
+See `functional_specifications` for module performance and use cases. Detailed description of each function are listed in `conponent_specifications`.
 
 ## Installation
 
