@@ -7,6 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 OptiMol is a package for predicting molecular conformations of organic compounds, currently limited to 4 most common elements, C, H, N, O.  There are four major components in this package: a data scrapping module, a data cleaning module, a machine learning module and  a visualization module.
+<img align="center" src="images/optimol.png" width="50"> 
 
 ## Table of Contents
 
@@ -15,7 +16,6 @@ OptiMol is a package for predicting molecular conformations of organic compounds
 - [Software Dependencies](#Software-Dependencies)
 - [Project Data](#Project-Data)
 - [Documentation](#Documentation)
-- [Testing](#Testing)
 - [Installation](#Installation)
 - [Demo](#Demo)
 - [Licensing](#Licensing)
@@ -40,6 +40,7 @@ The project has the following structure:
         |- component_specifications.ipynb
         |- functional_specifications.ipynb
         |- technology review.pdf
+        |- final presentation.pdf
       |- demo/
         |- demo.ipynb
       |- README.md
@@ -51,9 +52,9 @@ The project has the following structure:
       |- LICENSE
       
 
-In the following sections we will examine these elements one by one. First, let's consider the core of the project. This is the code inside of `optimol/data_compile.py`. This file provides function that converts scrapped data (e.g. .mol or .txt ) into feedable data frames for the machine learning model.
+The core script is `optimol/data_compile.py`. This file provides function that converts scrapped data (e.g. .mol or .txt ) into feed-able data frames for the machine learning model. For a more specific overview of the project, please see the `final presentaion` under `docs`.
 
-XGBoost is the package we used to train the machine learning module. (need more stuff)
+We use [XGBoost]([https://xgboost.readthedocs.io/en/latest/](https://xgboost.readthedocs.io/en/latest/)) for the machine learning module. The Gradient boost tree is an ensemble technique where new models are added to correct the errors made by existing models. It optimizes the loss function to increase accuracy.
 
 ## Software Dependencies
 
@@ -62,11 +63,9 @@ XGBoost is the package we used to train the machine learning module. (need more 
 
 ## Project Data
 
-In this case, the project data is rather small, and recorded in txt files.  Thus, it can be stored alongside the module code.  This is the link of data we used to train the machine learning model. (data source: http://www.chemspider.com/)  
+Training data is stored in `/optimol/database_chemspider` [ChemSpider](http://www.chemspider.com/), where 2D&3D structures of each molecule are stored in .txt, respectively. You can also download the database from [here](https://drive.google.com/open?id=17vfuY6pkMiZzqaDvUiW3Zl7S7d0hAw22).
 
-Data: https://drive.google.com/open?id=17vfuY6pkMiZzqaDvUiW3Zl7S7d0hAw22
-
-In this database, there are two structure files for each molecule, recording information of their 2d and 3d structure respectively. We strongly recommend name them in the form of `chemID_2d.txt` and `chemID_3d.txt` respectively to be better processed by this module.
+We strongly recommend name them in the form of `chemID_2d.txt` and `chemID_3d.txt` to be better processed by this module.
 
 ## Documentation
 
@@ -79,15 +78,15 @@ from optimol import * 				# import module
 data_compile.get_df_database(18) 	# loading file according their chemID, 18 here
 ```
 
-The outputs of this are 4 pandas data frames: 2d atom information, 2d bond information, 3d atom information and 3d bond information in order. Let look at the output of 3d bond information:
+This function will read the 2D&3D molecule files from database and generates 4 data frames: 2D atom coordination, 2D atom connection, 3D atom coordination and 3D atom connection. Then we merge them into two new data frame that can be applied in machine learning module.
 
 ```
-data_compile.get_df_database(18)[2]
+data_compile.get_df_database(18)[2]  # return the new dataframe from 3D
 ```
 
 Output:
 
-![](https://github.com/ShadyMikey/OptiMol/blob/master/img/image-20200313153002994.png)
+![](image/aspirin3d.png)
 
 The columns `3d_x`, `3d_y` and `3d_z` are the x, y ,z coordinates of atoms
 
@@ -98,10 +97,6 @@ The columns `3d_x`, `3d_y` and `3d_z` are the x, y ,z coordinates of atoms
 `bond_1`, `bond_2` and `bond_3` stands for the numbers of single, double and triple bonds that the atom has respectively.
 
 Atoms information of 2D molecules can be interpreted similarly as above.
-
-## Testing
-
-`optimol/tests` is where the local tests and sample data stored. We have built tests in `test_data_compile.py` for each function included in the software. We recommend runnning local tests byy ['nosetests'](nose.readthedocs.io/en/latest/).  The `nosetests` application traverses the directory tree in which it is issued, looking for functions with names that match the pattern `test_*`. Typically each function in the module would have a corresponding test (e.g. `test_get_df_user_edge_cases`). Typing `nosetests test_data_compile.py` into the command window will start the unit test on your computer. `travis.yml'`is also pakced for ['continuous integration'](https://docs.travis-ci.com/user/customizing-the-build). Automated code testing creates an virtual environment for software testing each time when updating the this remote repository.
 
 ## Installation
 
@@ -118,7 +113,7 @@ Optional. `conda update conda` may be needed if packages were not found
 
 ## Demo
 
-Once the isntallation is completed, `optimol` package is ready to be used
+Once the intallation is completed, `optimol` package is ready to be used
 
 1. Load the package and model
 ```
@@ -143,7 +138,7 @@ estimator = model.get_model(data)
 result = model.predict_3d(user_input,estimator)
 ``` 
    
-A detailed tutorial and example of how to use this module is stored in `demo` as [jupyter notebook](https://jupyter.org/).
+For more information, please see examples listed in [jupyter notebook](https://jupyter.org/) under `demo`.
 
 ## Licensing
 
