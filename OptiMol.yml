@@ -8,8 +8,6 @@ dependencies:
   pip:
     - _py-xgboost-mutex=2.0=cpu_0
     - libxgboost=0.90=1
-    - matplotlib=3.2.0=1
-    - matplotlib-base=3.2.0=py37h2981e6d_1
     - numpy==1.18.1
     - pip=20.0.2=py_2
     - py-xgboost=0.90=py37_1
