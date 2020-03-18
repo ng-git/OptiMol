@@ -87,7 +87,7 @@ data_compile.get_df_database(18)[2]
 
 Output:
 
-![](https://github.com/ShadyMikey/OptiMol/blob/master/Presentation%20and%20image/image-20200313153002994.png)
+![](https://github.com/ShadyMikey/OptiMol/blob/master/img/image-20200313153002994.png)
 
 The columns `3d_x`, `3d_y` and `3d_z` are the x, y ,z coordinates of atoms
 
