@@ -1,4 +1,5 @@
-""" Module contains functions to retrieve and process data from the database folder"""
+""" Module contains functions to retrieve
+and process data from the database folder"""
 
 import os
 import numpy as np
@@ -14,8 +15,9 @@ DATABASE = ROOT + '/database_chemspider'
 
 def get_all_dataset(set1=None, set2=0):
     """
-    Get all dataset from the database and combine them to one dataframe, and the samples are randomly selected.
-    When two return sets are requested, the samples are randomly picked from the same list, matching values
+    Get all dataset from the database and combine them to one dataframe
+    and the samples are randomly selected. When two return sets are requested,
+    the samples are randomly picked from the same list, matching values
     between two sets can happen.
 
     :param set1: amount of samples wanted for the first set
@@ -81,8 +83,8 @@ def get_all_dataset(set1=None, set2=0):
 
     if set2 >= 1:
         return [train_set, test_set]
-    else:
-        return train_set
+
+    return train_set
 
 
 def get_df_user(file_list):
@@ -108,7 +110,7 @@ def get_df_user(file_list):
 
         # check for invalid 2D coord
         if any(coord['2d_z'] != 0):
-            err_msg = 'check' + filename + '! Z coordinate in 2d must be all zero'
+            err_msg = 'check' + filename + '! Z coord. in 2d must be all zero'
             raise ValueError(err_msg)
 
         [coord, bond] = trim_hydrogen(coord, bond)
@@ -134,9 +136,10 @@ def get_df_user(file_list):
 
 def get_df_database(id_num, raw=False, hydrogen=False):
     """
-    Access the database folder using the id number to get a list of dataframes contain 2D and 3D data
+    Access the database folder using the id number
+    to get a list of dataframes contain 2D and 3D data
     :param id_num: id number of the molecule
-    :param raw: return dataframes in raw form from web server without processing
+    :param raw: return raw dataframes from web server without processing
     :param hydrogen: return dataframes in without trimming Hydrogen
     :type id_num: int, str
     :type raw: bool
@@ -159,9 +162,9 @@ def get_df_database(id_num, raw=False, hydrogen=False):
         # check for numeric input
         if not id_num.isdigit():
             raise ValueError('Invalid ID number')
-        else:
-            # cast to int if numeric
-            id_num = int(id_num)
+
+        # cast to int if numeric
+        id_num = int(id_num)
 
     # check valid id
     if id_num not in get_id():
@@ -233,7 +236,8 @@ def trim_hydrogen(coord_input, bond_input):
 
 def atom_connect(coord_input, bond_input):
     """
-    Create array contains connection info to the atom and put it into a new dataframe column
+    Create array contains connection info to the atom
+    and put it into a new dataframe column
     :param coord_input: dataframe to be updated with new column of connection
     :param bond_input: dataframe contain atom pairs and the connections
     :type coord_input: pandas.DataFrame
@@ -269,18 +273,23 @@ def atom_connect(coord_input, bond_input):
         atom_1 = bond['atom_1'][i]
         atom_2 = bond['atom_2'][i]
         bond_type = bond['bond_type'][i]
-        coord['bond_' + str(bond_type) + dim][atom_1 - 1] = coord['bond_' + str(bond_type) + dim][atom_1 - 1] + 1
-        coord['bond_' + str(bond_type) + dim][atom_2 - 1] = coord['bond_' + str(bond_type) + dim][atom_2 - 1] + 1
-        for j in range(int(bond['bond_type'][i])):  # duplication is for double and triple bond
-            coord[connect_col][atom_1 - 1].append(atom_2 - 1)  # subtract 1 to shift values to zero-based
+        coord['bond_' + str(bond_type) + dim][atom_1 - 1] \
+            = coord['bond_' + str(bond_type) + dim][atom_1 - 1] + 1
+        coord['bond_' + str(bond_type) + dim][atom_2 - 1] \
+            = coord['bond_' + str(bond_type) + dim][atom_2 - 1] + 1
+        # duplication is for double and triple bond
+        for j in range(int(bond['bond_type'][i])):
+            # subtract 1 to shift values to zero-based
+            coord[connect_col][atom_1 - 1].append(atom_2 - 1)
             coord[connect_col][atom_2 - 1].append(atom_1 - 1)
 
     # convert to array and pad -1
     max_bond_amount = 8  # based on sulfur
     for i in range(len(coord)):
-        if max_bond_amount - len(coord[connect_col][i]) > 0:
+        max_fill = max_bond_amount - len(coord[connect_col][i])
+        if max_fill > 0:
             coord[connect_col][i] = np.pad(np.array(coord[connect_col][i]),
-                                           (0, max_bond_amount - len(coord[connect_col][i])),
+                                           (0, max_fill),
                                            'constant', constant_values=-1)
 
     # reformatting
@@ -311,7 +320,8 @@ def atom_periodic_number_convert(coord_input):
         raise ValueError('periodic_# column already existed')
 
     element = dict({'C': 6, 'O': 8, 'H': 1, 'N': 7,
-                    'Br': 37, 'S': 16, 'I': 53, 'F': 9, 'B': 5})  # periodic info
+                    'Br': 37, 'S': 16, 'I': 53,
+                    'F': 9, 'B': 5})  # periodic info
     coord = coord_input.copy()
     dim = '_' + coord.columns.values[0][0:2]
     col_name = 'periodic_#' + dim
@@ -335,7 +345,8 @@ def atom_periodic_number_convert(coord_input):
 
 def get_df(filename, dim=2):
     """
-    Extract the atom coordinates and bonding data from txt file according to provided dimension
+    Extract the atom coordinates and bonding data from txt file
+    according to provided dimension
     Can be used for both database and user input file
     :param filename: text file name
     :param dim: dimension of the molecule structure in the text file
@@ -379,7 +390,10 @@ def get_df(filename, dim=2):
 
     # prepare returning dataframes to fit with input dimension
     bond = pd.DataFrame(columns=['atom_1', 'atom_2', 'bond_type'])
-    coord = pd.DataFrame(columns=[str(dim) + 'd_x', str(dim) + 'd_y', str(dim) + 'd_z', 'atom'])
+    coord = pd.DataFrame(columns=[str(dim) + 'd_x',
+                                  str(dim) + 'd_y',
+                                  str(dim) + 'd_z',
+                                  'atom'])
 
     # fix datafrme to single column
     raw_coord = pd.DataFrame(raw_coord.iloc[:, 0])
@@ -409,7 +423,8 @@ def get_df(filename, dim=2):
 def df_cleaner(df, new_df):
     """
     Reformat input dataframe to be more usable
-    :param df: input dataframe from reading id.txt file, only has 1 column of white space separated values
+    :param df: input dataframe from reading id.txt file,
+    only has 1 column of white space separated values
     :type df: pandas.DataFrame
 
     :param new_df: output dataframe
@@ -443,7 +458,7 @@ def get_id():
     results = []
     # always open csv file in root dir
     with open(ROOT + "/id.csv") as csvfile:
-        reader = csv.reader(csvfile, delimiter=',')  # change contents to floats
+        reader = csv.reader(csvfile, delimiter=',')  # change content to floats
         for row in reader:  # each row is a list
             results.append(row)
 
@@ -461,7 +476,7 @@ def get_id():
 
 def sample_subset(directory=DATABASE, size=50):
     """
-    Create a smaller database folder inside the main database folder for testing
+    Create a smaller database folder inside main database folder for testing
     :param directory: directory of the database from root
     :param size: the size of the folder
 
@@ -512,7 +527,8 @@ def sample_subset(directory=DATABASE, size=50):
 
 def database_setup():
     """
-    Download 2D and 3D molecule structure from ChemSpider sever to create a database
+    Download 2D & 3D molecule structure
+    from ChemSpider server to create a database
     """
 
     from chemspipy import ChemSpider
@@ -523,7 +539,8 @@ def database_setup():
     directory = DATABASE
     # make directory database_chemspider/ if needed
     if os.path.isdir(directory):
-        print('Database folder already existed! Aborting... \n Please remove the folder and rerun')
+        print('Database folder already existed! Aborting... \n '
+              'Please remove the folder and rerun')
         exit()
     else:
         os.mkdir(directory)
